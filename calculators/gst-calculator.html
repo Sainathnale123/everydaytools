@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Advanced SEO Meta Tags -->
+  <title>Ultimate Indian GST Calculator & Enterprise Invoicing Suite 2026</title>
+  <meta name="description" content="Free online Indian GST calculator with mobile-friendly multi-item invoicing, LUT exports, composition scheme, party directory, UPI payment QR generator, and professional PDF invoice exporter.">
+  <meta name="keywords" content="GST calculator India, online GST invoice generator, HSN code lookup, CGST SGST IGST calculator, reverse charge mechanism, LUT export invoice, composition scheme GST">
+  <meta name="author" content="Everyday Tools">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/gst-calculator.html">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing Image -->
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ultimate Indian GST Calculator & Enterprise Invoicing Suite 2026">
+  <meta property="og:description" content="Free online Indian GST calculator with mobile-friendly multi-item invoicing, LUT exports, composition scheme, party directory, UPI payment QR generator, and professional PDF invoice exporter.">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/gst-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ultimate Indian GST Calculator - Everyday Tools">
+  <meta name="twitter:description" content="Multi-item invoicing, LUT exports, composition scheme, party management, dynamic UPI QR codes, and PDF billing.">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- External Libraries: jsPDF, AutoTable & QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Tailwind CSS CDN (Ensuring utility classes work seamlessly) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Premium CSS Theme from Age Calculator Template -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text: #0f172a;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .background {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      filter: blur(80px);
+      opacity: 0.12;
+      border-radius: 50%;
+    }
+    .blob.one { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
+    .blob.two { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: var(--success); }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+      padding: 24px 16px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      flex: 1;
+      padding-top: 16px;
+      padding-bottom: 40px;
+    }
+
+    .page-header {
+      padding: 20px 0;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 6px 0 8px 0;
+      color: var(--text);
+    }
+    .page-header h1 span {
+      color: var(--primary);
+    }
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    @media(min-width: 768px) {
+      .page-header h1 { font-size: 30px; }
+    }
+
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      margin-bottom: 16px;
+      word-wrap: break-word;
+    }
+    @media(min-width: 768px) {
+      .calc-card { padding: 30px 24px; margin-bottom: 24px; }
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media(min-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .form-group { margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
+    label { display: block; font-size: 13px; font-weight: 700; color: var(--text); }
+    input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 16px; font-weight: 600; outline: none; background: var(--white); color: var(--text); transition: border-color 0.2s ease; box-sizing: border-box; -webkit-appearance: none; appearance: none; }
+    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+
+    .btn { background: var(--primary); color: #ffffff; border: none; padding: 12px 18px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s ease, transform 0.1s ease; width: 100%; text-align: center; }
+    @media(min-width: 640px) { .btn { width: auto; } }
+    .btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-success { background: var(--success); }
+    .btn-success:hover { background: #059669; }
+    .btn-danger { background: var(--danger); }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-secondary { background: #e2e8f0; color: var(--text); }
+    .btn-secondary:hover { background: #cbd5e1; }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 10px;
+    }
+    table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px; }
+    th { background: #f1f5f9; padding: 10px 8px; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); white-space: nowrap; }
+    td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    table input, table select { padding: 8px 10px; font-size: 14px; }
+
+    .summary-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-md); padding: 14px; margin-top: 14px; }
+    @media(min-width: 768px) { .summary-box { padding: 18px; } }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--text); }
+    @media(min-width: 768px) { .summary-row { font-size: 14px; } }
+    .summary-row.total { font-size: 16px; font-weight: 800; color: var(--primary); border-top: 2px solid #bfdbfe; padding-top: 10px; margin-top: 10px; }
+    @media(min-width: 768px) { .summary-row.total { font-size: 18px; } }
+
+    .badge { display: inline-block; padding: 5px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; background: #e2e8f0; color: #475569; margin-right: 4px; margin-bottom: 4px; }
+    .toolbar { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    @media(min-width: 640px) { .toolbar { flex-direction: row; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; } }
+
+    #qrcode-container { display: flex; justify-content: center; align-items: center; padding: 10px; background: #fff; border: 1px solid var(--border); border-radius: 8px; width: 128px; height: 128px; margin: 0 auto; }
+    
+    .history-card { background: #f8fafc; border: 1px solid var(--border); padding: 10px; border-radius: 8px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px; }
+    @media(min-width: 480px) {
+      .history-card { flex-direction: row; justify-content: space-between; align-items: center; gap: 0; }
+    }
+    header.w-full.bg-white\/90.backdrop-blur.border-b.border-slate-200.sticky.top-0.z-50 {
+    background: rgba(247, 248, 252, 0.85);
+}
+    .ad-wrapper { margin: 20px 0; text-align: center; }
+    .ad-slot { background: #f1f5f9; border: 1px dashed var(--border); border-radius: var(--radius-md); padding: 15px; min-height: 90px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .ad-disclosure { position: absolute; top: 4px; right: 8px; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ultimate Indian GST Calculator & Enterprise Invoicing Suite",
+    "url": "https://everydaytools.co.in/calculators/gst-calculator.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "description": "Free online Indian GST calculator with mobile-friendly multi-item invoicing, LUT exports, composition scheme, party directory, UPI payment QR generator, and professional PDF invoice exporter.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Animated Blobs -->
+  <div class="background">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <!-- Fully Responsive Header: Automatically stacks vertically on mobile and aligns horizontally on desktop -->
+  <header class="w-full bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Logo & Icon Centered -->
+      <a href="https://everydaytools.co.in/" class="flex items-center space-x-2">
+        <span class="text-xl">⚡</span>
+        <span class="text-lg font-extrabold tracking-tight text-slate-900">Everyday Tools</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center space-x-6 text-sm text-slate-600 font-semibold">
+        <a href="https://everydaytools.co.in/" class="hover:text-indigo-600 transition-colors">Home</a>
+        <a href="calculator.html" class="text-indigo-600 transition-colors">Calculators</a>
+        <a href="../about.html" class="hover:text-indigo-600 transition-colors">About</a>
+        <a href="../contact.html" class="hover:text-indigo-600 transition-colors">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content" class="container">
+    
+    <!-- Hero Header -->
+    <header class="page-header">
+      <span class="eyebrow">Enterprise Business Utility</span>
+      <h1>Ultimate Indian <span>GST Calculator &amp; Invoicing Suite</span></h1>
+      <p class="subtitle">
+        Multi-item invoicing, LUT exports, composition scheme, party management, dynamic UPI QR codes, and PDF billing.
+      </p>
+    </header>
+
+    <!-- Top Advertisement Banner Space -->
+    <div class="ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+      </div>
+    </div>
+
+    <!-- Toolbar Controls -->
+    <div class="toolbar">
+      <button class="btn" onclick="addItemRow()">➕ Add Line Item</button>
+      <button class="btn btn-success" onclick="generatePDF()">📄 Export PDF Invoice</button>
+      <button class="btn btn-secondary" onclick="saveCurrentInvoice()">💾 Save Invoice</button>
+      <button class="btn btn-secondary" onclick="exportCSV()">📊 Export CSV</button>
+      <button class="btn btn-danger" onclick="resetAllData()">🗑️ Reset Form</button>
+    </div>
+
+    <div class="grid-2">
+      <!-- Left Column: Business & Party Details -->
+      <div>
+        <!-- Party Directory & Profiles -->
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">👤 Client Directory &amp; Party Info</h2>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Select Saved Buyer Profile</label>
+              <select id="partyDirectorySelect" onchange="loadPartyProfile(this.value)">
+                <option value="">-- Manual Entry --</option>
+              </select>
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button class="btn btn-secondary" style="margin-top: 4px;" onclick="savePartyProfile()">💾 Save Buyer Profile</button>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top: 10px;">
+            <div class="form-group">
+              <label>Supplier / Business Name</label>
+              <input type="text" id="supplierName" value="Acme Digital Solutions Pvt Ltd">
+            </div>
+            <div class="form-group">
+              <label>Buyer / Client Name</label>
+              <input type="text" id="buyerName" value="Global Tech Systems">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Supplier State Code</label>
+              <select id="supplierState" onchange="calculateGST()">
+                <option value="27" selected>27 - Maharashtra</option>
+                <option value="07">07 - Delhi</option>
+                <option value="29">29 - Karnataka</option>
+                <option value="33">33 - Tamil Nadu</option>
+                <option value="24">24 - Gujarat</option>
+                <option value="03">03 - Punjab</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Buyer State Code</label>
+              <select id="buyerState" onchange="calculateGST()">
+                <option value="27" selected>27 - Maharashtra</option>
+                <option value="07">07 - Delhi</option>
+                <option value="29">29 - Karnataka</option>
+                <option value="33">33 - Tamil Nadu</option>
+                <option value="24">24 - Gujarat</option>
+                <option value="03">03 - Punjab</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced GST Settings -->
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">⚙️ Tax Scheme &amp; Export Rules</h2>
+          
+          <div class="grid-3">
+            <div class="form-group">
+              <label>Calculation Mode</label>
+              <select id="calcMode" onchange="calculateGST()">
+                <option value="exclusive" selected>GST Exclusive</option>
+                <option value="inclusive">GST Inclusive</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Special Tax Scheme</label>
+              <select id="taxScheme" onchange="toggleSchemeOptions(); calculateGST();">
+                <option value="regular" selected>Regular Scheme</option>
+                <option value="lut">Export / SEZ under LUT</option>
+                <option value="composition">Composition Scheme</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Reverse Charge (RCM)</label>
+              <select id="rcmActive" onchange="calculateGST()">
+                <option value="no" selected>No (Standard)</option>
+                <option value="yes">Yes (RCM Active)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="compositionOptionRow" class="form-group" style="display:none; margin-top: 10px;">
+            <label>Composition Tax Rate Type</label>
+            <select id="compositionRate" onchange="calculateGST()">
+              <option value="1">1% (Traders &amp; Manufacturers)</option>
+              <option value="5">5% (Restaurant Services)</option>
+              <option value="6">6% (Other Service Providers)</option>
+            </select>
+          </div>
+
+          <div class="grid-2" style="margin-top: 10px;">
+            <div class="form-group">
+              <label>Flat Discount / Adjustment</label>
+              <input type="number" id="globalDiscount" value="0" oninput="calculateGST()">
+            </div>
+            <div class="form-group">
+              <label>Shipping / Freight Charge</label>
+              <input type="number" id="shippingCharge" value="0" oninput="calculateGST()">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Select Currency</label>
+              <select id="currencyType" onchange="calculateGST()">
+                <option value="INR" selected>INR (₹)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>FX Rate (vs Base INR)</label>
+              <input type="number" id="fxRate" value="1.00" step="0.01" oninput="calculateGST()">
+            </div>
+          </div>
+        </div>
+
+        <!-- GSTIN Validator -->
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">🔍 GSTIN Validator &amp; Format Checker</h2>
+          <div class="form-group">
+            <label>Enter 15-Digit GSTIN</label>
+            <input type="text" id="gstinInput" placeholder="e.g. 27AAAAA0000A1Z5" maxlength="15" oninput="validateGSTIN()">
+          </div>
+          <div id="gstinResult" style="font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 4px;">Type a valid GSTIN to verify format and state code.</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Summary, Payments & Digital Signature -->
+      <div>
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">📊 Tax Computation Summary</h2>
+          
+          <div class="summary-box">
+            <div class="summary-row">
+              <span>Subtotal (Taxable Value):</span>
+              <span id="sumSubtotal">₹ 0.00</span>
+            </div>
+            <div class="summary-row" id="rowCGST" style="display:none;">
+              <span>CGST (Central Tax):</span>
+              <span id="sumCGST">₹ 0.00</span>
+            </div>
+            <div class="summary-row" id="rowSGST" style="display:none;">
+              <span>SGST / UTGST (State Tax):</span>
+              <span id="sumSGST">₹ 0.00</span>
+            </div>
+            <div class="summary-row" id="rowIGST" style="display:none;">
+              <span>IGST (Integrated Tax):</span>
+              <span id="sumIGST">₹ 0.00</span>
+            </div>
+            <div class="summary-row" id="rowComposition" style="display:none;">
+              <span>Composition Flat Tax:</span>
+              <span id="sumComposition">₹ 0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping Charge (incl. tax):</span>
+              <span id="sumShipping">₹ 0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Discount Applied:</span>
+              <span id="sumDiscount" style="color: var(--danger);">- ₹ 0.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total Invoice Value:</span>
+              <span id="sumTotal">₹ 0.00</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <span class="badge" id="supplyTypeBadge">Intra-State Supply</span>
+            <span class="badge" id="rcmBadge" style="display:none; background:#fef3c7; color:#b45309;">RCM Applicable</span>
+            <span class="badge" id="schemeBadge" style="display:none; background:#e0e7ff; color:#3730a3;">LUT Zero Rated</span>
+          </div>
+        </div>
+
+        <!-- UPI Payment QR Code Generator -->
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">📲 Instant UPI Payment QR Code</h2>
+          <div class="grid-2" style="align-items: center;">
+            <div class="form-group">
+              <label>Merchant VPA / UPI ID</label>
+              <input type="text" id="upiId" value="acmedigital@upi" oninput="generateUPIQR()">
+              <label style="margin-top: 6px;">Payee Name</label>
+              <input type="text" id="upiName" value="Acme Digital" oninput="generateUPIQR()">
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+              <div id="qrcode-container"></div>
+              <span style="font-size: 11px; color: var(--muted); font-weight: 600; display: block; margin-top: 6px;">Auto-encodes Total Amount</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Signature / Authorized Stamp -->
+        <div class="calc-card">
+          <h2 style="font-size: 15px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">✍️ Authorized Signatory / Digital Stamp</h2>
+          <div class="form-group">
+            <label>Upload Official Seal / Signature Image</label>
+            <input type="file" id="signatureUpload" accept="image/*" onchange="handleSignatureUpload(event)">
+          </div>
+          <div id="signaturePreviewContainer" style="display:none; text-align: center; margin-top: 8px;">
+            <img id="signaturePreview" style="max-height: 60px; border: 1px dashed var(--border); padding: 4px;" alt="Signature Preview">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-Item Line Table -->
+    <div class="calc-card">
+      <h2 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">🛒 Invoice Line Items</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width: 160px;">Item / Description</th>
+              <th style="min-width: 100px;">HSN / SAC</th>
+              <th style="min-width: 70px;">Qty</th>
+              <th style="min-width: 100px;">Unit Price</th>
+              <th style="min-width: 110px;">GST Rate</th>
+              <th style="min-width: 100px;">Total Value</th>
+              <th style="min-width: 50px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="itemRowsContainer">
+            <!-- Dynamic rows injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Saved Invoice Archive / History Drawer -->
+    <div class="calc-card">
+      <h2 style="font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--primary);">📜 Saved Invoices History</h2>
+      <div id="invoiceHistoryContainer">
+        <p style="font-size: 13px; color: var(--muted);">No saved invoices found in browser history.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Shared Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    let invoiceItems = [
+      { name: "Consulting Services", hsn: "998311", qty: 1, price: 10000, rate: 18 },
+      { name: "Software License", hsn: "997331", qty: 2, price: 5000, rate: 18 }
+    ];
+
+    let signatureBase64 = null;
+    let qrCodeObj = null;
+
+    const stateCodesMap = {
+      "01": "Jammu & Kashmir", "03": "Punjab", "07": "Delhi", "24": "Gujarat",
+      "27": "Maharashtra", "29": "Karnataka", "33": "Tamil Nadu", "36": "Telangana"
+    };
+
+    const currencySymbols = { INR: "₹", USD: "$", EUR: "€", GBP: "£" };
+
+    function initApp() {
+      renderItems();
+      loadPartyProfiles();
+      renderInvoiceHistory();
+      calculateGST();
+    }
+
+    function renderItems() {
+      const container = document.getElementById('itemRowsContainer');
+      container.innerHTML = '';
+      const curr = currencySymbols[document.getElementById('currencyType').value] || "₹";
+
+      invoiceItems.forEach((item, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" value="${item.name}" oninput="updateItem(${index}, 'name', this.value)"></td>
+          <td><input type="text" value="${item.hsn}" oninput="updateItem(${index}, 'hsn', this.value)"></td>
+          <td><input type="number" value="${item.qty}" min="1" oninput="updateItem(${index}, 'qty', this.value)"></td>
+          <td><input type="number" value="${item.price}" min="0" step="10" oninput="updateItem(${index}, 'price', this.value)"></td>
+          <td>
+            <select onchange="updateItem(${index}, 'rate', this.value)">
+              <option value="0" ${item.rate == 0 ? 'selected' : ''}>0% (Nil)</option>
+              <option value="0.25" ${item.rate == 0.25 ? 'selected' : ''}>0.25%</option>
+              <option value="3" ${item.rate == 3 ? 'selected' : ''}>3% (Gold)</option>
+              <option value="5" ${item.rate == 5 ? 'selected' : ''}>5%</option>
+              <option value="12" ${item.rate == 12 ? 'selected' : ''}>12%</option>
+              <option value="18" ${item.rate == 18 ? 'selected' : ''}>18% (Standard)</option>
+              <option value="28" ${item.rate == 28 ? 'selected' : ''}>28% (Luxury)</option>
+            </select>
+          </td>
+          <td id="itemTotal-${index}" style="font-weight: 700; color: var(--primary); white-space: nowrap;">${curr} 0.00</td>
+          <td><button class="btn btn-danger" style="padding: 8px 12px; font-size: 12px; width: auto;" onclick="removeItem(${index})">✕</button></td>
+        `;
+        container.appendChild(tr);
+      });
+      calculateGST();
+    }
+
+    function addItemRow() {
+      invoiceItems.push({ name: "New Service / Product", hsn: "1001", qty: 1, price: 1000, rate: 18 });
+      renderItems();
+    }
+
+    function removeItem(index) {
+      if (invoiceItems.length === 1) {
+        alert("Invoice must contain at least one item.");
+        return;
+      }
+      invoiceItems.splice(index, 1);
+      renderItems();
+    }
+
+    function updateItem(index, field, value) {
+      if (field === 'qty' || field === 'price' || field === 'rate') {
+        invoiceItems[index][field] = parseFloat(value) || 0;
+      } else {
+        invoiceItems[index][field] = value;
+      }
+      calculateGST();
+    }
+
+    function toggleSchemeOptions() {
+      const scheme = document.getElementById('taxScheme').value;
+      document.getElementById('compositionOptionRow').style.display = scheme === 'composition' ? 'block' : 'none';
+    }
+
+    function calculateGST() {
+      const supplierState = document.getElementById('supplierState').value;
+      const buyerState = document.getElementById('buyerState').value;
+      const calcMode = document.getElementById('calcMode').value;
+      const scheme = document.getElementById('taxScheme').value;
+      const compRate = parseFloat(document.getElementById('compositionRate').value) || 1;
+      const isRcm = document.getElementById('rcmActive').value === 'yes';
+      const discount = parseFloat(document.getElementById('globalDiscount').value) || 0;
+      const shipping = parseFloat(document.getElementById('shippingCharge').value) || 0;
+      const currency = document.getElementById('currencyType').value;
+      const fxRate = parseFloat(document.getElementById('fxRate').value) || 1.0;
+      const curr = currencySymbols[currency] || "₹";
+
+      const isInterState = supplierState !== buyerState;
+
+      let subtotalTaxable = 0;
+      let totalCGST = 0;
+      let totalSGST = 0;
+      let totalIGST = 0;
+      let totalCompTax = 0;
+
+      invoiceItems.forEach((item, index) => {
+        let baseAmount = (item.qty * item.price) * fxRate;
+        let itemTaxable = 0;
+        let itemTax = 0;
+
+        if (scheme === 'lut') {
+          itemTaxable = baseAmount;
+          itemTax = 0;
+        } else if (scheme === 'composition') {
+          itemTaxable = baseAmount;
+          itemTax = 0;
+        } else {
+          if (calcMode === 'exclusive') {
+            itemTaxable = baseAmount;
+            itemTax = itemTaxable * (item.rate / 100);
+          } else {
+            itemTaxable = baseAmount / (1 + (item.rate / 100));
+            itemTax = baseAmount - itemTaxable;
+          }
+        }
+
+        subtotalTaxable += itemTaxable;
+
+        if (scheme === 'regular') {
+          if (isInterState) {
+            totalIGST += itemTax;
+          } else {
+            totalCGST += (itemTax / 2);
+            totalSGST += (itemTax / 2);
+          }
+        }
+
+        const itemFinalVal = itemTaxable + itemTax;
+        const totalElem = document.getElementById(`itemTotal-${index}`);
+        if (totalElem) {
+          totalElem.innerText = `${curr} ` + itemFinalVal.toFixed(2);
+        }
+      });
+
+      let shippingTaxable = shipping * fxRate;
+      let shippingTax = (scheme === 'regular') ? shippingTaxable * 0.18 : 0;
+      if (scheme === 'regular') {
+        if (isInterState) {
+          totalIGST += shippingTax;
+        } else {
+          totalCGST += (shippingTax / 2);
+          totalSGST += (shippingTax / 2);
+        }
+      }
+
+      if (scheme === 'composition') {
+        totalCompTax = (subtotalTaxable + shippingTaxable) * (compRate / 100);
+      }
+
+      let grandTotal = subtotalTaxable + totalCGST + totalSGST + totalIGST + totalCompTax + shippingTaxable + shippingTax - (discount * fxRate);
+      grandTotal = Math.max(0, grandTotal);
+
+      document.getElementById('sumSubtotal').innerText = `${curr} ` + subtotalTaxable.toFixed(2);
+      document.getElementById('sumCGST').innerText = `${curr} ` + totalCGST.toFixed(2);
+      document.getElementById('sumSGST').innerText = `${curr} ` + totalSGST.toFixed(2);
+      document.getElementById('sumIGST').innerText = `${curr} ` + totalIGST.toFixed(2);
+      document.getElementById('sumComposition').innerText = `${curr} ` + totalCompTax.toFixed(2);
+      document.getElementById('sumShipping').innerText = `${curr} ` + (shippingTaxable + shippingTax).toFixed(2);
+      document.getElementById('sumDiscount').innerText = `- ${curr} ` + (discount * fxRate).toFixed(2);
+      document.getElementById('sumTotal').innerText = `${curr} ` + grandTotal.toFixed(2);
+
+      document.getElementById('rowCGST').style.display = (scheme === 'regular' && !isInterState) ? 'flex' : 'none';
+      document.getElementById('rowSGST').style.display = (scheme === 'regular' && !isInterState) ? 'flex' : 'none';
+      document.getElementById('rowIGST').style.display = (scheme === 'regular' && isInterState) ? 'flex' : 'none';
+      document.getElementById('rowComposition').style.display = (scheme === 'composition') ? 'flex' : 'none';
+
+      const badge = document.getElementById('supplyTypeBadge');
+      if (isInterState) {
+        badge.innerText = "Inter-State Supply";
+        badge.style.background = "#e0e7ff";
+        badge.style.color = "#3730a3";
+      } else {
+        badge.innerText = "Intra-State Supply";
+        badge.style.background = "#d1fae5";
+        badge.style.color = "#065f46";
+      }
+
+      document.getElementById('rcmBadge').style.display = isRcm ? 'inline-block' : 'none';
+      
+      const schemeBadge = document.getElementById('schemeBadge');
+      if (scheme === 'lut') {
+        schemeBadge.innerText = "LUT Export (Zero Tax)";
+        schemeBadge.style.display = 'inline-block';
+      } else if (scheme === 'composition') {
+        schemeBadge.innerText = `Composition (${compRate}%)`;
+        schemeBadge.style.display = 'inline-block';
+      } else {
+        schemeBadge.style.display = 'none';
+      }
+
+      generateUPIQR();
+    }
+
+    function generateUPIQR() {
+      const upiId = document.getElementById('upiId').value.trim();
+      const upiName = document.getElementById('upiName').value.trim();
+      const totalStr = document.getElementById('sumTotal').innerText.replace(/[^0-9.]/g, '');
+      const qrContainer = document.getElementById('qrcode-container');
+
+      if (!upiId || !totalStr || parseFloat(totalStr) === 0) {
+        qrContainer.innerHTML = '<span style="font-size:11px; color:#64748b;">QR Unavailable</span>';
+        return;
+      }
+
+      const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(upiName)}&am=${totalStr}&cu=INR`;
+      
+      qrContainer.innerHTML = '';
+      qrCodeObj = new QRCode(qrContainer, {
+        text: upiUrl,
+        width: 110,
+        height: 110,
+        colorDark: "#0f172a",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }
+
+    function handleSignatureUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          signatureBase64 = e.target.result;
+          document.getElementById('signaturePreview').src = signatureBase64;
+          document.getElementById('signaturePreviewContainer').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function validateGSTIN() {
+      const val = document.getElementById('gstinInput').value.trim().toUpperCase();
+      const res = document.getElementById('gstinResult');
+      const regex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+
+      if (val.length === 0) {
+        res.innerText = "Type a valid GSTIN to verify format and extract details.";
+        res.style.color = "var(--muted)";
+        return;
+      }
+
+      if (regex.test(val)) {
+        const stateCode = val.substring(0, 2);
+        const pan = val.substring(2, 12);
+        const stateName = stateCodesMap[stateCode] || "Valid State Code";
+        res.innerHTML = `✅ <strong>Valid GSTIN Format!</strong><br>• State: ${stateName} (${stateCode})<br>• PAN: ${pan}`;
+        res.style.color = "#10b981";
+      } else {
+        res.innerText = "❌ Invalid GSTIN format. Ensure 15 alphanumeric characters matching standard rules.";
+        res.style.color = "#ef4444";
+      }
+    }
+
+    function savePartyProfile() {
+      const name = document.getElementById('buyerName').value.trim();
+      const state = document.getElementById('buyerState').value;
+      if (!name) {
+        alert("Please enter a Buyer Name before saving profile.");
+        return;
+      }
+
+      let profiles = JSON.parse(localStorage.getItem('gst_party_profiles') || '[]');
+      const existingIdx = profiles.findIndex(p => p.name === name);
+      if (existingIdx >= 0) {
+        profiles[existingIdx] = { name, state };
+      } else {
+        profiles.push({ name, state });
+      }
+
+      localStorage.setItem('gst_party_profiles', JSON.stringify(profiles));
+      alert("Party profile saved successfully!");
+      loadPartyProfiles();
+    }
+
+    function loadPartyProfiles() {
+      const select = document.getElementById('partyDirectorySelect');
+      select.innerHTML = '<option value="">-- Manual Entry --</option>';
+      let profiles = JSON.parse(localStorage.getItem('gst_party_profiles') || '[]');
+      profiles.forEach((p, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.innerText = `${p.name} (${p.state})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function loadPartyProfile(idx) {
+      if (idx === "") return;
+      let profiles = JSON.parse(localStorage.getItem('gst_party_profiles') || '[]');
+      const p = profiles[idx];
+      if (p) {
+        document.getElementById('buyerName').value = p.name;
+        document.getElementById('buyerState').value = p.state;
+        calculateGST();
+      }
+    }
+
+    function saveCurrentInvoice() {
+      const supplier = document.getElementById('supplierName').value;
+      const buyer = document.getElementById('buyerName').value;
+      const total = document.getElementById('sumTotal').innerText;
+      const date = new Date().toLocaleDateString();
+
+      let history = JSON.parse(localStorage.getItem('gst_invoice_history') || '[]');
+      history.unshift({ id: Date.now(), supplier, buyer, total, date, items: invoiceItems });
+      localStorage.setItem('gst_invoice_history', JSON.stringify(history));
+
+      alert("Invoice saved to local history!");
+      renderInvoiceHistory();
+    }
+
+    function renderInvoiceHistory() {
+      const container = document.getElementById('invoiceHistoryContainer');
+      let history = JSON.parse(localStorage.getItem('gst_invoice_history') || '[]');
+
+      if (history.length === 0) {
+        container.innerHTML = '<p style="font-size: 13px; color: var(--muted);">No saved invoices found in browser history.</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+      history.forEach((inv) => {
+        const div = document.createElement('div');
+        div.className = 'history-card';
+        div.innerHTML = `
+          <div>
+            <strong>${inv.buyer}</strong> (${inv.date})<br>
+            <span style="font-size:12px; color:var(--muted);">Total: ${inv.total}</span>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button class="btn btn-secondary" style="padding:6px 12px; font-size:12px; width:auto;" onclick="loadSavedInvoice(${inv.id})">Load</button>
+            <button class="btn btn-danger" style="padding:6px 12px; font-size:12px; width:auto;" onclick="deleteSavedInvoice(${inv.id})">🗑️</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function loadSavedInvoice(id) {
+      let history = JSON.parse(localStorage.getItem('gst_invoice_history') || '[]');
+      const inv = history.find(item => item.id === id);
+      if (inv) {
+        document.getElementById('supplierName').value = inv.supplier;
+        document.getElementById('buyerName').value = inv.buyer;
+        invoiceItems = inv.items;
+        renderItems();
+      }
+    }
+
+    function deleteSavedInvoice(id) {
+      let history = JSON.parse(localStorage.getItem('gst_invoice_history') || '[]');
+      history = history.filter(item => item.id !== id);
+      localStorage.setItem('gst_invoice_history', JSON.stringify(history));
+      renderInvoiceHistory();
+    }
+
+    function resetAllData() {
+      if (confirm("Are you sure you want to reset the entire invoice form?")) {
+        invoiceItems = [{ name: "Sample Item", hsn: "9981", qty: 1, price: 5000, rate: 18 }];
+        document.getElementById('globalDiscount').value = 0;
+        document.getElementById('shippingCharge').value = 0;
+        document.getElementById('gstinInput').value = "";
+        document.getElementById('taxScheme').value = "regular";
+        toggleSchemeOptions();
+        renderItems();
+      }
+    }
+
+    function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const scheme = document.getElementById('taxScheme').value;
+      const curr = currencySymbols[document.getElementById('currencyType').value] || "₹";
+
+      doc.setFontSize(20);
+      doc.setTextColor(79, 70, 229);
+      doc.text("TAX INVOICE", 14, 20);
+
+      doc.setFontSize(10);
+      doc.setTextColor(80);
+      doc.text(`Supplier: ${document.getElementById('supplierName').value}`, 14, 28);
+      doc.text(`Buyer: ${document.getElementById('buyerName').value}`, 14, 34);
+      doc.text(`Invoice Date: ${new Date().toLocaleDateString()}`, 140, 28);
+
+      if (scheme === 'lut') {
+        doc.setFontSize(9);
+        doc.setTextColor(180, 83, 9);
+        doc.text("SUPPLY MEANT FOR EXPORT/SEZ UNDER LUT WITHOUT PAYMENT OF INTEGRATED TAX", 14, 42);
+      } else if (scheme === 'composition') {
+        doc.setFontSize(9);
+        doc.setTextColor(180, 83, 9);
+        doc.text("COMPOSITION TAXABLE PERSON, NOT ELIGIBLE TO COLLECT TAX ON SUPPLIES", 14, 42);
+      }
+
+      const tableData = invoiceItems.map(item => [
+        item.name,
+        item.hsn,
+        item.qty,
+        `${curr} ${item.price.toLocaleString()}`,
+        scheme === 'regular' ? `${item.rate}%` : '0%',
+        `${curr} ${(item.qty * item.price).toLocaleString()}`
+      ]);
+
+      doc.autoTable({
+        startY: (scheme !== 'regular') ? 48 : 40,
+        head: [['Description', 'HSN/SAC', 'Qty', 'Unit Price', 'GST Rate', 'Total']],
+        body: tableData,
+        theme: 'striped',
+        headStyles: { fillColor: [79, 70, 229] }
+      });
+
+      let finalY = doc.lastAutoTable.finalY + 10;
+
+      doc.setFontSize(10);
+      doc.setTextColor(15);
+      doc.text(`Subtotal: ${document.getElementById('sumSubtotal').innerText}`, 130, finalY);
+      doc.text(`Total Invoice Amount: ${document.getElementById('sumTotal').innerText}`, 130, finalY + 6);
+
+      const qrCanvas = document.querySelector('#qrcode-container canvas');
+      if (qrCanvas) {
+        const qrDataUrl = qrCanvas.toDataURL('image/png');
+        doc.addImage(qrDataUrl, 'PNG', 14, finalY, 30, 30);
+        doc.setFontSize(8);
+        doc.text("Scan to Pay via UPI", 14, finalY + 34);
+      }
+
+      if (signatureBase64) {
+        doc.addImage(signatureBase64, 'PNG', 140, finalY + 15, 40, 20);
+        doc.setFontSize(8);
+        doc.text("Authorized Signatory", 140, finalY + 38);
+      }
+
+      doc.save("GST_Invoice_EverydayTools.pdf");
+    }
+
+    function exportCSV() {
+      let csv = "Item Name,HSN,Quantity,Unit Price,GST Rate\n";
+      invoiceItems.forEach(i => {
+        csv += `"${i.name}","${i.hsn}",${i.qty},${i.price},${i.rate}%\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' }, { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "invoice_items.csv";
+      link.click();
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>

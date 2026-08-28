@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Advanced SEO Metatags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate SIP Calculator with Career Pause, Tax Estimator, Milestone Tracker & Scenarios - Everyday Tools</title>
+  <meta name="title" content="Ultimate SIP Calculator with Career Pause, Tax Estimator & Milestone Tracker">
+  <meta name="description" content="Calculate mutual fund returns with step-up increments, career breaks, tax-alpha capital gains, milestone age tracking, market scenarios, and SWP simulations.">
+  <meta name="keywords" content="SIP calculator, step up sip calculator, career break sip, capital gains tax calculator, mutual fund milestone tracker, SWP calculator, everyday tools">
+  <meta name="author" content="Everyday Tools">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/sip-calculator.html">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/sip-calculator.html">
+  <meta property="og:title" content="Ultimate SIP Calculator with Career Pause & Tax Estimator">
+  <meta property="og:description" content="Plan your mutual fund investments with precision. Simulate step-up SIPs, career breaks, capital gains tax, milestone ages, and export reports.">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/sip-calculator-og.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ultimate SIP Calculator with Multi-Features">
+  <meta name="twitter:description" content="Simulate step-up SIPs, career breaks, tax-alpha, milestone tracking, and SWP withdrawals accurately.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2310b981'/%3E%3Cpath d='M16 44L32 20l16 24H16z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- External Libraries: Chart.js, jsPDF & AutoTable -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Google tag (gtag.js) & AdSense Integration -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1883789673684510" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: Breadcrumbs & Financial Product FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://everydaytools.co.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://everydaytools.co.in/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "SIP Calculator", "item": "https://everydaytools.co.in/calculators/sip-calculator.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does a Career Break Pause affect my SIP?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A career break pause temporarily halts your monthly contributions for a selected duration while letting your existing accumulated wealth compound passively in the market." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Capital Gains Tax calculated on mutual fund redemptions?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Capital gains tax distinguishes between long-term and short-term holdings, applying appropriate tax rates on your net wealth gains upon final redemption." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Styles -->
+  <style>
+    .market-scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 769px) {
+      .market-scenario-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) { .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; } }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) { .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; } }
+    .preset-btn:hover { background: #d1fae5; color: #065f46; border-color: #10b981; }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: #10b981; border-bottom-color: #10b981; }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: #10b981; outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: #10b981; margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .ratio-bar-container { background: #e2e8f0; height: 14px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 8px; }
+    .ratio-invested { background: #6366f1; height: 100%; transition: width 0.3s ease; }
+    .ratio-returns { background: #10b981; height: 100%; transition: width 0.3s ease; }
+    .legend { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+    .btn-action { background: #10b981; color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/calculators/calculators.html">All Calculators</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Advanced Wealth Management Suite</span>
+        <h1>Ultimate <span>SIP Calculator</span></h1>
+        <p class="subtitle">
+          Calculate mutual fund returns with step-up increments, career break pauses, tax-alpha capital gains, age milestone tracking, market scenarios, and SWP simulations.
+        </p>
+      </div>
+    </header>
+
+    <!-- AdSense Top Banner Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1883789673684510" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <span class="ad-disclosure">Advertisement</span>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Presets & Currency Bar -->
+      <div class="preset-bar">
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="setPreset(5000, 12, 10, 'no', 0, 0, 30, 12.5)">🌱 Starter SIP (₹5k)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(15000, 14, 15, 'yes', 10, 0, 28, 12.5)">🚀 Step-Up Builder (₹15k)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(30000, 15, 20, 'yes', 15, 2, 32, 12.5)">🏆 Crorepati Master (₹30k)</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <label for="currencySelect" style="font-size: 12px; font-weight: 700;">Currency:</label>
+          <select id="currencySelect" onchange="calculateAll()" style="padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-weight: 700; font-size: 12px;">
+            <option value="₹" selected>INR (₹)</option>
+            <option value="$">USD ($)</option>
+            <option value="€">EUR (€)</option>
+            <option value="£">GBP (£)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Mobile Tab Selection Dropdown -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="sipCalc" selected>📈 Standard &amp; Step-Up SIP</option>
+          <option value="goalCalc">🎯 Goal Target Planner</option>
+          <option value="swpCalc">💸 SWP &amp; Dividend Simulator</option>
+          <option value="lumpsumCalc">💼 Lumpsum vs SIP Compare</option>
+        </select>
+      </div>
+
+      <!-- Desktop Tab Navigation -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('sipCalc', this)">📈 Standard &amp; Step-Up SIP</button>
+        <button class="tab-btn" onclick="switchTab('goalCalc', this)">🎯 Goal Target Planner</button>
+        <button class="tab-btn" onclick="switchTab('swpCalc', this)">💸 SWP &amp; Dividend Simulator</button>
+        <button class="tab-btn" onclick="switchTab('lumpsumCalc', this)">💼 Lumpsum vs SIP Compare</button>
+      </div>
+
+      <!-- TAB 1: STANDARD & STEP-UP SIP CALCULATOR -->
+      <div id="sipCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            
+            <!-- Inputs -->
+            <div>
+              <div class="form-group">
+                <label for="monthlyInv">Monthly Investment Amount</label>
+                <div class="input-wrapper">
+                  <input type="number" id="monthlyInv" value="10000" step="500" oninput="calculateAll()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="expectedReturn">Expected Annual Return Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="expectedReturn" value="12" step="0.5" oninput="calculateAll()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="investmentPeriod">Time Period (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="investmentPeriod" value="15" min="1" max="40" oninput="calculateAll()">
+                  <span class="input-suffix">Yrs</span>
+                </div>
+              </div>
+
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px dashed var(--border, #cbd5e1);">
+                <label style="color: #10b981;">🚀 Annual Step-Up &amp; Booster Cap</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Enable Step-Up</span>
+                    <select id="enableStepUp" onchange="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px; font-weight: 600;">
+                      <option value="no" selected>No (Fixed SIP)</option>
+                      <option value="yes">Yes (% Increase)</option>
+                    </select>
+                  </div>
+                  <div id="stepUpRateWrapper" style="display: none;">
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Annual Hike (%)</span>
+                    <input type="number" id="stepUpRate" value="10" min="1" max="50" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                </div>
+                <div style="margin-top: 8px;" id="stepUpCapWrapper">
+                  <span style="font-size: 11px; color: var(--muted, #64748b);">Max Step-Up Cap Amount (0 for No Limit)</span>
+                  <input type="number" id="stepUpCap" value="0" step="5000" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px; margin-top: 4px;">
+                </div>
+              </div>
+
+              <!-- NEW FEATURE: Career Break Pause Simulator -->
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px dashed var(--border, #cbd5e1);">
+                <label style="color: #6366f1;">⏸️ Career Break Pause Simulator</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Pause Duration (Yrs)</span>
+                    <input type="number" id="careerPauseYrs" value="0" min="0" max="10" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Pause Starts At Year</span>
+                    <input type="number" id="careerPauseStart" value="5" min="1" max="39" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                </div>
+                <span style="font-size: 11px; color: var(--muted, #64748b); margin-top: 4px; display: block;">Temporarily halts contributions while existing corpus continues to compound.</span>
+              </div>
+
+              <!-- NEW FEATURE: Tax-Alpha & Capital Gains Estimator -->
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px dashed var(--border, #cbd5e1);">
+                <label style="color: #d97706;">🧾 Tax-Alpha &amp; Capital Gains Estimator</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Current Age</span>
+                    <input type="number" id="userAge" value="30" min="18" max="80" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Est. Capital Gains Tax (%)</span>
+                    <input type="number" id="taxRate" value="12.5" step="0.5" oninput="calculateAll()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px dashed var(--border, #cbd5e1);">
+                <label style="color: var(--muted, #64748b);">📉 Inflation Adjustment (Optional)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="inflationRate" value="6" step="0.5" placeholder="e.g. 6" oninput="calculateAll()">
+                  <span class="input-suffix">%</span>
+                </div>
+                <span style="font-size: 11px; color: var(--muted, #64748b); margin-top: 4px; display: block;">Adjusts final corpus value for purchasing power decay over time.</span>
+              </div>
+            </div>
+
+            <!-- Outputs -->
+            <div>
+              <div class="res-box" style="background: #d1fae5; border-color: rgba(16, 185, 129, 0.3);">
+                <div class="lbl">Estimated Future Value (Corpus)</div>
+                <div class="val" id="resMaturity">₹ 4,995,739</div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="res-box">
+                  <div class="lbl">Total Invested Amount</div>
+                  <div class="val" id="resInvested" style="font-size: 18px; color: #6366f1;">₹ 1,800,000</div>
+                </div>
+                <div class="res-box">
+                  <div class="lbl">Estimated Wealth Gain</div>
+                  <div class="val" id="resReturns" style="font-size: 18px; color: #10b981;">₹ 3,195,739</div>
+                </div>
+              </div>
+
+              <!-- NEW OUTPUT: Net Take-Home Wealth After Capital Gains Tax -->
+              <div class="res-box" style="background: #fef3c7; border-color: #fde68a;">
+                <div class="lbl">Net Wealth After Capital Gains Tax</div>
+                <div class="val" id="resNetWealth" style="font-size: 20px; color: #d97706;">₹ 0</div>
+              </div>
+
+              <div class="form-group">
+                <label>Investment vs. Returns Breakdown</label>
+                <div class="ratio-bar-container">
+                  <div id="barInvested" class="ratio-invested" style="width: 36%;"></div>
+                  <div id="barReturns" class="ratio-returns" style="width: 64%;"></div>
+                </div>
+                <div class="legend">
+                  <span style="color: #6366f1;">■ Invested (<span id="pctInvested">36%</span>)</span>
+                  <span style="color: #10b981;">■ Returns (<span id="pctReturns">64%</span>)</span>
+                </div>
+              </div>
+
+              <div id="inflationBox" style="display: none; background: #fef3c7; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; font-size: 12px; color: #92400e; margin-top: 10px;">
+                📉 <strong>Inflation Adjusted Value:</strong> Your corpus will have the purchasing power equivalent to <span id="resInflationVal" style="font-weight: 800;">₹ 0</span> today.
+              </div>
+
+              <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;">
+                <button type="button" class="btn-action" onclick="downloadPDF()">📄 Download PDF Report</button>
+                <button type="button" class="btn-action" onclick="downloadCSV()" style="background: #6366f1;">📊 Export CSV Data</button>
+                <button type="button" class="btn-action" onclick="shareOnWhatsApp()" style="background: #25D366;">📲 Share Result</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- NEW FEATURE: Milestone / Age-Based Retirement Bucket Tracker Card -->
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">🎯 Milestone &amp; Age-Based Wealth Progress Tracker</h2>
+          <p style="font-size: 13px; color: var(--muted, #64748b); margin-bottom: 14px;">Track your corpus growth across significant age milestones based on your starting age.</p>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Milestone Age</th>
+                  <th>Investment Year</th>
+                  <th>Total Invested</th>
+                  <th>Estimated Corpus</th>
+                </tr>
+              </thead>
+              <tbody id="milestoneTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- MARKET SCENARIO MATRIX CARD -->
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">⚡ Market Scenario Analysis (Bear vs Bull)</h2>
+          <p style="font-size: 13px; color: var(--muted, #64748b); margin-bottom: 14px;">Compare your final expected accumulation across conservative, moderate, and aggressive market return cycles using your exact timeline parameters.</p>
+<div class="market-scenario-grid">
+            <div class="res-box" style="background: #fef2f2; border-color: #fecaca; margin-bottom: 0;">
+              <div class="lbl">Conservative (9%)</div>
+              <div class="val" id="scenarioBear" style="font-size: 18px; color: #dc2626;">₹ 0</div>
+            </div>
+            <div class="res-box" style="background: #f0fdf4; border-color: #bbf7d0; margin-bottom: 0;">
+              <div class="lbl">Expected (12%)</div>
+              <div class="val" id="scenarioBase" style="font-size: 18px; color: #16a34a;">₹ 0</div>
+            </div>
+            <div class="res-box" style="background: #eff6ff; border-color: #bfdbfe; margin-bottom: 0;">
+              <div class="lbl">Aggressive (15%)</div>
+              <div class="val" id="scenarioBull" style="font-size: 18px; color: #2563eb;">₹ 0</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chart Card -->
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">📊 Wealth Accumulation Growth Chart</h2>
+          <div style="position: relative; height: 320px; width: 100%;">
+            <canvas id="sipGrowthChart"></canvas>
+          </div>
+        </section>
+
+        <!-- Amortization Table -->
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">📅 Yearly Growth Breakdown Table</h2>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Monthly SIP</th>
+                  <th>Total Invested</th>
+                  <th>Interest Earned</th>
+                  <th>Total Corpus</th>
+                </tr>
+              </thead>
+              <tbody id="amortizationBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: GOAL TARGET PLANNER -->
+      <div id="goalCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">🎯 Financial Goal Target Milestone Planner</h2>
+          <p style="font-size: 13px; color: var(--muted, #64748b); margin-bottom: 16px;">Calculate the exact monthly investment required to achieve specific life goals like buying a home, children's higher education, or retirement.</p>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label>Target Goal Amount Required</label>
+                <input type="number" id="goalTarget" value="10000000" step="100000" oninput="calcGoal()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Time Horizon (Years)</label>
+                <input type="number" id="goalYears" value="15" min="1" max="40" oninput="calcGoal()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Expected Annual Return (%)</label>
+                <input type="number" id="goalRate" value="13" step="0.5" oninput="calcGoal()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: #c7d2fe;">
+                <div class="lbl">Required Monthly SIP</div>
+                <div class="val" id="goalRequiredSip" style="color: #4f46e5;">₹ 20,154</div>
+              </div>
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 16px; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+                <div>Total Investment over <span id="goalYrsText">15</span> yrs: <strong id="goalTotalInv">₹ 3,627,720</strong></div>
+                <div>Wealth Generated: <strong id="goalWealthGen" style="color: #10b981;">₹ 6,372,280</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: SYSTEMATIC WITHDRAWAL PLAN (SWP) & DIVIDEND SIMULATOR -->
+      <div id="swpCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">💸 SWP (Systematic Withdrawal Plan) &amp; Dividend Simulator</h2>
+          <p style="font-size: 13px; color: var(--muted, #64748b); margin-bottom: 16px;">Plan post-retirement cash flows by withdrawing a fixed regular amount from your accumulated corpus.</p>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label>Total Initial Investment Corpus</label>
+                <input type="number" id="swpCorpus" value="5000000" step="100000" oninput="calcSWP()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Monthly Withdrawal Amount</label>
+                <input type="number" id="swpWithdrawal" value="40000" step="1000" oninput="calcSWP()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Expected Annual Return During Withdrawal (%)</label>
+                <input type="number" id="swpRate" value="11" step="0.5" oninput="calcSWP()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Withdrawal Period (Years)</label>
+                <input type="number" id="swpYears" value="15" min="1" max="40" oninput="calcSWP()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #fdf2f8; border-color: #fbcfe8;">
+                <div class="lbl">Remaining Corpus After Term</div>
+                <div class="val" id="swpRemaining" style="color: #db2777;">₹ 6,241,890</div>
+              </div>
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 16px; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+                <div>Total Amount Withdrawn: <strong id="swpTotalWithdrawn">₹ 7,200,000</strong></div>
+                <div>Sustainability Status: <strong id="swpStatus" style="color: #10b981;">Sustainable &amp; Growing</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 4: LUMPSUM VS SIP COMPARISON -->
+      <div id="lumpsumCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">💼 Lumpsum vs. SIP Investment Comparison</h2>
+          <p style="font-size: 13px; color: var(--muted, #64748b); margin-bottom: 16px;">Compare deploying a one-time capital amount vs. staggering the same total capital over systematic installments.</p>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label>Total Capital / Equivalent Lumpsum Amount</label>
+                <input type="number" id="compCapital" value="1800000" step="50000" oninput="calcComparison()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Expected Annual Return (%)</label>
+                <input type="number" id="compRate" value="12" step="0.5" oninput="calcComparison()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Investment Tenure (Years)</label>
+                <input type="number" id="compYears" value="15" min="1" max="40" oninput="calcComparison()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+            </div>
+            <div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                <div class="res-box" style="margin-bottom:0;">
+                  <div class="lbl">Lumpsum Final Value</div>
+                  <div class="val" id="resLumpsumVal" style="font-size: 18px; color: #6366f1;">₹ 9,864,120</div>
+                </div>
+                <div class="res-box" style="margin-bottom:0;">
+                  <div class="lbl">SIP Equivalent Value</div>
+                  <div class="val" id="resSipEqVal" style="font-size: 18px; color: #10b981;">₹ 4,995,739</div>
+                </div>
+              </div>
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 14px; border-radius: 8px; font-size: 13px; color: #166534; line-height: 1.6;">
+                💡 <strong>Insight:</strong> Lumpsum investments stay invested in the market for the entire duration, compounding faster, whereas SIP capital is deployed gradually over time, reducing timing risk.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SEO Informational Content Article -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 18px; font-weight: 800; margin-bottom: 8px;">Mastering Mutual Funds with Step-Up SIPs &amp; Goal Planning</h2>
+        <p>
+          A <strong>Systematic Investment Plan (SIP)</strong> empowers retail investors to commit fixed amounts regularly into equity or debt mutual funds. Utilizing rupee-cost averaging eliminates the hazards of market timing, while compound interest generates exponential long-term returns.
+        </p>
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 14px; margin-bottom: 6px;">Why Use an Annual Step-Up SIP?</h3>
+        <p>
+          As your career and salary progress, maintaining a static monthly SIP amount limits your compounding potential. A **Step-Up SIP** scales your monthly contribution by a chosen percentage every year, letting your investments keep pace with career growth and effortlessly hitting retirement milestones decades sooner.
+        </p>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Calculator Script -->
+  <script>
+    let sipChartInstance = null;
+    let currentAmortData = [];
+
+    function switchTab(tabId, el) {
+      document.getElementById('sipCalc').style.display = tabId === 'sipCalc' ? 'block' : 'none';
+      document.getElementById('goalCalc').style.display = tabId === 'goalCalc' ? 'block' : 'none';
+      document.getElementById('swpCalc').style.display = tabId === 'swpCalc' ? 'block' : 'none';
+      document.getElementById('lumpsumCalc').style.display = tabId === 'lumpsumCalc' ? 'block' : 'none';
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        if (tabId === 'sipCalc') desktopButtons[0].classList.add('active');
+        if (tabId === 'goalCalc') desktopButtons[1].classList.add('active');
+        if (tabId === 'swpCalc') desktopButtons[2].classList.add('active');
+        if (tabId === 'lumpsumCalc') desktopButtons[3].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+
+      if (tabId === 'goalCalc') calcGoal();
+      if (tabId === 'swpCalc') calcSWP();
+      if (tabId === 'lumpsumCalc') calcComparison();
+    }
+
+    function getSymbol() {
+      return document.getElementById('currencySelect').value || '₹';
+    }
+
+    function formatVal(val) {
+      return getSymbol() + " " + Math.round(val).toLocaleString('en-IN');
+    }
+
+    function setPreset(amt, rate, years, stepUp, stepUpRate, pauseYrs, age, tax) {
+      document.getElementById('monthlyInv').value = amt;
+      document.getElementById('expectedReturn').value = rate;
+      document.getElementById('investmentPeriod').value = years;
+      document.getElementById('enableStepUp').value = stepUp;
+      document.getElementById('stepUpRate').value = stepUpRate;
+      document.getElementById('careerPauseYrs').value = pauseYrs;
+      document.getElementById('userAge').value = age;
+      document.getElementById('taxRate').value = tax;
+      calculateAll();
+    }
+
+    function calculateAll() {
+      const pInitial = parseFloat(document.getElementById('monthlyInv').value) || 0;
+      const annualR = parseFloat(document.getElementById('expectedReturn').value) || 0;
+      const years = parseFloat(document.getElementById('investmentPeriod').value) || 0;
+      const enableStepUp = document.getElementById('enableStepUp').value;
+      const stepUpPct = parseFloat(document.getElementById('stepUpRate').value) || 0;
+      const stepUpCap = parseFloat(document.getElementById('stepUpCap').value) || 0;
+      const pauseYrs = parseFloat(document.getElementById('careerPauseYrs').value) || 0;
+      const pauseStart = parseFloat(document.getElementById('careerPauseStart').value) || 1;
+      const inflation = parseFloat(document.getElementById('inflationRate').value) || 0;
+      const userAge = parseInt(document.getElementById('userAge').value) || 30;
+      const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+
+      document.getElementById('stepUpRateWrapper').style.display = enableStepUp === 'yes' ? 'block' : 'none';
+
+      if (pInitial <= 0 || annualR <= 0 || years <= 0) return;
+
+      const monthlyR = annualR / 12 / 100;
+      let totalInvested = 0;
+      let totalCorpus = 0;
+
+      let currentMonthly = pInitial;
+      let chartLabels = [];
+      let chartInvested = [];
+      let chartCorpus = [];
+      currentAmortData = [];
+
+      let runningInvested = 0;
+      let runningCorpus = 0;
+
+      for (let y = 1; y <= years; y++) {
+        let yearInvested = 0;
+        let isPaused = (pauseYrs > 0 && y >= pauseStart && y < (pauseStart + pauseYrs));
+
+        for (let m = 1; m <= 12; m++) {
+          if (!isPaused) {
+            runningInvested += currentMonthly;
+            yearInvested += currentMonthly;
+            runningCorpus = (runningCorpus + currentMonthly) * (1 + monthlyR);
+          } else {
+            runningCorpus = runningCorpus * (1 + monthlyR);
+          }
+        }
+
+        totalInvested = runningInvested;
+        totalCorpus = runningCorpus;
+
+        chartLabels.push(`Yr ${y}`);
+        chartInvested.push(Math.round(runningInvested));
+        chartCorpus.push(Math.round(runningCorpus));
+
+        currentAmortData.push([`Year ${y}`, isPaused ? 0 : Math.round(currentMonthly), Math.round(runningInvested), Math.round(runningCorpus - runningInvested), Math.round(runningCorpus)]);
+
+        if (enableStepUp === 'yes' && !isPaused) {
+          currentMonthly *= (1 + (stepUpPct / 100));
+          if (stepUpCap > 0 && currentMonthly > stepUpCap) {
+            currentMonthly = stepUpCap;
+          }
+        }
+      }
+
+      const totalReturns = totalCorpus - totalInvested;
+      const totalGains = Math.max(0, totalCorpus - totalInvested);
+      const taxAmount = totalGains * (taxRate / 100);
+      const netWealthAfterTax = totalCorpus - taxAmount;
+
+      document.getElementById('resMaturity').innerText = formatVal(totalCorpus);
+      document.getElementById('resInvested').innerText = formatVal(totalInvested);
+      document.getElementById('resReturns').innerText = formatVal(totalReturns);
+      document.getElementById('resNetWealth').innerText = formatVal(netWealthAfterTax);
+
+      const invPct = Math.min(100, Math.max(0, Math.round((totalInvested / totalCorpus) * 100)));
+      const retPct = 100 - invPct;
+      document.getElementById('barInvested').style.width = invPct + "%";
+      document.getElementById('barReturns').style.width = retPct + "%";
+      document.getElementById('pctInvested').innerText = invPct + "%";
+      document.getElementById('pctReturns').innerText = retPct + "%";
+
+      const inflationBox = document.getElementById('inflationBox');
+      if (inflation > 0) {
+        inflationBox.style.display = 'block';
+        const discountedValue = totalCorpus / Math.pow(1 + (inflation / 100), years);
+        document.getElementById('resInflationVal').innerText = formatVal(discountedValue);
+      } else {
+        inflationBox.style.display = 'none';
+      }
+
+      // Calculate Milestone Age Tracker Table
+      const milestoneBody = document.getElementById('milestoneTableBody');
+      milestoneBody.innerHTML = '';
+      [40, 50, 60, 65].forEach(targetAge => {
+        if (targetAge > userAge) {
+          const targetYear = targetAge - userAge;
+          if (targetYear <= years) {
+            const milestoneRow = currentAmortData[targetYear - 1];
+            if (milestoneRow) {
+              milestoneBody.innerHTML += `
+                <tr>
+                  <td style="font-weight: 700; color: #10b981;">Age ${targetAge}</td>
+                  <td>Year ${targetYear}</td>
+                  <td>${formatVal(milestoneRow[2])}</td>
+                  <td style="font-weight: 800;">${formatVal(milestoneRow[4])}</td>
+                </tr>
+              `;
+            }
+          }
+        }
+      });
+      if (milestoneBody.innerHTML === '') {
+        milestoneBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--muted);">Increase tenure or adjust starting age to view future age milestones.</td></tr>`;
+      }
+
+      // Calculate Scenario Matrix (9%, 12%, 15% automatic check)
+      [9, 12, 15].forEach((rateTest, idx) => {
+        let mRTest = rateTest / 12 / 100;
+        let corpusTest = 0;
+        let curStepMonthly = pInitial;
+        for (let y = 1; y <= years; y++) {
+          let isPausedTest = (pauseYrs > 0 && y >= pauseStart && y < (pauseStart + pauseYrs));
+          for (let m = 1; m <= 12; m++) {
+            if (!isPausedTest) {
+              corpusTest = (corpusTest + curStepMonthly) * (1 + mRTest);
+            } else {
+              corpusTest = corpusTest * (1 + mRTest);
+            }
+          }
+          if (enableStepUp === 'yes' && !isPausedTest) {
+            curStepMonthly *= (1 + (stepUpPct / 100));
+            if (stepUpCap > 0 && curStepMonthly > stepUpCap) curStepMonthly = stepUpCap;
+          }
+        }
+        if (idx === 0) document.getElementById('scenarioBear').innerText = formatVal(corpusTest);
+        if (idx === 1) document.getElementById('scenarioBase').innerText = formatVal(corpusTest);
+        if (idx === 2) document.getElementById('scenarioBull').innerText = formatVal(corpusTest);
+      });
+
+      renderAmortizationTable();
+      updateChart(chartLabels, chartInvested, chartCorpus);
+    }
+
+    function renderAmortizationTable() {
+      const tbody = document.getElementById('amortizationBody');
+      tbody.innerHTML = '';
+      currentAmortData.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td style="font-weight: 700;">${row[0]}</td>
+            <td>${formatVal(row[1])}</td>
+            <td style="color: #6366f1;">${formatVal(row[2])}</td>
+            <td style="color: #10b981;">${formatVal(row[3])}</td>
+            <td style="font-weight: 800;">${formatVal(row[4])}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function updateChart(labels, invested, corpus) {
+      const ctx = document.getElementById('sipGrowthChart').getContext('2d');
+      if (sipChartInstance) {
+        sipChartInstance.destroy();
+      }
+
+      sipChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Total Corpus',
+              data: corpus,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              fill: true,
+              tension: 0.3
+            },
+            {
+              label: 'Invested Amount',
+              data: invested,
+              borderColor: '#6366f1',
+              backgroundColor: 'rgba(99, 102, 241, 0.1)',
+              fill: true,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    }
+
+    function calcGoal() {
+      const target = parseFloat(document.getElementById('goalTarget').value) || 0;
+      const years = parseFloat(document.getElementById('goalYears').value) || 0;
+      const rate = parseFloat(document.getElementById('goalRate').value) || 0;
+
+      document.getElementById('goalYrsText').innerText = years;
+
+      if (target <= 0 || years <= 0 || rate <= 0) return;
+
+      const monthlyR = rate / 12 / 100;
+      const months = years * 12;
+
+      const requiredSip = target * monthlyR / ((Math.pow(1 + monthlyR, months) - 1) * (1 + monthlyR));
+      const totalInv = requiredSip * months;
+      const wealthGen = target - totalInv;
+
+      document.getElementById('goalRequiredSip').innerText = formatVal(requiredSip);
+      document.getElementById('goalTotalInv').innerText = formatVal(totalInv);
+      document.getElementById('goalWealthGen').innerText = formatVal(wealthGen);
+    }
+
+    function calcSWP() {
+      const corpus = parseFloat(document.getElementById('swpCorpus').value) || 0;
+      const withdrawal = parseFloat(document.getElementById('swpWithdrawal').value) || 0;
+      const rate = parseFloat(document.getElementById('swpRate').value) || 0;
+      const years = parseFloat(document.getElementById('swpYears').value) || 0;
+
+      if (corpus <= 0 || withdrawal <= 0 || years <= 0) return;
+
+      const monthlyR = rate / 12 / 100;
+      const months = years * 12;
+      let remaining = corpus;
+      let totalWithdrawn = withdrawal * months;
+
+      for (let m = 0; m < months; m++) {
+        remaining = (remaining - withdrawal) * (1 + monthlyR);
+      }
+
+      remaining = Math.max(0, remaining);
+
+      document.getElementById('swpRemaining').innerText = formatVal(remaining);
+      document.getElementById('swpTotalWithdrawn').innerText = formatVal(totalWithdrawn);
+      
+      const statusEl = document.getElementById('swpStatus');
+      if (remaining > corpus) {
+        statusEl.innerText = "Sustainable & Growing Wealth";
+        statusEl.style.color = "#10b981";
+      } else if (remaining > 0) {
+        statusEl.innerText = "Sustained for Term (Principal Drawdown)";
+        statusEl.style.color = "#f59e0b";
+      } else {
+        statusEl.innerText = "Depleted Before Term";
+        statusEl.style.color = "#ef4444";
+      }
+    }
+
+    function calcComparison() {
+      const capital = parseFloat(document.getElementById('compCapital').value) || 0;
+      const rate = parseFloat(document.getElementById('compRate').value) || 0;
+      const years = parseFloat(document.getElementById('compYears').value) || 0;
+
+      if (capital <= 0 || rate <= 0 || years <= 0) return;
+
+      // Lumpsum Formula: P * (1 + r)^t
+      const lumpsumVal = capital * Math.pow(1 + (rate / 100), years);
+      
+      // Equivalent SIP Value computed via standard monthly layout assuming equivalent aggregate principal over period
+      const monthlyP = capital / (years * 12);
+      const monthlyR = rate / 12 / 100;
+      let runningCorpus = 0;
+      for (let y = 1; y <= years; y++) {
+        for (let m = 1; m <= 12; m++) {
+          runningCorpus = (runningCorpus + monthlyP) * (1 + monthlyR);
+        }
+      }
+
+      document.getElementById('resLumpsumVal').innerText = formatVal(lumpsumVal);
+      document.getElementById('resSipEqVal').innerText = formatVal(runningCorpus);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(18);
+      doc.setTextColor(16, 185, 129);
+      doc.text("SIP Investment & Wealth Growth Report", 14, 20);
+
+      const maturity = document.getElementById('resMaturity').innerText;
+      const invested = document.getElementById('resInvested').innerText;
+      const returns = document.getElementById('resReturns').innerText;
+
+      doc.setFontSize(11);
+      doc.setTextColor(15);
+      doc.text(`Total Invested: ${invested}`, 14, 32);
+      doc.text(`Wealth Gains: ${returns}`, 100, 32);
+      doc.text(`Final Maturity Value: ${maturity}`, 14, 38);
+
+      doc.autoTable({
+        startY: 46,
+        head: [['Year', 'Monthly SIP', 'Total Invested', 'Wealth Earned', 'Total Corpus']],
+        body: currentAmortData.map(row => [row[0], `${getSymbol()} ${row[1].toLocaleString()}`, `${getSymbol()} ${row[2].toLocaleString()}`, `${getSymbol()} ${row[3].toLocaleString()}`, `${getSymbol()} ${row[4].toLocaleString()}`]),
+        theme: 'striped',
+        headStyles: { fillColor: [16, 185, 129] }
+      });
+
+      doc.save("SIP_Investment_Report.pdf");
+    }
+
+    function downloadCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,Year,Monthly SIP,Total Invested,Wealth Earned,Total Corpus\n";
+      currentAmortData.forEach(row => { csvContent += row.join(",") + "\n"; });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "SIP_Growth_Schedule.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function shareOnWhatsApp() {
+      const maturity = document.getElementById('resMaturity').innerText;
+      const monthly = document.getElementById('monthlyInv').value;
+      const rate = document.getElementById('expectedReturn').value;
+      const years = document.getElementById('investmentPeriod').value;
+
+      const text = `Check out my mutual fund SIP calculation:\n• Monthly SIP: ${formatVal(monthly)}\n• Return Rate: ${rate}%\n• Tenure: ${years} Years\n• Expected Corpus: ${maturity}\n\nCalculate yours here: ${window.location.href}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    calculateAll();
+  </script>
+</body>
+</html>
