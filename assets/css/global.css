@@ -1,0 +1,601 @@
+/* ==========================================================================
+   1. VARIABLES & CORE STYLES
+   ========================================================================== */
+:root {
+  --primary: #635bff;
+  --primary-dark: #5148e5;
+  --primary-light: rgba(99, 91, 255, 0.1);
+  --text: #101828;
+  --muted: #667085;
+  --background: #f7f8fc;
+  --card: rgba(255, 255, 255, 0.85);
+  --border: rgba(16, 24, 40, 0.08);
+  --white: #ffffff;
+  
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  
+  --shadow-sm: 0 2px 4px rgba(16, 24, 40, 0.02);
+  --shadow-md: 0 10px 30px rgba(16, 24, 40, 0.05);
+  --shadow-hover: 0 20px 40px rgba(99, 91, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--background);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.container {
+  width: min(100%, 960px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Background Animated Blobs */
+.background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: float 10s ease-in-out infinite;
+}
+
+.blob.one {
+  background: #8b5cf6;
+  top: -180px;
+  left: -120px;
+}
+
+.blob.two {
+  background: #635bff;
+  bottom: -220px;
+  right: -100px;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+/* ==========================================================================
+   2. GLOBAL NAVIGATION HEADER
+   ========================================================================== */
+.site-nav {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(247, 248, 252, 0.85);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   3. HERO HEADER & SEARCH FORM
+   ========================================================================== */
+.page-header {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  border: 1px solid rgba(99, 91, 255, 0.2);
+}
+
+.page-header h1 {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 850;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.page-header h1 span {
+  color: var(--primary);
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: clamp(15px, 1.8vw, 18px);
+}
+
+/* Search Form */
+.form {
+  display: flex;
+  gap: 8px;
+  padding: 5px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.form input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  font-size: 14px;
+  background: transparent;
+  color: var(--text);
+}
+
+.form button {
+  border: none;
+  padding: 0 20px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  height: 44px;
+}
+
+.form button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. FEATURES GRID & CATEGORY CARDS
+   ========================================================================== */
+.features {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 24px 0 40px;
+  align-items: stretch;
+}
+
+.feature {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 190px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 249, 255, 0.96));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm), var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  font-size: 25px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 6px 15px rgba(79, 70, 229, 0.08);
+  transition: transform 0.25s ease;
+}
+
+.feature h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+
+.feature p {
+  max-width: 210px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Active State */
+.feature.active {
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.feature.active:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 91, 255, 0.25);
+  box-shadow: var(--shadow-hover);
+}
+
+.feature.active:hover .feature-icon {
+  transform: translateY(-2px) scale(1.06);
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* Coming Soon / Locked State */
+.feature.coming-soon {
+  cursor: default;
+}
+
+.feature.coming-soon > *:not(.coming-label) {
+  opacity: 0.45;
+}
+
+.feature.coming-soon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 250, 252, 0.28);
+  pointer-events: none;
+}
+
+.feature.coming-soon::after {
+  content: "🔒";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
+  z-index: 5;
+}
+
+.coming-label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+}
+
+/* ==========================================================================
+   5. WHY CHOOSE US SECTION
+   ========================================================================== */
+.why-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.why-intro {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 8px auto 28px;
+  font-size: 16px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.why-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 18px;
+  box-shadow: 0 10px 30px rgba(99, 91, 255, 0.08);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.why-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.why-icon {
+  display: inline-block;
+  font-size: 28px;
+  color: var(--primary);
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.why-item:hover .why-icon {
+  transform: scale(1.2);
+}
+
+.why-item h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.why-item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. ADVERTISERS & ADSENSE CONTAINERS
+   ========================================================================== */
+.ad-wrapper {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.ad-slot {
+  min-height: 90px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.ad-disclosure {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   7. SEO CONTENT & FAQ ACCORDION
+   ========================================================================== */
+.seo-content,
+.faq {
+  max-width: 760px;
+  margin: 40px auto;
+}
+
+.seo-content h2,
+.faq h2 {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.seo-content p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* FAQ Details/Summary Accordion */
+.faq details {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.faq details[open] {
+  border-color: rgba(99, 91, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(99, 91, 255, 0.08);
+}
+
+.faq summary {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details p {
+  color: var(--text);
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+footer {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(99, 91, 255, 0.08), rgba(139, 92, 246, 0.08));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--primary);
+  opacity: 0.6;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: var(--muted);
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 900px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .features {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .feature {
+    min-height: 165px;
+    padding: 24px 18px;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}

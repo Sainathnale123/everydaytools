@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Everyday Tools</title>
+  <meta name="description" content="Get in touch with Everyday Tools. Have questions, tool requests, or feedback? Contact our team today.">
+  <link rel="canonical" href="https://everydaytools.co.in/contact.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Us - Everyday Tools">
+  <meta property="og:description" content="Get in touch with the Everyday Tools team for support, feature requests, or feedback.">
+  <meta property="og:url" content="https://everydaytools.co.in/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og-image.png">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing Image -->
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Us - Everyday Tools">
+  <meta name="twitter:description" content="Have feedback or need assistance? Contact the Everyday Tools team.">
+  <meta name="twitter:image" content="assets/images/og-image.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Script (Uncomment and replace client ID when active) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <!-- Premium CSS -->
+  <link rel="stylesheet" href="assets/css/calculator.css">
+
+  <!-- Custom Page Specific Styling -->
+  <style>
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      margin-bottom: 40px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-box h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .info-box p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .contact-method {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .contact-method .icon {
+      font-size: 20px;
+      background: var(--primary-light);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+    }
+    .contact-method .details h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .contact-method .details p {
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+    /* Form Elements */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      outline: none;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .submit-btn {
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .submit-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .form-success {
+      display: none;
+      background: #def7ec;
+      color: #03543f;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Everyday Tools",
+    "url": "https://everydaytools.co.in/contact.html",
+    "description": "Contact page for feedback, tool requests, and general support on Everyday Tools."
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Animated Blobs -->
+  <div class="background">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="calculators/calculator.html">Calculators</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container" style="max-width: 860px; padding-top: 30px;">
+    
+    <!-- Hero Header -->
+    <header class="page-header" style="padding: 20px 0;">
+      <span class="eyebrow">Get In Touch</span>
+      <h1>Contact <span>Us</span></h1>
+      <p class="subtitle">
+        Have a question, feedback, or a tool request? We'd love to hear from you.
+      </p>
+    </header>
+
+    <!-- Top Advertisement Banner Space -->
+    <div class="ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <!-- Insert AdSense Code Here -->
+      </div>
+    </div>
+
+    <!-- Contact Form & Details Section -->
+    <section class="contact-card">
+      <div class="contact-grid">
+        
+        <!-- Contact Details Left Box -->
+        <div class="info-box">
+          <h2>Let's Talk</h2>
+          <p>
+            We are dedicated to building fast, reliable, and privacy-first web utilities. If you encounter any issues or have ideas for new calculators or tools, send us a message!
+          </p>
+
+          <div class="contact-method">
+            <div class="icon">📧</div>
+            <div class="details">
+              <h3>Email Us</h3>
+              <p>support@everydaytools.co.in</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="icon">⚡</div>
+            <div class="details">
+              <h3>Response Time</h3>
+              <p>Within 24 - 48 business hours</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="icon">🔒</div>
+            <div class="details">
+              <h3>Privacy Notice</h3>
+              <p>Your details are never shared with third parties.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form Right Box -->
+        <div>
+          <div id="formSuccess" class="form-success">
+            Thank you! Your message has been sent successfully.
+          </div>
+
+          <form id="contactForm" class="contact-form" onsubmit="event.preventDefault(); handleFormSubmit();">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Your Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" required>
+                <option value="" disabled selected>Select a topic...</option>
+                <option value="Tool Suggestion">Suggest a New Tool</option>
+                <option value="Bug Report">Report a Bug / Issue</option>
+                <option value="Feedback">General Feedback</option>
+                <option value="Business/Ad">Business or Advertising</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- In-Content Advertisement Space -->
+    <div class="ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot middle-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <!-- Insert AdSense Code Here -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Shared Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Contact Form JavaScript -->
+  <script>
+    function handleFormSubmit() {
+      const form = document.getElementById('contactForm');
+      const successMsg = document.getElementById('formSuccess');
+
+      // Hide form & display success message
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+
+      // Track Contact Form Submission in Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'submit_contact_form', {
+          'event_category': 'Contact',
+          'event_label': document.getElementById('subject').value
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

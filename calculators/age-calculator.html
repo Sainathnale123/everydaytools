@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator - Calculate Exact Age in Years, Months, Days & Minutes</title>
+  <meta name="description" content="Calculate your exact age online in years, months, days, hours, minutes, and seconds. Find out your next birthday countdown, planetary age, pet age, zodiac sign, generation badge, and total life stats instantly for free.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/age-calculator.html">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing Image -->
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Age Calculator - Free Online Age & Birthday Calculator">
+  <meta property="og:description" content="Calculate your exact age in years, months, days, hours, and seconds with our fast and free online Age Calculator.">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/age-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/images/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Age Calculator - Everyday Tools">
+  <meta name="twitter:description" content="Calculate your exact age and upcoming birthday countdown instantly.">
+  <meta name="twitter:image" content="../assets/images/og-image.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Placeholder Script (Uncomment and replace client ID when active) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <!-- Premium CSS -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Page Specific Custom Inline Styling for Calculator UI -->
+  <style>
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      outline: none;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: var(--primary);
+    }
+    .calc-btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .calc-btn {
+      flex: 1;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .calc-btn.secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+    .calc-btn.secondary:hover {
+      background: #cbd5e1;
+    }
+    .calc-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .results-wrapper {
+      display: none;
+      margin-top: 30px;
+    }
+    .primary-result {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-hover);
+    }
+    .primary-result h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    .primary-result .age-display {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+    .live-clock-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .stat-card .val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .extra-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .info-card h3 {
+      font-size: 15px;
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .milestone-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+    }
+    .milestone-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .milestone-list li:last-child {
+      border-bottom: none;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    .action-btn:hover {
+      opacity: 0.9;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      margin-top: 8px;
+    }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Age Calculator Suite",
+    "url": "https://everydaytools.co.in/calculators/age-calculator.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Calculate exact age in years, months, days, hours, and seconds, check zodiac sign, planetary age, pet years, generation identity, and milestone goals.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How is my exact age calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Age Calculator compares your date of birth against the current date (or a custom selected target date), accounting for leap years and varying month lengths."
+      }
+    },{
+      "@type": "Question",
+      "name": "Does this Age Calculator store my birth date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All calculations are executed locally inside your Web browser. Your personal data is never transmitted or stored on any server."
+      }
+    }]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Animated Blobs -->
+  <div class="background">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="calculator.html" class="active">Calculators</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container" style="max-width: 840px; padding-top: 30px;">
+    
+    <!-- Hero Header -->
+    <header class="page-header" style="padding: 20px 0;">
+      <span class="eyebrow">Free Online Utility</span>
+      <h1>Advanced <span>Age Calculator Suite</span></h1>
+      <p class="subtitle">
+        Explore your precise chronological age, live ticking counter, cosmic space ages, biological estimates, generation badge, and milestones.
+      </p>
+    </header>
+
+    <!-- Top Advertisement Banner Space -->
+    <div class="ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <!-- Insert AdSense Code Here -->
+      </div>
+    </div>
+
+    <!-- Calculator Card -->
+    <section class="calc-card" aria-label="Age Calculator Tool">
+      <form id="ageForm" onsubmit="event.preventDefault(); calculateAge();">
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" required aria-required="true" onchange="calculateAge()">
+          </div>
+
+          <div class="input-group">
+            <label for="targetDate">Age at the Date of (Defaults to Today)</label>
+            <input type="date" id="targetDate" onchange="calculateAge()">
+          </div>
+        </div>
+
+        <p id="errorMsg" class="error-msg">Please enter a birth date that is before or equal to the target date.</p>
+
+        <div class="calc-btn-group">
+          <button type="submit" class="calc-btn">Calculate Age</button>
+          <button type="button" class="calc-btn secondary" onclick="resetForm()">Reset</button>
+        </div>
+      </form>
+
+      <!-- Output Results -->
+      <div id="resultsWrapper" class="results-wrapper">
+        
+        <div class="primary-result">
+          <h2>Your Exact Age</h2>
+          <div id="primaryAgeDisplay" class="age-display">0 Years, 0 Months, 0 Days</div>
+          <div id="liveClockBadge" class="live-clock-badge">Live Ticker: 0s</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div id="nextBday" class="val">-</div>
+            <div class="lbl">Next Birthday</div>
+          </div>
+          <div class="stat-card">
+            <div id="totalMonths" class="val">0</div>
+            <div class="lbl">Total Months</div>
+          </div>
+          <div class="stat-card">
+            <div id="totalWeeks" class="val">0</div>
+            <div class="lbl">Total Weeks</div>
+          </div>
+          <div class="stat-card">
+            <div id="totalDays" class="val">0</div>
+            <div class="lbl">Total Days</div>
+          </div>
+          <div class="stat-card">
+            <div id="totalHours" class="val">0</div>
+            <div class="lbl">Total Hours</div>
+          </div>
+          <div class="stat-card">
+            <div id="totalMinutes" class="val">0</div>
+            <div class="lbl">Total Minutes</div>
+          </div>
+        </div>
+
+        <!-- Extended Features Grid -->
+        <div class="extra-info-grid">
+          
+          <!-- Astrological & Generational Profile -->
+          <div class="info-card">
+            <h3>🌟 Identity & Cosmos</h3>
+            <p id="zodiacSign" style="font-weight: 700; margin-bottom: 4px;">Zodiac: -</p>
+            <p id="chineseZodiac" style="font-size: 13px; color: var(--muted); margin-bottom: 4px;">Chinese Zodiac: -</p>
+            <p id="generationBadge" style="font-size: 13px; color: var(--muted); margin-bottom: 4px;">Generation: -</p>
+            <p id="birthDayOfWeek" style="font-size: 13px; color: var(--muted);">Born on a: -</p>
+          </div>
+
+          <!-- Planetary Age -->
+          <div class="info-card">
+            <h3>🪐 Age on Other Planets</h3>
+            <ul class="milestone-list">
+              <li><span>Mercury ☿</span><span id="planetMercury">-</span></li>
+              <li><span>Venus ♀</span><span id="planetVenus">-</span></li>
+              <li><span>Mars ♂</span><span id="planetMars">-</span></li>
+              <li><span>Jupiter ♃</span><span id="planetJupiter">-</span></li>
+              <li><span>Saturn ♄</span><span id="planetSaturn">-</span></li>
+            </ul>
+          </div>
+
+          <!-- Life Milestones -->
+          <div class="info-card">
+            <h3>🎯 Numeric Milestones</h3>
+            <ul id="milestoneList" class="milestone-list">
+              <li><span>1 Billion Seconds</span><span id="mBillionSec">-</span></li>
+              <li><span>10,000 Days Alive</span><span id="m10kDays">-</span></li>
+              <li><span>20,000 Days Alive</span><span id="m20kDays">-</span></li>
+            </ul>
+          </div>
+
+          <!-- Biological & Lifestyle Estimations -->
+          <div class="info-card">
+            <h3>💓 Biological Stats</h3>
+            <ul class="milestone-list">
+              <li><span>Heartbeats (~100k/day)</span><span id="bioHeartbeats">-</span></li>
+              <li><span>Approx. Sleep Time (8h)</span><span id="bioSleep">-</span></li>
+              <li><span>Dog Years Equiv.</span><span id="petDogYears">-</span></li>
+              <li><span>Cat Years Equiv.</span><span id="petCatYears">-</span></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="action-btn" onclick="shareResults()">📋 Copy Summary</button>
+          <button type="button" class="action-btn" style="background: #25d366;" onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- In-Content Advertisement Banner Space -->
+    <div class="ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot middle-banner">
+        <span class="ad-disclosure">Advertisement</span>
+      </div>
+    </div>
+
+    <!-- SEO Information Content Section -->
+    <article class="seo-content">
+      <h2>Why Use Our Online Age Calculator Suite?</h2>
+      <p>
+        Calculating age manually can be tricky due to leap years and varying month lengths (28 to 31 days). Our 
+        <strong>Advanced Age Calculator</strong> solves this by using precise calendar math to give you your exact age down to 
+        the day, total weeks, hours, and minutes, alongside interactive additions like planetary age and biological metrics.
+      </p>
+
+      <h2 style="margin-top: 24px;">Key Features</h2>
+      <p>
+        • <strong>Exact Chronological Age:</strong> Calculate age in breakdown format (Years + Months + Days).<br>
+        • <strong>Planetary Ages:</strong> Discover how young or old you would be on Mars, Venus, or Jupiter.<br>
+        • <strong>Next Birthday Countdown:</strong> Know exactly how many months and days are left until your next celebration.<br>
+        • <strong>Life Metrics & Biology:</strong> Estimate heartbeats, sleep duration, and pet age equivalents.<br>
+        • <strong>Privacy First:</strong> Your date of birth is processed entirely within your browser and is never stored on servers.
+      </p>
+    </article>
+
+    <!-- FAQ Accordion -->
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How is my exact age calculated?</summary>
+        <p>The Age Calculator compares your date of birth against the chosen target date (defaulting to today), accounting for leap years and individual month lengths.</p>
+      </details>
+
+      <details>
+        <summary>Can I calculate my age on a past or future date?</summary>
+        <p>Yes, simply change the "Age at the Date of" field to any date in the past or future to see how old you were or will be on that specific date.</p>
+      </details>
+
+      <details>
+        <summary>Is my birth date stored on your server?</summary>
+        <p>No. All computations are performed locally in your Web browser using client-side JavaScript. Your data remains 100% private.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- Global Shared Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Precision Age Calculation JavaScript with Extended Suite -->
+  <script>
+    let liveTimer = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('targetDate').value = today;
+    });
+
+    function resetForm() {
+      document.getElementById('dob').value = '';
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('targetDate').value = today;
+      document.getElementById('resultsWrapper').style.display = 'none';
+      document.getElementById('errorMsg').style.display = 'none';
+      if (liveTimer) clearInterval(liveTimer);
+    }
+
+    function getZodiacSign(day, month) {
+      const signs = [
+        {name: "Capricorn ♑", start: [1,1], end: [1,19]},
+        {name: "Aquarius ♒", start: [1,20], end: [2,18]},
+        {name: "Pisces ♓", start: [2,19], end: [3,20]},
+        {name: "Aries ♈", start: [3,21], end: [4,19]},
+        {name: "Taurus ♉", start: [4,20], end: [5,20]},
+        {name: "Gemini ♊", start: [5,21], end: [6,20]},
+        {name: "Cancer ♋", start: [6,21], end: [7,22]},
+        {name: "Leo ♌", start: [7,23], end: [8,22]},
+        {name: "Virgo ♍", start: [8,23], end: [9,22]},
+        {name: "Libra ♎", start: [9,23], end: [10,22]},
+        {name: "Scorpio ♏", start: [10,23], end: [11,21]},
+        {name: "Sagittarius ♐", start: [11,22], end: [12,21]},
+        {name: "Capricorn ♑", start: [12,22], end: [12,31]}
+      ];
+      for(let sign of signs) {
+        if ((month === sign.start[0] && day >= sign.start[1]) || (month === sign.end[0] && day <= sign.end[1])) {
+          return sign.name;
+        }
+      }
+      return "Capricorn ♑";
+    }
+
+    function getChineseZodiac(year) {
+      const animals = ["Rat 🐀", "Ox 🐂", "Tiger 🐅", "Rabbit 🐇", "Dragon 🐉", "Snake 🐍", "Horse 🐎", "Goat 🐐", "Monkey 🐒", "Rooster 🐓", "Dog 🐕", "Pig 🐖"];
+      return animals[(year - 1900) % 12];
+    }
+
+    function getGeneration(year) {
+      if (year >= 2013) return "Generation Alpha 📱";
+      if (year >= 1997) return "Gen Z 💻";
+      if (year >= 1981) return "Millennial 🎧";
+      if (year >= 1965) return "Generation X 📼";
+      if (year >= 1946) return "Baby Boomer 📻";
+      return "Greatest Generation 📻";
+    }
+
+    function calculateAge() {
+      if (liveTimer) clearInterval(liveTimer);
+
+      const dobInput = document.getElementById('dob').value;
+      const targetInput = document.getElementById('targetDate').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const resultsWrapper = document.getElementById('resultsWrapper');
+
+      if (!dobInput) return;
+
+      const birthDate = new Date(dobInput + 'T00:00:00');
+      const targetDate = targetInput ? new Date(targetInput + 'T00:00:00') : new Date();
+
+      if (birthDate > targetDate) {
+        errorMsg.style.display = 'block';
+        resultsWrapper.style.display = 'none';
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+
+      let y1 = birthDate.getFullYear();
+      let m1 = birthDate.getMonth();
+      let d1 = birthDate.getDate();
+
+      let y2 = targetDate.getFullYear();
+      let m2 = targetDate.getMonth();
+      let d2 = targetDate.getDate();
+
+      let years = y2 - y1;
+      let months = m2 - m1;
+      let days = d2 - d1;
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(y2, m2, 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      // Next Birthday Calculation
+      let nextBdayYear = y2;
+      let nextBdayDate = new Date(nextBdayYear, m1, d1);
+
+      if (targetDate > nextBdayDate) {
+        nextBdayYear++;
+        nextBdayDate = new Date(nextBdayYear, m1, d1);
+      }
+
+      let diffNextBdayMs = nextBdayDate - targetDate;
+      let diffNextBdayDays = Math.ceil(diffNextBdayMs / (1000 * 60 * 60 * 24));
+      
+      let nextBdayText = "";
+      if (diffNextBdayDays === 0) {
+        nextBdayText = "Today! 🎉";
+      } else {
+        let nbMonths = Math.floor(diffNextBdayDays / 30.4375);
+        let nbDays = Math.floor(diffNextBdayDays % 30.4375);
+        nextBdayText = `${nbMonths}m ${nbDays}d`;
+      }
+
+      // Total Metrics
+      const diffMs = targetDate - birthDate;
+      const totalDaysVal = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const totalMonthsVal = (years * 12) + months;
+      const totalWeeksVal = Math.floor(totalDaysVal / 7);
+      const totalHoursVal = totalDaysVal * 24;
+      const totalMinutesVal = totalHoursVal * 60;
+
+      // Update UI Output
+      document.getElementById('primaryAgeDisplay').innerText = `${years} Years, ${months} Months, ${days} Days`;
+      document.getElementById('nextBday').innerText = nextBdayText;
+      document.getElementById('totalMonths').innerText = totalMonthsVal.toLocaleString();
+      document.getElementById('totalWeeks').innerText = totalWeeksVal.toLocaleString();
+      document.getElementById('totalDays').innerText = totalDaysVal.toLocaleString();
+      document.getElementById('totalHours').innerText = totalHoursVal.toLocaleString();
+      document.getElementById('totalMinutes').innerText = totalMinutesVal.toLocaleString();
+
+      // Identity & Astrology
+      document.getElementById('zodiacSign').innerText = `Zodiac: ${getZodiacSign(d1, m1 + 1)}`;
+      document.getElementById('chineseZodiac').innerText = `Chinese Zodiac: ${getChineseZodiac(y1)}`;
+      document.getElementById('generationBadge').innerText = `Generation: ${getGeneration(y1)}`;
+      
+      const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      document.getElementById('birthDayOfWeek').innerText = `Born on a: ${daysOfWeek[birthDate.getDay()]}`;
+
+      // Planetary Ages (Orbital periods relative to Earth years)
+      document.getElementById('planetMercury').innerText = (years / 0.240846).toFixed(1) + " yrs";
+      document.getElementById('planetVenus').innerText = (years / 0.615197).toFixed(1) + " yrs";
+      document.getElementById('planetMars').innerText = (years / 1.88082).toFixed(1) + " yrs";
+      document.getElementById('planetJupiter').innerText = (years / 11.862).toFixed(1) + " yrs";
+      document.getElementById('planetSaturn').innerText = (years / 29.447).toFixed(1) + " yrs";
+
+      // Milestone calculations
+      const billionSecDate = new Date(birthDate.getTime() + 1000000000 * 1000);
+      document.getElementById('mBillionSec').innerText = billionSecDate.toISOString().split('T')[0];
+
+      const tenKDaysDate = new Date(birthDate.getTime() + 10000 * 24 * 60 * 60 * 1000);
+      document.getElementById('m10kDays').innerText = tenKDaysDate.toISOString().split('T')[0];
+
+      const twentyKDaysDate = new Date(birthDate.getTime() + 20000 * 24 * 60 * 60 * 1000);
+      document.getElementById('m20kDays').innerText = twentyKDaysDate.toISOString().split('T')[0];
+
+      // Biological & Lifestyle Stats
+      const heartbeatsVal = totalDaysVal * 100000;
+      document.getElementById('bioHeartbeats').innerText = heartbeatsVal.toLocaleString();
+
+      const sleepYears = (totalDaysVal * (8 / 24) / 365.25).toFixed(1);
+      document.getElementById('bioSleep').innerText = `~${sleepYears} Years`;
+
+      // Approximate pet years (Dog: ~7 human equivalent years per calendar year roughly, Cat: variable, simplified rule of thumb or general scale)
+      document.getElementById('petDogYears').innerText = (years * 7).toFixed(0) + " dog yrs";
+      document.getElementById('petCatYears').innerText = (years * 6).toFixed(0) + " cat yrs";
+
+      resultsWrapper.style.display = 'block';
+
+      // Live Ticker Simulation
+      let secondsTicker = Math.floor(diffMs / 1000);
+      liveTimer = setInterval(() => {
+        secondsTicker++;
+        document.getElementById('liveClockBadge').innerText = `Live Ticker: ${secondsTicker.toLocaleString()} seconds alive`;
+      }, 1000);
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculate_age', {
+          'event_category': 'Calculator',
+          'event_label': 'Age Calculated'
+        });
+      }
+    }
+
+    function shareResults() {
+      const ageText = document.getElementById('primaryAgeDisplay').innerText;
+      const totalDays = document.getElementById('totalDays').innerText;
+      const text = `My Exact Age: ${ageText} (${totalDays} total days). Calculated via Everyday Tools Age Calculator Suite!`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Results copied to clipboard!');
+      });
+    }
+
+    function shareWhatsApp() {
+      const ageText = document.getElementById('primaryAgeDisplay').innerText;
+      const text = encodeURIComponent(`Check out my exact age calculated online: ${ageText}! Try it yourself: ${window.location.href}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>

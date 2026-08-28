@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced EMI Calculator & Loan Comparison - Everyday Tools</title>
+  <meta name="description" content="Calculate loan EMIs, compare bank offers side-by-side, simulate prepayments and balance transfers, and download full PDF/CSV amortization schedules.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/emi-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference (Shared across calculator tools) -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- External Libraries: jsPDF & AutoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    /* Calculator UI Component Overrides */
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .preset-btn { padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .ratio-bar-container { background: #e2e8f0; height: 14px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 8px; }
+    .ratio-principal { background: var(--primary, #4f46e5); height: 100%; transition: width 0.3s ease; }
+    .ratio-interest { background: #f43f5e; height: 100%; transition: width 0.3s ease; }
+    .legend { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+
+    .safety-alert { padding: 12px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-top: 14px; display: none; }
+    .safety-safe { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .safety-warning { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/calculators/calculators.html" class="active">All Calculators</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Financial Planning Suite</span>
+        <h1>Smart <span>EMI Calculator</span></h1>
+        <p class="subtitle">
+          Calculate EMIs, compare bank offers side-by-side, simulate prepayments and balance transfers, and download PDF &amp; CSV schedules.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Presets & Controls Bar -->
+      <div class="preset-bar">
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="setPreset(5000000, 8.5, 20)">🏠 Home Loan</button>
+          <button type="button" class="preset-btn" onclick="setPreset(800000, 9.0, 5)">🚗 Car Loan</button>
+          <button type="button" class="preset-btn" onclick="setPreset(300000, 12.0, 3)">💳 Personal Loan</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <label for="currencySelect" style="font-size: 12px; font-weight: 700;">Currency:</label>
+          <select id="currencySelect" onchange="calculateAll()" style="padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-weight: 700; font-size: 12px;">
+            <option value="₹" selected>INR (₹)</option>
+            <option value="$">USD ($)</option>
+            <option value="€">EUR (€)</option>
+            <option value="£">GBP (£)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('singleCalc', this)">📊 Standard EMI Calculator</button>
+        <button class="tab-btn" onclick="switchTab('compareCalc', this)">⚖️ Compare 2 Loans</button>
+        <button class="tab-btn" onclick="switchTab('refinanceCalc', this)">🔄 Balance Transfer &amp; Refinance</button>
+      </div>
+
+      <!-- TAB 1: STANDARD EMI CALCULATOR -->
+      <div id="singleCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            
+            <!-- Form Inputs -->
+            <div>
+              <div class="form-group">
+                <label for="loanType">Loan Calculation Method</label>
+                <div class="input-wrapper">
+                  <select id="loanType" onchange="calculateAll()">
+                    <option value="reducing" selected>Reducing Balance Rate (Standard)</option>
+                    <option value="flat">Flat Rate Interest</option>
+                    <option value="stepdown">Step-Down EMI (Annual Reduction)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="loanAmount">Loan Amount</label>
+                <div class="input-wrapper">
+                  <input type="number" id="loanAmount" value="1000000" step="10000" oninput="calculateAll()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="interestRate">Annual Interest Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="interestRate" value="8.5" step="0.1" oninput="calculateAll()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="loanTenure">Tenure (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="loanTenure" value="20" min="1" max="40" oninput="calculateAll()">
+                  <span class="input-suffix">Yrs</span>
+                </div>
+              </div>
+
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px solid var(--border, #cbd5e1);">
+                <label for="procFeePct">Processing Fee (%) + 18% GST</label>
+                <div class="input-wrapper">
+                  <input type="number" id="procFeePct" value="0.5" step="0.1" oninput="calculateAll()">
+                  <span class="input-suffix">%</span>
+                </div>
+                <span style="font-size: 11px; color: var(--muted, #64748b); margin-top: 4px; display: block;">Total upfront fee: <strong id="feeDisplay">₹ 5,900</strong></span>
+              </div>
+
+              <div id="stepdownGroup" class="form-group" style="display: none; background: #fff7ed; padding: 14px; border-radius: 8px; border: 1px dashed #fdba74;">
+                <label for="stepDownPct" style="color: #c2410c;">📉 Annual EMI Reduction Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="stepDownPct" value="5" min="1" max="20" oninput="calculateAll()">
+                  <span class="input-suffix">% / yr</span>
+                </div>
+              </div>
+
+              <div class="form-group" style="background: var(--bg, #f8fafc); padding: 14px; border-radius: 8px; border: 1px dashed var(--border, #cbd5e1);">
+                <label style="color: var(--primary, #4f46e5);">🚀 Prepayment Simulator</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Extra Monthly</span>
+                    <input type="number" id="extraPayment" value="0" step="500" placeholder="Monthly" oninput="calculateAll()" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                  </div>
+                  <div>
+                    <span style="font-size: 11px; color: var(--muted, #64748b);">Lump-Sum (Amt / Yr)</span>
+                    <div style="display: flex; gap: 4px;">
+                      <input type="number" id="lumpSumPayment" value="0" step="5000" placeholder="Amt" oninput="calculateAll()" style="width: 65%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                      <input type="number" id="lumpSumYear" value="3" min="1" max="40" placeholder="Yr" oninput="calculateAll()" style="width: 35%; padding: 6px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1); font-size: 12px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="monthlyIncome">Net Monthly Income (Optional Check)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="monthlyIncome" placeholder="e.g. 75000" oninput="calculateAll()">
+                </div>
+              </div>
+            </div>
+
+            <!-- Output Display -->
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl" id="emiLabel">Calculated Monthly EMI</div>
+                <div class="val" id="emiValue">₹ 8,678</div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="res-box">
+                  <div class="lbl">Total Interest</div>
+                  <div class="val" id="totalInterest" style="font-size: 18px; color: #f43f5e;">₹ 1,082,760</div>
+                </div>
+                <div class="res-box">
+                  <div class="lbl">Total Payment</div>
+                  <div class="val" id="totalPayment" style="font-size: 18px; color: var(--text, #0f172a);">₹ 2,082,760</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Principal vs. Interest Breakdown</label>
+                <div class="ratio-bar-container">
+                  <div id="barPrincipal" class="ratio-principal" style="width: 48%;"></div>
+                  <div id="barInterest" class="ratio-interest" style="width: 52%;"></div>
+                </div>
+                <div class="legend">
+                  <span style="color: var(--primary, #4f46e5);">■ Principal (<span id="pctPrincipal">48%</span>)</span>
+                  <span style="color: #f43f5e;">■ Interest (<span id="pctInterest">52%</span>)</span>
+                </div>
+              </div>
+
+              <div id="prepaymentSavings" style="display: none; background: #e0e7ff; border: 1px solid #c7d2fe; padding: 12px; border-radius: 8px; font-size: 12px; color: #3730a3; margin-top: 10px;">
+                🎉 <strong>Prepayment Impact:</strong> You save <span id="savedInterest" style="font-weight: 800;">₹ 0</span> in interest and reduce tenure by <span id="savedTime" style="font-weight: 800;">0 months</span>!
+              </div>
+
+              <div id="safetyAlert" class="safety-alert"></div>
+
+              <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;">
+                <button type="button" class="btn-action" onclick="downloadPDF()">📄 Download PDF</button>
+                <button type="button" class="btn-action" onclick="downloadCSV()" style="background: #10b981;">📊 Export CSV</button>
+                <button type="button" class="btn-action" onclick="shareOnWhatsApp()" style="background: #25D366;">📲 Share</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Amortization Table -->
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 14px;">📅 Annual Amortization Schedule</h2>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Principal Paid</th>
+                  <th>Interest Paid</th>
+                  <th>Total Paid</th>
+                  <th>Remaining Balance</th>
+                </tr>
+              </thead>
+              <tbody id="amortizationBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: COMPARE 2 LOANS -->
+      <div id="compareCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">⚖️ Side-by-Side Loan Offer Comparison</h2>
+          <div class="grid-2">
+            
+            <div style="background: var(--bg, #f8fafc); padding: 18px; border-radius: 12px; border: 1px solid var(--border, #cbd5e1);">
+              <h3 style="font-size: 15px; font-weight: 700; color: var(--primary, #4f46e5); margin-bottom: 12px;">Bank Offer A</h3>
+              <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" id="compAmtA" value="1000000" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Interest Rate (%)</label>
+                <input type="number" id="compRateA" value="8.5" step="0.1" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Tenure (Years)</label>
+                <input type="number" id="compTenureA" value="20" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+              <div style="font-size: 13px; line-height: 1.6;">
+                <div>Monthly EMI: <strong id="resEmiA">₹ 8,678</strong></div>
+                <div>Total Interest: <strong id="resIntA" style="color: #f43f5e;">₹ 1,082,760</strong></div>
+                <div>Total Cost: <strong id="resTotalA">₹ 2,082,760</strong></div>
+              </div>
+            </div>
+
+            <div style="background: var(--bg, #f8fafc); padding: 18px; border-radius: 12px; border: 1px solid var(--border, #cbd5e1);">
+              <h3 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 12px;">Bank Offer B</h3>
+              <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" id="compAmtB" value="1000000" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Interest Rate (%)</label>
+                <input type="number" id="compRateB" value="8.1" step="0.1" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Tenure (Years)</label>
+                <input type="number" id="compTenureB" value="15" oninput="compareLoans()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+              <div style="font-size: 13px; line-height: 1.6;">
+                <div>Monthly EMI: <strong id="resEmiB">₹ 9,613</strong></div>
+                <div>Total Interest: <strong id="resIntB" style="color: #f43f5e;">₹ 730,323</strong></div>
+                <div>Total Cost: <strong id="resTotalB">₹ 1,730,323</strong></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="compareVerdict" style="margin-top: 16px; background: #e0e7ff; border: 1px solid #c7d2fe; padding: 14px; border-radius: 8px; font-size: 13px; color: #3730a3; font-weight: 600;">
+            💡 <strong>Comparison Verdict:</strong> Offer B saves you <strong>₹ 352,437</strong> in overall interest!
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: BALANCE TRANSFER -->
+      <div id="refinanceCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">🔄 Balance Transfer Savings Calculator</h2>
+          <div class="grid-2">
+            
+            <div>
+              <div class="form-group">
+                <label>Outstanding Loan Balance</label>
+                <input type="number" id="refBalance" value="3000000" oninput="calcRefinance()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Remaining Tenure (Years)</label>
+                <input type="number" id="refTenure" value="15" oninput="calcRefinance()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>Current Interest Rate (%)</label>
+                <input type="number" id="refOldRate" value="9.5" step="0.1" oninput="calcRefinance()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>New Bank Interest Rate (%)</label>
+                <input type="number" id="refNewRate" value="8.3" step="0.1" oninput="calcRefinance()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+              <div class="form-group">
+                <label>New Bank Processing Fee</label>
+                <input type="number" id="refProcFee" value="10000" oninput="calcRefinance()" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border, #cbd5e1);">
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+                <div class="lbl">Net Savings After Fees</div>
+                <div class="val" id="refNetSavings" style="color: #166534;">₹ 354,210</div>
+              </div>
+              <div class="res-box">
+                <div class="lbl">Monthly EMI Savings</div>
+                <div class="val" id="refEmiSavings" style="font-size: 18px; color: var(--primary, #4f46e5);">₹ 2,120 / month</div>
+              </div>
+              <div id="refVerdict" style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 12px; border-radius: 8px; font-size: 12px; color: var(--muted, #64748b); line-height: 1.5;">
+                By transferring your balance, you recover processing fees in just <strong>5 months</strong> of EMI savings!
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- SEO Article Content -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 18px; font-weight: 800; margin-bottom: 8px;">Mastering Your Loan: EMI, Prepayments &amp; Refinancing</h2>
+        <p>
+          An <strong>Equated Monthly Installment (EMI)</strong> is structured so that initial installments prioritize interest obligations over principal clearance. Leveraging partial prepayments during early loan years directly slashes outstanding principal, drastically cutting overall interest expense.
+        </p>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabId, el) {
+      document.getElementById('singleCalc').style.display = tabId === 'singleCalc' ? 'block' : 'none';
+      document.getElementById('compareCalc').style.display = tabId === 'compareCalc' ? 'block' : 'none';
+      document.getElementById('refinanceCalc').style.display = tabId === 'refinanceCalc' ? 'block' : 'none';
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+
+      if (tabId === 'compareCalc') compareLoans();
+      if (tabId === 'refinanceCalc') calcRefinance();
+    }
+
+    function getSymbol() {
+      return document.getElementById('currencySelect').value || '₹';
+    }
+
+    function formatVal(val) {
+      return getSymbol() + " " + Math.round(val).toLocaleString('en-IN');
+    }
+
+    function setPreset(amt, rate, tenure) {
+      document.getElementById('loanAmount').value = amt;
+      document.getElementById('interestRate').value = rate;
+      document.getElementById('loanTenure').value = tenure;
+      calculateAll();
+    }
+
+    let currentAmortData = [];
+
+    function calculateAll() {
+      const loanType = document.getElementById('loanType').value;
+      const P = parseFloat(document.getElementById('loanAmount').value) || 0;
+      const annualR = parseFloat(document.getElementById('interestRate').value) || 0;
+      const years = parseFloat(document.getElementById('loanTenure').value) || 0;
+      const extraPay = parseFloat(document.getElementById('extraPayment').value) || 0;
+      const lumpSum = parseFloat(document.getElementById('lumpSumPayment').value) || 0;
+      const lumpYear = parseInt(document.getElementById('lumpSumYear').value) || 1;
+      const income = parseFloat(document.getElementById('monthlyIncome').value) || 0;
+      const stepDownPct = parseFloat(document.getElementById('stepDownPct').value) || 0;
+      const procFeePct = parseFloat(document.getElementById('procFeePct').value) || 0;
+
+      document.getElementById('stepdownGroup').style.display = loanType === 'stepdown' ? 'block' : 'none';
+
+      if (P <= 0 || annualR <= 0 || years <= 0) return;
+
+      const feeVal = (P * (procFeePct / 100)) * 1.18;
+      document.getElementById('feeDisplay').innerText = formatVal(feeVal);
+
+      const r = annualR / 12 / 100;
+      const n = years * 12;
+
+      let emi = 0;
+      let totalInterestBase = 0;
+      let totalPaymentBase = 0;
+
+      if (loanType === 'reducing') {
+        document.getElementById('emiLabel').innerText = "Calculated Monthly EMI";
+        emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        totalPaymentBase = emi * n;
+        totalInterestBase = totalPaymentBase - P;
+      } else if (loanType === 'flat') {
+        document.getElementById('emiLabel').innerText = "Flat Monthly EMI";
+        const annualInterest = P * (annualR / 100);
+        totalInterestBase = annualInterest * years;
+        totalPaymentBase = P + totalInterestBase;
+        emi = totalPaymentBase / n;
+      } else if (loanType === 'stepdown') {
+        document.getElementById('emiLabel').innerText = "Year 1 Monthly EMI";
+        const baseEmi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        emi = baseEmi * 1.25;
+        
+        let remBal = P;
+        let curEmi = emi;
+        totalInterestBase = 0;
+        
+        for (let m = 1; m <= n; m++) {
+          if (m > 1 && (m - 1) % 12 === 0) {
+            curEmi = curEmi * (1 - (stepDownPct / 100));
+          }
+          const mInt = remBal * r;
+          totalInterestBase += mInt;
+          remBal -= (curEmi - mInt);
+          if (remBal <= 0) break;
+        }
+        totalPaymentBase = P + totalInterestBase;
+      }
+
+      document.getElementById('emiValue').innerText = formatVal(emi);
+      document.getElementById('totalInterest').innerText = formatVal(totalInterestBase);
+      document.getElementById('totalPayment').innerText = formatVal(totalPaymentBase);
+
+      const principalPct = Math.min(100, Math.max(0, Math.round((P / totalPaymentBase) * 100)));
+      const interestPct = 100 - principalPct;
+      document.getElementById('barPrincipal').style.width = principalPct + "%";
+      document.getElementById('barInterest').style.width = interestPct + "%";
+      document.getElementById('pctPrincipal').innerText = principalPct + "%";
+      document.getElementById('pctInterest').innerText = interestPct + "%";
+
+      const prepayBox = document.getElementById('prepaymentSavings');
+      if ((extraPay > 0 || lumpSum > 0) && loanType === 'reducing') {
+        let bal = P;
+        let newTotalInt = 0;
+        let newMonths = 0;
+        const lumpMonth = lumpYear * 12;
+
+        while (bal > 0 && newMonths < n) {
+          newMonths++;
+          const mInt = bal * r;
+          let mPrin = (emi + extraPay) - mInt;
+
+          if (newMonths === lumpMonth) mPrin += lumpSum;
+
+          if (bal < mPrin) {
+            newTotalInt += mInt;
+            bal = 0;
+          } else {
+            newTotalInt += mInt;
+            bal -= mPrin;
+          }
+        }
+
+        const savedInt = totalInterestBase - newTotalInt;
+        const savedM = n - newMonths;
+
+        if (savedInt > 0) {
+          prepayBox.style.display = 'block';
+          document.getElementById('savedInterest').innerText = formatVal(savedInt);
+          document.getElementById('savedTime').innerText = savedM + " months (" + (savedM/12).toFixed(1) + " yrs)";
+        }
+      } else {
+        prepayBox.style.display = 'none';
+      }
+
+      const alertBox = document.getElementById('safetyAlert');
+      if (income > 0) {
+        const ratio = ((emi / income) * 100).toFixed(1);
+        alertBox.style.display = 'block';
+        if (ratio <= 40) {
+          alertBox.className = "safety-alert safety-safe";
+          alertBox.innerHTML = `✅ <strong>Healthy Ratio:</strong> EMI uses <strong>${ratio}%</strong> of your net monthly income (Safe threshold: ≤ 40%).`;
+        } else {
+          alertBox.className = "safety-alert safety-warning";
+          alertBox.innerHTML = `⚠️ <strong>High Budget Risk:</strong> EMI takes up <strong>${ratio}%</strong> of your income. Consider increasing tenure.`;
+        }
+      } else {
+        alertBox.style.display = 'none';
+      }
+
+      generateAmortization(P, annualR, years, emi, loanType, stepDownPct);
+    }
+
+    function generateAmortization(P, annualR, years, initialEmi, loanType, stepDownPct) {
+      const tbody = document.getElementById('amortizationBody');
+      tbody.innerHTML = '';
+      currentAmortData = [];
+
+      let bal = P;
+      const r = annualR / 12 / 100;
+      let curEmi = initialEmi;
+
+      for (let y = 1; y <= years; y++) {
+        let yPrin = 0;
+        let yInt = 0;
+
+        for (let m = 1; m <= 12; m++) {
+          if (bal <= 0) break;
+
+          let mInt = 0;
+          let mPrin = 0;
+
+          if (loanType === 'flat') {
+            mInt = (P * (annualR / 100)) / 12;
+            mPrin = curEmi - mInt;
+          } else {
+            mInt = bal * r;
+            mPrin = curEmi - mInt;
+          }
+
+          if (bal < mPrin) mPrin = bal;
+
+          yInt += mInt;
+          yPrin += mPrin;
+          bal -= mPrin;
+        }
+
+        if (loanType === 'stepdown') {
+          curEmi = curEmi * (1 - (stepDownPct / 100));
+        }
+
+        const yTotal = yPrin + yInt;
+        const remBal = Math.max(0, bal);
+
+        currentAmortData.push([`Year ${y}`, Math.round(yPrin), Math.round(yInt), Math.round(yTotal), Math.round(remBal)]);
+
+        tbody.innerHTML += `
+          <tr>
+            <td style="font-weight: 700;">Year ${y}</td>
+            <td style="color: var(--primary, #4f46e5);">${formatVal(yPrin)}</td>
+            <td style="color: #f43f5e;">${formatVal(yInt)}</td>
+            <td>${formatVal(yTotal)}</td>
+            <td style="font-weight: 600;">${formatVal(remBal)}</td>
+          </tr>
+        `;
+
+        if (bal <= 0) break;
+      }
+    }
+
+    function compareLoans() {
+      const pA = parseFloat(document.getElementById('compAmtA').value) || 0;
+      const rA = (parseFloat(document.getElementById('compRateA').value) || 0) / 12 / 100;
+      const nA = (parseFloat(document.getElementById('compTenureA').value) || 0) * 12;
+
+      const pB = parseFloat(document.getElementById('compAmtB').value) || 0;
+      const rB = (parseFloat(document.getElementById('compRateB').value) || 0) / 12 / 100;
+      const nB = (parseFloat(document.getElementById('compTenureB').value) || 0) * 12;
+
+      const emiA = (pA * rA * Math.pow(1 + rA, nA)) / (Math.pow(1 + rA, nA) - 1);
+      const totalPayA = emiA * nA;
+      const totalIntA = totalPayA - pA;
+
+      const emiB = (pB * rB * Math.pow(1 + rB, nB)) / (Math.pow(1 + rB, nB) - 1);
+      const totalPayB = emiB * nB;
+      const totalIntB = totalPayB - pB;
+
+      document.getElementById('resEmiA').innerText = formatVal(emiA);
+      document.getElementById('resIntA').innerText = formatVal(totalIntA);
+      document.getElementById('resTotalA').innerText = formatVal(totalPayA);
+
+      document.getElementById('resEmiB').innerText = formatVal(emiB);
+      document.getElementById('resIntB').innerText = formatVal(totalIntB);
+      document.getElementById('resTotalB').innerText = formatVal(totalPayB);
+
+      const verdict = document.getElementById('compareVerdict');
+      if (totalIntA < totalIntB) {
+        verdict.innerHTML = `💡 <strong>Comparison Verdict:</strong> Bank Offer A saves you <strong>${formatVal(totalIntB - totalIntA)}</strong> in overall interest!`;
+      } else {
+        verdict.innerHTML = `💡 <strong>Comparison Verdict:</strong> Bank Offer B saves you <strong>${formatVal(totalIntA - totalIntB)}</strong> in overall interest!`;
+      }
+    }
+
+    function calcRefinance() {
+      const bal = parseFloat(document.getElementById('refBalance').value) || 0;
+      const yrs = parseFloat(document.getElementById('refTenure').value) || 0;
+      const oldR = (parseFloat(document.getElementById('refOldRate').value) || 0) / 12 / 100;
+      const newR = (parseFloat(document.getElementById('refNewRate').value) || 0) / 12 / 100;
+      const fee = parseFloat(document.getElementById('refProcFee').value) || 0;
+
+      const n = yrs * 12;
+
+      const oldEmi = (bal * oldR * Math.pow(1 + oldR, n)) / (Math.pow(1 + oldR, n) - 1);
+      const newEmi = (bal * newR * Math.pow(1 + newR, n)) / (Math.pow(1 + newR, n) - 1);
+
+      const totalOldPay = oldEmi * n;
+      const totalNewPay = (newEmi * n) + fee;
+
+      const netSavings = totalOldPay - totalNewPay;
+      const emiSavings = oldEmi - newEmi;
+
+      document.getElementById('refNetSavings').innerText = formatVal(netSavings);
+      document.getElementById('refEmiSavings').innerText = formatVal(emiSavings) + " / month";
+
+      const monthsToRecover = Math.ceil(fee / emiSavings);
+      document.getElementById('refVerdict').innerHTML = netSavings > 0 
+        ? `By transferring your balance, you recover processing fees in just <strong>${monthsToRecover} months</strong> of EMI savings!`
+        : `⚠️ Refinancing is not recommended. Processing fees outweigh interest savings.`;
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(18);
+      doc.setTextColor(79, 70, 229);
+      doc.text("Loan Amortization Report", 14, 20);
+
+      const emi = document.getElementById('emiValue').innerText;
+      const interest = document.getElementById('totalInterest').innerText;
+      const total = document.getElementById('totalPayment').innerText;
+      const amt = formatVal(document.getElementById('loanAmount').value);
+
+      doc.setFontSize(11);
+      doc.setTextColor(15);
+      doc.text(`Loan Amount: ${amt}`, 14, 32);
+      doc.text(`Monthly EMI: ${emi}`, 14, 38);
+      doc.text(`Total Interest: ${interest}`, 100, 32);
+      doc.text(`Total Cost: ${total}`, 100, 38);
+
+      doc.autoTable({
+        startY: 46,
+        head: [['Year', 'Principal Paid', 'Interest Paid', 'Total Paid', 'Balance Remaining']],
+        body: currentAmortData.map(row => [row[0], `${getSymbol()} ${row[1].toLocaleString()}`, `${getSymbol()} ${row[2].toLocaleString()}`, `${getSymbol()} ${row[3].toLocaleString()}`, `${getSymbol()} ${row[4].toLocaleString()}`]),
+        theme: 'striped',
+        headStyles: { fillColor: [79, 70, 229] }
+      });
+
+      doc.save("Loan_EMI_Amortization_Report.pdf");
+    }
+
+    function downloadCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,Year,Principal Paid,Interest Paid,Total Paid,Balance Remaining\n";
+      currentAmortData.forEach(row => { csvContent += row.join(",") + "\n"; });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "Loan_Amortization_Schedule.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function shareOnWhatsApp() {
+      const emi = document.getElementById('emiValue').innerText;
+      const amount = document.getElementById('loanAmount').value;
+      const rate = document.getElementById('interestRate').value;
+      const tenure = document.getElementById('loanTenure').value;
+
+      const text = `Check out my loan calculation:\n• Loan Amount: ${formatVal(amount)}\n• Rate: ${rate}%\n• Tenure: ${tenure} Years\n• Monthly EMI: ${emi}\n\nCalculate yours here: ${window.location.href}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    calculateAll();
+  </script>
+</body>
+</html>
