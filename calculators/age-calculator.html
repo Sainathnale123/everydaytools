@@ -12,7 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
 
-  <!-- Open Graph & Social Sharing Image -->
+  <!-- Open Graph & Social Sharing Image (Absolute URLs for reliability) -->
   <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
   <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
   
@@ -21,13 +21,11 @@
   <meta property="og:description" content="Calculate your exact age in years, months, days, hours, and seconds with our fast and free online Age Calculator.">
   <meta property="og:url" content="https://everydaytools.co.in/calculators/age-calculator.html">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="../assets/images/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Age Calculator - Everyday Tools">
   <meta name="twitter:description" content="Calculate your exact age and upcoming birthday countdown instantly.">
-  <meta name="twitter:image" content="../assets/images/og-image.png">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
@@ -37,9 +35,6 @@
     gtag('js', new Date());
     gtag('config', 'G-CZV1803P6F');
   </script>
-
-  <!-- Google AdSense Placeholder Script (Uncomment and replace client ID when active) -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
   <!-- Premium CSS -->
   <link rel="stylesheet" href="../assets/css/calculator.css">
@@ -254,6 +249,29 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://everydaytools.co.in/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://everydaytools.co.in/calculators/calculator.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Age Calculator",
+      "item": "https://everydaytools.co.in/calculators/age-calculator.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [{
       "@type": "Question",
@@ -306,15 +324,6 @@
         Explore your precise chronological age, live ticking counter, cosmic space ages, biological estimates, generation badge, and milestones.
       </p>
     </header>
-
-    <!-- Top Advertisement Banner Space -->
-    <div class="ad-wrapper" aria-label="Advertisement Space">
-      <div class="ad-slot top-banner">
-        <span class="ad-disclosure">Advertisement</span>
-        <!-- Insert AdSense Code Here -->
-      </div>
-    </div>
-
     <!-- Calculator Card -->
     <section class="calc-card" aria-label="Age Calculator Tool">
       <form id="ageForm" onsubmit="event.preventDefault(); calculateAge();">
@@ -428,12 +437,6 @@
 
       </div>
     </section>
-
-    <!-- In-Content Advertisement Banner Space -->
-    <div class="ad-wrapper" aria-label="Advertisement Space">
-      <div class="ad-slot middle-banner">
-        <span class="ad-disclosure">Advertisement</span>
-      </div>
     </div>
 
     <!-- SEO Information Content Section -->
@@ -663,7 +666,6 @@
       const sleepYears = (totalDaysVal * (8 / 24) / 365.25).toFixed(1);
       document.getElementById('bioSleep').innerText = `~${sleepYears} Years`;
 
-      // Approximate pet years (Dog: ~7 human equivalent years per calendar year roughly, Cat: variable, simplified rule of thumb or general scale)
       document.getElementById('petDogYears').innerText = (years * 7).toFixed(0) + " dog yrs";
       document.getElementById('petCatYears').innerText = (years * 6).toFixed(0) + " cat yrs";
 

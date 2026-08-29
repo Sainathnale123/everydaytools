@@ -173,121 +173,120 @@
     </header>
 
     <!-- ADSENSE TOP LEADERBOARD PLACEHOLDER (Policy Compliant) -->
-    <div class="container ad-wrapper" aria-label="Advertisement Space">
-      <div class="ad-slot top-banner">
-        <!-- Google AdSense Code Unit Inserted Here -->
-        <!-- Example: <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
-        <span class="ad-disclosure">Advertisement</span>
-      </div>
-    </div>
 
     <!-- CALCULATOR CARDS GRID -->
-    <section class="container" aria-label="Available Calculator Tools">
+<section class="container" aria-label="Available Calculator Tools">
       
+      <!-- Category Filter or Navigation Tabs (Optional enhancement for categorization) -->
+      <div class="category-filter-bar" style="display: flex; gap: 10px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 4px;">
+        <button type="button" class="preset-btn active" onclick="filterCategory('all', this)">All Tools</button>
+        <button type="button" class="preset-btn" onclick="filterCategory('financial', this)">Financial &amp; Investment</button>
+        <button type="button" class="preset-btn" onclick="filterCategory('math', this)">Math &amp; General</button>
+        <button type="button" class="preset-btn" onclick="filterCategory('health', this)">Health &amp; Fitness</button>
+      </div>
+
       <div class="calculator-grid">
 
-        <!-- UNLOCKED / ACTIVE CARD -->
-        <a href="age-calculator.html" class="calculator-card active" aria-label="Open Age Calculator Tool">
+        <!-- FINANCIAL & INVESTMENT -->
+        <a href="emi-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open Smart EMI Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">💰</div>
+          <h2>EMI Calculator</h2>
+          <p>Calculate loan EMIs, simulate extra prepayments, and analyze interest savings.</p>
+        </a>
+
+        <a href="sip-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open SIP Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">📈</div>
+          <h2>SIP Calculator</h2>
+          <p>Forecast wealth accumulation, compounding returns, and step-up mutual fund growth.</p>
+        </a>
+
+        <a href="gst-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open GST Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">🧾</div>
+          <h2>GST Calculator</h2>
+          <p>Determine inclusive/exclusive Goods and Services Tax values and tax breakdowns easily.</p>
+        </a>
+
+        <a href="brokerage-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open Brokerage Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">📊</div>
+          <h2>Brokerage Calculator</h2>
+          <p>Compute exact brokerage fees, STT, exchange charges, and net P&amp;L for NSE/BSE trades.</p>
+        </a>
+
+        <a href="FD-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open Fixed Deposit Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">💵</div>
+          <h2>FD Calculator</h2>
+          <p>Evaluate fixed deposit maturity returns and annual yields.</p>
+        </a>
+
+        <a href="Simple-Interest-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open Simple Interest Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">💰</div>
+          <h2>Simple Interest Calculator</h2>
+          <p>Compute simple interest accrual and total principal payouts.</p>
+        </a>
+
+        <a href="Compound-Interest-calculator.html" class="calculator-card active" data-category="financial" aria-label="Open Compound Interest Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">📈</div>
+          <h2>Compound Interest Calculator</h2>
+          <p>Determine compound growth across varying annual interest rates.</p>
+        </a>
+
+        <!-- MATH & GENERAL -->
+        <a href="age-calculator.html" class="calculator-card active" data-category="math" aria-label="Open Age Calculator Tool">
           <div class="calculator-icon" aria-hidden="true">🎂</div>
           <h2>Age Calculator</h2>
           <p>Calculate your exact chronological age in years, months, weeks, and days.</p>
         </a>
 
-        <!-- COMING SOON CARDS (Structured with proper accessibility tags) -->
-        <a href="emi-calculator.html" class="calculator-card active" aria-label="Open Smart EMI Calculator Tool">
-            <div class="calculator-icon" aria-hidden="true">💰</div>
-            <h2>EMI Calculator</h2>
-            <p>Calculate loan EMIs, simulate extra prepayments, and analyze interest savings.</p>
-        </a>
-
-<!-- UNLOCKED SIP CALCULATOR -->
-        <a href="sip-calculator.html" class="calculator-card active" aria-label="Open SIP Calculator Tool">
-          <div class="calculator-icon" aria-hidden="true">📈</div>
-          <h2>SIP Calculator</h2>
-          <p>Forecast wealth accumulation, compounding returns, and step-up mutual fund growth[cite: 2].</p>
-        </a>
-
-        <!-- UNLOCKED GST CALCULATOR -->
-        <a href="gst-calculator.html" class="calculator-card active" aria-label="Open GST Calculator Tool">
-          <div class="calculator-icon" aria-hidden="true">🧾</div>
-          <h2>GST Calculator</h2>
-          <p>Determine inclusive/exclusive Goods and Services Tax values and tax breakdowns easily[cite: 2].</p>
-        </a>
-
-
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">%</div>
+        <a href="Percentage-calculator.html" class="calculator-card active" data-category="math" aria-label="Open Percentage Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">%</div>
           <h2>Percentage Calculator</h2>
           <p>Compute relative percentage changes, markups, and standard ratios.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
+        </a>
 
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">⚖️</div>
-          <h2>BMI Calculator</h2>
-          <p>Check Body Mass Index scores based on metric or imperial measurements.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
-
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">🔥</div>
-          <h2>BMR Calculator</h2>
-          <p>Estimate your daily Basal Metabolic Rate and baseline calorie needs.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
-
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">🏷️</div>
+        <a href="Discount-calculator.html" class="calculator-card active" data-category="math" aria-label="Open Discount Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">🏷️</div>
           <h2>Discount Calculator</h2>
           <p>Calculate final sale prices, promotional discounts, and store savings.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
+        </a>
 
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">💰</div>
-          <h2>Simple Interest</h2>
-          <p>Compute simple interest accrual and total principal payouts.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
+        <a href="scientific-calculator.html" class="calculator-card active" data-category="math" aria-label="Open Scientific Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">🧮</div>
+          <h2>Scientific Calculator</h2>
+          <p>Perform advanced mathematical, trigonometric, and logarithmic calculations.</p>
+        </a>
 
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">💵</div>
-          <h2>Compound Interest</h2>
-          <p>Determine compound growth across varying annual interest rates.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
+        <!-- HEALTH & FITNESS -->
+        <a href="BMI-calculator.html" class="calculator-card active" data-category="health" aria-label="Open BMI Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">⚖️</div>
+          <h2>BMI Calculator</h2>
+          <p>Check Body Mass Index scores based on metric or imperial measurements.</p>
+        </a>
 
-        <div class="calculator-card locked" aria-disabled="true">
-          <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">🏦</div>
-          <h2>FD Calculator</h2>
-          <p>Evaluate fixed deposit maturity returns and annual yields.</p>
-          <span class="lock-icon" aria-hidden="true">🔒</span>
-        </div>
+        <a href="BMR-calculator.html" class="calculator-card active" data-category="health" aria-label="Open BMR Calculator Tool">
+          <div class="calculator-icon" aria-hidden="true">🔥</div>
+          <h2>BMR Calculator</h2>
+          <p>Estimate your daily Basal Metabolic Rate and baseline calorie needs.</p>
+        </a>
 
-        <div class="calculator-card locked" aria-disabled="true">
+        <!-- LOCKED / COMING SOON CARDS -->
+        <div class="calculator-card locked" data-category="financial" aria-disabled="true">
           <span class="lock-badge">Coming Soon</span>
-          <div class="calculator-icon">📊</div>
+          <div class="calculator-icon">📈</div>
           <h2>CAGR Calculator</h2>
           <p>Determine the Compound Annual Growth Rate of your investments.</p>
           <span class="lock-icon" aria-hidden="true">🔒</span>
         </div>
 
+        <div class="calculator-card locked" data-category="math" aria-disabled="true">
+          <span class="lock-badge">Coming Soon</span>
+          <div class="calculator-icon">🔢</div>
+          <h2>Simple Calculator</h2>
+          <p>Standard arithmetic operations for quick day-to-day computations.</p>
+          <span class="lock-icon" aria-hidden="true">🔒</span>
+        </div>
+
       </div>
     </section>
-
-    <!-- ADSENSE MID-PAGE BANNER PLACEHOLDER -->
-    <div class="container ad-wrapper" aria-label="Advertisement Space">
-      <div class="ad-slot in-feed">
-        <span class="ad-disclosure">Advertisement</span>
-      </div>
-    </div>
 
     <!-- SEO CONTENT SECTION (Crucial for Search Engine Ranking & Helpful Content System) -->
     <article class="seo-content container">
@@ -372,3 +371,19 @@
 
 </body>
 </html>
+<script>
+  function filterCategory(cat, btn) {
+    // Update active button state
+    document.querySelectorAll('.category-filter-bar .preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Filter cards
+    document.querySelectorAll('.calculator-grid .calculator-card').forEach(card => {
+      if (cat === 'all' || card.getAttribute('data-category') === cat) {
+        card.style.setProperty('display', 'flex', 'important');
+      } else {
+        card.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
+</script>

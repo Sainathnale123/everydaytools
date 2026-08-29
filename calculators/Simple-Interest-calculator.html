@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Simple Interest Calculator - Calculate Principal, Rate &amp; Time</title>
+  <meta name="description" content="Calculate simple interest accurately with our advanced online financial tool. Features flexible time units (years, months, days), comparison tables, amortization schedules, and clear formulas.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/simple-interest-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Advanced Simple Interest Calculator - Financial Tool">
+  <meta property="og:description" content="Easily compute simple interest earnings and loan charges with flexible time formats, comparative tables, and comprehensive formulas.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/simple-interest-calculator.html">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/simple-interest-social.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Integration -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) {
+      .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; }
+    }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) {
+      .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; }
+    }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: var(--primary, #4f46e5); outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #ffffff; color: var(--primary, #4f46e5); border: 1px solid var(--primary, #4f46e5); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+    
+    .faq-item { border-bottom: 1px solid var(--border, #cbd5e1); padding: 16px 0; }
+    .faq-q { font-weight: 700; color: var(--text, #0f172a); font-size: 15px; margin-bottom: 6px; }
+    .faq-a { color: var(--muted, #64748b); font-size: 14px; line-height: 1.6; }
+  </style>
+
+  <!-- Structured Data Schema (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Simple Interest Calculator",
+    "url": "https://everydaytools.co.in/calculators/simple-interest-calculator.html",
+    "description": "Free online simple interest calculator with flexible time formats, comparative rate tables, and annual breakdown schedules.",
+    "applicationCategory": "FinancialApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "author": {
+      "@type": "Organization",
+      "name": "Everyday Tools",
+      "url": "https://everydaytools.co.in"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Financial Planning &amp; Interest Tool</span>
+        <h1>Advanced Simple Interest <span>Calculator</span></h1>
+        <p class="subtitle">
+          Quickly compute interest earnings, loan obligations, maturity amounts, and annual milestone schedules using precise simple interest formulas.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Quick Presets -->
+      <div class="preset-bar">
+        <span style="font-size: 13px; font-weight: 700; color: var(--text, #0f172a);">Quick Scenarios:</span>
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="applyPreset(50000, 6, 2, 'years')">₹50k @ 6% for 2Y</button>
+          <button type="button" class="preset-btn" onclick="applyPreset(100000, 8, 3, 'years')">₹1L @ 8% for 3Y</button>
+          <button type="button" class="preset-btn" onclick="applyPreset(250000, 7.5, 18, 'months')">₹2.5L @ 7.5% for 18M</button>
+          <button type="button" class="preset-btn" onclick="applyPreset(500000, 9, 5, 'years')">₹5L @ 9% for 5Y</button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="mainCalc" selected>📈 Core Simple Interest Calculator</option>
+          <option value="reverseCalc">🔄 Reverse Interest Calculator</option>
+          <option value="scheduleTab">📋 Annual Breakdown Schedule</option>
+        </select>
+      </div>
+
+      <!-- Desktop Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('mainCalc', this)">📈 Core Simple Interest Calculator</button>
+        <button class="tab-btn" onclick="switchTab('reverseCalc', this)">🔄 Reverse Interest Calculator</button>
+        <button class="tab-btn" onclick="switchTab('scheduleTab', this)">📋 Annual Breakdown Schedule</button>
+      </div>
+
+      <!-- TAB 1: CORE SIMPLE INTEREST CALCULATOR -->
+      <div id="mainCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="currencySelect">Currency</label>
+                <div class="input-wrapper">
+                  <select id="currencySelect" onchange="calculateSimpleInterest()">
+                    <option value="₹" selected>INR (₹)</option>
+                    <option value="$">USD ($)</option>
+                    <option value="£">GBP (£)</option>
+                    <option value="€">EUR (€)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="principalAmt">Principal Amount</label>
+                <div class="input-wrapper">
+                  <input type="number" id="principalAmt" value="100000" step="100" min="0" oninput="calculateSimpleInterest()">
+                  <span class="input-suffix" id="currSymbol1">₹</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="interestRate">Annual Interest Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="interestRate" value="8" step="0.1" min="0" max="100" oninput="calculateSimpleInterest()">
+                  <span class="input-suffix">% p.a.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="timePeriod">Time Duration</label>
+                <div class="input-wrapper" style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px;">
+                  <input type="number" id="timePeriod" value="3" step="0.1" min="0" oninput="calculateSimpleInterest()" style="width: 100%;">
+                  <select id="timeUnit" onchange="calculateSimpleInterest()" style="width: 100%;">
+                    <option value="years" selected>Years</option>
+                    <option value="months">Months</option>
+                    <option value="days">Days</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Total Maturity Amount</div>
+                <div class="val" id="resTotalAmount">₹124,000.00</div>
+              </div>
+
+              <div class="res-box" style="background: #dcfce7; border-color: #bbf7d0;">
+                <div class="lbl">Total Interest Earned / Payable</div>
+                <div class="val" id="resInterestAmt" style="color: #166534;">₹24,000.00</div>
+              </div>
+
+              <div class="res-box" style="background: #f8fafc;">
+                <div class="lbl">Effective Monthly Interest Average</div>
+                <div class="val" id="resMonthlyAvg" style="font-size: 20px; color: var(--text, #0f172a);">₹666.67 / month</div>
+              </div>
+
+              <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+                <button type="button" class="btn-action btn-secondary" onclick="resetCalculator()">🔄 Reset</button>
+                <button type="button" class="btn-action" onclick="copyResult()">📋 Copy Result</button>
+                <button type="button" class="btn-action" onclick="shareResult()">🔗 Share</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: REVERSE INTEREST CALCULATOR -->
+      <div id="reverseCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">🔄 Reverse Simple Interest Finder (Find Principal or Rate)</h2>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="revTargetInterest">Desired Total Interest Amount</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revTargetInterest" value="15000" step="100" min="0" oninput="calculateReverseInterest()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="revRate">Interest Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revRate" value="10" step="0.1" min="0" oninput="calculateReverseInterest()">
+                  <span class="input-suffix">% p.a.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="revYears">Time Period (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revYears" value="3" step="0.5" min="0" oninput="calculateReverseInterest()">
+                  <span class="input-suffix">Years</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Required Principal Investment</div>
+                <div class="val" id="revPrincipalResult">₹50,000.00</div>
+              </div>
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--muted, #64748b); margin-top: 14px;">
+                <strong>Formula Used:</strong> $\text{Principal} = \frac{\text{Interest} \times 100}{\text{Rate} \times \text{Time}}$
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: SCHEDULE TAB -->
+      <div id="scheduleTab" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">📋 Annual Breakdown Schedule</h2>
+          <div style="overflow-x: auto;">
+            <table id="scheduleTable">
+              <thead>
+                <tr>
+                  <th>Period / Year</th>
+                  <th>Starting Principal</th>
+                  <th>Interest Accrued</th>
+                  <th>Ending Balance</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Middle Advertisement Slot -->
+      <div class="ad-wrapper" aria-label="Advertisement Space" style="margin: 30px 0;">
+        <div class="ad-slot content-banner">
+          <span class="ad-disclosure">Advertisement</span>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="0987654321"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+
+      <!-- Comprehensive SEO & Educational Content -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 22px; font-weight: 800; margin-bottom: 14px;">What Is Simple Interest?</h2>
+        <p style="margin-bottom: 16px;">
+          Simple interest is a method of calculating the interest charge or return on a principal sum over a specified period. Unlike compound interest, simple interest does not add accumulated interest back into the principal pool; hence, the interest earned or charged remains constant in every single period.
+        </p>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">Simple Interest Formula</h2>
+        <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-family: monospace; color: var(--text, #0f172a); text-align: center; margin-bottom: 16px;">
+          $$I = P \times r \times t$$
+          $$\text{Total Maturity Amount} (A) = P + I$$
+        </div>
+        <ul style="margin-bottom: 16px; padding-left: 20px;">
+          <li><strong>P</strong> = Principal amount (initial investment or loan)</li>
+          <li><strong>r</strong> = Annual interest rate (expressed as a decimal or percentage divided by 100)</li>
+          <li><strong>t</strong> = Time duration of the loan or investment in years</li>
+        </ul>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">Simple Interest Calculation Example</h2>
+        <p style="margin-bottom: 16px;">
+          If you invest ₹100,000 at an annual simple interest rate of 8% for 3 years:
+        </p>
+        <ul style="margin-bottom: 16px; padding-left: 20px;">
+          <li>Interest ($I$) = $100,000 \times 0.08 \times 3 = \text{₹}24,000$</li>
+          <li>Total Maturity Amount ($A$) = $100,000 + 24,000 = \text{₹}124,000$</li>
+        </ul>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">Simple Interest vs. Compound Interest</h2>
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Simple Interest</th>
+                <th>Compound Interest</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Interest Basis</td><td>Calculated strictly on original principal</td><td>Calculated on principal plus accumulated past interest</td></tr>
+              <tr><td>Growth Pattern</td><td>Linear growth over time</td><td>Exponential growth over time</td></tr>
+              <tr><td>Common Applications</td><td>Short-term loans, auto loans, specific bonds</td><td>Savings accounts, mortgages, long-term investments</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 14px;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="faq-item">
+          <div class="faq-q">What is a simple interest calculator?</div>
+          <div class="faq-a">A financial tool that computes interest accrued or owed over time based on an unchanging principal amount.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I calculate simple interest manually?</div>
+          <div class="faq-a">Multiply the principal amount by the annual interest rate (in decimal format) and by the time duration in years ($P \times r \times t$).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How is time converted if duration is in months or days?</div>
+          <div class="faq-a">For months, divide the total months by 12. For days, divide the total days by 365 to convert into standard fractional years.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is simple interest used for credit cards?</div>
+          <div class="faq-a">No, credit cards typically use daily compound interest. Simple interest is more common in short-term personal or vehicle loans.</div>
+        </div>
+      </article>
+
+      <!-- Related Calculators Section -->
+      <section style="margin-top: 40px; margin-bottom: 30px;">
+        <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">Related Financial Calculators</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
+          <a href="percentage-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">📊 Percentage Calculator</a>
+          <a href="gst-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">🧾 GST Calculator</a>
+          <a href="discount-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">🏷️ Discount Calculator</a>
+          <a href="margin-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">📈 Profit Margin Calculator</a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    function switchTab(tabId, el) {
+      const tabs = ['mainCalc', 'reverseCalc', 'scheduleTab'];
+      tabs.forEach(t => {
+        document.getElementById(t).style.display = (t === tabId) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        const index = tabs.indexOf(tabId);
+        if (index >= 0 && desktopButtons[index]) desktopButtons[index].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+    }
+
+    function applyPreset(principal, rate, time, unit) {
+      switchTab('mainCalc', null);
+      document.getElementById('principalAmt').value = principal;
+      document.getElementById('interestRate').value = rate;
+      document.getElementById('timePeriod').value = time;
+      document.getElementById('timeUnit').value = unit;
+      calculateSimpleInterest();
+    }
+
+    function getCurrSym() {
+      return document.getElementById('currencySelect').value;
+    }
+
+    function calculateSimpleInterest() {
+      const sym = getCurrSym();
+      document.getElementById('currSymbol1').innerText = sym;
+
+      const principal = parseFloat(document.getElementById('principalAmt').value) || 0;
+      const rate = parseFloat(document.getElementById('interestRate').value) || 0;
+      let timeVal = parseFloat(document.getElementById('timePeriod').value) || 0;
+      const unit = document.getElementById('timeUnit').value;
+
+      let timeInYears = timeVal;
+      if (unit === 'months') {
+        timeInYears = timeVal / 12;
+      } else if (unit === 'days') {
+        timeInYears = timeVal / 365;
+      }
+
+      const interest = (principal * rate * timeInYears) / 100;
+      const totalAmount = principal + interest;
+      const totalMonths = Math.max(1, timeInYears * 12);
+      const monthlyAvg = interest / totalMonths;
+
+      document.getElementById('resTotalAmount').innerText = sym + totalAmount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('resInterestAmt').innerText = sym + interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('resMonthlyAvg').innerText = sym + monthlyAvg.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " / month";
+
+      updateSchedule(principal, rate, timeInYears, sym);
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'simple_interest_calculated', { principal: principal, rate: rate, time_years: timeInYears });
+      }
+    }
+
+    function updateSchedule(principal, rate, totalYears, sym) {
+      const tbody = document.getElementById('scheduleBody');
+      tbody.innerHTML = '';
+
+      let fullYears = Math.floor(totalYears);
+      let remainder = totalYears - fullYears;
+      let rowsCount = Math.min(20, fullYears + (remainder > 0 ? 1 : 0));
+
+      let currentPrincipal = principal;
+      let annualInterest = (principal * rate) / 100;
+
+      for (let i = 1; i <= rowsCount; i++) {
+        let fraction = (i > fullYears) ? remainder : 1.0;
+        let periodInterest = annualInterest * fraction;
+        let endingBalance = currentPrincipal + periodInterest;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>Year ${i}${fraction < 1 ? ' (Partial)' : ''}</td>
+          <td>${sym}${currentPrincipal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>${sym}${periodInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>${sym}${endingBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        `;
+        tbody.appendChild(tr);
+        currentPrincipal = endingBalance;
+      }
+    }
+
+    function calculateReverseInterest() {
+      const targetInterest = parseFloat(document.getElementById('revTargetInterest').value) || 0;
+      const rate = parseFloat(document.getElementById('revRate').value) || 0;
+      const years = parseFloat(document.getElementById('revYears').value) || 0;
+
+      let principal = 0;
+      if (rate > 0 && years > 0) {
+        principal = (targetInterest * 100) / (rate * years);
+      }
+
+      document.getElementById('revPrincipalResult').innerText = '₹' + principal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    function resetCalculator() {
+      document.getElementById('principalAmt').value = 100000;
+      document.getElementById('interestRate').value = 8;
+      document.getElementById('timePeriod').value = 3;
+      document.getElementById('timeUnit').value = 'years';
+      calculateSimpleInterest();
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculator_reset');
+      }
+    }
+
+    function copyResult() {
+      const total = document.getElementById('resTotalAmount').innerText;
+      const interest = document.getElementById('resInterestAmt').innerText;
+      const text = `Total Maturity: ${total} | Interest Earned: ${interest}`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied result to clipboard!");
+        if (typeof gtag === 'function') gtag('event', 'result_copied');
+      });
+    }
+
+    function shareResult() {
+      const total = document.getElementById('resTotalAmount').innerText;
+      const interest = document.getElementById('resInterestAmt').innerText;
+      const text = `I calculated a Simple Interest maturity of ${total} with total earnings of ${interest}.`;
+      if (navigator.share) {
+        navigator.share({ title: 'Simple Interest Calculation', text: text, url: window.location.href }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(text);
+        alert("Share text copied to clipboard: " + text);
+      }
+      if (typeof gtag === 'function') gtag('event', 'result_shared');
+    }
+
+    // Initialize calculations on load
+    calculateSimpleInterest();
+    calculateReverseInterest();
+  </script>
+</body>
+</html>

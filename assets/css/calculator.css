@@ -492,3 +492,101 @@ footer::before {
     flex-direction: column;
   }
 }
+
+/* ==========================================================================
+   CATEGORY FILTER BAR STYLES (Fixed layout and centering)
+   ========================================================================== */
+.category-filter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.category-filter-bar .preset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text);
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.category-filter-bar .preset-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.category-filter-bar .preset-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(99, 91, 255, 0.25);
+}
+
+/* Mobile Responsive Adjustments for Category Buttons */
+@media (max-width: 768px) {
+  .category-filter-bar {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .category-filter-bar::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .category-filter-bar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  .category-filter-bar .preset-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+}
+
+/* Ensure proper centering for card content without blocking script filtering */
+.calculator-card {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.calculator-card .calculator-icon {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+
+.calculator-card.locked .lock-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}

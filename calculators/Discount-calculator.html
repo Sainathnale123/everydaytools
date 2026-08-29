@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Calculator - Calculate Sale Price, Percentage &amp; Savings</title>
+  <meta name="description" content="Free online discount calculator. Instantly calculate sale prices, percentage off, savings amount, sequential discounts, coupons, and GST with accurate results.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/discount-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Discount Calculator - Calculate Sale Price &amp; Savings">
+  <meta property="og:description" content="Instantly calculate sale prices, percentage off, savings amount, multiple discounts, and GST.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/discount-calculator.html">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/discount-calc-social.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Integration -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) {
+      .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; }
+    }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) {
+      .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; }
+    }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: var(--primary, #4f46e5); outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-prefix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #ffffff; color: var(--primary, #4f46e5); border: 1px solid var(--primary, #4f46e5); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+    
+    .faq-item { border-bottom: 1px solid var(--border, #cbd5e1); padding: 16px 0; }
+    .faq-q { font-weight: 700; color: var(--text, #0f172a); font-size: 15px; margin-bottom: 6px; }
+    .faq-a { color: var(--muted, #64748b); font-size: 14px; line-height: 1.6; }
+  </style>
+
+  <!-- Structured Data Schema (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Discount Calculator",
+    "url": "https://everydaytools.co.in/calculators/discount-calculator.html",
+    "description": "Free online discount calculator to compute sale prices, savings, sequential discounts, coupons, and GST.",
+    "applicationCategory": "FinancialApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript.",
+    "author": {
+      "@type": "Organization",
+      "name": "Everyday Tools",
+      "url": "https://everydaytools.co.in"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Shopping Savings Assistant</span>
+        <h1>Advanced Discount <span>Calculator</span></h1>
+        <p class="subtitle">
+          Instantly calculate sale prices, percentage discounts, sequential markdowns, coupon codes, GST impacts, and shopping basket totals with professional accuracy.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Popular Discount Quick Presets -->
+      <div class="preset-bar">
+        <span style="font-size: 13px; font-weight: 700; color: var(--text, #0f172a);">Quick Presets:</span>
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(10)">10% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(15)">15% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(20)">20% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(25)">25% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(30)">30% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(40)">40% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(50)">50% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(60)">60% Off</button>
+          <button type="button" class="preset-btn" onclick="applyQuickDiscount(70)">70% Off</button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="mainCalc" selected>🏷️ Core Discount Calculator</option>
+          <option value="multiCalc">🔗 Sequential / Multiple Discounts</option>
+          <option value="reverseCalc">🔄 Reverse &amp; Required Discount</option>
+          <option value="couponGstCalc">🎟️ Coupon &amp; GST Calculator</option>
+          <option value="basketCalc">🛒 Shopping Basket Tool</option>
+          <option value="dealChecker">🔍 Deal Quality Checker</option>
+        </select>
+      </div>
+
+      <!-- Desktop Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('mainCalc', this)">🏷️ Core Calculator</button>
+        <button class="tab-btn" onclick="switchTab('multiCalc', this)">🔗 Multiple Discounts</button>
+        <button class="tab-btn" onclick="switchTab('reverseCalc', this)">🔄 Reverse / Target</button>
+        <button class="tab-btn" onclick="switchTab('couponGstCalc', this)">🎟️ Coupon &amp; GST</button>
+        <button class="tab-btn" onclick="switchTab('basketCalc', this)">🛒 Shopping Basket</button>
+        <button class="tab-btn" onclick="switchTab('dealChecker', this)">🔍 Good Deal Checker</button>
+      </div>
+
+      <!-- TAB 1: CORE DISCOUNT CALCULATOR -->
+      <div id="mainCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="currencySelect">Currency</label>
+                <div class="input-wrapper">
+                  <select id="currencySelect" onchange="calculateCoreDiscount()">
+                    <option value="₹" selected>INR (₹)</option>
+                    <option value="$">USD ($)</option>
+                    <option value="£">GBP (£)</option>
+                    <option value="€">EUR (€)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="originalPrice">Original Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="originalPrice" value="2000" step="0.01" min="0" oninput="calculateCoreDiscount()">
+                  <span class="input-suffix" id="currSymbol1">₹</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="discountPercent">Discount Percentage (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="discountPercent" value="25" step="0.1" min="0" max="100" oninput="calculateCoreDiscount()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Final Sale Price</div>
+                <div class="val" id="resFinalPrice">₹1,500.00</div>
+              </div>
+
+              <div class="res-box" style="background: #dcfce7; border-color: #bbf7d0;">
+                <div class="lbl">Total Savings (You Save)</div>
+                <div class="val" id="resSavings" style="color: #166534;">₹500.00 (25%)</div>
+              </div>
+
+              <div class="res-box" style="background: #f8fafc;">
+                <div class="lbl">Discount Amount</div>
+                <div class="val" id="resDiscountAmt" style="font-size: 20px; color: var(--text, #0f172a);">₹500.00</div>
+              </div>
+
+              <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+                <button type="button" class="btn-action btn-secondary" onclick="resetCoreCalculator()">🔄 Reset</button>
+                <button type="button" class="btn-action" onclick="copyCoreResult()">📋 Copy Result</button>
+                <button type="button" class="btn-action" onclick="shareCoreResult()">🔗 Share</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: MULTIPLE / SEQUENTIAL DISCOUNT CALCULATOR -->
+      <div id="multiCalc" style="display: none;">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="multiOriginal">Original Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="multiOriginal" value="10000" step="0.01" min="0" oninput="calculateMultiDiscount()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="disc1">First Discount (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="disc1" value="20" step="0.1" min="0" max="100" oninput="calculateMultiDiscount()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="disc2">Second Sequential Discount (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="disc2" value="10" step="0.1" min="0" max="100" oninput="calculateMultiDiscount()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Final Effective Price</div>
+                <div class="val" id="multiFinalPrice">₹7,200.00</div>
+              </div>
+
+              <div class="res-box" style="background: #dcfce7; border-color: #bbf7d0;">
+                <div class="lbl">Total Effective Discount %</div>
+                <div class="val" id="multiEffPercent" style="color: #166534;">28.00%</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--muted, #64748b); margin-top: 14px;">
+                <strong>Important Note:</strong> Sequential discounts of 20% + 10% equal a <strong>28% total discount</strong>, NOT a flat 30%. The second discount applies to the already discounted price!
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: REVERSE & REQUIRED DISCOUNT CALCULATOR -->
+      <div id="reverseCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">A. Reverse Discount Calculator (Find Original Price)</h2>
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div>
+              <div class="form-group">
+                <label for="revSalePrice">Final Sale Price Paid</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revSalePrice" value="1600" step="0.01" min="0" oninput="calculateReverse()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="revDiscountPct">Discount Percentage Received (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revDiscountPct" value="20" step="0.1" min="0" max="100" oninput="calculateReverse()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Calculated Original Price</div>
+                <div class="val" id="revOriginalResult">₹2,000.00</div>
+              </div>
+              <div class="res-box" style="background: #dcfce7;">
+                <div class="lbl">Amount Saved</div>
+                <div class="val" id="revSavingsResult" style="color: #166534;">₹400.00</div>
+              </div>
+            </div>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border, #cbd5e1); margin: 24px 0;">
+
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">B. Required Discount Calculator (Find Discount % Needed)</h2>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="reqOriginal">Original Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="reqOriginal" value="5000" step="0.01" min="0" oninput="calculateRequired()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="reqDesired">Desired Final Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="reqDesired" value="3500" step="0.01" min="0" oninput="calculateRequired()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Required Discount Percentage</div>
+                <div class="val" id="reqDiscountResult">30.00%</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 4: COUPON & GST CALCULATOR -->
+      <div id="couponGstCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">🎟️ Coupon + Percentage Discount Calculator</h2>
+          <div class="grid-2" style="margin-bottom: 24px;">
+            <div>
+              <div class="form-group">
+                <label for="coupOriginal">Original Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="coupOriginal" value="3000" step="0.01" min="0" oninput="calculateCouponGst()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="coupSaleDisc">Store Discount (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="coupSaleDisc" value="10" step="0.1" min="0" max="100" oninput="calculateCouponGst()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="coupType">Additional Coupon Type</label>
+                <div class="input-wrapper">
+                  <select id="coupType" onchange="calculateCouponGst()">
+                    <option value="fixed">Fixed Amount (₹)</option>
+                    <option value="percent">Percentage (%)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="coupValue">Coupon Value</label>
+                <div class="input-wrapper">
+                  <input type="number" id="coupValue" value="200" step="0.01" min="0" oninput="calculateCouponGst()">
+                  <span class="input-suffix" id="coupSuffix">₹</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Final Payable Amount</div>
+                <div class="val" id="coupFinalPrice">₹2,500.00</div>
+              </div>
+              <div class="res-box" style="background: #dcfce7;">
+                <div class="lbl">Total Savings Combined</div>
+                <div class="val" id="coupTotalSavings" style="color: #166534;">₹500.00</div>
+              </div>
+            </div>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border, #cbd5e1); margin: 24px 0;">
+
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">🇮🇳 GST + Discount Calculator</h2>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="gstOriginal">Base / Marked Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="gstOriginal" value="4000" step="0.01" min="0" oninput="calculateCouponGst()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gstDiscountPct">Discount Percentage (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="gstDiscountPct" value="15" step="0.1" min="0" max="100" oninput="calculateCouponGst()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gstRate">GST Rate (%)</label>
+                <div class="input-wrapper">
+                  <select id="gstRate" onchange="calculateCouponGst()">
+                    <option value="5">5% GST</option>
+                    <option value="12">12% GST</option>
+                    <option value="18" selected>18% GST</option>
+                    <option value="28">28% GST</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Final Price (Incl. Discount &amp; GST)</div>
+                <div class="val" id="gstFinalPrice">₹4,012.00</div>
+              </div>
+              <div class="res-box" style="background: #f8fafc;">
+                <div class="lbl">GST Amount Added</div>
+                <div class="val" id="gstAmountResult" style="font-size: 20px; color: var(--text, #0f172a);">₹612.00</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 5: SHOPPING BASKET CALCULATOR -->
+      <div id="basketCalc" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">🛒 Multi-Product Shopping Basket</h2>
+          <div style="overflow-x: auto; margin-bottom: 16px;">
+            <table id="basketTable">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Original Price (₹)</th>
+                  <th>Discount (%)</th>
+                  <th>Qty</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="basketBody">
+                <tr>
+                  <td><input type="text" value="Running Shoes" class="b-name" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="3000" class="b-price" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="20" class="b-disc" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="1" class="b-qty" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><button type="button" onclick="removeBasketRow(this)" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer;">X</button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="Cotton Shirt" class="b-name" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="1500" class="b-price" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="30" class="b-disc" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><input type="number" value="2" class="b-qty" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+                  <td><button type="button" onclick="removeBasketRow(this)" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer;">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <button type="button" class="btn-action btn-secondary" onclick="addBasketRow()">➕ Add Product</button>
+          </div>
+          <div class="grid-2">
+            <div class="res-box" style="background: #f8fafc;">
+              <div class="lbl">Total Original Price</div>
+              <div class="val" id="basketOrigTotal" style="font-size: 20px; color: var(--text);">₹6,000.00</div>
+            </div>
+            <div class="res-box" style="background: #e0e7ff;">
+              <div class="lbl">Final Basket Payable Amount</div>
+              <div class="val" id="basketFinalTotal">₹4,300.00</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 6: GOOD DEAL CHECKER -->
+      <div id="dealChecker" style="display: none;">
+        <section class="calc-card">
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">🔍 "Is This a Good Deal?" Checker</h2>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="dealOriginal">Original / Regular Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="dealOriginal" value="5000" step="0.01" min="0" oninput="calculateDeal()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dealSale">Current Sale Price</label>
+                <div class="input-wrapper">
+                  <input type="number" id="dealSale" value="3200" step="0.01" min="0" oninput="calculateDeal()">
+                  <span class="input-suffix">₹</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="res-box" style="background: #e0e7ff;">
+                <div class="lbl">Calculated Discount %</div>
+                <div class="val" id="dealDiscountPct">36.00%</div>
+              </div>
+              <div class="res-box" style="background: #dcfce7;">
+                <div class="lbl">Deal Status Indicator</div>
+                <div class="val" id="dealIndicator" style="color: #166534; font-size: 22px;">Great Deal 🔥</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Middle Advertisement Slot -->
+      <div class="ad-wrapper" aria-label="Advertisement Space" style="margin: 30px 0;">
+        <div class="ad-slot content-banner">
+          <span class="ad-disclosure">Advertisement</span>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="0987654321"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+
+      <!-- Comprehensive SEO & Educational Content -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 22px; font-weight: 800; margin-bottom: 14px;">What Is a Discount Calculator?</h2>
+        <p style="margin-bottom: 16px;">
+          A discount calculator is a digital utility designed to compute sale prices, savings amounts, and percentage markdowns instantly. Whether you are shopping online, calculating retail markdowns, analyzing wholesale invoices, or stacking promotional coupon codes, this tool eliminates manual arithmetic errors and helps you track exactly how much money stays in your pocket.
+        </p>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">How to Calculate a Discount Manually</h2>
+        <p style="margin-bottom: 12px;">
+          Calculating a percentage discount involves two straightforward mathematical steps:
+        </p>
+        <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-family: monospace; color: var(--text, #0f172a); text-align: center; margin-bottom: 16px;">
+          $$\text{Discount Amount} = \frac{\text{Original Price} \times \text{Discount Percentage}}{100}$$
+          $$\text{Final Sale Price} = \text{Original Price} - \text{Discount Amount}$$
+        </div>
+        <p style="margin-bottom: 16px;">
+          <strong>Example:</strong> If a pair of shoes has an original price of ₹2,000 and is on sale with a 25% discount:
+        </p>
+        <ul style="margin-bottom: 16px; padding-left: 20px;">
+          <li>Discount Amount = $(2000 \times 25) / 100 = \text{₹}500$</li>
+          <li>Final Sale Price = $2000 - 500 = \text{₹}1,500$</li>
+          <li>You Save = $\text{₹}500$</li>
+        </ul>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">How Sequential (Multiple) Discounts Work</h2>
+        <p style="margin-bottom: 16px;">
+          Stores often promote "Take an extra 10% off clearance items marked 20% off." A common mistake is adding the percentages together (20% + 10% = 30%). In reality, sequential discounts compound: the second discount applies to the <em>already reduced</em> price. For instance, on a ₹10,000 item, a 20% reduction leaves ₹8,000, and an additional 10% off ₹8,000 brings the final price to ₹7,200 (an effective total discount of 28%, not 30%).
+        </p>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 12px;">Common Discount Reference Guide</h2>
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Original Price</th>
+                <th>10% Off</th>
+                <th>20% Off</th>
+                <th>50% Off</th>
+                <th>75% Off</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>₹1,000</td><td>₹900</td><td>₹800</td><td>₹500</td><td>₹250</td></tr>
+              <tr><td>₹5,000</td><td>₹4,500</td><td>₹4,000</td><td>₹2,500</td><td>₹1,250</td></tr>
+              <tr><td>₹10,000</td><td>₹9,000</td><td>₹8,000</td><td>₹5,000</td><td>₹2,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-top: 24px; margin-bottom: 14px;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="faq-item">
+          <div class="faq-q">What is a discount calculator?</div>
+          <div class="faq-a">A tool to quickly find sale prices, final amounts, and total savings when buying marked-down products.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I calculate 20% off a price?</div>
+          <div class="faq-a">Multiply the original price by 0.80 (or multiply by 0.20 and subtract that amount from the original price).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I calculate the original price after a discount?</div>
+          <div class="faq-a">Divide the sale price by $(1 - \text{Discount Percentage} / 100)$. For example, if you paid ₹1,600 after 20% off, divide ₹1,600 by 0.80 to get the original price of ₹2,000.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Are two successive discounts the same as one flat discount?</div>
+          <div class="faq-a">No. Two successive discounts compound sequentially rather than adding together directly.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How does GST affect discounted prices in India?</div>
+          <div class="faq-a">GST is typically calculated either on the marked price before discount or on the net sale price depending on statutory billing rules. Our GST calculator handles these computations automatically.</div>
+        </div>
+      </article>
+
+      <!-- Related Calculators Section -->
+      <section style="margin-top: 40px; margin-bottom: 30px;">
+        <h2 style="font-size: 18px; font-weight: 800; color: var(--text, #0f172a); margin-bottom: 16px;">Related Financial &amp; Shopping Calculators</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
+          <a href="percentage-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">📊 Percentage Calculator</a>
+          <a href="gst-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">🧾 GST Calculator</a>
+          <a href="tip-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">💡 Tip Calculator</a>
+          <a href="margin-calculator.html" class="preset-btn" style="text-align: left; padding: 14px; text-decoration: none; display: block;">📈 Profit Margin Calculator</a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    function switchTab(tabId, el) {
+      const tabs = ['mainCalc', 'multiCalc', 'reverseCalc', 'couponGstCalc', 'basketCalc', 'dealChecker'];
+      tabs.forEach(t => {
+        document.getElementById(t).style.display = (t === tabId) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        const index = tabs.indexOf(tabId);
+        if (index >= 0 && desktopButtons[index]) desktopButtons[index].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+    }
+
+    function applyQuickDiscount(pct) {
+      switchTab('mainCalc', null);
+      document.getElementById('discountPercent').value = pct;
+      calculateCoreDiscount();
+    }
+
+    function getCurrSym() {
+      return document.getElementById('currencySelect').value;
+    }
+
+    function calculateCoreDiscount() {
+      const sym = getCurrSym();
+      document.getElementById('currSymbol1').innerText = sym;
+
+      const orig = parseFloat(document.getElementById('originalPrice').value) || 0;
+      const disc = parseFloat(document.getElementById('discountPercent').value) || 0;
+
+      const discountAmt = (orig * disc) / 100;
+      const finalPrice = Math.max(0, orig - discountAmt);
+
+      document.getElementById('resFinalPrice').innerText = sym + finalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('resSavings').innerText = sym + discountAmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ` (${disc}%)`;
+      document.getElementById('resDiscountAmt').innerText = sym + discountAmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'discount_calculated', { discount_percent: disc, original_price: orig });
+      }
+    }
+
+    function resetCoreCalculator() {
+      document.getElementById('originalPrice').value = 2000;
+      document.getElementById('discountPercent').value = 25;
+      calculateCoreDiscount();
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculator_reset');
+      }
+    }
+
+    function copyCoreResult() {
+      const final = document.getElementById('resFinalPrice').innerText;
+      const savings = document.getElementById('resSavings').innerText;
+      const text = `Final Sale Price: ${final} | You Save: ${savings}`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied result to clipboard!");
+        if (typeof gtag === 'function') gtag('event', 'result_copied');
+      });
+    }
+
+    function shareCoreResult() {
+      const final = document.getElementById('resFinalPrice').innerText;
+      const orig = document.getElementById('originalPrice').value;
+      const savings = document.getElementById('resSavings').innerText;
+      const text = `I used the Discount Calculator and saved on a ₹${orig} purchase. Final price: ${final}.`;
+      if (navigator.share) {
+        navigator.share({ title: 'Discount Calculation', text: text, url: window.location.href }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(text);
+        alert("Share text copied to clipboard: " + text);
+      }
+      if (typeof gtag === 'function') gtag('event', 'result_shared');
+    }
+
+    function calculateMultiDiscount() {
+      const orig = parseFloat(document.getElementById('multiOriginal').value) || 0;
+      const d1 = parseFloat(document.getElementById('disc1').value) || 0;
+      const d2 = parseFloat(document.getElementById('disc2').value) || 0;
+
+      let priceAfter1 = orig * (1 - d1 / 100);
+      let finalPrice = priceAfter1 * (1 - d2 / 100);
+      finalPrice = Math.max(0, finalPrice);
+
+      let effDiscountPct = orig > 0 ? ((orig - finalPrice) / orig) * 100 : 0;
+
+      document.getElementById('multiFinalPrice').innerText = '₹' + finalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('multiEffPercent').innerText = effDiscountPct.toFixed(2) + '%';
+    }
+
+    function calculateReverse() {
+      const sale = parseFloat(document.getElementById('revSalePrice').value) || 0;
+      const disc = parseFloat(document.getElementById('revDiscountPct').value) || 0;
+
+      let original = 0;
+      if (disc < 100) {
+        original = sale / (1 - disc / 100);
+      }
+      let savings = original - sale;
+
+      document.getElementById('revOriginalResult').innerText = '₹' + original.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('revSavingsResult').innerText = '₹' + Math.max(0, savings).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+      // Required Discount
+      const reqOrig = parseFloat(document.getElementById('reqOriginal').value) || 0;
+      const reqDesired = parseFloat(document.getElementById('reqDesired').value) || 0;
+      let reqDisc = reqOrig > 0 ? ((reqOrig - reqDesired) / reqOrig) * 100 : 0;
+      document.getElementById('reqDiscountResult').innerText = Math.max(0, reqDisc).toFixed(2) + '%';
+    }
+
+    function calculateRequired() {
+      calculateReverse();
+    }
+
+    function calculateCouponGst() {
+      // Coupon Calc
+      const orig = parseFloat(document.getElementById('coupOriginal').value) || 0;
+      const storeDisc = parseFloat(document.getElementById('coupSaleDisc').value) || 0;
+      const coupType = document.getElementById('coupType').value;
+      const coupVal = parseFloat(document.getElementById('coupValue').value) || 0;
+
+      document.getElementById('coupSuffix').innerText = coupType === 'percent' ? '%' : '₹';
+
+      let priceAfterStore = orig * (1 - storeDisc / 100);
+      let couponAmt = coupType === 'percent' ? (priceAfterStore * coupVal / 100) : coupVal;
+      let finalPayable = Math.max(0, priceAfterStore - couponAmt);
+      let totalSaved = orig - finalPayable;
+
+      document.getElementById('coupFinalPrice').innerText = '₹' + finalPayable.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('coupTotalSavings').innerText = '₹' + totalSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+      // GST Calc
+      const gstOrig = parseFloat(document.getElementById('gstOriginal').value) || 0;
+      const gstDiscPct = parseFloat(document.getElementById('gstDiscountPct').value) || 0;
+      const gstRate = parseFloat(document.getElementById('gstRate').value) || 18;
+
+      let discountedPrice = gstOrig * (1 - gstDiscPct / 100);
+      let gstAmt = discountedPrice * (gstRate / 100);
+      let finalGstPrice = discountedPrice + gstAmt;
+
+      document.getElementById('gstFinalPrice').innerText = '₹' + finalGstPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('gstAmountResult').innerText = '₹' + gstAmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    function addBasketRow() {
+      const tbody = document.getElementById('basketBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" value="New Item" class="b-name" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+        <td><input type="number" value="1000" class="b-price" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+        <td><input type="number" value="10" class="b-disc" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+        <td><input type="number" value="1" class="b-qty" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:4px;" oninput="calculateBasket()"></td>
+        <td><button type="button" onclick="removeBasketRow(this)" style="background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer;">X</button></td>
+      `;
+      tbody.appendChild(tr);
+      calculateBasket();
+    }
+
+    function removeBasketRow(btn) {
+      const tr = btn.closest('tr');
+      tr.remove();
+      calculateBasket();
+    }
+
+    function calculateBasket() {
+      const rows = document.querySelectorAll('#basketBody tr');
+      let totalOrig = 0;
+      let totalFinal = 0;
+
+      rows.forEach(r => {
+        const price = parseFloat(r.querySelector('.b-price').value) || 0;
+        const disc = parseFloat(r.querySelector('.b-disc').value) || 0;
+        const qty = parseInt(r.querySelector('.b-qty').value) || 0;
+
+        totalOrig += price * qty;
+        let itemFinal = price * (1 - disc / 100) * qty;
+        totalFinal += Math.max(0, itemFinal);
+      });
+
+      document.getElementById('basketOrigTotal').innerText = '₹' + totalOrig.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('basketFinalTotal').innerText = '₹' + totalFinal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    function calculateDeal() {
+      const orig = parseFloat(document.getElementById('dealOriginal').value) || 0;
+      const sale = parseFloat(document.getElementById('dealSale').value) || 0;
+
+      let discPct = orig > 0 ? ((orig - sale) / orig) * 100 : 0;
+      document.getElementById('dealDiscountPct').innerText = Math.max(0, discPct).toFixed(2) + '%';
+
+      let indicator = "Small Discount 🏷️";
+      if (discPct >= 50) indicator = "Exceptional Deal 🔥🔥";
+      else if (discPct >= 30) indicator = "Great Deal 🔥";
+      else if (discPct >= 15) indicator = "Good Deal 👍";
+
+      document.getElementById('dealIndicator').innerText = indicator;
+    }
+
+    // Initialize initial calculator states
+    calculateCoreDiscount();
+    calculateMultiDiscount();
+    calculateReverse();
+    calculateCouponGst();
+    calculateBasket();
+    calculateDeal();
+  </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Percentage Calculator & Free Percentage Tools - Everyday Tools</title>
+  <meta name="description" content="Calculate percentage increases, decreases, differences, fractions to percentages, and margins instantly. Free online percentage calculator with step-by-step formulas.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/percentage-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M20 20l24 24M20 44l24-24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='24' r='4' fill='%23ffffff'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Advanced Percentage Calculator & Free Percentage Tools">
+  <meta property="og:description" content="Calculate percentage changes, increases, decreases, and differences easily with step-by-step formulas.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/percentage-calculator.html">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/percentage-calc-social.png">
+
+  <!-- Primary Stylesheet Reference (Shared across calculator tools) -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Integration -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) {
+      .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; }
+    }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) {
+      .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; }
+    }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: var(--primary, #4f46e5); outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+  </style>
+
+  <!-- Structured Data Schema (JSON-LD) for E-E-A-T and SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Percentage Calculator",
+    "url": "https://everydaytools.co.in/calculators/percentage-calculator.html",
+    "description": "Free online percentage calculator to find percentage increases, decreases, difference, and proportions with formula breakdowns.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "author": {
+      "@type": "Organization",
+      "name": "Everyday Tools",
+      "url": "https://everydaytools.co.in"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Mathematical Tool Suite</span>
+        <h1>Advanced <span>Percentage Calculator</span></h1>
+        <p class="subtitle">
+          Calculate percentage increases, decreases, proportions, and differences instantly with clear, step-by-step mathematical formulas.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Presets Bar -->
+      <div class="preset-bar">
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="setPresetMode('whatIs')">What is X% of Y?</button>
+          <button type="button" class="preset-btn" onclick="setPresetMode('increase')">Percentage Increase</button>
+          <button type="button" class="preset-btn" onclick="setPresetMode('decrease')">Percentage Decrease</button>
+          <button type="button" class="preset-btn" onclick="setPresetMode('difference')">Percentage Difference</button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="basicCalc" selected>📊 Basic Percentage &amp; Portions</option>
+          <option value="changeCalc">📈 Increase / Decrease Calculator</option>
+          <option value="reverseCalc">🔄 Reverse Percentage Finder</option>
+        </select>
+      </div>
+
+      <!-- Desktop Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('basicCalc', this)">📊 Basic Percentage &amp; Portions</button>
+        <button class="tab-btn" onclick="switchTab('changeCalc', this)">📈 Increase / Decrease Calculator</button>
+        <button class="tab-btn" onclick="switchTab('reverseCalc', this)">🔄 Reverse Percentage Finder</button>
+      </div>
+
+      <!-- TAB 1: BASIC PERCENTAGE -->
+      <div id="basicCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="calcMode">Calculation Type</label>
+                <div class="input-wrapper">
+                  <select id="calcMode" onchange="calculateBasic()">
+                    <option value="whatIsXOfY">What is X% of Y?</option>
+                    <option value="xIsWhatPctOfY">X is what percent of Y?</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="valX" id="labelX">Value X</label>
+                <div class="input-wrapper">
+                  <input type="number" id="valX" value="20" step="any" oninput="calculateBasic()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="valY" id="labelY">Value Y</label>
+                <div class="input-wrapper">
+                  <input type="number" id="valY" value="150" step="any" oninput="calculateBasic()">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Result Output</div>
+                <div class="val" id="basicResult">30</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--text, #0f172a); margin-top: 14px;">
+                <strong>Formula &amp; Steps:</strong>
+                <p id="basicSteps" style="margin-top: 6px; color: var(--muted, #64748b); line-height: 1.5;">(20 / 100) × 150 = 30</p>
+              </div>
+
+              <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <button type="button" class="btn-action" onclick="copyResult('basicResult')">📋 Copy Result</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: INCREASE / DECREASE -->
+      <div id="changeCalc" style="display: none;">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="changeType">Operation</label>
+                <div class="input-wrapper">
+                  <select id="changeType" onchange="calculateChange()">
+                    <option value="increase">Percentage Increase (Add %)</option>
+                    <option value="decrease">Percentage Decrease (Subtract %)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="origVal">Initial Value</label>
+                <div class="input-wrapper">
+                  <input type="number" id="origVal" value="250" step="any" oninput="calculateChange()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="changePct">Percentage (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="changePct" value="15" step="any" oninput="calculateChange()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl" id="changeResultLabel">Final Value After Increase</div>
+                <div class="val" id="changeResult">287.5</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--text, #0f172a); margin-top: 14px;">
+                <strong>Calculation Breakdown:</strong>
+                <p id="changeSteps" style="margin-top: 6px; color: var(--muted, #64748b); line-height: 1.5;">250 + (15% of 250) = 287.5</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 3: REVERSE PERCENTAGE -->
+      <div id="reverseCalc" style="display: none;">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="finalVal">Final Value (After Increase/Decrease)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="finalVal" value="120" step="any" oninput="calculateReverse()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="revPct">Percentage That Was Applied (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="revPct" value="20" step="any" oninput="calculateReverse()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="revType">Was it an increase or decrease?</label>
+                <div class="input-wrapper">
+                  <select id="revType" onchange="calculateReverse()">
+                    <option value="wasIncrease">It was an Increase</option>
+                    <option value="wasDecrease">It was a Decrease</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Original Value Before Change</div>
+                <div class="val" id="revResult">100</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--text, #0f172a); margin-top: 14px;">
+                <strong>Reverse Formula:</strong>
+                <p id="revSteps" style="margin-top: 6px; color: var(--muted, #64748b); line-height: 1.5;">120 / (1 + 0.20) = 100</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Comprehensive SEO & Educational Content (Satisfies E-E-A-T and No-Zero-Explanation criteria) -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-bottom: 12px;">Understanding Percentages: Formulas, Applications, and Manual Calculations</h2>
+        <p style="margin-bottom: 12px;">
+          A percentage is a dimensionless number representing a fraction of 100. Derived from the Latin term <em>per centum</em> (meaning "by the hundred"), percentages are universal across financial analysis, academic grading, statistical research, and commercial discounts.
+        </p>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Core Percentage Formulas</h3>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Finding a percentage of a number:</strong> $(X / 100) \times Y$</li>
+          <li><strong>Calculating what percentage one number is of another:</strong> $(X / Y) \times 100$</li>
+          <li><strong>Percentage Increase:</strong> $[(NewValue - InitialValue) / InitialValue] \times 100$</li>
+        </ul>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Practical Examples in Daily Workflows</h3>
+        <p>
+          Whether you are computing sales tax, evaluating portfolio returns, or finding tip amounts at a restaurant, mastering core percentage ratios ensures quick mental math and accurate financial forecasting. Use the digital tools above to instantly compute complex proportions without manual error.
+        </p>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabId, el) {
+      document.getElementById('basicCalc').style.display = tabId === 'basicCalc' ? 'block' : 'none';
+      document.getElementById('changeCalc').style.display = tabId === 'changeCalc' ? 'block' : 'none';
+      document.getElementById('reverseCalc').style.display = tabId === 'reverseCalc' ? 'block' : 'none';
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        if (tabId === 'basicCalc') desktopButtons[0].classList.add('active');
+        if (tabId === 'changeCalc') desktopButtons[1].classList.add('active');
+        if (tabId === 'reverseCalc') desktopButtons[2].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+    }
+
+    function setPresetMode(mode) {
+      switchTab('basicCalc', null);
+      if (mode === 'whatIs') {
+        document.getElementById('calcMode').value = 'whatIsXOfY';
+        document.getElementById('valX').value = 20;
+        document.getElementById('valY').value = 150;
+      } else if (mode === 'increase') {
+        switchTab('changeCalc', null);
+        document.getElementById('changeType').value = 'increase';
+        document.getElementById('origVal').value = 100;
+        document.getElementById('changePct').value = 20;
+      } else if (mode === 'decrease') {
+        switchTab('changeCalc', null);
+        document.getElementById('changeType').value = 'decrease';
+        document.getElementById('origVal').value = 100;
+        document.getElementById('changePct').value = 20;
+      } else if (mode === 'difference') {
+        document.getElementById('calcMode').value = 'xIsWhatPctOfY';
+        document.getElementById('valX').value = 45;
+        document.getElementById('valY').value = 90;
+      }
+      calculateBasic();
+      calculateChange();
+    }
+
+    function calculateBasic() {
+      const mode = document.getElementById('calcMode').value;
+      const x = parseFloat(document.getElementById('valX').value) || 0;
+      const y = parseFloat(document.getElementById('valY').value) || 0;
+      const resEl = document.getElementById('basicResult');
+      const stepsEl = document.getElementById('basicSteps');
+
+      if (mode === 'whatIsXOfY') {
+        document.getElementById('labelX').innerText = "Percentage (%)";
+        document.getElementById('labelY').innerText = "Base Value";
+        const res = (x / 100) * y;
+        resEl.innerText = Number(res.toFixed(4));
+        stepsEl.innerText = `(${x} / 100) × ${y} = ${res}`;
+      } else {
+        document.getElementById('labelX').innerText = "Part Value (X)";
+        document.getElementById('labelY').innerText = "Whole Value (Y)";
+        if (y === 0) {
+          resEl.innerText = "Error (Div by 0)";
+          stepsEl.innerText = "Whole value cannot be zero.";
+          return;
+        }
+        const res = (x / y) * 100;
+        resEl.innerText = Number(res.toFixed(4)) + "%";
+        stepsEl.innerText = `(${x} / ${y}) × 100 = ${res.toFixed(2)}%`;
+      }
+    }
+
+    function calculateChange() {
+      const type = document.getElementById('changeType').value;
+      const orig = parseFloat(document.getElementById('origVal').value) || 0;
+      const pct = parseFloat(document.getElementById('changePct').value) || 0;
+      const resEl = document.getElementById('changeResult');
+      const labelEl = document.getElementById('changeResultLabel');
+      const stepsEl = document.getElementById('changeSteps');
+
+      if (type === 'increase') {
+        labelEl.innerText = "Final Value After Increase";
+        const res = orig + (orig * (pct / 100));
+        resEl.innerText = Number(res.toFixed(4));
+        stepsEl.innerText = `${orig} + (${pct}% of ${orig}) = ${res}`;
+      } else {
+        labelEl.innerText = "Final Value After Decrease";
+        const res = orig - (orig * (pct / 100));
+        resEl.innerText = Number(res.toFixed(4));
+        stepsEl.innerText = `${orig} - (${pct}% of ${orig}) = ${res}`;
+      }
+    }
+
+    function calculateReverse() {
+      const finalVal = parseFloat(document.getElementById('finalVal').value) || 0;
+      const pct = parseFloat(document.getElementById('revPct').value) || 0;
+      const type = document.getElementById('revType').value;
+      const resEl = document.getElementById('revResult');
+      const stepsEl = document.getElementById('revSteps');
+
+      if (type === 'wasIncrease') {
+        const orig = finalVal / (1 + (pct / 100));
+        resEl.innerText = Number(orig.toFixed(4));
+        stepsEl.innerText = `${finalVal} / (1 + ${pct / 100}) = ${orig.toFixed(4)}`;
+      } else {
+        const orig = finalVal / (1 - (pct / 100));
+        resEl.innerText = Number(orig.toFixed(4));
+        stepsEl.innerText = `${finalVal} / (1 - ${pct / 100}) = ${orig.toFixed(4)}`;
+      }
+    }
+
+    function copyResult(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied result: " + text);
+      });
+    }
+
+    // Initialize calculations on page load
+    calculateBasic();
+    calculateChange();
+    calculateReverse();
+  </script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced BMI, Body Fat &amp; Macro Calculator | Clinical Health Suite</title>
+  <meta name="description" content="Calculate your Body Mass Index (BMI), U.S. Navy body fat percentage, waist-to-height ratio, daily macro split, and weight loss timeline with our advanced clinical health calculator.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/bmi-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Advanced BMI, Body Fat &amp; Macro Calculator">
+  <meta property="og:description" content="Evaluate your Body Mass Index, body fat percentage, waist-to-height ratio, and macro splits instantly with clinical accuracy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/bmi-calculator.html">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/bmi-calc-social.png">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Integration -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) {
+      .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; }
+    }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) {
+      .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; }
+    }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: var(--primary, #4f46e5); outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+
+    /* Visual Scale Meter */
+    .gauge-container { margin-top: 16px; background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 14px; }
+    .gauge-bar { height: 12px; border-radius: 6px; background: linear-gradient(to right, #3b82f6 0%, #10b981 35%, #f59e0b 65%, #ef4444 100%); position: relative; margin: 10px 0 6px 0; }
+    .gauge-pointer { width: 4px; height: 18px; background: #0f172a; position: absolute; top: -3px; left: 0%; transform: translateX(-50%); border-radius: 2px; transition: left 0.3s ease; }
+    .gauge-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: var(--muted, #64748b); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+  </style>
+
+  <!-- Structured Data Schema (JSON-LD) for E-E-A-T and SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced BMI & Body Fat Health Calculator",
+    "url": "https://everydaytools.co.in/calculators/bmi-calculator.html",
+    "description": "Calculate your Body Mass Index (BMI), Navy body fat percentage, waist-to-height ratio, and macro splits with our clinical calculator.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "author": {
+      "@type": "Organization",
+      "name": "Everyday Tools",
+      "url": "https://everydaytools.co.in"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Health &amp; Wellness Suite</span>
+        <h1>Advanced <span>BMI &amp; Body Composition Calculator</span></h1>
+        <p class="subtitle">
+          Evaluate your Body Mass Index, U.S. Navy body fat percentage, waist-to-height ratio (WHtR), daily macro splits, and safe weight goals instantly.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Presets Bar -->
+      <div class="preset-bar">
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="setPreset(175, 70, 85, 38, 25, 'male')">Standard Male (175cm, 70kg)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(162, 58, 70, 68, 28, 'female')">Standard Female (162cm, 58kg)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(180, 85, 88, 40, 30, 'male')">Athletic Build (180cm, 85kg)</button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="bmiCalc" selected>⚖️ BMI &amp; Body Composition</option>
+          <option value="calorieCalc">🔥 Calories, Macros &amp; Timeline</option>
+        </select>
+      </div>
+
+      <!-- Desktop Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('bmiCalc', this)">⚖️ BMI &amp; Body Composition</button>
+        <button class="tab-btn" onclick="switchTab('calorieCalc', this)">🔥 Calories, Macros &amp; Timeline</button>
+      </div>
+
+      <!-- TAB 1: BMI & BODY COMPOSITION CALCULATOR -->
+      <div id="bmiCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="unitSystem">Measurement System</label>
+                <div class="input-wrapper">
+                  <select id="unitSystem" onchange="toggleUnits()">
+                    <option value="metric">Metric (cm, kg)</option>
+                    <option value="imperial">Imperial (ft/in, lbs)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" id="groupHeightMetric">
+                <label for="heightCm">Height (cm)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="heightCm" value="175" step="1" oninput="calculateAll()">
+                  <span class="input-suffix">cm</span>
+                </div>
+              </div>
+
+              <div class="form-group" id="groupHeightImperial" style="display: none;">
+                <label>Height (Feet &amp; Inches)</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <div class="input-wrapper">
+                    <input type="number" id="heightFt" value="5" min="1" max="8" oninput="calculateAll()">
+                    <span class="input-suffix">ft</span>
+                  </div>
+                  <div class="input-wrapper">
+                    <input type="number" id="heightIn" value="9" min="0" max="11" oninput="calculateAll()">
+                    <span class="input-suffix">in</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="weightVal" id="labelWeight">Weight (kg)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="weightVal" value="70" step="0.1" oninput="calculateAll()">
+                  <span class="input-suffix" id="suffixWeight">kg</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="userAge">Age (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="userAge" value="30" min="10" max="120" oninput="calculateAll()">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="userGender">Biological Sex</label>
+                <div class="input-wrapper">
+                  <select id="userGender" onchange="calculateAll()">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Advanced Circumference Inputs for U.S. Navy Body Fat & WHtR -->
+              <div style="border-top: 1px dashed var(--border, #cbd5e1); padding-top: 16px; margin-top: 16px;">
+                <div class="form-group">
+                  <label for="waistVal" id="labelWaist">Waist Circumference (<span id="unitWaistLbl">cm</span>)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="waistVal" value="85" step="0.5" oninput="calculateAll()">
+                    <span class="input-suffix" id="suffixWaist">cm</span>
+                  </div>
+                </div>
+
+                <div class="form-group" id="groupNeck">
+                  <label for="neckVal" id="labelNeck">Neck Circumference (<span id="unitNeckLbl">cm</span>)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="neckVal" value="38" step="0.5" oninput="calculateAll()">
+                    <span class="input-suffix" id="suffixNeck">cm</span>
+                  </div>
+                </div>
+
+                <div class="form-group" id="groupHip" style="display: none;">
+                  <label for="hipVal" id="labelHip">Hip Circumference (<span id="unitHipLbl">cm</span>)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="hipVal" value="98" step="0.5" oninput="calculateAll()">
+                    <span class="input-suffix" id="suffixHip">cm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Your Body Mass Index (BMI)</div>
+                <div class="val" id="bmiResult">22.9</div>
+              </div>
+
+              <!-- Visual Dynamic Gauge Meter -->
+              <div class="gauge-container">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text, #0f172a); text-align: center;" id="gaugeStatusText">Normal Weight Range</div>
+                <div class="gauge-bar">
+                  <div class="gauge-pointer" id="gaugePointer" style="left: 45%;"></div>
+                </div>
+                <div class="gauge-labels">
+                  <span>15 (Under)</span>
+                  <span>18.5</span>
+                  <span>25</span>
+                  <span>30</span>
+                  <span>40+ (Obese)</span>
+                </div>
+              </div>
+
+              <div class="res-box" id="bmiCategoryBox" style="background: #dcfce7; border-color: #bbf7d0; margin-top: 14px;">
+                <div class="lbl">Health Category &amp; WHtR Risk</div>
+                <div class="val" id="bmiCategory" style="font-size: 18px; color: #166534;">Normal Weight (Low Risk)</div>
+              </div>
+
+              <!-- U.S. Navy Body Fat Box -->
+              <div class="res-box" style="background: #f8fafc; margin-top: 14px;">
+                <div class="lbl">Estimated Body Fat Percentage (Navy Method)</div>
+                <div class="val" id="bodyFatResult" style="color: var(--text, #0f172a);">15.4%</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--text, #0f172a); margin-top: 14px;">
+                <strong>Ideal Weight Range:</strong>
+                <p id="idealWeightText" style="margin-top: 4px; color: var(--muted, #64748b); font-weight: 600;">57.3 kg - 73.5 kg</p>
+              </div>
+
+              <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <button type="button" class="btn-action" onclick="copyResult('bmiResult')">📋 Copy BMI Value</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: CALORIES, MACROS & TIMELINE CALCULATOR -->
+      <div id="calorieCalc" style="display: none;">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="activityLevel">Daily Activity Multiplier</label>
+                <div class="input-wrapper">
+                  <select id="activityLevel" onchange="calculateAll()">
+                    <option value="1.2">Sedentary (Little or no exercise)</option>
+                    <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
+                    <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)</option>
+                    <option value="1.725">Very Active (Hard exercise 6-7 days/week)</option>
+                    <option value="1.9">Extra Active (Very heavy exercise / physical job)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="macroGoal">Fitness Goal &amp; Macro Split</label>
+                <div class="input-wrapper">
+                  <select id="macroGoal" onchange="calculateAll()">
+                    <option value="balanced">Balanced Fitness (30% P / 40% C / 30% F)</option>
+                    <option value="lowcarb">Low Carb / Fat Loss (40% P / 20% C / 40% F)</option>
+                    <option value="highprotein">High Protein / Muscle Build (35% P / 45% C / 20% F)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="targetWeightDiff">Target Weight Change Goal</label>
+                <div class="input-wrapper">
+                  <select id="targetWeightDiff" onchange="calculateAll()">
+                    <option value="-5">Lose 5 kg (Safe Fat Loss)</option>
+                    <option value="-10" selected>Lose 10 kg (Transformation Target)</option>
+                    <option value="-15">Lose 15 kg (Extended Program)</option>
+                    <option value="5">Gain 5 kg (Muscle Mass)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--muted, #64748b); line-height: 1.5;">
+                Calculations leverage the Mifflin-St Jeor equation and U.S. Navy biometric standards for dependable physiological guidance.
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Estimated Daily Maintenance Calories</div>
+                <div class="val" id="maintenanceCalories">2,450 kcal</div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+                <div class="res-box">
+                  <div class="lbl">Weight Loss (-500 kcal)</div>
+                  <div class="val" id="weightLossCalories" style="font-size: 16px; color: #166534;">1,950 kcal</div>
+                </div>
+                <div class="res-box">
+                  <div class="lbl">Weight Gain (+500 kcal)</div>
+                  <div class="val" id="weightGainCalories" style="font-size: 16px; color: #92400e;">2,950 kcal</div>
+                </div>
+              </div>
+
+              <!-- Custom Macro Split Breakdown Box -->
+              <div class="res-box" style="background: #f8fafc; text-align: left; padding: 14px;">
+                <div class="lbl" style="text-align: center; margin-bottom: 8px;">Target Daily Macronutrient Breakdown</div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; padding: 4px 0; border-bottom: 1px solid var(--border, #cbd5e1);">
+                  <span>Protein:</span> <span id="macroProtein" style="color: var(--primary, #4f46e5);">146 g</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; padding: 4px 0; border-bottom: 1px solid var(--border, #cbd5e1);">
+                  <span>Carbohydrates:</span> <span id="macroCarbs" style="color: var(--primary, #4f46e5);">195 g</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; padding: 4px 0;">
+                  <span>Fats:</span> <span id="macroFats" style="color: var(--primary, #4f46e5);">65 g</span>
+                </div>
+              </div>
+
+              <!-- Safe Timeline Estimator Box -->
+              <div class="res-box" style="background: #ecfdf5; border-color: #a7f3d0; margin-top: 14px;">
+                <div class="lbl" style="color: #065f46;">Estimated Safe Goal Timeline</div>
+                <div class="val" id="timelineResult" style="font-size: 18px; color: #047857;">~20 Weeks (at 0.5 kg/week)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Comprehensive SEO & Educational Content (Satisfies E-E-A-T and No-Zero-Explanation criteria) -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-bottom: 12px;">Advanced Body Composition Analysis: BMI, Navy Fat Percentage &amp; Waist-to-Height Ratio</h2>
+        <p style="margin-bottom: 12px;">
+          Evaluating overall metabolic health requires looking beyond standard Body Mass Index (BMI). While BMI provides a rapid screening threshold for height-to-weight proportions, combining it with the U.S. Navy Body Fat Formula and Waist-to-Height Ratio (WHtR) offers a precise clinical picture of visceral adiposity and lean mass distribution.
+        </p>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Standard World Health Organization (WHO) BMI Classifications</h3>
+        <div style="overflow-x: auto; margin-bottom: 16px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>BMI Range (kg/m²)</th>
+                <th>Clinical Health Risk Profile</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Underweight</td><td>&lt; 18.5</td><td>Potential nutritional deficiency risk</td></tr>
+              <tr><td>Normal Weight</td><td>18.5 – 24.9</td><td>Lowest baseline metabolic disease risk</td></tr>
+              <tr><td>Overweight</td><td>25.0 – 29.9</td><td>Moderate risk indicator</td></tr>
+              <tr><td>Obesity Range</td><td>≥ 30.0</td><td>Elevated cardiovascular and systemic risk</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Why Track Waist-to-Height Ratio (WHtR)?</h3>
+        <p>
+          Research indicates that keeping your waist circumference to less than half your height (WHtR &lt; 0.5) significantly reduces the likelihood of metabolic syndrome, Type 2 diabetes, and cardiovascular complications, regardless of total body weight.
+        </p>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabId, el) {
+      document.getElementById('bmiCalc').style.display = tabId === 'bmiCalc' ? 'block' : 'none';
+      document.getElementById('calorieCalc').style.display = tabId === 'calorieCalc' ? 'block' : 'none';
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        if (tabId === 'bmiCalc') desktopButtons[0].classList.add('active');
+        if (tabId === 'calorieCalc') desktopButtons[1].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+    }
+
+    function toggleUnits() {
+      const system = document.getElementById('unitSystem').value;
+      if (system === 'metric') {
+        document.getElementById('groupHeightMetric').style.display = 'block';
+        document.getElementById('groupHeightImperial').style.display = 'none';
+        document.getElementById('labelWeight').innerText = "Weight (kg)";
+        document.getElementById('suffixWeight').innerText = "kg";
+        document.getElementById('weightVal').value = 70;
+        document.getElementById('unitWaistLbl').innerText = "cm";
+        document.getElementById('suffixWaist').innerText = "cm";
+        document.getElementById('waistVal').value = 85;
+        document.getElementById('unitNeckLbl').innerText = "cm";
+        document.getElementById('suffixNeck').innerText = "cm";
+        document.getElementById('neckVal').value = 38;
+        document.getElementById('unitHipLbl').innerText = "cm";
+        document.getElementById('suffixHip').innerText = "cm";
+        document.getElementById('hipVal').value = 98;
+      } else {
+        document.getElementById('groupHeightMetric').style.display = 'none';
+        document.getElementById('groupHeightImperial').style.display = 'block';
+        document.getElementById('labelWeight').innerText = "Weight (lbs)";
+        document.getElementById('suffixWeight').innerText = "lbs";
+        document.getElementById('weightVal').value = 154;
+        document.getElementById('unitWaistLbl').innerText = "in";
+        document.getElementById('suffixWaist').innerText = "in";
+        document.getElementById('waistVal').value = 33.5;
+        document.getElementById('unitNeckLbl').innerText = "in";
+        document.getElementById('suffixNeck').innerText = "in";
+        document.getElementById('neckVal').value = 15;
+        document.getElementById('unitHipLbl').innerText = "in";
+        document.getElementById('suffixHip').innerText = "in";
+        document.getElementById('hipVal').value = 38.5;
+      }
+      
+      const gender = document.getElementById('userGender').value;
+      document.getElementById('groupHip').style.display = (system === 'imperial' && gender === 'female') || (system === 'metric' && gender === 'female') ? 'block' : 'none';
+      calculateAll();
+    }
+
+    function setPreset(cm, kg, waist, neck, age, gender) {
+      document.getElementById('unitSystem').value = 'metric';
+      toggleUnits();
+      document.getElementById('heightCm').value = cm;
+      document.getElementById('weightVal').value = kg;
+      document.getElementById('waistVal').value = waist;
+      document.getElementById('neckVal').value = neck;
+      document.getElementById('userAge').value = age;
+      document.getElementById('userGender').value = gender;
+      calculateAll();
+    }
+
+    function calculateAll() {
+      const system = document.getElementById('unitSystem').value;
+      const gender = document.getElementById('userGender').value;
+      const age = parseInt(document.getElementById('userAge').value) || 25;
+      
+      let heightM = 0;
+      let weightKg = 0;
+      let waistCm = 0;
+      let neckCm = 0;
+      let hipCm = 0;
+
+      const weightInput = parseFloat(document.getElementById('weightVal').value) || 0;
+      const waistInput = parseFloat(document.getElementById('waistVal').value) || 0;
+      const neckInput = parseFloat(document.getElementById('neckVal').value) || 0;
+      const hipInput = parseFloat(document.getElementById('hipVal').value) || 0;
+
+      if (system === 'metric') {
+        const hCm = parseFloat(document.getElementById('heightCm').value) || 0;
+        heightM = hCm / 100;
+        weightKg = weightInput;
+        waistCm = waistInput;
+        neckCm = neckInput;
+        hipCm = hipInput;
+        document.getElementById('groupHip').style.display = gender === 'female' ? 'block' : 'none';
+      } else {
+        const ft = parseFloat(document.getElementById('heightFt').value) || 0;
+        const inch = parseFloat(document.getElementById('heightIn').value) || 0;
+        const totalInches = (ft * 12) + inch;
+        heightM = totalInches * 0.0254;
+        weightKg = weightInput * 0.453592;
+        waistCm = waistInput * 2.54;
+        neckCm = neckInput * 2.54;
+        hipCm = hipInput * 2.54;
+        document.getElementById('groupHip').style.display = gender === 'female' ? 'block' : 'none';
+      }
+
+      const resEl = document.getElementById('bmiResult');
+      const catEl = document.getElementById('bmiCategory');
+      const catBox = document.getElementById('bmiCategoryBox');
+      const idealText = document.getElementById('idealWeightText');
+      const bodyFatEl = document.getElementById('bodyFatResult');
+      const pointerEl = document.getElementById('gaugePointer');
+      const statusTextEl = document.getElementById('gaugeStatusText');
+
+      if (heightM <= 0 || weightKg <= 0) {
+        resEl.innerText = "0.0";
+        catEl.innerText = "Invalid Input";
+        return;
+      }
+
+      // BMI Calculation
+      const bmi = weightKg / (heightM * heightM);
+      resEl.innerText = bmi.toFixed(1);
+
+      // Gauge Pointer position calculation (Min BMI 15 to Max BMI 40)
+      let pointerPercent = ((bmi - 15) / (40 - 15)) * 100;
+      pointerPercent = Math.max(0, Math.min(100, pointerPercent));
+      pointerEl.style.left = pointerPercent + '%';
+
+      let cat = "";
+      let colorBg = "";
+      let colorText = "";
+
+      if (bmi < 18.5) {
+        cat = "Underweight";
+        colorBg = "#fef3c7"; colorText = "#92400e";
+        statusTextEl.innerText = "Underweight Range";
+      } else if (bmi >= 18.5 && bmi <= 24.9) {
+        cat = "Normal Weight";
+        colorBg = "#dcfce7"; colorText = "#166534";
+        statusTextEl.innerText = "Normal Healthy Range";
+      } else if (bmi >= 25 && bmi <= 29.9) {
+        cat = "Overweight";
+        colorBg = "#ffedd5"; colorText = "#9a3412";
+        statusTextEl.innerText = "Overweight Range";
+      } else {
+        cat = "Obesity Range";
+        colorBg = "#fee2e2"; colorText = "#991b1b";
+        statusTextEl.innerText = "High Risk Range";
+      }
+
+      // Waist-to-Height Ratio (WHtR) Check
+      const heightCmVal = heightM * 100;
+      const whtr = waistCm / heightCmVal;
+      let whtrMsg = whtr > 0.5 ? " (High WHtR Risk)" : " (Low Risk)";
+      
+      catEl.innerText = cat + whtrMsg;
+      catBox.style.backgroundColor = colorBg;
+      catEl.style.color = colorText;
+
+      const minIdealWeight = 18.5 * (heightM * heightM);
+      const maxIdealWeight = 24.9 * (heightM * heightM);
+
+      if (system === 'metric') {
+        idealText.innerText = `${minIdealWeight.toFixed(1)} kg - ${maxIdealWeight.toFixed(1)} kg`;
+      } else {
+        idealText.innerText = `${(minIdealWeight * 2.20462).toFixed(1)} lbs - ${(maxIdealWeight * 2.20462).toFixed(1)} lbs`;
+      }
+
+      // U.S. Navy Body Fat Calculation
+      let bodyFat = 0;
+      if (gender === 'male' && waistCm > 0 && neckCm > 0) {
+        bodyFactor = 86.010 * Math.log10(waistCm - neckCm) - 70.041 * Math.log10(heightCmVal) + 36.76;
+        bodyFat = Math.max(2, Math.min(60, bodyFactor));
+      } else if (gender === 'female' && waistCm > 0 && neckCm > 0 && hipCm > 0) {
+        bodyFactor = 163.205 * Math.log10(waistCm + hipCm - neckCm) - 97.684 * Math.log10(heightCmVal) - 78.387;
+        bodyFat = Math.max(5, Math.min(65, bodyFactor));
+      }
+      bodyFatEl.innerText = bodyFat > 0 ? bodyFat.toFixed(1) + "%" : "N/A";
+
+      // BMR & Maintenance Calories
+      let bmr = (10 * weightKg) + (6.25 * heightCmVal) - (5 * age);
+      bmr += (gender === 'male' ? 5 : -161);
+
+      const activityMultiplier = parseFloat(document.getElementById('activityLevel').value) || 1.55;
+      const maintenance = Math.round(bmr * activityMultiplier);
+
+      document.getElementById('maintenanceCalories').innerText = maintenance.toLocaleString() + " kcal";
+      
+      const targetDiff = parseFloat(document.getElementById('targetWeightDiff').value) || -10;
+      const isLoss = targetDiff < 0;
+      const targetCalories = isLoss ? maintenance - 500 : maintenance + 500;
+      
+      if (isLoss) {
+        document.getElementById('weightLossCalories').innerText = targetCalories.toLocaleString() + " kcal";
+        document.getElementById('weightGainCalories').innerText = (maintenance + 500).toLocaleString() + " kcal";
+      } else {
+        document.getElementById('weightLossCalories').innerText = (maintenance - 500).toLocaleString() + " kcal";
+        document.getElementById('weightGainCalories').innerText = targetCalories.toLocaleString() + " kcal";
+      }
+
+      // Safe Timeline Calculation (0.5 kg per week rule of thumb)
+      const weeksNeeded = Math.abs(targetDiff) / 0.5;
+      document.getElementById('timelineResult').innerText = `~${Math.round(weeksNeeded)} Weeks (at 0.5 kg/week)`;
+
+      // Macro Split Calculation
+      const macroGoal = document.getElementById('macroGoal').value;
+      let pRatio = 0.30, cRatio = 0.40, fRatio = 0.30;
+      if (macroGoal === 'lowcarb') { pRatio = 0.40; cRatio = 0.20; fRatio = 0.40; }
+      else if (macroGoal === 'highprotein') { pRatio = 0.35; cRatio = 0.45; fRatio = 0.20; }
+
+      const targetCalsForMacros = isLoss ? maintenance - 500 : maintenance;
+      const gProtein = Math.round((targetCalsForMacros * pRatio) / 4);
+      const gCarbs = Math.round((targetCalsForMacros * cRatio) / 4);
+      const gFats = Math.round((targetCalsForMacros * fRatio) / 9);
+
+      document.getElementById('macroProtein').innerText = gProtein + " g";
+      document.getElementById('macroCarbs').innerText = gCarbs + " g";
+      document.getElementById('macroFats').innerText = gFats + " g";
+    }
+
+    function copyResult(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied BMI value: " + text);
+      });
+    }
+
+    // Initialize calculation on load
+    calculateAll();
+  </script>
+</body>
+</html>

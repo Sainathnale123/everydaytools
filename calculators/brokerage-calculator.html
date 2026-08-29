@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Long-Tail Keywords -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Stock Brokerage & Turnover Calculator India 2026 | Zerodha Groww Charges Comparison | Everyday Tools</title>
+  <meta name="description" content="Calculate accurate stock brokerage, STT, exchange turnover charges, GST, and stamp duty for Equity Delivery, Intraday, Futures, and Options with customizable broker rates.">
+  <meta name="keywords" content="stock brokerage calculator india, delivery brokerage calculator, intraday brokerage charges calculator, fno options brokerage calculator, zerodha brokerage calculator, custom brokerage calculator">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/brokerage-calculator.html">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:title" content="Advanced Stock Brokerage & Turnover Calculator India - Everyday Tools">
+  <meta property="og:description" content="Accurately compute brokerage fees with custom user inputs, STT, exchange transaction charges, GST, and net profit/loss for NSE and BSE trades instantly.">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/brokerage-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Advanced Stock Brokerage Calculator India - Everyday Tools">
+  <meta name="twitter:description" content="Calculate stock trading brokerage with customizable rates, taxes, and exchange charges instantly with zero registration.">
+
+  <!-- Google tag (gtag.js) Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Modern Refined UI Styling & Clean Layout -->
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --secondary: #0f172a;
+      --accent: #10b981;
+      --danger: #f43f5e;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --input-bg: #f8fafc;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Clean Navigation Bar */
+    .site-nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .brand-logo {
+      color: var(--secondary);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+    .brand-logo span {
+      color: var(--primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+    }
+
+    /* Hero Header */
+    .page-header {
+      text-align: center;
+      padding: 35px 0 15px;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+      color: var(--secondary);
+      font-weight: 800;
+      margin-bottom: 6px;
+      margin-top: 0;
+    }
+    .page-header h1 span {
+      color: var(--primary);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.93rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Modern Calculator Card & Tabs */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      margin: 20px 0 30px;
+    }
+    
+    .tab-nav {
+      display: flex;
+      gap: 10px;
+      background: #f1f5f9;
+      padding: 6px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 11px 16px;
+      font-weight: 700;
+      font-size: 13.5px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 800px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      outline: none;
+      background: var(--input-bg);
+      color: var(--text);
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Results Dashboard Box */
+    .result-dashboard {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .result-metric {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.3);
+    }
+    .result-metric span {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      opacity: 0.85;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .result-metric strong {
+      font-size: 1.75rem;
+      font-weight: 800;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13px;
+    }
+    .breakdown-row:last-child {
+      border-bottom: none;
+    }
+    .breakdown-row span {
+      color: var(--muted);
+    }
+    .breakdown-row strong {
+      color: var(--text);
+    }
+
+    .action-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .action-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* SEO & FAQ */
+    .seo-content {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      margin-bottom: 24px;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .seo-content h2 {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .faq {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      margin-bottom: 40px;
+    }
+    .faq h2 {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+    .faq details {
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .faq summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 13.5px;
+    }
+    .faq p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Clean Light Footer */
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 2.2rem 0;
+      margin-top: auto;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    @media(min-width: 600px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .copyright {
+      font-size: 0.85rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Advanced Stock Brokerage Calculator India",
+    "operatingSystem": "All",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "description": "Calculate accurate stock brokerage with custom user-defined fees, STT, exchange turnover charges, GST, and stamp duty for Equity Delivery, Intraday, Futures, and Options."
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Clean Navigation Bar -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="https://everydaytools.co.in/">Home</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Professional Finance Suite</span>
+        <h1>Advanced Stock <span>Brokerage Calculator</span></h1>
+        <p class="subtitle">
+          Customize your broker fees, compute exact statutory taxes, exchange transaction charges, GST, and net profit instantly.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Calculator Card -->
+      <section class="calc-card" aria-label="Brokerage Calculator Tool">
+        
+        <!-- Navigation Tabs -->
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchTab(event, 'equity-calc')">📊 Equity (Delivery & Intraday)</button>
+          <button class="tab-btn" onclick="switchTab(event, 'fno-calc')">📈 Futures & Options (F&O)</button>
+        </div>
+
+        <!-- Tab 1: Equity Calculator -->
+        <div id="equity-calc" class="tab-content active">
+          <div class="calc-grid">
+            <!-- Inputs -->
+            <div>
+              <div class="section-title">Trade Parameters</div>
+              <div class="form-group">
+                <label for="eq-segment">Trading Segment</label>
+                <select id="eq-segment" onchange="calculateEquity()">
+                  <option value="delivery">Equity Delivery (CNC)</option>
+                  <option value="intraday">Equity Intraday (MIS)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="eq-buy">Buy Price (₹)</label>
+                <input type="number" id="eq-buy" value="500" step="0.05" oninput="calculateEquity()">
+              </div>
+
+              <div class="form-group">
+                <label for="eq-sell">Sell Price (₹)</label>
+                <input type="number" id="eq-sell" value="550" step="0.05" oninput="calculateEquity()">
+              </div>
+
+              <div class="form-group">
+                <label for="eq-qty">Quantity (Number of Shares)</label>
+                <input type="number" id="eq-qty" value="100" step="1" oninput="calculateEquity()">
+              </div>
+
+              <div class="section-title" style="margin-top: 22px;">Brokerage Customization</div>
+              <div class="form-group">
+                <label for="eq-brokerage-type">Brokerage Pricing Mode</label>
+                <select id="eq-brokerage-type" onchange="calculateEquity()">
+                  <option value="flat">Flat Fee per Order (e.g. ₹20 max)</option>
+                  <option value="percentage">Percentage of Turnover (%)</option>
+                  <option value="zero">Zero Brokerage (Free)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="eq-brokerage-val">Custom Brokerage Rate (₹ or %)</label>
+                <input type="number" id="eq-brokerage-val" value="20" step="0.01" oninput="calculateEquity()">
+              </div>
+            </div>
+
+            <!-- Outputs Dashboard -->
+            <div>
+              <div class="result-dashboard">
+                <div class="result-metric">
+                  <span>Net Profit / Loss</span>
+                  <strong id="eq-net-pnl">₹ +4,862.50</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Turnover Value:</span>
+                  <strong id="eq-turnover">₹ 1,05,000.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Custom Brokerage Fees:</span>
+                  <strong id="eq-brokerage">₹ 40.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>STT / CTT Total:</span>
+                  <strong id="eq-stt">₹ 55.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Exchange Transaction Charges:</span>
+                  <strong id="eq-exchange">₹ 3.50</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>GST (18% on Brokerage + Exch):</span>
+                  <strong id="eq-gst">₹ 7.83</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>SEBI Turnover Fees:</span>
+                  <strong id="eq-sebi">₹ 0.11</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Stamp Duty:</span>
+                  <strong id="eq-stamp">₹ 7.50</strong>
+                </div>
+                <div class="breakdown-row" style="border-top: 1px solid var(--border); margin-top: 6px; padding-top: 10px;">
+                  <span><strong>Total Charges & Taxes:</strong></span>
+                  <strong id="eq-total-charges" style="color: var(--danger);">₹ 113.94</strong>
+                </div>
+
+                <button type="button" class="action-btn" onclick="shareResults('equity')">📋 Copy Equity Summary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Futures & Options Calculator -->
+        <div id="fno-calc" class="tab-content">
+          <div class="calc-grid">
+            <!-- Inputs -->
+            <div>
+              <div class="section-title">Contract Parameters</div>
+              <div class="form-group">
+                <label for="fno-segment">Contract Type</label>
+                <select id="fno-segment" onchange="calculateFnO()">
+                  <option value="futures">Futures</option>
+                  <option value="options">Options</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="fno-buy">Buy Price (₹)</label>
+                <input type="number" id="fno-buy" value="19500" step="0.05" oninput="calculateFnO()">
+              </div>
+
+              <div class="form-group">
+                <label for="fno-sell">Sell Price (₹)</label>
+                <input type="number" id="fno-sell" value="19650" step="0.05" oninput="calculateFnO()">
+              </div>
+
+              <div class="form-group">
+                <label for="fno-qty">Lot Size / Quantity</label>
+                <input type="number" id="fno-qty" value="50" step="1" oninput="calculateFnO()">
+              </div>
+
+              <div class="section-title" style="margin-top: 22px;">Brokerage Customization</div>
+              <div class="form-group">
+                <label for="fno-brokerage-type">Brokerage Pricing Mode</label>
+                <select id="fno-brokerage-type" onchange="calculateFnO()">
+                  <option value="flat">Flat Fee per Order (e.g. ₹20 max)</option>
+                  <option value="percentage">Percentage of Turnover (%)</option>
+                  <option value="zero">Zero Brokerage (Free)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="fno-brokerage-val">Custom Brokerage Rate (₹ or %)</label>
+                <input type="number" id="fno-brokerage-val" value="20" step="0.01" oninput="calculateFnO()">
+              </div>
+            </div>
+
+            <!-- Outputs Dashboard -->
+            <div>
+              <div class="result-dashboard">
+                <div class="result-metric">
+                  <span>Net Profit / Loss</span>
+                  <strong id="fno-net-pnl">₹ +7,402.50</strong>
+                </div>
+
+                <div class="breakdown-row">
+                  <span>Turnover Value:</span>
+                  <strong id="fno-turnover">₹ 19,57,500.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Custom Brokerage Fees:</span>
+                  <strong id="fno-brokerage">₹ 40.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>STT / CTT Total:</span>
+                  <strong id="fno-stt">₹ 50.00</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Exchange Transaction Charges:</span>
+                  <strong id="fno-exchange">₹ 6.85</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>GST (18% on Brokerage + Exch):</span>
+                  <strong id="fno-gst">₹ 8.43</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>SEBI Turnover Fees:</span>
+                  <strong id="fno-sebi">₹ 1.96</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Stamp Duty:</span>
+                  <strong id="fno-stamp">₹ 4.88</strong>
+                </div>
+                <div class="breakdown-row" style="border-top: 1px solid var(--border); margin-top: 6px; padding-top: 10px;">
+                  <span><strong>Total Charges & Taxes:</strong></span>
+                  <strong id="fno-total-charges" style="color: var(--danger);">₹ 112.12</strong>
+                </div>
+
+                <button type="button" class="action-btn" onclick="shareResults('fno')">📋 Copy F&O Summary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SEO Information Content Section -->
+      <article class="seo-content">
+        <h2>Customizable Stock Brokerage and Tax Calculation Engine</h2>
+        <p>
+          Every discount broker or full-service broker implements distinct commission structures. This calculator gives you full flexibility to input your exact broker fee structure—whether you pay flat per-order fees (like ₹20 per executed buy/sell order) or percentage-based commission models—while accurately computing standard statutory taxes including STT, exchange transaction fees, SEBI charges, and state stamp duty.
+        </p>
+      </article>
+
+      <!-- FAQ Accordion -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <details>
+          <summary>How can I customize my broker fee?</summary>
+          <p>You can choose your brokerage mode between Flat Fee per order, Percentage of total turnover, or Zero Brokerage, and enter your exact rate to instantly update all calculations.</p>
+        </details>
+        <details>
+          <summary>Are taxes calculated based on standard exchange rules?</summary>
+          <p>Yes, government levies such as STT, Goods and Services Tax (GST), SEBI turnover fees, and state stamp duty are calculated according to current NSE and BSE statutory guidelines.</p>
+        </details>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Clean Light Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Calculator Logic -->
+  <script>
+    function switchTab(evt, tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    function calculateBrokerage(turnoverType, rateVal, buyTurnover, sellTurnover) {
+      if (turnoverType === 'zero') {
+        return 0;
+      } else if (turnoverType === 'flat') {
+        // Assume fee applies to both Buy and Sell orders (2 orders executed)
+        return rateVal * 2;
+      } else if (turnoverType === 'percentage') {
+        // rateVal is percentage e.g. 0.05%
+        const totalTurnover = buyTurnover + sellTurnover;
+        return totalTurnover * (rateVal / 100);
+      }
+      return 0;
+    }
+
+    function calculateEquity() {
+      const segment = document.getElementById('eq-segment').value;
+      const buy = parseFloat(document.getElementById('eq-buy').value) || 0;
+      const sell = parseFloat(document.getElementById('eq-sell').value) || 0;
+      const qty = parseFloat(document.getElementById('eq-qty').value) || 0;
+
+      const brokerageType = document.getElementById('eq-brokerage-type').value;
+      const brokerageVal = parseFloat(document.getElementById('eq-brokerage-val').value) || 0;
+
+      const buyTurnover = buy * qty;
+      const sellTurnover = sell * qty;
+      const totalTurnover = buyTurnover + sellTurnover;
+      const grossPnL = (sell - buy) * qty;
+
+      let brokerage = calculateBrokerage(brokerageType, brokerageVal, buyTurnover, sellTurnover);
+
+      let stt = 0;
+      if (segment === 'delivery') {
+        stt = totalTurnover * 0.001; // 0.1% on total turnover
+      } else {
+        stt = sellTurnover * 0.00025; // 0.025% on sell side for intraday
+      }
+
+      let exchangeCharges = totalTurnover * 0.0000325;
+      let gst = (brokerage + exchangeCharges) * 0.18;
+      let sebiFee = totalTurnover * 0.000001;
+      let stampDuty = (segment === 'delivery') ? (buyTurnover * 0.00015) : (buyTurnover * 0.00003);
+
+      let totalCharges = brokerage + stt + exchangeCharges + gst + sebiFee + stampDuty;
+      let netPnL = grossPnL - totalCharges;
+
+      document.getElementById('eq-net-pnl').innerText = (netPnL >= 0 ? '₹ +' : '₹ -') + Math.abs(netPnL).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('eq-net-pnl').parentElement.style.background = netPnL >= 0 ? 'linear-gradient(135deg, var(--primary), var(--primary-dark))' : 'linear-gradient(135deg, var(--danger), #b91c1c)';
+      document.getElementById('eq-turnover').innerText = '₹ ' + totalTurnover.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('eq-brokerage').innerText = '₹ ' + brokerage.toFixed(2);
+      document.getElementById('eq-stt').innerText = '₹ ' + stt.toFixed(2);
+      document.getElementById('eq-exchange').innerText = '₹ ' + exchangeCharges.toFixed(2);
+      document.getElementById('eq-gst').innerText = '₹ ' + gst.toFixed(2);
+      document.getElementById('eq-sebi').innerText = '₹ ' + sebiFee.toFixed(2);
+      document.getElementById('eq-stamp').innerText = '₹ ' + stampDuty.toFixed(2);
+      document.getElementById('eq-total-charges').innerText = '₹ ' + totalCharges.toFixed(2);
+    }
+
+    function calculateFnO() {
+      const segment = document.getElementById('fno-segment').value;
+      const buy = parseFloat(document.getElementById('fno-buy').value) || 0;
+      const sell = parseFloat(document.getElementById('fno-sell').value) || 0;
+      const qty = parseFloat(document.getElementById('fno-qty').value) || 0;
+
+      const brokerageType = document.getElementById('fno-brokerage-type').value;
+      const brokerageVal = parseFloat(document.getElementById('fno-brokerage-val').value) || 0;
+
+      const buyTurnover = buy * qty;
+      const sellTurnover = sell * qty;
+      const totalTurnover = buyTurnover + sellTurnover;
+      const grossPnL = (sell - buy) * qty;
+
+      let brokerage = calculateBrokerage(brokerageType, brokerageVal, buyTurnover, sellTurnover);
+
+      let stt = (segment === 'futures') ? (sellTurnover * 0.0002) : (sellTurnover * 0.001);
+      let exchangeCharges = (segment === 'futures') ? (totalTurnover * 0.000019) : (totalTurnover * 0.00053);
+      let gst = (brokerage + exchangeCharges) * 0.18;
+      let sebiFee = totalTurnover * 0.000001;
+      let stampDuty = (segment === 'futures') ? (buyTurnover * 0.00002) : (buyTurnover * 0.00003);
+
+      let totalCharges = brokerage + stt + exchangeCharges + gst + sebiFee + stampDuty;
+      let netPnL = grossPnL - totalCharges;
+
+      document.getElementById('fno-net-pnl').innerText = (netPnL >= 0 ? '₹ +' : '₹ -') + Math.abs(netPnL).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('fno-net-pnl').parentElement.style.background = netPnL >= 0 ? 'linear-gradient(135deg, var(--primary), var(--primary-dark))' : 'linear-gradient(135deg, var(--danger), #b91c1c)';
+      document.getElementById('fno-turnover').innerText = '₹ ' + totalTurnover.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('fno-brokerage').innerText = '₹ ' + brokerage.toFixed(2);
+      document.getElementById('fno-stt').innerText = '₹ ' + stt.toFixed(2);
+      document.getElementById('fno-exchange').innerText = '₹ ' + exchangeCharges.toFixed(2);
+      document.getElementById('fno-gst').innerText = '₹ ' + gst.toFixed(2);
+      document.getElementById('fno-sebi').innerText = '₹ ' + sebiFee.toFixed(2);
+      document.getElementById('fno-stamp').innerText = '₹ ' + stampDuty.toFixed(2);
+      document.getElementById('fno-total-charges').innerText = '₹ ' + totalCharges.toFixed(2);
+    }
+
+    function shareResults(type) {
+      const pnlText = document.getElementById(type === 'equity' ? 'eq-net-pnl' : 'fno-net-pnl').innerText;
+      const chargesText = document.getElementById(type === 'equity' ? 'eq-total-charges' : 'fno-total-charges').innerText;
+      const text = `Stock Trade Result - Net P&L: ${pnlText} (Total Charges: ${chargesText}). Calculated via Everyday Tools Brokerage Calculator!`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Summary copied to clipboard!');
+      });
+    }
+
+    window.onload = function() {
+      calculateEquity();
+      calculateFnO();
+    };
+  </script>
+</body>
+</html>

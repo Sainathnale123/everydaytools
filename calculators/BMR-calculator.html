@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Basal Metabolic Rate (BMR) &amp; TDEE Calculator</title>
+  <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) using the Mifflin-St Jeor and Katch-McArdle formulas with our advanced clinical health calculator.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/bmr-calculator.html">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Advanced Basal Metabolic Rate (BMR) &amp; TDEE Calculator">
+  <meta property="og:description" content="Determine your exact BMR and daily caloric expenditure using clinically verified equations including Mifflin-St Jeor and Katch-McArdle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/bmr-calculator.html">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/bmr-calc-social.png">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense Integration -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .preset-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .preset-btns { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+    @media (min-width: 769px) {
+      .preset-btns { width: auto; flex-wrap: wrap; overflow-x: visible; }
+    }
+    .preset-btn { padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; cursor: pointer; transition: all 0.2s; color: var(--text, #0f172a); white-space: nowrap; flex: 1; text-align: center; }
+    @media (min-width: 769px) {
+      .preset-btn { flex: unset; padding: 8px 14px; font-size: 13px; }
+    }
+    .preset-btn:hover { background: var(--primary-light, #e0e7ff); color: var(--primary, #4f46e5); border-color: var(--primary, #4f46e5); }
+
+    .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid var(--border, #cbd5e1); margin-bottom: 24px; overflow-x: auto; }
+    .tab-btn { padding: 12px 18px; font-weight: 700; font-size: 14px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; color: var(--muted, #64748b); white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--primary, #4f46e5); border-bottom-color: var(--primary, #4f46e5); }
+
+    .mobile-tab-dropdown { display: none; margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .tab-nav { display: none !important; }
+      .mobile-tab-dropdown { display: block; width: 100%; }
+      .mobile-tab-dropdown select { width: 100%; padding: 12px 14px; font-size: 14px; font-weight: 700; border-radius: 8px; border: 1px solid var(--border, #cbd5e1); background: #ffffff; color: var(--primary, #4f46e5); outline: none; }
+    }
+
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text, #0f172a); margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper input, .input-wrapper select { width: 100%; padding: 10px 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--text, #0f172a); background: #ffffff; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus, .input-wrapper select:focus { border-color: var(--primary, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+    .input-suffix { position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: var(--muted, #64748b); pointer-events: none; }
+
+    .res-box { background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+    .res-box .val { font-size: 26px; font-weight: 800; color: var(--primary, #4f46e5); margin-top: 4px; }
+    .res-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted, #64748b); }
+
+    .btn-action { background: var(--primary, #4f46e5); color: #ffffff; font-weight: 700; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; transition: opacity 0.2s; }
+    .btn-action:hover { opacity: 0.9; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { padding: 12px 10px; border-bottom: 2px solid var(--border, #cbd5e1); background: var(--bg, #f8fafc); color: var(--text, #0f172a); font-weight: 700; }
+    td { padding: 10px; border-bottom: 1px solid var(--border, #cbd5e1); }
+  </style>
+
+  <!-- Structured Data Schema (JSON-LD) for E-E-A-T and SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced Basal Metabolic Rate (BMR) Calculator",
+    "url": "https://everydaytools.co.in/calculators/bmr-calculator.html",
+    "description": "Calculate your Basal Metabolic Rate and Total Daily Energy Expenditure using Mifflin-St Jeor and Katch-McArdle clinical formulas.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "author": {
+      "@type": "Organization",
+      "name": "Everyday Tools",
+      "url": "https://everydaytools.co.in"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Clinical Health &amp; Metabolic Suite</span>
+        <h1>Advanced Basal Metabolic Rate <span>(BMR) &amp; TDEE Calculator</span></h1>
+        <p class="subtitle">
+          Determine your precise daily basal caloric energy expenditure and total metabolic burn using scientifically validated equations including Mifflin-St Jeor and Katch-McArdle.
+        </p>
+      </div>
+    </header>
+
+    <!-- Top Advertisement Slot -->
+    <div class="container ad-wrapper" aria-label="Advertisement Space">
+      <div class="ad-slot top-banner">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Presets Bar -->
+      <div class="preset-bar">
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" onclick="setPreset(175, 75, 30, 'male', 15)">Active Male (175cm, 75kg, 30Y)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(160, 60, 28, 'female', 22)">Active Female (160cm, 60kg, 28Y)</button>
+          <button type="button" class="preset-btn" onclick="setPreset(182, 90, 40, 'male', 18)">Athletic Build (182cm, 90kg, 40Y)</button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div class="mobile-tab-dropdown">
+        <select id="mobileTabSelect" onchange="switchTab(this.value, null)">
+          <option value="bmrCalc" selected>🔥 BMR &amp; Equation Comparison</option>
+          <option value="tdeeCalc">⚡ TDEE &amp; Caloric Energy Expenditure</option>
+        </select>
+      </div>
+
+      <!-- Desktop Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('bmrCalc', this)">🔥 BMR &amp; Equation Comparison</button>
+        <button class="tab-btn" onclick="switchTab('tdeeCalc', this)">⚡ TDEE &amp; Caloric Energy Expenditure</button>
+      </div>
+
+      <!-- TAB 1: BMR CALCULATOR -->
+      <div id="bmrCalc">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="calcEquation">Estimation Formula</label>
+                <div class="input-wrapper">
+                  <select id="calcEquation" onchange="calculateBMR()">
+                    <option value="mifflin" selected>Mifflin-St Jeor (Most Clinically Accurate)</option>
+                    <option value="katch">Katch-McArdle (Body Composition Based)</option>
+                    <option value="harris">Harris-Benedict (Revised Version)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="heightCm">Height (cm)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="heightCm" value="175" step="1" min="100" max="250" oninput="calculateBMR()">
+                  <span class="input-suffix">cm</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="weightKg">Total Body Weight (kg)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="weightKg" value="75" step="0.1" min="30" max="300" oninput="calculateBMR()">
+                  <span class="input-suffix">kg</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="userAge">Age (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="userAge" value="30" min="10" max="120" oninput="calculateBMR()">
+                  <span class="input-suffix">Years</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="userGender">Biological Sex</label>
+                <div class="input-wrapper">
+                  <select id="userGender" onchange="calculateBMR()">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" id="groupBodyFat" style="display: none;">
+                <label for="bodyFatPct">Body Fat Percentage (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="bodyFatPct" value="15" step="0.5" min="3" max="60" oninput="calculateBMR()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Basal Metabolic Rate (BMR)</div>
+                <div class="val" id="bmrResult">1,724 kcal/day</div>
+              </div>
+
+              <div class="res-box" id="comparisonBox" style="background: #f8fafc;">
+                <div class="lbl">Alternative Formula Estimate</div>
+                <div class="val" id="altBmrResult" style="font-size: 20px; color: var(--text, #0f172a);">1,680 kcal/day</div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--text, #0f172a); margin-top: 14px;">
+                <strong>Physiological Interpretation:</strong>
+                <p id="bmrContextText" style="margin-top: 4px; color: var(--muted, #64748b); font-weight: 600;">Energy required to sustain vital organ function at strict rest.</p>
+              </div>
+
+              <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <button type="button" class="btn-action" onclick="copyResult('bmrResult')">📋 Copy BMR Value</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: TDEE & EXPENDITURE CALCULATOR -->
+      <div id="tdeeCalc" style="display: none;">
+        <section class="calc-card">
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label for="activityLevel">Daily Activity Multiplier (PAL)</label>
+                <div class="input-wrapper">
+                  <select id="activityLevel" onchange="calculateBMR()">
+                    <option value="1.2">Sedentary (Desk job, little or no exercise)</option>
+                    <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
+                    <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)</option>
+                    <option value="1.725">Very Active (Hard training 6-7 days/week)</option>
+                    <option value="1.9">Extremely Active (Physical job &amp; heavy daily training)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dietGoal">Caloric Target Objective</label>
+                <div class="input-wrapper">
+                  <select id="dietGoal" onchange="calculateBMR()">
+                    <option value="maintenance" selected>Weight Maintenance (0 kcal shift)</option>
+                    <option value="mildloss">Mild Fat Loss (-250 kcal deficit)</option>
+                    <option value="standardloss">Standard Fat Loss (-500 kcal deficit)</option>
+                    <option value="aggresiveloss">Aggressive Fat Loss (-750 kcal deficit)</option>
+                    <option value="leanbulk">Lean Muscle Gain (+300 kcal surplus)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 14px; border-radius: 8px; font-size: 13px; color: var(--muted, #64748b); line-height: 1.5;">
+                Total Daily Energy Expenditure (TDEE) accounts for your basal metabolic rate, the thermic effect of food (TEF), and daily physical movement (NEAT &amp; EAT).
+              </div>
+            </div>
+
+            <div>
+              <div class="res-box" style="background: #e0e7ff; border-color: rgba(79, 70, 229, 0.2);">
+                <div class="lbl">Total Daily Energy Expenditure (TDEE)</div>
+                <div class="val" id="tdeeResult">2,672 kcal/day</div>
+              </div>
+
+              <div class="res-box" style="background: #dcfce7; border-color: #bbf7d0;">
+                <div class="lbl">Target Caloric Intake for Goal</div>
+                <div class="val" id="targetCalResult" style="font-size: 20px; color: #166534;">2,172 kcal/day</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Comprehensive SEO & Educational Content (Satisfies E-E-A-T and No-Zero-Explanation criteria) -->
+      <article class="calc-card" style="line-height: 1.8; color: var(--muted, #64748b); font-size: 14px;">
+        <h2 style="color: var(--text, #0f172a); font-size: 20px; font-weight: 800; margin-bottom: 12px;">Understanding Basal Metabolic Rate (BMR) &amp; Metabolic Science</h2>
+        <p style="margin-bottom: 12px;">
+          Basal Metabolic Rate (BMR) represents the absolute minimum amount of energy (measured in calories) your body requires to maintain basic life-sustaining functions while at complete rest. These mandatory physiological processes include respiration, blood circulation, cellular synthesis, and neurological function.
+        </p>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Scientifically Validated BMR Formulas</h3>
+        <p style="margin-bottom: 12px;">
+          Different computational models evaluate body mass and dimensions differently:
+        </p>
+        <div style="background: var(--bg, #f8fafc); border: 1px solid var(--border, #cbd5e1); padding: 12px; border-radius: 8px; font-family: monospace; color: var(--text, #0f172a); text-align: center; margin-bottom: 16px;">
+          $$\text{Mifflin-St Jeor (Male)} = (10 \times \text{weight in kg}) + (6.25 \times \text{height in cm}) - (5 \times \text{age}) + 5$$
+        </div>
+        <p style="margin-bottom: 12px;">
+          For individuals with known body fat percentages, the <strong>Katch-McArdle Formula</strong> estimates metabolic rate strictly based on Lean Body Mass (LBM), making it exceptionally reliable for athletes and resistance trainers.
+        </p>
+
+        <h3 style="color: var(--text, #0f172a); font-size: 16px; font-weight: 700; margin-top: 16px; margin-bottom: 8px;">Physical Activity Level (PAL) Multipliers</h3>
+        <div style="overflow-x: auto; margin-bottom: 16px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Activity Category</th>
+                <th>PAL Multiplier</th>
+                <th>Typical Weekly Routine</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Sedentary</td><td>1.20</td><td>Desk job with minimal intentional movement</td></tr>
+              <tr><td>Lightly Active</td><td>1.375</td><td>Light walking or exercise 1 to 3 days/week</td></tr>
+              <tr><td>Moderately Active</td><td>1.55</td><td>Moderate workouts 3 to 5 days/week</td></tr>
+              <tr><td>Very Active</td><td>1.725</td><td>Intense physical training 6 to 7 days/week</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabId, el) {
+      document.getElementById('bmrCalc').style.display = tabId === 'bmrCalc' ? 'block' : 'none';
+      document.getElementById('tdeeCalc').style.display = tabId === 'tdeeCalc' ? 'block' : 'none';
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el && el.classList) {
+        el.classList.add('active');
+      } else {
+        const desktopButtons = document.querySelectorAll('.tab-btn');
+        if (tabId === 'bmrCalc') desktopButtons[0].classList.add('active');
+        if (tabId === 'tdeeCalc') desktopButtons[1].classList.add('active');
+      }
+
+      document.getElementById('mobileTabSelect').value = tabId;
+    }
+
+    function setPreset(cm, kg, age, gender, fat) {
+      document.getElementById('heightCm').value = cm;
+      document.getElementById('weightKg').value = kg;
+      document.getElementById('userAge').value = age;
+      document.getElementById('userGender').value = gender;
+      document.getElementById('bodyFatPct').value = fat;
+      calculateBMR();
+    }
+
+    function calculateBMR() {
+      const equation = document.getElementById('calcEquation').value;
+      const height = parseFloat(document.getElementById('heightCm').value) || 0;
+      const weight = parseFloat(document.getElementById('weightKg').value) || 0;
+      const age = parseInt(document.getElementById('userAge').value) || 0;
+      const gender = document.getElementById('userGender').value;
+      const bodyFat = parseFloat(document.getElementById('bodyFatPct').value) || 15;
+      const activityMultiplier = parseFloat(document.getElementById('activityLevel').value) || 1.55;
+      const dietGoal = document.getElementById('dietGoal').value;
+
+      document.getElementById('groupBodyFat').style.display = (equation === 'katch') ? 'block' : 'none';
+
+      const bmrEl = document.getElementById('bmrResult');
+      const altBmrEl = document.getElementById('altBmrResult');
+      const tdeeEl = document.getElementById('tdeeResult');
+      const targetCalEl = document.getElementById('targetCalResult');
+
+      if (height <= 0 || weight <= 0 || age <= 0) {
+        bmrEl.innerText = "0 kcal/day";
+        return;
+      }
+
+      // Mifflin-St Jeor Calculation
+      let bmrMifflin = (10 * weight) + (6.25 * height) - (5 * age);
+      bmrMifflin += (gender === 'male' ? 5 : -161);
+
+      // Harris-Benedict Calculation (Revised)
+      let bmrHarris = gender === 'male' 
+        ? 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+        : 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+
+      // Katch-McArdle Calculation
+      let leanMass = weight * (1 - (bodyFat / 100));
+      let bmrKatch = 370 + (21.6 * leanMass);
+
+      let primaryBmr = bmrMifflin;
+      let altBmr = bmrHarris;
+
+      if (equation === 'katch') {
+        primaryBmr = bmrKatch;
+        altBmr = bmrMifflin;
+      } else if (equation === 'harris') {
+        primaryBmr = bmrHarris;
+        altBmr = bmrMifflin;
+      }
+
+      bmrEl.innerText = Math.round(primaryBmr).toLocaleString() + " kcal/day";
+      altBmrEl.innerText = Math.round(altBmr).toLocaleString() + " kcal/day";
+
+      // TDEE Calculation
+      let tdee = primaryBmr * activityMultiplier;
+      tdeeEl.innerText = Math.round(tdee).toLocaleString() + " kcal/day";
+
+      // Goal Calorie Offset
+      let offset = 0;
+      if (dietGoal === 'mildloss') offset = -250;
+      else if (dietGoal === 'standardloss') offset = -500;
+      else if (dietGoal === 'aggresiveloss') offset = -750;
+      else if (dietGoal === 'leanbulk') offset = 300;
+
+      let targetCals = Math.max(1000, tdee + offset);
+      targetCalEl.innerText = Math.round(targetCals).toLocaleString() + " kcal/day";
+    }
+
+    function copyResult(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied BMR value: " + text);
+      });
+    }
+
+    // Initialize calculation on load
+    calculateBMR();
+  </script>
+</body>
+</html>
