@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Advanced Free PDF Page Reorder & Organizer Tool – Rearrange Pages Online</title>
+  <meta name="title" content="Advanced Free PDF Page Reorder & Organizer Tool – Rearrange Pages Online">
+  <meta name="description" content="Rearrange, reorder, delete, rotate or sort PDF pages online securely in your browser with interactive drag-and-drop page previews and zero server uploads.">
+  <meta name="keywords" content="reorder pdf pages online, rearrange pdf page order, organize pdf document, delete pdf pages, browser pdf organizer tool">
+  <meta name="author" content="Everyday Tools">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230ea5e9'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <link rel="canonical" href="https://everydaytools.co.in/pdf-tools/page-reorder-pdf.html">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://everydaytools.co.in/pdf-tools/page-reorder-pdf.html">
+  <meta property="og:title" content="Advanced Free PDF Page Reorder & Organizer Tool">
+  <meta property="og:description" content="Rearrange and organize PDF pages interactively right inside your browser with total privacy and no cloud uploads.">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta property="og:site_name" content="Everyday Tools">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://everydaytools.co.in/pdf-tools/page-reorder-pdf.html">
+  <meta name="twitter:title" content="Advanced Free PDF Page Reorder Tool Online">
+  <meta name="twitter:description" content="Rearrange, rotate, or delete PDF pages securely on your device without server uploads.">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F', { 'anonymize_ip': true });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Everyday Tools",
+    "url": "https://everydaytools.co.in/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://everydaytools.co.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://everydaytools.co.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PDF Tools",
+        "item": "https://everydaytools.co.in/pdf-tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Page Reorder PDF",
+        "item": "https://everydaytools.co.in/pdf-tools/page-reorder-pdf.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Everyday Tools PDF Page Reorder Utility",
+    "operatingSystem": "All",
+    "applicationCategory": "BrowserApplication",
+    "browser": "Requires JavaScript and modern browser support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Client-side utility to reorder, delete, rotate and organize PDF pages visually with instant drag-and-drop preview."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I reorder pages in a PDF file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Upload your PDF file, drag and drop the page thumbnail cards into your desired new sequence, and click Save Reordered PDF."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I delete or rotate specific pages in my PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Each page thumbnail card includes quick controls to rotate the page 90 degrees or delete it entirely from the final document."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+    });
+  </script>
+
+  <style>
+    /* ==========================================================================
+       CUSTOM TOOL COMPONENT OVERRIDES MATCHING CALCULATOR.CSS PATTERNS
+       ========================================================================== -->
+    */
+    .page-header {
+      padding-bottom: 0.5rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    .tool-card-container {
+      max-width: 1050px;
+      margin: 0 auto 1.5rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      padding: 2.5rem;
+      border: 1px solid #e2e8f0;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 640px) {
+      .tool-card-container {
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
+    }
+
+    .upload-dropzone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 640px) {
+      .upload-dropzone {
+        padding: 1.75rem 1rem;
+      }
+    }
+
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+      border-color: #0ea5e9;
+      background: #f0f9ff;
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .upload-dropzone h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      color: #1e293b;
+    }
+
+    .upload-dropzone p {
+      margin: 0 0 1.5rem 0;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .option-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.4rem;
+    }
+
+    .option-group select, .option-group input[type="text"] {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 0.95rem;
+      color: #1e293b;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .option-group select:focus, .option-group input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    .btn-primary-custom {
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-primary-custom:hover {
+      background: #0284c7;
+    }
+
+    .btn-secondary-custom {
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #e2e8f0;
+    }
+
+    .converter-workspace {
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .workspace-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .workspace-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+    }
+
+    /* Thumbnail Grid & Sortable Cards */
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      background: #f8fafc;
+      margin-bottom: 1.5rem;
+    }
+
+    .thumb-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+      cursor: grab;
+      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .thumb-card:active {
+      cursor: grabbing;
+    }
+
+    .thumb-card:hover {
+      border-color: #0ea5e9;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .thumb-canvas-container {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .thumb-canvas-container canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .thumb-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .thumb-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .thumb-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .thumb-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .thumb-btn.delete:hover {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #fca5a5;
+    }
+
+    .tool-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 640px) {
+      .tool-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .tool-actions button {
+        width: 100%;
+      }
+    }
+
+    .estimation-panel {
+      font-size: 0.9rem;
+      color: #475569;
+      font-weight: 500;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-message {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .status-message.info {
+      background: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+
+    .status-message.success {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">
+          Advanced Client-Side Utility
+        </span>
+
+        <h1>Advanced Free PDF Page Reorder & Organizer Tool – Rearrange Pages Online</h1>
+
+        <p>
+          Rearrange, reorder, rotate, or delete PDF pages interactively with drag-and-drop thumbnail previews directly in your browser 
+          with absolute privacy and zero cloud uploads.
+        </p>
+      </div>
+    </header>
+
+    <section class="container" aria-label="Page Reorder Workspace">
+      <div class="tool-card-container">
+        
+        <div id="dropzone" class="upload-dropzone" tabindex="0" role="button" aria-label="Upload PDF file dropzone">
+          <div class="upload-icon" aria-hidden="true">📑</div>
+          <h3>Drag &amp; Drop PDF Document Here</h3>
+          <p>or click to browse local .pdf files from your device</p>
+          <input type="file" id="file-input" accept=".pdf" style="display: none;">
+          <button type="button" class="btn-primary-custom" onclick="document.getElementById('file-input').click()">Select PDF File</button>
+        </div>
+
+        <div class="options-grid">
+          <div class="option-group">
+            <label for="output-filename">Output Filename</label>
+            <input type="text" id="output-filename" value="reordered-document" placeholder="Enter filename">
+          </div>
+          <div class="option-group">
+            <label for="quick-sort">Quick Sort Action</label>
+            <select id="quick-sort" onchange="executeQuickSort(this.value)">
+              <option value="">Select preset arrangement...</option>
+              <option value="reverse">Reverse Page Order (Last to First)</option>
+              <option value="even-odd">Group Even / Odd Pages</option>
+              <option value="reset">Reset to Original Order</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="converter-workspace" class="converter-workspace">
+          <div class="workspace-header">
+            <h3 id="workspace-title">Drag &amp; Drop Thumbnails to Rearrange Order</h3>
+          </div>
+
+          <div id="thumbnails-grid" class="thumbnails-grid" aria-label="PDF page thumbnails container">
+            </div>
+
+          <div class="estimation-panel" id="estimation-panel">
+            📊 Ready: <span id="est-summary">PDF loaded successfully. Rearrange pages or rotate/delete cards, then click save.</span>
+          </div>
+
+          <div class="tool-actions">
+            <button type="button" class="btn-secondary-custom" onclick="document.getElementById('file-input').click()">📁 Open Another PDF File</button>
+            <button type="button" id="process-btn" class="btn-primary-custom" onclick="executePdfReorderAction()">Save Reordered PDF &amp; Download</button>
+          </div>
+        </div>
+
+        <div id="status-message" class="status-message" style="display: none;" aria-live="polite"></div>
+
+      </div>
+    </section>
+
+    <article class="seo-content container">
+
+      <h2>How to Reorder, Rearrange, and Organize PDF Pages Online</h2>
+
+      <p>
+        Structuring documents in the correct chronological or sequential order is often necessary when combining scanned reports, 
+        presentations, or multi-page agreements. Traditional online tools require uploading private corporate and personal records 
+        to remote cloud servers, exposing you to data security risks.
+      </p>
+
+      <p>
+        Our advanced **Client-Side PDF Page Reorder &amp; Organizer Utility** processes your files locally right inside your web browser. 
+        Using high-performance JavaScript engines (`pdf-lib`, `PDF.js`, and `SortableJS`), page thumbnails are rendered locally 
+        allowing you to rearrange, rotate, or delete pages with zero external data transmission.
+      </p>
+
+      <h3>Key Features of Our PDF Page Organizer</h3>
+      <ul>
+        <li><strong>Interactive Drag-and-Drop:</strong> Visually grab and move page thumbnail cards into your precise custom order.</li>
+        <li><strong>Page Rotation &amp; Deletion:</strong> Quickly rotate individual pages 90 degrees clockwise or delete unwanted pages instantly.</li>
+        <li><strong>Quick Sort Presets:</strong> Easily reverse page sequences or reset layouts with a single click.</li>
+        <li><strong>100% Privacy &amp; Security:</strong> Total browser-based execution guarantees your sensitive documents never leave your device.</li>
+      </ul>
+
+      <h3>Step-by-Step Instructions</h3>
+      <ol>
+        <li><strong>Upload PDF File:</strong> Drag and drop your .pdf document into the secure upload dropzone or select a file from your device.</li>
+        <li><strong>Organize Pages:</strong> Drag thumbnail cards into your desired new order, or use the rotation and delete buttons on each card.</li>
+        <li><strong>Save &amp; Download:</strong> Click **Save Reordered PDF &amp; Download** to compile and download your newly organized document instantly.</li>
+      </ol>
+
+    </article>
+
+    <section class="faq container" aria-labelledby="faq-heading">
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I reorder pages in a PDF file?</summary>
+        <p>
+          Upload your PDF file, drag and drop the page thumbnail cards into your desired new sequence, and click Save Reordered PDF.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I delete or rotate specific pages in my PDF?</summary>
+        <p>
+          Yes! Each page thumbnail card includes quick controls to rotate the page 90 degrees or delete it entirely from the final document.
+        </p>
+      </details>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+
+    </div>
+  </footer>
+
+  <script>
+    let loadedPdfBytes = null;
+    let originalFileName = 'reordered-document';
+    let pdfDocInstance = null;
+    let pageDataArray = []; // Array of objects storing original index, rotation offset, etc.
+    let sortableInstance = null;
+
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const converterWorkspace = document.getElementById('converter-workspace');
+    const statusMessage = document.getElementById('status-message');
+    const thumbnailsGrid = document.getElementById('thumbnails-grid');
+
+    // Drag and Drop Zone Events
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'application/pdf') {
+        processPdfDocument(file);
+      } else {
+        showStatus('Please drop a valid PDF document.', 'error');
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        processPdfDocument(file);
+      }
+    });
+
+    async function processPdfDocument(file) {
+      if (typeof window.PDFLib === 'undefined' || typeof window.pdfjsLib === 'undefined' || typeof window.Sortable === 'undefined') {
+        showStatus('PDF libraries are still loading. Please check your connection and try again.', 'error');
+        return;
+      }
+
+      showStatus('Loading PDF document locally... Please wait.', 'info');
+      try {
+        originalFileName = file.name.replace(/\.[^/.]+$/, "");
+        document.getElementById('output-filename').value = originalFileName + '-reordered';
+
+        loadedPdfBytes = await file.arrayBuffer();
+        pdfDocInstance = await window.PDFLib.PDFDocument.load(loadedPdfBytes);
+        const totalPages = pdfDocInstance.getPageCount();
+
+        pageDataArray = [];
+        for (let i = 0; i < totalPages; i++) {
+          pageDataArray.push({
+            originalIndex: i,
+            rotationOffset: 0 // accumulated rotation in degrees
+          });
+        }
+
+        await renderThumbnailsGrid();
+
+        converterWorkspace.style.display = 'block';
+        showStatus(`Successfully loaded "${file.name}" (${totalPages} pages).`, 'success');
+      } catch (err) {
+        console.error(err);
+        showStatus('Failed to load PDF document. Ensure it is a valid, uncorrupted PDF file.', 'error');
+      }
+    }
+
+    async function renderThumbnailsGrid() {
+      thumbnailsGrid.innerHTML = '';
+      const loadingTask = window.pdfjsLib.getDocument({ data: loadedPdfBytes.slice(0) });
+      const pdfJsDoc = await loadingTask.promise;
+
+      for (let i = 0; i < pageDataArray.length; i++) {
+        const item = pageDataArray[i];
+        const pageNum = item.originalIndex + 1;
+        const page = await pdfJsDoc.getPage(pageNum);
+
+        const viewport = page.getViewport({ scale: 0.25, rotation: item.rotationOffset });
+
+        const card = document.createElement('div');
+        card.className = 'thumb-card';
+        card.dataset.index = i;
+
+        const canvasContainer = document.createElement('div');
+        canvasContainer.className = 'thumb-canvas-container';
+
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const context = canvas.getContext('2d');
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+        canvasContainer.appendChild(canvas);
+
+        const footer = document.createElement('div');
+        footer.className = 'thumb-footer';
+
+        const span = document.createElement('span');
+        span.textContent = `Page ${pageNum}`;
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'thumb-actions';
+
+        const rotBtn = document.createElement('button');
+        rotBtn.type = 'button';
+        rotBtn.className = 'thumb-btn';
+        rotBtn.textContent = '🔄';
+        rotBtn.title = 'Rotate 90°';
+        rotBtn.onclick = (e) => {
+          e.stopPropagation();
+          rotateThumbPage(i);
+        };
+
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'thumb-btn delete';
+        delBtn.textContent = '❌';
+        delBtn.title = 'Delete Page';
+        delBtn.onclick = (e) => {
+          e.stopPropagation();
+          deleteThumbPage(i);
+        };
+
+        actionsDiv.appendChild(rotBtn);
+        actionsDiv.appendChild(delBtn);
+
+        footer.appendChild(span);
+        footer.appendChild(actionsDiv);
+
+        card.appendChild(canvasContainer);
+        card.appendChild(footer);
+        thumbnailsGrid.appendChild(card);
+      }
+
+      // Initialize or update SortableJS
+      if (sortableInstance) {
+        sortableInstance.destroy();
+      }
+      sortableInstance = new window.Sortable(thumbnailsGrid, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        onEnd: () => {
+          updatePageArrayFromDOM();
+        }
+      });
+    }
+
+    function updatePageArrayFromDOM() {
+      const cards = thumbnailsGrid.querySelectorAll('.thumb-card');
+      const newArray = [];
+      cards.forEach(card => {
+        const domIndex = parseInt(card.dataset.index);
+        newArray.push(pageDataArray[domIndex]);
+      });
+      pageDataArray = newArray;
+      // Re-index dataset tags
+      cards.forEach((card, idx) => {
+        card.dataset.index = idx;
+      });
+    }
+
+    async function rotateThumbPage(arrayIndex) {
+      updatePageArrayFromDOM();
+      pageDataArray[arrayIndex].rotationOffset = (pageDataArray[arrayIndex].rotationOffset + 90) % 360;
+      await renderThumbnailsGrid();
+    }
+
+    async function deleteThumbPage(arrayIndex) {
+      updatePageArrayFromDOM();
+      if (pageDataArray.length <= 1) {
+        showStatus('Cannot delete the last remaining page in the document.', 'error');
+        return;
+      }
+      pageDataArray.splice(arrayIndex, 1);
+      await renderThumbnailsGrid();
+      showStatus('Page removed from sequence.', 'info');
+    }
+
+    async function executeQuickSort(sortType) {
+      if (!pageDataArray || pageDataArray.length === 0) return;
+      updatePageArrayFromDOM();
+
+      if (sortType === 'reverse') {
+        pageDataArray.reverse();
+      } else if (sortType === 'even-odd') {
+        // Group odd indices first, then even indices
+        const odds = pageDataArray.filter((_, idx) => idx % 2 === 0);
+        const evens = pageDataArray.filter((_, idx) => idx % 2 !== 0);
+        pageDataArray = [...odds, ...evens];
+      } else if (sortType === 'reset') {
+        pageDataArray.sort((a, b) => a.originalIndex - b.originalIndex);
+      }
+
+      await renderThumbnailsGrid();
+      document.getElementById('quick-sort').value = "";
+      showStatus('Applied quick sort arrangement.', 'info');
+    }
+
+    async function executePdfReorderAction() {
+      if (!pdfDocInstance) {
+        showStatus('Please upload a PDF document first.', 'error');
+        return;
+      }
+
+      updatePageArrayFromDOM();
+
+      if (pageDataArray.length === 0) {
+        showStatus('Cannot export a PDF with zero pages.', 'error');
+        return;
+      }
+
+      showStatus('Compiling and saving reordered PDF... Please wait.', 'info');
+
+      try {
+        const { PDFDocument, degrees } = window.PDFLib;
+        const newPdfDoc = await PDFDocument.create();
+
+        const indicesToCopy = pageDataArray.map(item => item.originalIndex);
+        const copiedPages = await newPdfDoc.copyPages(pdfDocInstance, indicesToCopy);
+
+        copiedPages.forEach((page, idx) => {
+          const targetRotation = pageDataArray[idx].rotationOffset;
+          if (targetRotation !== 0) {
+            const currentRot = page.getRotation().angle;
+            page.setRotation(degrees(currentRot + targetRotation));
+          }
+          newPdfDoc.addPage(page);
+        });
+
+        const modifiedPdfBytes = await newPdfDoc.save();
+        const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+
+        let filenameInput = document.getElementById('output-filename').value.trim() || 'reordered-document';
+        if (!filenameInput.endsWith('.pdf')) {
+          filenameInput += '.pdf';
+        }
+        link.download = filenameInput;
+        link.click();
+        URL.revokeObjectURL(link.href);
+
+        showStatus('Success! Reordered PDF document created and downloaded.', 'success');
+
+      } catch (err) {
+        console.error(err);
+        showStatus(err.message || 'An error occurred while reordering pages. Please try again.', 'error');
+      }
+    }
+
+    function showStatus(message, type) {
+      statusMessage.style.display = 'block';
+      statusMessage.className = `status-message ${type}`;
+      statusMessage.textContent = message;
+    }
+  </script>
+</body>
+</html>

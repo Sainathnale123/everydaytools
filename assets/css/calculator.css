@@ -23,7 +23,8 @@
 
 * {
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
+  padding: auto;
   box-sizing: border-box;
 }
 

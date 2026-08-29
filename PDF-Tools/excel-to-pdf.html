@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Advanced Free Excel to PDF Converter – Convert XLSX to PDF Online</title>
+  <meta name="title" content="Advanced Free Excel to PDF Converter – Convert XLSX to PDF Online">
+  <meta name="description" content="Convert Excel XLSX spreadsheets into high-quality PDF tables online for free. Features instant sheet data parsing, custom orientation, font adjustments, and 100% client-side security.">
+  <meta name="keywords" content="convert excel to pdf online free, xlsx to pdf converter, secure browser excel to pdf, client side spreadsheet exporter, table to pdf">
+  <meta name="author" content="Everyday Tools">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2310b981'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <link rel="canonical" href="https://everydaytools.co.in/pdf-tools/excel-to-pdf.html">
+
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://everydaytools.co.in/pdf-tools/excel-to-pdf.html">
+  <meta property="og:title" content="Advanced Free Excel to PDF Converter – Secure Browser Tool">
+  <meta property="og:description" content="Convert Excel XLSX files into professional PDF documents right inside your browser with total privacy and no cloud uploads.">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta property="og:site_name" content="Everyday Tools">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://everydaytools.co.in/pdf-tools/excel-to-pdf.html">
+  <meta name="twitter:title" content="Advanced Free Excel to PDF Converter Online">
+  <meta name="twitter:description" content="Convert Excel XLSX spreadsheets to PDF securely on your device without server uploads.">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F', { 'anonymize_ip': true });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Everyday Tools",
+    "url": "https://everydaytools.co.in/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://everydaytools.co.in/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://everydaytools.co.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PDF Tools",
+        "item": "https://everydaytools.co.in/pdf-tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Excel to PDF",
+        "item": "https://everydaytools.co.in/pdf-tools/excel-to-pdf.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Everyday Tools Excel to PDF Converter",
+    "operatingSystem": "All",
+    "applicationCategory": "BrowserApplication",
+    "browser": "Requires JavaScript and modern browser support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Client-side utility to convert Microsoft Excel XLSX spreadsheets into portable PDF documents instantly."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert an Excel spreadsheet to a PDF file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Upload your XLSX file, configure your sheet options, font families, and layout margins, then click Convert & Download PDF."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my spreadsheet files kept private and secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100% secure. All document processing happens locally within your web browser without uploading your files to any external server."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+
+  <style>
+    /* ==========================================================================
+       CUSTOM TOOL COMPONENT OVERRIDES MATCHING CALCULATOR.CSS PATTERNS
+       ========================================================================== -->
+    */
+    .page-header {
+      padding-bottom: 0.5rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    .tool-card-container {
+      max-width: 950px;
+      margin: 0 auto 1.5rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      padding: 2.5rem;
+      border: 1px solid #e2e8f0;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 640px) {
+      .tool-card-container {
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
+    }
+
+    .upload-dropzone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 640px) {
+      .upload-dropzone {
+        padding: 1.75rem 1rem;
+      }
+    }
+
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+      border-color: #10b981;
+      background: #ecfdf5;
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .upload-dropzone h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      color: #1e293b;
+    }
+
+    .upload-dropzone p {
+      margin: 0 0 1.5rem 0;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .option-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.4rem;
+    }
+
+    .option-group select, .option-group input[type="text"], .option-group input[type="number"] {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 0.95rem;
+      color: #1e293b;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .option-group select:focus, .option-group input:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+
+    .btn-primary-custom {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-primary-custom:hover {
+      background: #059669;
+    }
+
+    .btn-secondary-custom {
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #e2e8f0;
+    }
+
+    .converter-workspace {
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .workspace-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .workspace-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+    }
+
+    .preview-container {
+      max-height: 400px;
+      overflow: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      background: #f8fafc;
+      margin-bottom: 1.5rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      color: #334155;
+      text-align: left;
+    }
+
+    .data-table th, .data-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #f1f5f9;
+      white-space: nowrap;
+    }
+
+    .data-table th {
+      background: #e2e8f0;
+      font-weight: 600;
+      color: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .tool-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 640px) {
+      .tool-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .tool-actions button {
+        width: 100%;
+      }
+    }
+
+    .estimation-panel {
+      font-size: 0.9rem;
+      color: #475569;
+      font-weight: 500;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-message {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .status-message.info {
+      background: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+
+    .status-message.success {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">
+          Advanced Client-Side Utility
+        </span>
+
+        <h1>Advanced Free Excel to PDF Converter – Convert XLSX to PDF Online</h1>
+
+        <p>
+          Convert Microsoft Excel (.xlsx, .xls) spreadsheets into professional, clean tabular PDF documents directly in your browser 
+          with customizable worksheet selectors, typography, layout orientation, and complete client-side privacy.
+        </p>
+      </div>
+    </header>
+
+    <section class="container" aria-label="Excel to PDF Converter Workspace">
+      <div class="tool-card-container">
+        
+        <div id="dropzone" class="upload-dropzone" tabindex="0" role="button" aria-label="Upload Excel file dropzone">
+          <div class="upload-icon" aria-hidden="true">📊</div>
+          <h3>Drag &amp; Drop Excel Spreadsheet Here</h3>
+          <p>or click to browse local .xlsx / .xls files from your device</p>
+          <input type="file" id="file-input" accept=".xlsx, .xls, .csv" style="display: none;">
+          <button type="button" class="btn-primary-custom" onclick="document.getElementById('file-input').click()">Select Excel File</button>
+        </div>
+
+        <div class="options-grid">
+          <div class="option-group">
+            <label for="output-filename">Output Filename</label>
+            <input type="text" id="output-filename" value="converted-spreadsheet" placeholder="Enter filename">
+          </div>
+          <div class="option-group">
+            <label for="sheet-selector">Select Worksheet</label>
+            <select id="sheet-selector" onchange="switchActiveSheet()">
+              <option value="">-- Upload a file first --</option>
+            </select>
+          </div>
+          <div class="option-group">
+            <label for="page-orientation">Orientation</label>
+            <select id="page-orientation">
+              <option value="landscape">Landscape (Recommended)</option>
+              <option value="portrait">Portrait</option>
+            </select>
+          </div>
+          <div class="option-group">
+            <label for="page-format">Page Size</label>
+            <select id="page-format">
+              <option value="a4">A4 Standard</option>
+              <option value="letter">US Letter</option>
+            </select>
+          </div>
+          <div class="option-group">
+            <label for="font-size">Font Size (pt)</label>
+            <input type="number" id="font-size" value="9" min="6" max="16">
+          </div>
+          <div class="option-group">
+            <label for="margin-size">Margin (mm)</label>
+            <input type="number" id="margin-size" value="10" min="5" max="30">
+          </div>
+        </div>
+
+        <div id="converter-workspace" class="converter-workspace">
+          <div class="workspace-header">
+            <h3 id="workspace-title">Spreadsheet Table Preview</h3>
+          </div>
+          
+          <div class="preview-container" aria-label="Spreadsheet preview container">
+            <table id="preview-table" class="data-table">
+              </table>
+          </div>
+
+          <div class="estimation-panel" id="estimation-panel">
+            📊 Ready: <span id="est-summary">Spreadsheet parsed successfully. Configure settings above and click convert.</span>
+          </div>
+
+          <div class="tool-actions">
+            <button type="button" class="btn-secondary-custom" onclick="document.getElementById('file-input').click()">📁 Open Another Spreadsheet</button>
+            <button type="button" id="convert-btn" class="btn-primary-custom" onclick="executeExcelToPDF()">Convert &amp; Download PDF</button>
+          </div>
+        </div>
+
+        <div id="status-message" class="status-message" style="display: none;" aria-live="polite"></div>
+
+      </div>
+    </section>
+
+    <article class="seo-content container">
+
+      <h2>How to Convert Excel Spreadsheets into PDF Files Securely</h2>
+
+      <p>
+        Converting Microsoft Excel (.xlsx, .xls) files into professional Portable Document Format (PDF) documents ensures your financial reports, 
+        inventories, and tables render consistently without formula shifts or formatting breaks across devices. Traditional online conversion utilities 
+        require uploading sensitive corporate books and data models to remote cloud servers, creating potential security liabilities.
+      </p>
+
+      <p>
+        Our advanced **Client-Side Excel to PDF Converter** processes your spreadsheets locally right inside your web browser. 
+        Using high-performance JavaScript engines (`SheetJS` and `jsPDF-AutoTable`), your workbook values and sheets are extracted 
+        and compiled directly into clean table layouts on your machine without any external data transmission.
+      </p>
+
+      <h3>Key Features of Our XLSX to PDF Utility</h3>
+      <ul>
+        <li><strong>Multi-Sheet Support:</strong> Easily switch between different tabs within your uploaded workbook before generating your PDF.</li>
+        <li><strong>Custom Layout &amp; Orientation:</strong> Switch to landscape mode and tweak margins to ensure wide data tables fit perfectly on the page.</li>
+        <li><strong>Instant Tabular Preview:</strong> Inspect your spreadsheet rows and columns immediately before exporting.</li>
+        <li><strong>100% Privacy &amp; Security:</strong> Total browser-based execution guarantees your financial and private spreadsheets never leave your device.</li>
+      </ul>
+
+      <h3>Step-by-Step Instructions</h3>
+      <ol>
+        <li><strong>Upload Spreadsheet:</strong> Drag and drop your .xlsx or .xls file into the secure upload dropzone or select a file from your device.</li>
+        <li><strong>Select Worksheet &amp; Layout:</strong> Choose your desired worksheet tab from the dropdown list and customize orientation, margins, or font size.</li>
+        <li><strong>Convert &amp; Download:</strong> Click **Convert &amp; Download PDF** to format and save your clean tabular document instantly.</li>
+      </ol>
+
+    </article>
+
+    <section class="faq container" aria-labelledby="faq-heading">
+
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I convert an Excel spreadsheet to a PDF file?</summary>
+        <p>
+          Upload your XLSX file, pick your active worksheet tab, customize settings, and click Convert &amp; Download PDF.
+        </p>
+      </details>
+
+      <details>
+        <summary>Are my spreadsheet files kept private and secure?</summary>
+        <p>
+          Yes, 100% secure. All spreadsheet parsing and PDF compilation happen locally within your web browser without uploading files to any external server.
+        </p>
+      </details>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+
+    </div>
+  </footer>
+
+  <script>
+    let workbookData = null;
+    let originalFileName = 'converted-spreadsheet';
+
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const converterWorkspace = document.getElementById('converter-workspace');
+    const previewTable = document.getElementById('preview-table');
+    const sheetSelector = document.getElementById('sheet-selector');
+    const statusMessage = document.getElementById('status-message');
+    const pageFormatSelect = document.getElementById('page-format');
+    const pageOrientationSelect = document.getElementById('page-orientation');
+    const fontSizeInput = document.getElementById('font-size');
+    const marginSizeInput = document.getElementById('margin-size');
+
+    // Drag and Drop Zone Events
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const file = e.dataTransfer.files[0];
+      if (file && (file.name.match(/\.(xlsx|xls|csv)$/i))) {
+        processExcelDocument(file);
+      } else {
+        showStatus('Please drop a valid Excel (.xlsx, .xls) or CSV spreadsheet.', 'error');
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        processExcelDocument(file);
+      }
+    });
+
+    async function processExcelDocument(file) {
+      if (typeof window.XLSX === 'undefined') {
+        showStatus('SheetJS library is still loading. Please check your connection and try again.', 'error');
+        return;
+      }
+
+      showStatus('Parsing Excel spreadsheet locally... Please wait.', 'info');
+      try {
+        originalFileName = file.name.replace(/\.[^/.]+$/, "");
+        document.getElementById('output-filename').value = originalFileName;
+
+        const arrayBuffer = await file.arrayBuffer();
+        workbookData = window.XLSX.read(arrayBuffer, { type: 'array' });
+
+        // Populate sheet selector dropdown
+        sheetSelector.innerHTML = '';
+        workbookData.SheetNames.forEach((sheetName) => {
+          const opt = document.createElement('option');
+          opt.value = sheetName;
+          opt.textContent = sheetName;
+          sheetSelector.appendChild(opt);
+        });
+
+        converterWorkspace.style.display = 'block';
+        renderActiveSheetPreview();
+        showStatus(`Successfully parsed "${file.name}".`, 'success');
+      } catch (err) {
+        console.error(err);
+        showStatus('Failed to parse spreadsheet. Ensure it is a valid, uncorrupted Excel document.', 'error');
+      }
+    }
+
+    function switchActiveSheet() {
+      if (workbookData) {
+        renderActiveSheetPreview();
+      }
+    }
+
+    function renderActiveSheetPreview() {
+      const sheetName = sheetSelector.value;
+      const worksheet = workbookData.Sheets[sheetName];
+      
+      // Convert sheet to array of arrays
+      const jsonData = window.XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+      
+      previewTable.innerHTML = '';
+      if (jsonData.length === 0) {
+        previewTable.innerHTML = '<tr><td>Worksheet is empty</td></tr>';
+        return;
+      }
+
+      // Render Table Head and Rows for Preview
+      let maxCols = 0;
+      jsonData.forEach(row => { if(row.length > maxCols) maxCols = row.length; });
+
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      const firstRow = jsonData[0] || [];
+      
+      for (let i = 0; i < maxCols; i++) {
+        const th = document.createElement('th');
+        th.textContent = firstRow[i] !== undefined ? firstRow[i] : `Col ${i+1}`;
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      previewTable.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      for (let r = 1; r < jsonData.length; r++) {
+        const tr = document.createElement('tr');
+        const rowData = jsonData[r];
+        for (let c = 0; c < maxCols; c++) {
+          const td = document.createElement('td');
+          td.textContent = rowData[c] !== undefined ? rowData[c] : '';
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      previewTable.appendChild(tbody);
+      document.getElementById('workspace-title').textContent = `Preview: Sheet "${sheetName}"`;
+    }
+
+    async function executeExcelToPDF() {
+      if (!workbookData) {
+        showStatus('Please upload an Excel spreadsheet first.', 'error');
+        return;
+      }
+
+      if (typeof window.jspdf === 'undefined' || typeof window.jspdf.jsPDF.API.autoTable === 'undefined') {
+        showStatus('PDF generator libraries are still loading. Please check your connection and try again.', 'error');
+        return;
+      }
+
+      showStatus('Generating tabular PDF document... Please wait.', 'info');
+
+      try {
+        const { jsPDF } = window.jspdf;
+        const format = pageFormatSelect.value; // 'a4' or 'letter'
+        const orientation = pageOrientationSelect.value; // 'landscape' or 'portrait'
+        const fontSize = parseFloat(fontSizeInput.value) || 9;
+        const margin = parseFloat(marginSizeInput.value) || 10;
+        const sheetName = sheetSelector.value;
+        const worksheet = workbookData.Sheets[sheetName];
+
+        const jsonData = window.XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+        if (jsonData.length === 0) {
+          throw new Error('Selected worksheet contains no data.');
+        }
+
+        const doc = new jsPDF({
+          orientation: orientation,
+          unit: 'mm',
+          format: format
+        });
+
+        // Add document title heading
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text(`Spreadsheet: ${sheetName}`, margin, margin);
+
+        const headRow = jsonData[0];
+        const bodyRows = jsonData.slice(1);
+
+        doc.autoTable({
+          head: [headRow],
+          body: bodyRows,
+          startY: margin + 6,
+          theme: 'grid',
+          styles: {
+            font: 'helvetica',
+            fontSize: fontSize,
+            cellPadding: 2,
+            overflow: 'linebreak'
+          },
+          headStyles: {
+            fillColor: [16, 185, 129],
+            textColor: [255, 255, 255],
+            fontStyle: 'bold'
+          },
+          margin: { top: margin + 6, right: margin, bottom: margin, left: margin }
+        });
+
+        let filenameInput = document.getElementById('output-filename').value.trim() || 'converted-spreadsheet';
+        if (!filenameInput.endsWith('.pdf')) {
+          filenameInput += '.pdf';
+        }
+
+        doc.save(filenameInput);
+        showStatus('Success! Tabular PDF document created and downloaded.', 'success');
+
+      } catch (err) {
+        console.error(err);
+        showStatus('An error occurred during PDF table generation. Please try again.', 'error');
+      }
+    }
+
+    function showStatus(message, type) {
+      statusMessage.style.display = 'block';
+      statusMessage.className = `status-message ${type}`;
+      statusMessage.textContent = message;
+    }
+  </script>
+</body>
+</html>
