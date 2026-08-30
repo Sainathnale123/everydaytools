@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A to Z Voices & Alphabet Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>A to Z Voices Explorer</h1>
+        <p>Explore the alphabet and phonics! Tap any card to hear clear letter pronunciations and words.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search letters (e.g. A, Apple)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All (A-Z)</button>
+        <button class="preset-btn" data-filter="vowel">Vowels</button>
+        <button class="preset-btn" data-filter="consonant">Consonants</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Alphabet Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Master Phonics and Alphabet Sounds Interactively</h2>
+      <p>
+        Help young learners discover the alphabet with our A to Z Voices explorer. Each card features an uppercase and lowercase letter, 
+        an accompanying vocabulary example, and instant audio speech synthesis to reinforce phonetic learning and letter recognition.
+      </p>
+      <h3>Early Childhood Literacy & Pronunciation</h3>
+      <p>
+        Interactive audio tools accelerate early reading skills. By listening to slow and clear letter sounds paired with familiar words, 
+        children can easily connect letters to their spoken sounds in an engaging, self-paced browser environment.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the letter sound?</summary>
+        <p>Simply tap or click on any letter card to hear both the letter name and its example word spoken aloud.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter between vowels and consonants?</summary>
+        <p>Yes! Use the filter buttons at the top to toggle between Vowels, Consonants, or view the complete A to Z set.</p>
+      </details>
+
+      <details>
+        <summary>Is this alphabet tool free?</summary>
+        <p>Yes, all features and audio pronunciations are 100% free to use directly in your web browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            { name: "A", word: "Apple", emoji: "🍎", type: "vowel" },
+            { name: "B", word: "Ball", emoji: "⚽", type: "consonant" },
+            { name: "C", word: "Cat", emoji: "🐱", type: "consonant" },
+            { name: "D", word: "Dog", emoji: "🐶", type: "consonant" },
+            { name: "E", word: "Elephant", emoji: "🐘", type: "vowel" },
+            { name: "F", word: "Fish", emoji: "🐠", type: "consonant" },
+            { name: "G", word: "Grape", emoji: "🍇", type: "consonant" },
+            { name: "H", word: "House", emoji: "🏠", type: "consonant" },
+            { name: "I", word: "Igloo", emoji: "🧊", type: "vowel" },
+            { name: "J", word: "Juice", emoji: "🧃", type: "consonant" },
+            { name: "K", word: "Kite", emoji: "🪁", type: "consonant" },
+            { name: "L", word: "Lion", emoji: "🦁", type: "consonant" },
+            { name: "M", word: "Monkey", emoji: "🐵", type: "consonant" },
+            { name: "N", word: "Nest", emoji: "🪹", type: "consonant" },
+            { name: "O", word: "Owl", emoji: "🦉", type: "vowel" },
+            { name: "P", word: "Penguin", emoji: "🐧", type: "consonant" },
+            { name: "Q", word: "Queen", emoji: "👑", type: "consonant" },
+            { name: "R", word: "Rabbit", emoji: "🐰", type: "consonant" },
+            { name: "S", word: "Sun", emoji: "☀️", type: "consonant" },
+            { name: "T", word: "Train", emoji: "🚂", type: "consonant" },
+            { name: "U", word: "Umbrella", emoji: "☂️", type: "vowel" },
+            { name: "V", word: "Violin", emoji: "🎻", type: "consonant" },
+            { name: "W", word: "Whale", emoji: "🐳", type: "consonant" },
+            { name: "X", word: "Xylophone", emoji: "🎹", type: "consonant" },
+            { name: "Y", word: "Yacht", emoji: "⛵", type: "consonant" },
+            { name: "Z", word: "Zebra", emoji: "🦓", type: "consonant" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.word.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No letters found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.2rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name} - ${item.word}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(`${item.name}. ${item.word}`);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.8;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

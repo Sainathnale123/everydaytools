@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Animal Sounds Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Animal Sounds Explorer</h1>
+        <p>Over 75+ animals! Tap any card to hear its name, filter by habitat, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search animals (e.g. Lion, Elephant)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Animals (75+)</button>
+        <button class="preset-btn" data-filter="farm">Farm & Domestic</button>
+        <button class="preset-btn" data-filter="wild">Wild & Safari</button>
+        <button class="preset-btn" data-filter="forest">Forest & Woodland</button>
+        <button class="preset-btn" data-filter="water">Water & Marine</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Animal Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Discover Wildlife and Farm Sounds Interactively</h2>
+      <p>
+        Explore a rich collection of over 75 animal species from around the globe. Designed for children, students, and animal lovers, 
+        this interactive explorer lets you hear animal names on tap while smoothly toggling between habitats.
+      </p>
+      <h3>Interactive Learning & Animal Recognition</h3>
+      <p>
+        Connecting animal names with their sounds and habitats enhances early childhood cognitive development and vocabulary building. 
+        Use this tool to explore diverse fauna, learn fun phonetic sounds, and enjoy an immersive browser experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the animal name?</summary>
+        <p>Simply tap or click on any card in the grid to trigger text-to-speech audio pronunciation of the animal's name.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter animals by habitat?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between farm animals, wild safari species, forest creatures, and marine life.</p>
+      </details>
+
+      <details>
+        <summary>Is this animal explorer free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Farm & Domestic (20 items)
+            { name: "Dog", sound: "Woof woof!", emoji: "🐶", type: "farm" },
+            { name: "Cat", sound: "Meow!", emoji: "🐱", type: "farm" },
+            { name: "Cow", sound: "Moo!", emoji: "🐮", type: "farm" },
+            { name: "Horse", sound: "Neigh!", emoji: "🐴", type: "farm" },
+            { name: "Pig", sound: "Oink oink!", emoji: "🐷", type: "farm" },
+            { name: "Sheep", sound: "Baa baa!", emoji: "🐑", type: "farm" },
+            { name: "Goat", sound: "Bleat!", emoji: "🐐", type: "farm" },
+            { name: "Chicken", sound: "Cluck cluck!", emoji: "🐔", type: "farm" },
+            { name: "Rooster", sound: "Cock-a-doodle-doo!", emoji: "🐓", type: "farm" },
+            { name: "Duck", sound: "Quack quack!", emoji: "🦆", type: "farm" },
+            { name: "Turkey", sound: "Gobble gobble!", emoji: "🦃", type: "farm" },
+            { name: "Donkey", sound: "Hee-haw!", emoji: "🫏", type: "farm" },
+            { name: "Rabbit", sound: "Squeak!", emoji: "🐰", type: "farm" },
+            { name: "Mouse", sound: "Squeak squeak!", emoji: "🐭", type: "farm" },
+            { name: "Guinea Pig", sound: "Wheek wheek!", emoji: "🐹", type: "farm" },
+            { name: "Goose", sound: "Honk honk!", emoji: "🪿", type: "farm" },
+            { name: "Llama", sound: "Mwah!", emoji: "🦙", type: "farm" },
+            { name: "Alpaca", sound: "Hummm!", emoji: "🦙", type: "farm" },
+            { name: "Pigeon", sound: "Coo coo!", emoji: "🐦", type: "farm" },
+            { name: "Bull", sound: "Snort!", emoji: "🐂", type: "farm" },
+
+            // Wild & Safari (25 items)
+            { name: "Lion", sound: "Roar!", emoji: "🦁", type: "wild" },
+            { name: "Tiger", sound: "Growl!", emoji: "🐅", type: "wild" },
+            { name: "Elephant", sound: "Trumpet!", emoji: "🐘", type: "wild" },
+            { name: "Monkey", sound: "Ooh ooh ah ah!", emoji: "🐵", type: "wild" },
+            { name: "Giraffe", sound: "Bleat!", emoji: "🦒", type: "wild" },
+            { name: "Zebra", sound: "Whinny!", emoji: "🦓", type: "wild" },
+            { name: "Cheetah", sound: "Purr and chirp!", emoji: "🐆", type: "wild" },
+            { name: "Hippopotamus", sound: "Grunt!", emoji: "🦛", type: "wild" },
+            { name: "Rhinoceros", sound: "Huff!", emoji: "🦏", type: "wild" },
+            { name: "Kangaroo", sound: "Chortle!", emoji: "🦘", type: "wild" },
+            { name: "Koala", sound: "Bellow!", emoji: "🐨", type: "wild" },
+            { name: "Camel", sound: "Grunt!", emoji: "🐪", type: "wild" },
+            { name: "Gorilla", sound: "Thump thump!", emoji: "🦍", type: "wild" },
+            { name: "Leopard", sound: "Snarl!", emoji: "🐆", type: "wild" },
+            { name: "Hyena", sound: "Cackle!", emoji: "鬣", type: "wild" },
+            { name: "Ostrich", sound: "Chirp!", emoji: "🐦", type: "wild" },
+            { name: "Zebra", sound: "Bark!", emoji: "🦓", type: "wild" },
+            { name: "Panda", sound: "Bleat!", emoji: "🐼", type: "wild" },
+            { name: "Sloth", sound: "Sigh!", emoji: "🦥", type: "wild" },
+            { name: "Meerkat", sound: "Bark bark!", emoji: "🦦", type: "wild" },
+            { name: "Baboon", sound: "Yack!", emoji: "🐒", type: "wild" },
+            { name: "Warthog", sound: "Grunt!", emoji: "🐗", type: "wild" },
+            { name: "Chimpanzee", sound: "Hoo hoo!", emoji: "🐵", type: "wild" },
+            { name: "Crocodile", sound: "Hiss!", emoji: "🐊", type: "wild" },
+            { name: "Flamingo", sound: "Honk!", emoji: "🦩", type: "wild" },
+
+            // Forest & Woodland (15 items)
+            { name: "Wolf", sound: "Ahowoo!", emoji: "🐺", type: "forest" },
+            { name: "Bear", sound: "Roar!", emoji: "🐻", type: "forest" },
+            { name: "Fox", sound: "Wa-pa-pa-pa-pow!", emoji: "🦊", type: "forest" },
+            { name: "Owl", sound: "Hoot hoot!", emoji: "🦉", type: "forest" },
+            { name: "Deer", sound: "Bellow!", emoji: "🦌", type: "forest" },
+            { name: "Hedgehog", sound: "Suff!", emoji: "🦔", type: "forest" },
+            { name: "Squirrel", sound: "Squeak!", emoji: "🐿️", type: "forest" },
+            { name: "Raccoon", sound: "Chitter!", emoji: "🦝", type: "forest" },
+            { name: "Skunk", sound: "Squawk!", emoji: "🦨", type: "forest" },
+            { name: "Eagle", sound: "Screech!", emoji: "🦅", type: "forest" },
+            { name: "Woodpecker", sound: "Peck peck!", emoji: "🐦", type: "forest" },
+            { name: "Crow", sound: "Caw caw!", emoji: "🐦‍⬛", type: "forest" },
+            { name: "Frog", sound: "Ribbit ribbit!", emoji: "🐸", type: "forest" },
+            { name: "Snake", sound: "Hiss sss!", emoji: "🐍", type: "forest" },
+            { name: "Beaver", sound: "Slap!", emoji: "🦫", type: "forest" },
+
+            // Water & Marine (15 items)
+            { name: "Whale", sound: "Whale song!", emoji: "🐳", type: "water" },
+            { name: "Dolphin", sound: "Click click!", emoji: "🐬", type: "water" },
+            { name: "Seal", sound: "Arf arf!", emoji: "🦭", type: "water" },
+            { name: "Penguin", sound: "Squawk!", emoji: "🐧", type: "water" },
+            { name: "Shark", sound: "Chomp!", emoji: "🦈", type: "water" },
+            { name: "Octopus", sound: "Blub blub!", emoji: "🐙", type: "water" },
+            { name: "Frog", sound: "Croak!", emoji: "🐸", type: "water" },
+            { name: "Duck", sound: "Quack!", emoji: "🦆", type: "water" },
+            { name: "Swan", sound: "Trumpet!", emoji: "🦢", type: "water" },
+            { name: "Pelican", sound: "Snap!", emoji: "🐦", type: "water" },
+            { name: "Beaver", sound: "Tail slap!", emoji: "🦫", type: "water" },
+            { name: "Walrus", sound: "Knock!", emoji: "🦭", type: "water" },
+            { name: "Polar Bear", sound: "Roar!", emoji: "🐻‍❄️", type: "water" },
+            { name: "Crab", sound: "Click!", emoji: "🦀", type: "water" },
+            { name: "Turtle", sound: "Hiss!", emoji: "🐢", type: "water" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.sound.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No animals found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="font-weight: 600; font-size: 0.9rem; margin-top: 4px; color: var(--text);">${item.sound}</p>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 4px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

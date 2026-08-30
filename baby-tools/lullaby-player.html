@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soothing Lullaby Player Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Sound Explorer</span>
+        <h1>Soothing Lullaby Player</h1>
+        <p>Explore calming bedtime melodies and ambient sounds! Tap any card to hear its gentle title, filter by mood, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search lullabies (e.g. Star, Moon)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Lullabies</button>
+        <button class="preset-btn" data-filter="classic">Classic Lullabies</button>
+        <button class="preset-btn" data-filter="ambient">Ambient Sounds</button>
+        <button class="preset-btn" data-filter="nature">Nature & Night</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Lullaby Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Calming Bedtime Melodies and Sounds Online</h2>
+      <p>
+        Create a peaceful sleep environment for babies and toddlers with an interactive selection of classic lullabies, 
+        ambient night sounds, and gentle melodies. Designed for parents and caregivers, this browser tool lets you explore titles 
+        and pronunciation effortlessly.
+      </p>
+      <h3>Bedtime Routines & Relaxation</h3>
+      <p>
+        Soothing sounds and predictable bedtime cues help infants transition smoothly into restful sleep. 
+        Use this tool to discover peaceful public domain titles, listen to gentle text-to-speech audio, and enjoy a calming web experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the lullaby title?</summary>
+        <p>Simply tap or click on any card in the grid to trigger a slow, gentle text-to-speech pronunciation of the lullaby's title.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter tracks by category?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between classic lullabies, ambient tones, and nature sounds.</p>
+      </details>
+
+      <details>
+        <summary>Is this lullaby explorer free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Classic Lullabies (10 items)
+            { name: "Twinkle Twinkle Little Star", desc: "Classic Bedtime Tune", emoji: "⭐", type: "classic" },
+            { name: "Rock-a-bye Baby", desc: "Treetop Lullaby", emoji: "👶", type: "classic" },
+            { name: "Brahms Lullaby", desc: "Gentle Classical Melody", emoji: "🌙", type: "classic" },
+            { name: "Hush Little Baby", desc: "Traditional Song", emoji: "🍼", type: "classic" },
+            { name: "All the Pretty Little Horses", desc: "Folk Lullaby", emoji: "🐎", type: "classic" },
+            { name: "Golden Slumbers", desc: "Soothing Verse", emoji: "✨", type: "classic" },
+            { name: "Star Light Star Bright", desc: "Wishing Rhyme", emoji: "🌟", type: "classic" },
+            { name: "Go to Sleep My Little One", desc: "Peaceful Lullaby", emoji: "💤", type: "classic" },
+            { name: "Frère Jacques", desc: "Calming Round", emoji: "🔔", type: "classic" },
+            { name: "Too-Ra-Loo-Ra-Loo-Ra", desc: "Irish Lullaby", emoji: "🍀", type: "classic" },
+
+            // Ambient Sounds (8 items)
+            { name: "White Noise", desc: "Steady Sleep Sound", emoji: "📻", type: "ambient" },
+            { name: "Pink Noise", desc: "Soft Balanced Tone", emoji: "🎧", type: "ambient" },
+            { name: "Heartbeat Rhythm", desc: "Womb-like Comfort", emoji: "💓", type: "ambient" },
+            { name: "Cosmic Drone", desc: "Deep Space Hum", emoji: "🌌", type: "ambient" },
+            { name: "Soft Music Box", desc: "Clockwork Chimes", emoji: "🎶", type: "ambient" },
+            { name: "Gentle Hum", desc: "Low Frequency Sleep Aid", emoji: "💤", type: "ambient" },
+            { name: "Warm Vinyl Crackle", desc: "Vintage Record Noise", emoji: "💿", type: "ambient" },
+            { name: "Wind Chimes", desc: "Swaying Metallic Notes", emoji: "🎐", type: "ambient" },
+
+            // Nature & Night (8 items)
+            { name: "Gentle Rain", desc: "Falling Water Drops", emoji: "🌧️", type: "nature" },
+            { name: "Ocean Waves", desc: "Calm Shoreline Tides", emoji: "🌊", type: "nature" },
+            { name: "Summer Night Crickets", desc: "Evening Meadow Sounds", emoji: "🦗", type: "nature" },
+            { name: "Soft Night Breeze", desc: "Rustling Tree Leaves", emoji: "🍃", type: "nature" },
+            { name: "Babbling Brook", desc: "Flowing Stream Water", emoji: "💧", type: "nature" },
+            { name: "Hooting Owl", desc: "Faraway Woodland Night", emoji: "🦉", type: "nature" },
+            { name: "Campfire Crackle", desc: "Warm Glowing Embers", emoji: "🔥", type: "nature" },
+            { name: "Whale Song", desc: "Deep Ocean Echoes", emoji: "🐳", type: "nature" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.desc.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No lullabies or sounds found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="font-weight: 600; font-size: 0.85rem; margin-top: 4px; color: var(--text);">${item.desc}</p>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 4px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                // Slower rate and lower pitch for extra soothing effect
+                utterance.rate = 0.75;
+                utterance.pitch = 0.95;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

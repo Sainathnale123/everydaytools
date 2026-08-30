@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Nursery Rhymes Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Nursery Rhymes Explorer</h1>
+        <p>Explore traditional folk rhymes and lullabies! Tap any card to hear its rhythm played out in musical tones or spoken clearly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search rhymes (e.g. Star, Sheep)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Rhymes</button>
+        <button class="preset-btn" data-filter="classic">Classic Folk</button>
+        <button class="preset-btn" data-filter="lullaby">Lullabies</button>
+        <button class="preset-btn" data-filter="animal">Animal Rhymes</button>
+        <button class="preset-btn" data-filter="play">Play & Action</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Nursery Rhymes Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Discover Traditional Rhymes Interactively</h2>
+      <p>
+        Explore a rich collection of public domain folk verses, traditional lullabies, and action rhymes. Designed for children, parents, and educators, 
+        this interactive explorer lets you hear rhyme rhythms and titles on tap while smoothly toggling between categories.
+      </p>
+      <h3>Interactive Learning & Early Language Skills</h3>
+      <p>
+        Connecting traditional rhyme titles and rhythms with clear audio cards enhances early childhood phonological awareness, memory, and vocabulary building. 
+        Use this tool to explore classic verses safely with public domain material and enjoy an immersive browser experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the rhyme rhythm?</summary>
+        <p>Simply tap or click on any card in the grid to trigger a cheerful musical rhythm sequence along with its title!</p>
+      </details>
+
+      <details>
+        <summary>Can I filter rhymes by category?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between classic folk verses, lullabies, animal rhymes, and play action verses.</p>
+      </details>
+
+      <details>
+        <summary>Are these rhymes copyright-free?</summary>
+        <p>Yes, all selected verses and traditional titles are part of the public domain, making them safe for free educational use.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Classic Folk (10 items)
+            { name: "Twinkle Twinkle Little Star", emoji: "⭐", type: "classic", melody: [261.63, 261.63, 392.00, 392.00, 440.00, 440.00, 392.00] },
+            { name: "Humpty Dumpty", emoji: "🥚", type: "classic", melody: [329.63, 349.23, 392.00, 440.00, 392.00, 329.63] },
+            { name: "Jack and Jill", emoji: "🪣", type: "classic", melody: [392.00, 329.63, 293.66, 261.63, 329.63, 392.00] },
+            { name: "Hey Diddle Diddle", emoji: "🐱", type: "classic", melody: [261.63, 293.66, 329.63, 349.23, 392.00] },
+            { name: "London Bridge Is Falling Down", emoji: "🌉", type: "classic", melody: [392.00, 440.00, 392.00, 349.23, 329.63, 349.23, 392.00] },
+            { name: "Ring Around the Rosie", emoji: "🌹", type: "classic", melody: [329.63, 329.63, 349.23, 392.00, 392.00, 349.23, 329.63] },
+            { name: "Old Mother Hubbard", emoji: "🦴", type: "classic", melody: [261.63, 329.63, 392.00, 523.25] },
+            { name: "The Grand Old Duke of York", emoji: "👑", type: "classic", melody: [392.00, 523.25, 493.88, 440.00, 392.00] },
+            { name: "Three Blind Mice", emoji: "🐁", type: "classic", melody: [440.00, 392.00, 329.63, 440.00, 392.00, 329.63] },
+            { name: "Simple Simon", emoji: "🥧", type: "classic", melody: [261.63, 293.66, 329.63, 349.23, 392.00] },
+
+            // Lullabies (8 items)
+            { name: "Rock-a-bye Baby", emoji: "👶", type: "lullaby", melody: [392.00, 329.63, 293.66, 261.63, 329.63, 392.00] },
+            { name: "Brahms Lullaby", emoji: "🌙", type: "lullaby", melody: [261.63, 329.63, 392.00, 523.25, 392.00, 329.63] },
+            { name: "All the Pretty Little Horses", emoji: "🐎", type: "lullaby", melody: [293.66, 329.63, 349.23, 392.00] },
+            { name: "Golden Slumbers", emoji: "✨", type: "lullaby", melody: [329.63, 349.23, 392.00, 440.00, 523.25] },
+            { name: "Hush Little Baby", emoji: "🍼", type: "lullaby", melody: [261.63, 392.00, 392.00, 440.00, 392.00] },
+            { name: "Twinkle Twinkle Little Star", emoji: "✨", type: "lullaby", melody: [261.63, 261.63, 392.00, 392.00, 440.00, 440.00, 392.00] },
+            { name: "Go to Sleep My Little One", emoji: "💤", type: "lullaby", melody: [220.00, 246.94, 261.63, 293.66] },
+            { name: "Star Light Star Bright", emoji: "🌟", type: "lullaby", melody: [392.00, 392.00, 440.00, 440.00, 523.25] },
+
+            // Animal Rhymes (10 items)
+            { name: "Baa Baa Black Sheep", emoji: "🐑", type: "animal", melody: [261.63, 261.63, 392.00, 392.00, 440.00, 392.00] },
+            { name: "Mary Had a Little Lamb", emoji: "👧", type: "animal", melody: [329.63, 293.66, 261.63, 293.66, 329.63, 329.63, 329.63] },
+            { name: "Incy Wincy Spider", emoji: "🕷️", type: "animal", melody: [261.63, 349.23, 349.23, 392.00, 440.00, 440.00] },
+            { name: "Five Little Ducks", emoji: "🦆", type: "animal", melody: [392.00, 349.23, 329.63, 293.66, 261.63] },
+            { name: "Old MacDonald Had a Farm", emoji: "🚜", type: "animal", melody: [392.00, 392.00, 392.00, 329.63, 349.23, 349.23, 329.63] },
+            { name: "Pussycat Pussycat", emoji: "🐱", type: "animal", melody: [329.63, 392.00, 329.63, 392.00, 523.25] },
+            { name: "The Owl and the Pussycat", emoji: "🦉", type: "animal", melody: [261.63, 293.66, 329.63, 349.23] },
+            { name: "Hickory Dickory Dock", emoji: "🐭", type: "animal", melody: [392.00, 329.63, 261.63, 329.63, 392.00] },
+            { name: "Little Bo Peep", emoji: "🌾", type: "animal", melody: [329.63, 349.23, 392.00, 440.00, 392.00] },
+            { name: "Ride a Cock Horse", emoji: "🐴", type: "animal", melody: [261.63, 293.66, 329.63, 392.00, 523.25] },
+
+            // Play & Action (8 items)
+            { name: "Pat-a-Cake", emoji: "🧁", type: "play", melody: [261.63, 293.66, 329.63, 349.23, 392.00] },
+            { name: "Wheels on the Bus", emoji: "🚌", type: "play", melody: [261.63, 392.00, 392.00, 440.00, 392.00, 349.23, 329.63] },
+            { name: "Head Shoulders Knees and Toes", emoji: "🙌", type: "play", melody: [261.63, 329.63, 392.00, 440.00, 523.25] },
+            { name: "If You're Happy and You Know It", emoji: "👏", type: "play", melody: [392.00, 392.00, 440.00, 440.00, 392.00, 329.63, 261.63] },
+            { name: "Row Row Row Your Boat", emoji: "🚣", type: "play", melody: [261.63, 261.63, 261.63, 293.66, 329.63] },
+            { name: "The Muffin Man", emoji: "🍞", type: "play", melody: [392.00, 329.63, 293.66, 261.63, 392.00] },
+            { name: "Mulberry Bush", emoji: "🌳", type: "play", melody: [261.63, 293.66, 329.63, 349.23, 392.00] },
+            { name: "Pop Goes the Weasel", emoji: "🎈", type: "play", melody: [261.63, 329.63, 392.00, 523.25, 440.00, 392.00] }
+        ];
+
+        let audioCtx = null;
+
+        function playMelody(notes) {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            notes.forEach((freq, index) => {
+                const now = audioCtx.currentTime + (index * 0.25);
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now);
+
+                gainNode.gain.setValueAtTime(0, now);
+                gainNode.gain.linearRampToValueAtTime(0.3, now + 0.02);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.25);
+            });
+        }
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No nursery rhymes found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    playMelody(item.melody);
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

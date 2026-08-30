@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Fruits & Vegetables Explorer</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Fruits & Vegetables Explorer</h1>
+        <p>Over 100+ items! Tap any card to hear its name, filter by category, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search fruits or vegetables..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Items (100+)</button>
+        <button class="preset-btn" data-filter="fruit">Fruits</button>
+        <button class="preset-btn" data-filter="vegetable">Vegetables</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Fruits and Vegetables Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Discover Nature's Bounty with Interactive Audio</h2>
+      <p>
+        Explore a comprehensive collection of over 100 fruits and vegetables. Designed for learners, educators, and curious minds, 
+        our interactive explorer lets you hear pronunciation on tap while smoothly toggling between fresh fruits and crisp vegetables.
+      </p>
+      <h3>Nutritional Variety & Plant-Based Learning</h3>
+      <p>
+        Incorporating a wide variety of produce into your diet ensures a rich intake of essential vitamins, minerals, and antioxidants. 
+        Use this tool to discover rare entries, expand your dietary horizons, or help children learn food names through immersive audio feedback.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the name of a fruit or vegetable?</summary>
+        <p>Simply tap or click on any card in the grid to trigger text-to-speech audio pronunciation of the item's name.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter items by category?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between viewing all items, only fruits, or only vegetables.</p>
+      </details>
+
+      <details>
+        <summary>Is this explorer completely free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Fruits (55 items)
+            { name: "Apple", emoji: "🍎", type: "fruit" },
+            { name: "Green Apple", emoji: "🍏", type: "fruit" },
+            { name: "Banana", emoji: "🍌", type: "fruit" },
+            { name: "Grapes", emoji: "🍇", type: "fruit" },
+            { name: "Green Grapes", emoji: "🍈", type: "fruit" },
+            { name: "Strawberry", emoji: "🍓", type: "fruit" },
+            { name: "Orange", emoji: "🍊", type: "fruit" },
+            { name: "Tangerine", emoji: "🍊", type: "fruit" },
+            { name: "Lemon", emoji: "🍋", type: "fruit" },
+            { name: "Banana Bunch", emoji: "🍌", type: "fruit" },
+            { name: "Watermelon", emoji: "🍉", type: "fruit" },
+            { name: "Pineapple", emoji: "🍍", type: "fruit" },
+            { name: "Mango", emoji: "🥭", type: "fruit" },
+            { name: "Peach", emoji: "🍑", type: "fruit" },
+            { name: "Cherries", emoji: "🍒", type: "fruit" },
+            { name: "Pear", emoji: "🍐", type: "fruit" },
+            { name: "Blueberries", emoji: "🫐", type: "fruit" },
+            { name: "Kiwi", emoji: "🥝", type: "fruit" },
+            { name: "Coconut", emoji: "🥥", type: "fruit" },
+            { name: "Melon", emoji: "🍈", type: "fruit" },
+            { name: "Papaya", emoji: "🍈", type: "fruit" },
+            { name: "Pomegranate", emoji: "🍎", type: "fruit" },
+            { name: "Dragon Fruit", emoji: "🐉", type: "fruit" },
+            { name: "Avocado", emoji: "🥑", type: "fruit" },
+            { name: "Plum", emoji: "🟣", type: "fruit" },
+            { name: "Raspberry", emoji: "🍇", type: "fruit" },
+            { name: "Blackberry", emoji: "🫐", type: "fruit" },
+            { name: "Fig", emoji: "🟤", type: "fruit" },
+            { name: "Date", emoji: "🌴", type: "fruit" },
+            { name: "Passion Fruit", emoji: "🟠", type: "fruit" },
+            { name: "Guava", emoji: "🟢", type: "fruit" },
+            { name: "Lychee", emoji: "🔴", type: "fruit" },
+            { name: "Persimmon", emoji: "🟠", type: "fruit" },
+            { name: "Starfruit", emoji: "⭐", type: "fruit" },
+            { name: "Jackfruit", emoji: "🟢", type: "fruit" },
+            { name: "Durian", emoji: "🦔", type: "fruit" },
+            { name: "Cantaloupe", emoji: "🍈", type: "fruit" },
+            { name: "Honeydew", emoji: "🍈", type: "fruit" },
+            { name: "Cranberry", emoji: "🔴", type: "fruit" },
+            { name: "Gooseberry", emoji: "🟢", type: "fruit" },
+            { name: "Mulberry", emoji: "🫐", type: "fruit" },
+            { name: "Elderberry", emoji: "🍇", type: "fruit" },
+            { name: "Boysenberry", emoji: "🫐", type: "fruit" },
+            { name: "Rhubarb", emoji: "🌿", type: "fruit" },
+            { name: "Quince", emoji: "🟡", type: "fruit" },
+            { name: "Loquat", emoji: "🟠", type: "fruit" },
+            { name: "Tamarind", emoji: "🟤", type: "fruit" },
+            { name: "Amla", emoji: "🟢", type: "fruit" },
+            { name: "Custard Apple", emoji: "🟢", type: "fruit" },
+            { name: "Sapodilla", emoji: "🟤", type: "fruit" },
+            { name: "Water Apple", emoji: "🔴", type: "fruit" },
+            { name: "Miracle Fruit", emoji: "🔴", type: "fruit" },
+            { name: "Cactus Pear", emoji: "🌵", type: "fruit" },
+            { name: "Yuzu", emoji: "🟡", type: "fruit" },
+            { name: "Plantain", emoji: "🍌", type: "fruit" },
+
+            // Vegetables (50 items)
+            { name: "Broccoli", emoji: "🥦", type: "vegetable" },
+            { name: "Carrot", emoji: "🥕", type: "vegetable" },
+            { name: "Tomato", emoji: "🍅", type: "vegetable" },
+            { name: "Potato", emoji: "🥔", type: "vegetable" },
+            { name: "Sweet Potato", emoji: "🍠", type: "vegetable" },
+            { name: "Corn", emoji: "🌽", type: "vegetable" },
+            { name: "Cucumber", emoji: "🥒", type: "vegetable" },
+            { name: "Eggplant", emoji: "🍆", type: "vegetable" },
+            { name: "Garlic", emoji: "🧄", type: "vegetable" },
+            { name: "Onion", emoji: "🧅", type: "vegetable" },
+            { name: "Leafy Green", emoji: "🥬", type: "vegetable" },
+            { name: "Bell Pepper", emoji: "🫑", type: "vegetable" },
+            { name: "Hot Pepper", emoji: "🌶️", type: "vegetable" },
+            { name: "Mushroom", emoji: "🍄", type: "vegetable" },
+            { name: "Peas", emoji: "🟢", type: "vegetable" },
+            { name: "Green Beans", emoji: "🟢", type: "vegetable" },
+            { name: "Zucchini", emoji: "🥒", type: "vegetable" },
+            { name: "Pumpkin", emoji: "🎃", type: "vegetable" },
+            { name: "Cabbage", emoji: "🟢", type: "vegetable" },
+            { name: "Cauliflower", emoji: "⚪", type: "vegetable" },
+            { name: "Spinach", emoji: "🍃", type: "vegetable" },
+            { name: "Lettuce", emoji: "🥬", type: "vegetable" },
+            { name: "Kale", emoji: "🥬", type: "vegetable" },
+            { name: "Celery", emoji: "🥬", type: "vegetable" },
+            { name: "Radish", emoji: "🔴", type: "vegetable" },
+            { name: "Beetroot", emoji: "🟣", type: "vegetable" },
+            { name: "Turnip", emoji: "⚪", type: "vegetable" },
+            { name: "Asparagus", emoji: "🌿", type: "vegetable" },
+            { name: "Artichoke", emoji: "🌿", type: "vegetable" },
+            { name: "Okra", emoji: "🟢", type: "vegetable" },
+            { name: "Leek", emoji: "🧅", type: "vegetable" },
+            { name: "Spring Onion", emoji: "🧅", type: "vegetable" },
+            { name: "Ginger", emoji: "🟤", type: "vegetable" },
+            { name: "Turmeric", emoji: "🟡", type: "vegetable" },
+            { name: "Lotus Root", emoji: "💮", type: "vegetable" },
+            { name: "Bamboo Shoot", emoji: "🎋", type: "vegetable" },
+            { name: "Sprouts", emoji: "🌱", type: "vegetable" },
+            { name: "Bitter Gourd", emoji: "🥒", type: "vegetable" },
+            { name: "Bottle Gourd", emoji: "🥒", type: "vegetable" },
+            { name: "Ridge Gourd", emoji: "🥒", type: "vegetable" },
+            { name: "Snake Gourd", emoji: "🐍", type: "vegetable" },
+            { name: "Taro", emoji: "🥔", type: "vegetable" },
+            { name: "Yam", emoji: "🥔", type: "vegetable" },
+            { name: "Cassava", emoji: "🟤", type: "vegetable" },
+            { name: "Parsnip", emoji: "🥕", type: "vegetable" },
+            { name: "Rutabaga", emoji: "🟤", type: "vegetable" },
+            { name: "Kohlrabi", emoji: "🟢", type: "vegetable" },
+            { name: "Brussels Sprout", emoji: "🟢", type: "vegetable" },
+            { name: "Collard Greens", emoji: "🥬", type: "vegetable" },
+            { name: "Chard", emoji: "🍃", type: "vegetable" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No items found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                // Adhering strictly to calculator.css structure and card classes
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: ${item.type === 'fruit' ? '#f97316' : '#10b981'};">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

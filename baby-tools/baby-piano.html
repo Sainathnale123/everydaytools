@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Piano Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Sound Tool</span>
+        <h1>Baby Piano Explorer</h1>
+        <p>Play an expanded collection of standard musical notes, solfege scales, and animal tones with authentic piano sounds! Tap any key to hear its tone, filter by category, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search piano keys (e.g. C, Do, Cat Note)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Keys</button>
+        <button class="preset-btn" data-filter="standard">Standard Notes</button>
+        <button class="preset-btn" data-filter="solfege">Solfege (Do-Re-Mi)</button>
+        <button class="preset-btn" data-filter="animal">Animal Notes</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Piano Keys Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Interactive Musical Key Explorer Online</h2>
+      <p>
+        Introduce toddlers and young learners to the magic of music with an expanded interactive baby piano interface right in your browser. 
+        Tap on colorful piano keys to hear actual piano tone frequencies, explore extended solfege syllables, and discover playful animal sound notes.
+      </p>
+      <h3>Musical Awareness & Early Cognition</h3>
+      <p>
+        Exploring diverse musical notes and pitches helps children develop auditory discrimination and rhythm. 
+        Use this browser tool to play real audio frequencies safely, listen to clear musical pitches, and enjoy an engaging learning experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I play a piano key?</summary>
+        <p>Simply tap or click on any key card in the grid to trigger an authentic synthesized piano tone and speech pronunciation of the note name.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter keys by type?</summary>
+        <p>Yes! Use the filter buttons at the top to instantly switch between standard musical notes, solfege notes, and animal sound notes.</p>
+      </details>
+
+      <details>
+        <summary>Is this baby piano explorer free?</summary>
+        <p>Yes, all features, search filters, and audio tone generators are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Standard Notes (12 items spanning a full chromatic/diatonic range)
+            { name: "Low C (C3)", note: "Deep Root Note", freq: 130.81, emoji: "🎹", type: "standard" },
+            { name: "Note D (D3)", note: "Warm Low Step", freq: 146.83, emoji: "🎹", type: "standard" },
+            { name: "Note E (E3)", note: "Mellow Chord", freq: 164.81, emoji: "🎹", type: "standard" },
+            { name: "Note F (F3)", note: "Rich Bass Tone", freq: 174.61, emoji: "🎹", type: "standard" },
+            { name: "Note G (G3)", note: "Resonant Mid Note", freq: 196.00, emoji: "🎹", type: "standard" },
+            { name: "Note A (A3)", note: "Balanced Pitch", freq: 220.00, emoji: "🎹", type: "standard" },
+            { name: "Note B (B3)", note: "Rising Tone", freq: 246.94, emoji: "🎹", type: "standard" },
+            { name: "Note C (C4)", note: "Middle C Root", freq: 261.63, emoji: "🎹", type: "standard" },
+            { name: "Note D (D4)", note: "Bright Step", freq: 293.66, emoji: "🎹", type: "standard" },
+            { name: "Note E (E4)", note: "Cheerful Chord", freq: 329.63, emoji: "🎹", type: "standard" },
+            { name: "Note F (F4)", note: "Gentle Sound", freq: 349.23, emoji: "🎹", type: "standard" },
+            { name: "Note G (G4)", note: "High Melody", freq: 392.00, emoji: "🎹", type: "standard" },
+            { name: "Note A (A4)", note: "Concert Pitch", freq: 440.00, emoji: "🎹", type: "standard" },
+            { name: "Note B (B4)", note: "Leading Tone", freq: 493.88, emoji: "🎹", type: "standard" },
+            { name: "High C (C5)", note: "High Octave", freq: 523.25, emoji: "🎶", type: "standard" },
+
+            // Solfege (10 items)
+            { name: "Do (Low)", note: "Deep Do!", freq: 130.81, emoji: "🎵", type: "solfege" },
+            { name: "Re (Low)", note: "Deep Re!", freq: 146.83, emoji: "🎵", type: "solfege" },
+            { name: "Mi (Low)", note: "Deep Mi!", freq: 164.81, emoji: "🎵", type: "solfege" },
+            { name: "Do", note: "Do, a deer, a female deer!", freq: 261.63, emoji: "🎵", type: "solfege" },
+            { name: "Re", note: "Re, a drop of golden sun!", freq: 293.66, emoji: "🎵", type: "solfege" },
+            { name: "Mi", note: "Mi, a name I call myself!", freq: 329.63, emoji: "🎵", type: "solfege" },
+            { name: "Fa", note: "Fa, a long long way to run!", freq: 349.23, emoji: "🎵", type: "solfege" },
+            { name: "So", note: "So, a needle pulling thread!", freq: 392.00, emoji: "🎵", type: "solfege" },
+            { name: "La", note: "La, a note to follow So!", freq: 440.00, emoji: "🎵", type: "solfege" },
+            { name: "Ti", note: "Ti, a drink with jam and bread!", freq: 493.88, emoji: "🎵", type: "solfege" },
+            { name: "Do (High)", note: "Back to Do!", freq: 523.25, emoji: "🎶", type: "solfege" },
+
+            // Animal Notes (12 items)
+            { name: "Lion Note", note: "Roar! Grand Organ Chord", freq: 110.00, emoji: "🦁", type: "animal" },
+            { name: "Cow Note", note: "Moo! Deep Resonant Tone", freq: 130.81, emoji: "🐮", type: "animal" },
+            { name: "Puppy Note", note: "Woof! Low Bass Bark", freq: 196.00, emoji: "🐶", type: "animal" },
+            { name: "Frog Note", note: "Ribbit! Plucky Bass Note", freq: 220.00, emoji: "🐸", type: "animal" },
+            { name: "Duck Note", note: "Quack! Mid Woodwind Chime", freq: 329.63, emoji: "🦆", type: "animal" },
+            { name: "Sheep Note", note: "Baa! Soft Flute Tone", freq: 392.00, emoji: "🐑", type: "animal" },
+            { name: "Pig Note", note: "Oink! Mid Chime Note", freq: 440.00, emoji: "🐷", type: "animal" },
+            { name: "Horse Note", note: "Neigh! Bright Trot Sound", freq: 493.88, emoji: "🐴", type: "animal" },
+            { name: "Cat Note", note: "Meow! Soft High Purr", freq: 587.33, emoji: "🐱", type: "animal" },
+            { name: "Bird Note", note: "Chirp! Bright Piccolo Sound", freq: 659.25, emoji: "🐦", type: "animal" },
+            { name: "Owl Note", note: "Hoot! Airy High Note", freq: 698.46, emoji: "🦉", type: "animal" },
+            { name: "Mouse Note", note: "Squeak! Tiny High Chime", freq: 783.99, emoji: "🐭", type: "animal" }
+        ];
+
+        // Web Audio API context for real piano-like synth sound
+        let audioCtx = null;
+
+        function playPianoNote(freq) {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const now = audioCtx.currentTime;
+
+            // Create oscillators for richer harmonic content (simulating piano string vibration)
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            // Piano uses triangle + sine for a warm, struck-string timbre
+            osc1.type = 'triangle';
+            osc2.type = 'sine';
+
+            osc1.frequency.setValueAtTime(freq, now);
+            osc2.frequency.setValueAtTime(freq, now);
+
+            // Realistic piano envelope: fast attack, exponential decay
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.5, now + 0.02);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+            osc1.connect(gainNode);
+            osc2.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc1.start(now);
+            osc2.start(now);
+
+            osc1.stop(now + 1.25);
+            osc2.stop(now + 1.25);
+        }
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.note.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No piano keys found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="font-weight: 600; font-size: 0.85rem; margin-top: 4px; color: var(--text);">${item.note}</p>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 4px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    playPianoNote(item.freq);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

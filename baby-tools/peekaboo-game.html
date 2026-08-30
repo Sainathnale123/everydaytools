@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peekaboo Game Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Game</span>
+        <h1>Peekaboo Game Explorer</h1>
+        <p>Tap any card to reveal who is hiding behind, hear their cheerful greeting, filter by category, or search instantly!</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search hiding friends (e.g. Teddy, Puppy)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Friends</button>
+        <button class="preset-btn" data-filter="animals">Animal Friends</button>
+        <button class="preset-btn" data-filter="fantasy">Fantasy & Magic</button>
+        <button class="preset-btn" data-filter="toys">Toy Friends</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Peekaboo Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Play Interactive Peekaboo Online</h2>
+      <p>
+        Delight toddlers and young children with an interactive peekaboo game right in your browser. Tap on mystery gift boxes 
+        or peekaboo doors to reveal friendly characters, hear audio greetings, and build cognitive recognition through play.
+      </p>
+      <h3>Early Childhood Learning & Surprise Play</h3>
+      <p>
+        Peekaboo games help children develop object permanence and joyful engagement. Use this tool to explore friendly characters, 
+        listen to cheerful text-to-speech voices, and enjoy a safe browser experience without downloads.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I play peekaboo?</summary>
+        <p>Simply tap or click on any closed box card to reveal who is hiding and hear their cheerful greeting!</p>
+      </details>
+
+      <details>
+        <summary>Can I filter characters by category?</summary>
+        <p>Yes! Use the filter buttons at the top to switch between animal friends, fantasy creatures, and toys.</p>
+      </details>
+
+      <details>
+        <summary>Is this peekaboo game free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Animal Friends (12 items)
+            { name: "Puppy", reveal: "Peekaboo! I'm a playful puppy!", emoji: "🐶", type: "animals" },
+            { name: "Kitten", reveal: "Peekaboo! Meow from me!", emoji: "🐱", type: "animals" },
+            { name: "Bunny", reveal: "Peekaboo! Hop hop hop!", emoji: "🐰", type: "animals" },
+            { name: "Monkey", reveal: "Peekaboo! Ooh ooh ah ah!", emoji: "🐵", type: "animals" },
+            { name: "Duckling", reveal: "Peekaboo! Quack quack!", emoji: "🦆", type: "animals" },
+            { name: "Little Pig", reveal: "Peekaboo! Oink oink!", emoji: "🐷", type: "animals" },
+            { name: "Little Lamb", reveal: "Peekaboo! Baa baa!", emoji: "🐑", type: "animals" },
+            { name: "Tiger Cub", reveal: "Peekaboo! Rawr!", emoji: "🐯", type: "animals" },
+            { name: "Little Bear", reveal: "Peekaboo! Big bear hug!", emoji: "🐻", type: "animals" },
+            { name: "Penguin", reveal: "Peekaboo! Slide and waddle!", emoji: "🐧", type: "animals" },
+            { name: "Owl", reveal: "Peekaboo! Hoot hoot!", emoji: "🦉", type: "animals" },
+            { name: "Froggy", reveal: "Peekaboo! Ribbit!", emoji: "🐸", type: "animals" },
+
+            // Fantasy & Magic (10 items)
+            { name: "Friendly Dragon", reveal: "Peekaboo! Puff of smoke!", emoji: "🐉", type: "fantasy" },
+            { name: "Little Unicorn", reveal: "Peekaboo! Magic sparkle!", emoji: "🦄", type: "fantasy" },
+            { name: "Tiny Fairy", reveal: "Peekaboo! Dust and wings!", emoji: "🧚", type: "fantasy" },
+            { name: "Friendly Alien", reveal: "Peekaboo! Beep boop!", emoji: "👽", type: "fantasy" },
+            { name: "Little Ghost", reveal: "Peekaboo! Boo! Just kidding!", emoji: "👻", type: "fantasy" },
+            { name: "Robot Friend", reveal: "Peekaboo! System online!", emoji: "🤖", type: "fantasy" },
+            { name: "Mermaid", reveal: "Peekaboo! Splash and wave!", emoji: "🧜‍♀️", type: "fantasy" },
+            { name: "Super Hero", reveal: "Peekaboo! Ready to save the day!", emoji: "🦸‍♂️", type: "fantasy" },
+            { name: "Magician", reveal: "Peekaboo! Abracadabra!", emoji: "🎩", type: "fantasy" },
+            { name: "Star", reveal: "Peekaboo! Twinkle bright!", emoji: "⭐", type: "fantasy" },
+
+            // Toy Friends (8 items)
+            { name: "Teddy Bear", reveal: "Peekaboo! Cuddle time!", emoji: "🧸", type: "toys" },
+            { name: "Toy Car", reveal: "Peekaboo! Vroom vroom!", emoji: "🚗", type: "toys" },
+            { name: "Rubber Duck", reveal: "Peekaboo! Squeak squeak!", emoji: "🐥", type: "toys" },
+            { name: "Building Blocks", reveal: "Peekaboo! Build a tower!", emoji: "🧱", type: "toys" },
+            { name: "Toy Rocket", reveal: "Peekaboo! Blast off!", emoji: "🚀", type: "toys" },
+            { name: "Balloon", reveal: "Peekaboo! Pop!", emoji: "🎈", type: "toys" },
+            { name: "Music Box", reveal: "Peekaboo! La la la!", emoji: "🎵", type: "toys" },
+            { name: "Ball", reveal: "Peekaboo! Catch me!", emoji: "⚽", type: "toys" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Track revealed state for each card index
+        let revealedState = {};
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter((item, index) => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.reveal.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No hiding friends found matching your search.</div>`;
+                return;
+            }
+
+            items.forEach((item, originalIndex) => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      item.reveal.toLowerCase().includes(searchQuery.toLowerCase());
+                
+                if (!matchesFilter || !matchesSearch) return;
+
+                const isRevealed = revealedState[originalIndex] || false;
+
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.style.transition = 'all 0.3s ease';
+
+                if (!isRevealed) {
+                    card.innerHTML = `
+                        <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">🎁</div>
+                        <h2>Peekaboo?</h2>
+                        <p style="font-weight: 600; font-size: 0.85rem; margin-top: 4px; color: var(--primary);">Tap to Reveal!</p>
+                        <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 4px; color: var(--muted);">${item.type}</p>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                        <h2>${item.name}</h2>
+                        <p style="font-weight: 600; font-size: 0.85rem; margin-top: 4px; color: var(--text);">${item.reveal}</p>
+                        <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 4px; color: var(--primary);">Tap to Hide</p>
+                    `;
+                }
+
+                card.addEventListener('click', () => {
+                    if (!revealedState[originalIndex]) {
+                        revealedState[originalIndex] = true;
+                        speak(item.reveal);
+                    } else {
+                        revealedState[originalIndex] = false;
+                        speak(item.name);
+                    }
+                    renderCards();
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

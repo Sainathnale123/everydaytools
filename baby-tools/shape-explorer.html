@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Shape Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Shape Explorer</h1>
+        <p>Discover 2D and 3D shapes! Tap any card to hear its name, filter by dimension, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search shapes (e.g. Circle, Cube)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Shapes</button>
+        <button class="preset-btn" data-filter="2d">2D Shapes</button>
+        <button class="preset-btn" data-filter="3d">3D Shapes</button>
+        <button class="preset-btn" data-filter="polygon">Polygons</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Shapes Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Explore Geometry Interactively with Audio & Visuals</h2>
+      <p>
+        Master geometry concepts effortlessly with our comprehensive shape explorer. Designed for students, teachers, and young learners, 
+        this interactive utility lets you discover properties, dimensions, and clear audio pronunciations for a wide variety of geometric figures.
+      </p>
+      <h3>Understanding 2D and 3D Geometry</h3>
+      <p>
+        From flat polygons like triangles and quadrilaterals to spatial solids like spheres and cylinders, understanding the core characteristics 
+        of shapes builds a strong foundation in mathematics and spatial reasoning. Use this tool for visual reference and pronunciation training.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the name of a shape?</summary>
+        <p>Simply tap or click on any shape card to trigger clear text-to-speech audio pronunciation.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter shapes by dimensions?</summary>
+        <p>Yes! Use the filter buttons at the top to toggle between 2D shapes, 3D solids, polygons, or view all items at once.</p>
+      </details>
+
+      <details>
+        <summary>Is this shape explorer free to use?</summary>
+        <p>Yes, all features, search tools, and audio pronunciations are 100% free directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // 2D Shapes & Polygons
+            { name: "Circle", emoji: "⭕", type: "2d" },
+            { name: "Triangle", emoji: "🔺", type: "2d" },
+            { name: "Square", emoji: "⬛", type: "2d" },
+            { name: "Rectangle", emoji: "▬", type: "2d" },
+            { name: "Polygon", emoji: "⬡", type: "polygon" },
+            { name: "Pentagon", emoji: "⬠", type: "polygon" },
+            { name: "Hexagon", emoji: "⬡", type: "polygon" },
+            { name: "Heptagon", emoji: "🛑", type: "polygon" },
+            { name: "Octagon", emoji: "🛑", type: "polygon" },
+            { name: "Nonagon", emoji: "🔷", type: "polygon" },
+            { name: "Decagon", emoji: "🔶", type: "polygon" },
+            { name: "Parallelogram", emoji: "▰", type: "2d" },
+            { name: "Trapezoid", emoji: "⏢", type: "2d" },
+            { name: "Rhombus", emoji: "🔸", type: "2d" },
+            { name: "Star", emoji: "⭐", type: "2d" },
+            { name: "Heart", emoji: "❤️", type: "2d" },
+            { name: "Diamond", emoji: "💠", type: "2d" },
+            { name: "Oval", emoji: "🥚", type: "2d" },
+            { name: "Semi-circle", emoji: "🌗", type: "2d" },
+            { name: "Sector", emoji: "🍕", type: "2d" },
+
+            // 3D Solids
+            { name: "Cube", emoji: "🧊", type: "3d" },
+            { name: "Sphere", emoji: "⚽", type: "3d" },
+            { name: "Cylinder", emoji: "🔋", type: "3d" },
+            { name: "Cone", emoji: "🍦", type: "3d" },
+            { name: "Pyramid", emoji: "⛺", type: "3d" },
+            { name: "Cuboid", emoji: "📦", type: "3d" },
+            { name: "Prism", emoji: "💎", type: "3d" },
+            { name: "Hemisphere", emoji: "🥣", type: "3d" },
+            { name: "Capsule", emoji: "💊", type: "3d" },
+            { name: "Torus", emoji: "🍩", type: "3d" },
+            { name: "Tetrahedron", emoji: "🔺", type: "3d" },
+            { name: "Octahedron", emoji: "💠", type: "3d" },
+            { name: "Dodecahedron", emoji: "⚽", type: "3d" },
+            { name: "Icosahedron", emoji: "🌐", type: "3d" },
+            { name: "Ellipsoid", emoji: "🏈", type: "3d" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No shapes found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

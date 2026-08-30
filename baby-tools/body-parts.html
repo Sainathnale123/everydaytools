@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Body Parts Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Body Parts Explorer</h1>
+        <p>Explore the human body! Tap any card to hear its name, filter by region, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search body parts (e.g. Eye, Heart)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Parts</button>
+        <button class="preset-btn" data-filter="head">Head & Face</button>
+        <button class="preset-btn" data-filter="upper">Upper Body</button>
+        <button class="preset-btn" data-filter="lower">Lower Body</button>
+        <button class="preset-btn" data-filter="internal">Internal Organs</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Body Parts Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Discover Anatomy Interactively</h2>
+      <p>
+        Explore a rich collection of human body parts and internal organs. Designed for children, students, and curious learners, 
+        this interactive explorer lets you hear pronunciation on tap while smoothly toggling between body regions.
+      </p>
+      <h3>Interactive Learning & Body Awareness</h3>
+      <p>
+        Connecting anatomical terms with clear audio and visual cards enhances early childhood education and vocabulary building. 
+        Use this tool to explore human anatomy, learn proper names, and enjoy an immersive browser experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the name of the body part?</summary>
+        <p>Simply tap or click on any card in the grid to trigger text-to-speech audio pronunciation of the body part's name.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter parts by region?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between head and face, upper body, lower body, and internal organs.</p>
+      </details>
+
+      <details>
+        <summary>Is this body parts explorer free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Head & Face (15 items)
+            { name: "Hair", emoji: "💇‍♂️", type: "head" },
+            { name: "Head", emoji: "👦", type: "head" },
+            { name: "Face", emoji: "😊", type: "head" },
+            { name: "Eye", emoji: "👁️", type: "head" },
+            { name: "Ear", emoji: "👂", type: "head" },
+            { name: "Nose", emoji: "👃", type: "head" },
+            { name: "Mouth", emoji: "👄", type: "head" },
+            { name: "Lip", emoji: "💋", type: "head" },
+            { name: "Tooth", emoji: "🦷", type: "head" },
+            { name: "Tongue", emoji: "👅", type: "head" },
+            { name: "Chin", emoji: "🧔", type: "head" },
+            { name: "Cheek", emoji: "🍎", type: "head" },
+            { name: "Forehead", emoji: "🤔", type: "head" },
+            { name: "Eyebrow", emoji: "🤨", type: "head" },
+            { name: "Neck", emoji: "🧣", type: "head" },
+
+            // Upper Body (15 items)
+            { name: "Shoulder", emoji: "🤷‍♂️", type: "upper" },
+            { name: "Chest", emoji: "👕", type: "upper" },
+            { name: "Arm", emoji: "💪", type: "upper" },
+            { name: "Elbow", emoji: "🦾", type: "upper" },
+            { name: "Wrist", emoji: "⌚", type: "upper" },
+            { name: "Hand", emoji: "✋", type: "upper" },
+            { name: "Finger", emoji: "☝️", type: "upper" },
+            { name: "Thumb", emoji: "👍", type: "upper" },
+            { name: "Nail", emoji: "💅", type: "upper" },
+            { name: "Palm", emoji: "🤲", type: "upper" },
+            { name: "Back", emoji: "🔙", type: "upper" },
+            { name: "Stomach", emoji: "🤰", type: "upper" },
+            { name: "Waist", emoji: "👖", type: "upper" },
+            { name: "Underarm", emoji: "👕", type: "upper" },
+            { name: "Collarbone", emoji: "🦴", type: "upper" },
+
+            // Lower Body (15 items)
+            { name: "Hip", emoji: "🕺", type: "lower" },
+            { name: "Leg", emoji: "🦵", type: "lower" },
+            { name: "Thigh", emoji: "🩳", type: "lower" },
+            { name: "Knee", emoji: "🧎", type: "lower" },
+            { name: "Calf", emoji: "🧦", type: "lower" },
+            { name: "Ankle", emoji: "👟", type: "lower" },
+            { name: "Foot", emoji: "🦶", type: "lower" },
+            { name: "Toe", emoji: "👣", type: "lower" },
+            { name: "Heel", emoji: "👠", type: "lower" },
+            { name: "Sole", emoji: "👞", type: "lower" },
+            { name: "Shin", emoji: "🦿", type: "lower" },
+            { name: "Buttocks", emoji: "🍑", type: "lower" },
+            { name: "Groin", emoji: "🏃‍♂️", type: "lower" },
+            { name: "Arch", emoji: "🌉", type: "lower" },
+            { name: "Big Toe", emoji: "🦶", type: "lower" },
+
+            // Internal Organs (10 items)
+            { name: "Brain", emoji: "🧠", type: "internal" },
+            { name: "Heart", emoji: "❤️", type: "internal" },
+            { name: "Lungs", emoji: "🫁", type: "internal" },
+            { name: "Stomach", emoji: "🍔", type: "internal" },
+            { name: "Liver", emoji: "🫘", type: "internal" },
+            { name: "Kidneys", emoji: "🫘", type: "internal" },
+            { name: "Intestines", emoji: "〰️", type: "internal" },
+            { name: "Bone", emoji: "🦴", type: "internal" },
+            { name: "Blood", emoji: "🩸", type: "internal" },
+            { name: "Muscle", emoji: "💪", type: "internal" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No body parts found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="font-size: 2.5rem; width: 60px; height: 60px;" aria-hidden="true">${item.emoji}</div>
+                    <h2>${item.name}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

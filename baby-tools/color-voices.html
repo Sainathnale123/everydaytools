@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Color Explorer – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Explorer</span>
+        <h1>Color Voices Explorer</h1>
+        <p>Explore a vibrant spectrum of colors! Tap any card to hear its name, filter by category, or search instantly.</p>
+      </div>
+    </header>
+
+    <!-- CONTROLS & SEARCH SECTION -->
+    <section class="container" aria-label="Explorer Controls">
+      
+      <div class="search-container" style="margin: 0 auto 1.5rem auto; width: 100%; max-width: 400px; text-align: center;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search colors (e.g. Red, Crimson)..." style="width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; border: 2px solid var(--border); border-radius: 9999px; outline: none; background: var(--card); color: var(--text);">
+      </div>
+
+      <div class="category-filter-bar">
+        <button class="preset-btn active" data-filter="all">All Colors</button>
+        <button class="preset-btn" data-filter="primary">Primary & Secondary</button>
+        <button class="preset-btn" data-filter="warm">Warm Colors</button>
+        <button class="preset-btn" data-filter="cool">Cool Colors</button>
+        <button class="preset-btn" data-filter="neutral">Neutrals</button>
+      </div>
+
+    </section>
+
+    <!-- CARDS GRID SECTION -->
+    <section class="container" aria-label="Color Cards Grid">
+      <div class="calculator-grid" id="cardGrid"></div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container">
+      <h2>Discover the Spectrum of Colors Interactively</h2>
+      <p>
+        Explore a rich collection of colors from around the color wheel. Designed for children, students, and designers, 
+        this interactive explorer lets you hear color names on tap while smoothly toggling between categories like warm, cool, and neutral tones.
+      </p>
+      <h3>Interactive Learning & Color Recognition</h3>
+      <p>
+        Connecting color names with visual swatches enhances early childhood cognitive development and vocabulary building. 
+        Use this tool to explore diverse palettes, learn color terms, and enjoy an immersive browser experience.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I hear the color name?</summary>
+        <p>Simply tap or click on any card in the grid to trigger text-to-speech audio pronunciation of the color's name.</p>
+      </details>
+
+      <details>
+        <summary>Can I filter colors by category?</summary>
+        <p>Yes! Use the filter buttons at the top of the page to instantly switch between primary, warm, cool, and neutral colors.</p>
+      </details>
+
+      <details>
+        <summary>Is this color explorer free?</summary>
+        <p>Yes, all features, search filters, and audio pronunciations are 100% free to use directly inside your browser.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const items = [
+            // Primary & Secondary (6 items)
+            { name: "Red", hex: "#ef4444", type: "primary" },
+            { name: "Blue", hex: "#3b82f6", type: "primary" },
+            { name: "Yellow", hex: "#eab308", type: "primary" },
+            { name: "Green", hex: "#22c55e", type: "primary" },
+            { name: "Orange", hex: "#f97316", type: "primary" },
+            { name: "Purple", hex: "#a855f7", type: "primary" },
+
+            // Warm Colors (12 items)
+            { name: "Crimson", hex: "#dc2626", type: "warm" },
+            { name: "Coral", hex: "#fb7185", type: "warm" },
+            { name: "Gold", hex: "#facc15", type: "warm" },
+            { name: "Amber", hex: "#d97706", type: "warm" },
+            { name: "Peach", hex: "#fed7aa", type: "warm" },
+            { name: "Salmon", hex: "#fda4af", type: "warm" },
+            { name: "Pink", hex: "#ec4899", type: "warm" },
+            { name: "Magenta", hex: "#d946ef", type: "warm" },
+            { name: "Brick Red", hex: "#b91c1c", type: "warm" },
+            { name: "Tangerine", hex: "#ea580c", type: "warm" },
+            { name: "Rose", hex: "#f43f5e", type: "warm" },
+            { name: "Maroon", hex: "#831843", type: "warm" },
+
+            // Cool Colors (12 items)
+            { name: "Cyan", hex: "#06b6d4", type: "cool" },
+            { name: "Navy", hex: "#1e3a8a", type: "cool" },
+            { name: "Teal", hex: "#14b8a6", type: "cool" },
+            { name: "Indigo", hex: "#6366f1", type: "cool" },
+            { name: "Turquoise", hex: "#2dd4bf", type: "cool" },
+            { name: "Sky Blue", hex: "#38bdf8", type: "cool" },
+            { name: "Emerald", hex: "#059669", type: "cool" },
+            { name: "Mint", hex: "#6ee7b7", type: "cool" },
+            { name: "Lavender", hex: "#c084fc", type: "cool" },
+            { name: "Violet", hex: "#8b5cf6", type: "cool" },
+            { name: "Olive", hex: "#65a30d", type: "cool" },
+            { name: "Lime", hex: "#84cc16", type: "cool" },
+
+            // Neutrals (10 items)
+            { name: "Black", hex: "#09090b", type: "neutral" },
+            { name: "White", hex: "#ffffff", type: "neutral" },
+            { name: "Gray", hex: "#71717a", type: "neutral" },
+            { name: "Silver", hex: "#d4d4d8", type: "neutral" },
+            { name: "Beige", hex: "#f5f5dc", type: "neutral" },
+            { name: "Brown", hex: "#78350f", type: "neutral" },
+            { name: "Tan", hex: "#d2b48c", type: "neutral" },
+            { name: "Charcoal", hex: "#27272a", type: "neutral" },
+            { name: "Ivory", hex: "#fffff0", type: "neutral" },
+            { name: "Slate", hex: "#64748b", type: "neutral" }
+        ];
+
+        const grid = document.getElementById('cardGrid');
+        const filterButtons = document.querySelectorAll('.preset-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCards() {
+            grid.innerHTML = '';
+            
+            const filteredItems = items.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.type === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem;">No colors found matching your search.</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `calculator-card active ${item.type}`;
+                card.style.minHeight = '180px';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="calculator-icon" style="background-color: ${item.hex}; border: 2px solid var(--border); border-radius: 50%; width: 60px; height: 60px;" aria-hidden="true"></div>
+                    <h2>${item.name}</h2>
+                    <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; margin-top: 6px; color: var(--primary);">${item.type}</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    speak(item.name);
+                    animateCard(card);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+            }, 150);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.getAttribute('data-filter');
+                renderCards();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Drawing Pad – Everyday Tools</title>
+    <!-- Primary Stylesheet Reference -->
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+     GLOBAL NAVIGATION
+     ========================================================================== -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Interactive Studio</span>
+        <h1>Digital Drawing Pad</h1>
+        <p>Sketch, doodle, and create digital artwork right in your browser. Choose your brush color, adjust size, and download your creation!</p>
+      </div>
+    </header>
+
+    <!-- DRAWING TOOLBAR & CANVAS SECTION -->
+    <section class="container" aria-label="Drawing Workspace">
+      <div class="calculator-card active" style="max-width: 800px; margin: 0 auto; display: block; padding: 1.5rem;">
+        
+        <!-- Toolbar Controls -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border);">
+          
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <label for="colorPicker" style="font-weight: 600; font-size: 0.9rem;">Color:</label>
+            <input type="color" id="colorPicker" value="#3b82f6" style="width: 40px; height: 40px; border: none; border-radius: 50%; cursor: pointer; background: none;">
+
+            <label for="brushSize" style="font-weight: 600; font-size: 0.9rem; margin-left: 0.5rem;">Size:</label>
+            <input type="range" id="brushSize" min="1" max="50" value="5" style="cursor: pointer;">
+            <span id="sizeDisplay" style="font-size: 0.85rem; font-weight: 600; width: 25px;">5px</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <button id="brushBtn" class="preset-btn active" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Brush</button>
+            <button id="eraserBtn" class="preset-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Eraser</button>
+            <button id="clearBtn" class="preset-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: #ef4444; color: white; border-color: #ef4444;">Clear All</button>
+            <button id="downloadBtn" class="preset-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: var(--primary); color: white; border-color: var(--primary);">Save Image</button>
+          </div>
+
+        </div>
+
+        <!-- Canvas Container -->
+        <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; background: #ffffff; border: 2px solid var(--border); border-radius: 0.5rem; overflow: hidden; touch-action: none;">
+          <canvas id="drawingCanvas" style="width: 100%; height: 100%; display: block; cursor: crosshair;"></canvas>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEO CONTENT SECTION -->
+    <article class="seo-content container" style="margin-top: 3rem;">
+      <h2>Express Creativity with an Online Drawing Canvas</h2>
+      <p>
+        Unleash your imagination using our lightweight browser-based drawing pad. Whether you are sketching quick concepts, 
+        illustrating ideas, or letting kids practice hand-eye coordination with digital doodles, this tool provides a responsive workspace.
+      </p>
+      <h3>Features & Capabilities</h3>
+      <p>
+        Customize your experience with adjustable brush sizes, a color picker, an eraser mode, and instant image downloading. 
+        No downloads or installations required—draw directly inside any modern web browser on desktop or mobile devices.
+      </p>
+    </article>
+
+    <!-- ACCESSIBLE FAQ SECTION -->
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do I save my drawing?</summary>
+        <p>Click the "Save Image" button above the canvas to instantly download your artwork as a PNG file to your device.</p>
+      </details>
+
+      <details>
+        <summary>Can I use the drawing pad on my phone or tablet?</summary>
+        <p>Yes! The canvas fully supports touch gestures, allowing you to draw smoothly using your finger or a stylus on mobile devices.</p>
+      </details>
+
+      <details>
+        <summary>How do I switch to the eraser?</summary>
+        <p>Simply click the "Eraser" button in the toolbar. To switch back to drawing, click the "Brush" button and select your desired color.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+        const sizeDisplay = document.getElementById('sizeDisplay');
+        const brushBtn = document.getElementById('brushBtn');
+        const eraserBtn = document.getElementById('eraserBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let isEraser = false;
+
+        // Set high-resolution canvas size based on container layout
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            
+            // Set default background to solid white so saved images aren't transparent
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, rect.width, rect.height);
+        }
+
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', () => {
+            // Save current canvas state before resize if needed, or clear. For simplicity on responsive resize:
+            resizeCanvas();
+        });
+
+        // Event listeners for brush controls
+        brushSize.addEventListener('input', (e) => {
+            sizeDisplay.textContent = e.target.value + 'px';
+        });
+
+        brushBtn.addEventListener('click', () => {
+            isEraser = false;
+            brushBtn.classList.add('active');
+            eraserBtn.classList.remove('active');
+        });
+
+        eraserBtn.addEventListener('click', () => {
+            isEraser = true;
+            eraserBtn.classList.add('active');
+            brushBtn.classList.remove('active');
+        });
+
+        clearBtn.addEventListener('click', () => {
+            const rect = canvas.getBoundingClientRect();
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, rect.width, rect.height);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'my-drawing.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        // Drawing Coordinates helper
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getMousePos(e);
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+
+            const pos = getMousePos(e);
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.strokeStyle = isEraser ? '#ffffff' : colorPicker.value;
+            ctx.lineWidth = brushSize.value;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        // Mouse Events
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Touch Events for Mobile / Tablet Support
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
+        canvas.addEventListener('touchcancel', stopDrawing);
+    </script>
+</body>
+</html>
