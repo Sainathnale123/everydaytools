@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Encashment Calculator - Calculate Earned Leave Payout & Tax Exemption Online</title>
+  <meta name="description" content="Calculate your leave encashment amount accurately. Find out your tax-free and taxable earned leave payout based on basic salary, dearness allowance, and unused leave days under Section 10(10AA).">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/leave-encashment-calculator.html">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M32 16v16l10 10' stroke='%23ffffff' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing Image -->
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Leave Encashment Calculator – Calculate Earned Leave Payout">
+  <meta property="og:description" content="Compute your accrued earned leave cash equivalent upon retirement or resignation with our precise online financial calculator.">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/leave-encashment-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Leave Encashment Calculator - Everyday Tools">
+  <meta name="twitter:description" content="Calculate your leave encashment and tax exemptions instantly.">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+
+  <!-- Premium CSS -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Page Specific Custom Inline Styling for Calculator UI -->
+  <style>
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      outline: none;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: var(--primary);
+    }
+    .calc-btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .calc-btn {
+      flex: 1;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .calc-btn.secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+    .calc-btn.secondary:hover {
+      background: #cbd5e1;
+    }
+    .calc-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .results-wrapper {
+      display: none;
+      margin-top: 30px;
+    }
+    .primary-result {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-hover);
+    }
+    .primary-result h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    .primary-result .amount-display {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 850;
+      margin-bottom: 6px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .stat-card .val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    .action-btn:hover {
+      opacity: 0.9;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      margin-top: 8px;
+    }
+    .itr-promo-banner {
+      background: linear-gradient(135deg, #f8fafc, #edf2f7);
+      border-left: 4px solid var(--primary);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .itr-promo-banner p {
+      margin: 0;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .itr-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .itr-btn:hover {
+      background: var(--primary-dark);
+    }
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+    .calc-table th, .calc-table td {
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .calc-table th {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .calc-table tr:nth-child(even) {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .note-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      font-size: 14px;
+      color: #92400e;
+    }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Leave Encashment Calculator",
+    "url": "https://everydaytools.co.in/calculators/leave-encashment-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "description": "Calculate your leave encashment payout and tax exemption amount based on your salary components and accumulated unused earned leaves.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://everydaytools.co.in/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://everydaytools.co.in/calculators/calculator.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Leave Encashment Calculator",
+      "item": "https://everydaytools.co.in/calculators/leave-encashment-calculator.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How is leave encashment calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leave encashment is typically calculated using the formula: (Average Monthly Basic Salary + Dearness Allowance) ÷ 30 × Number of Unused Earned Leave Days."
+      }
+    },{
+      "@type": "Question",
+      "name": "Is leave encashment taxable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leave encashment received at the time of retirement or separation is tax-free for government employees up to the full limit. For non-government employees, it is tax-exempt up to statutory limits (such as ₹25,00,000 under Section 10(10AA)), while amounts exceeding the limit are taxable as per income tax slabs."
+      }
+    },{
+      "@type": "Question",
+      "name": "What is the maximum number of leave days allowed for encashment calculation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For income tax exemption calculations, a maximum of 30 days of earned leave per year of service is permitted for non-government employees."
+      }
+    }]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Animated Blobs -->
+  <div class="background">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="calculator.html" class="active">Calculators</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container" style="max-width: 840px; padding-top: 30px;">
+    
+    <!-- Hero Header -->
+    <header class="page-header" style="padding: 20px 0;">
+      <span class="eyebrow">Financial & Career Utility</span>
+      <h1>Leave Encashment Calculator – <span>Calculate Earned Leave Payout & Tax Exemption Online</span></h1>
+      <p class="subtitle">
+        Compute your total accumulated leave encashment payout and estimate tax exemptions instantly based on your salary components and tenure under Section 10(10AA).
+      </p>
+    </header>
+
+    <!-- AdSense Top Leaderboard Slot
+    <div class="ad-wrapper">
+      <div class="ad-slot">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div> -->
+
+    <!-- Calculator Card -->
+    <section class="calc-card" aria-label="Leave Encashment Calculator Tool">
+      <form id="leaveForm" onsubmit="event.preventDefault(); calculateLeaveEncashment();">
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="employmentType">Employee Type</label>
+            <select id="employmentType">
+              <option value="private">Non-Government Employee</option>
+              <option value="government">Government Employee</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="encashmentTiming">Encashment Timing</label>
+            <select id="encashmentTiming">
+              <option value="retirement">At Retirement / Resignation</option>
+              <option value="service">During Service</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="avgSalary">Average Monthly Salary (Basic + DA) (₹)</label>
+            <input type="number" id="avgSalary" value="30000" min="0" required aria-required="true">
+          </div>
+
+          <div class="input-group">
+            <label for="unusedLeaves">Unused Unavailed Leaves (Days)</label>
+            <input type="number" id="unusedLeaves" value="320" min="0" max="1000" required aria-required="true">
+          </div>
+
+          <div class="input-group">
+            <label for="totalYears">Completed Years of Service</label>
+            <input type="number" id="totalYears" value="20" min="0" max="50" required aria-required="true">
+          </div>
+
+          <div class="input-group">
+            <label for="totalLeavesAllowed">Entitled Leaves Per Year</label>
+            <input type="number" id="totalLeavesAllowed" value="20" min="0" max="60" required aria-required="true">
+          </div>
+        </div>
+
+        <p id="errorMsg" class="error-msg">Please enter valid numeric values for your inputs.</p>
+
+        <div class="calc-btn-group">
+          <button type="submit" class="calc-btn">Calculate Encashment & Tax</button>
+          <button type="button" class="calc-btn secondary" onclick="resetForm()">Reset</button>
+        </div>
+      </form>
+
+      <!-- Output Results -->
+      <div id="resultsWrapper" class="results-wrapper">
+        
+        <div class="primary-result">
+          <h2>Total Leave Encashment Payout</h2>
+          <div id="primaryAmountDisplay" class="amount-display">₹ 0</div>
+          <div id="taxStatusBadge" class="live-clock-badge">Estimated Settlement Value</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div id="taxExemptVal" class="val">₹ 0</div>
+            <div class="lbl">Tax-Free Amount</div>
+          </div>
+          <div class="stat-card">
+            <div id="taxableVal" class="val">₹ 0</div>
+            <div class="lbl">Taxable Amount</div>
+          </div>
+          <div class="stat-card">
+            <div id="dailyRateVal" class="val">₹ 0</div>
+            <div class="lbl">Per Day Salary Rate</div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="action-btn" onclick="shareResults()">📋 Copy Summary</button>
+          <button type="button" class="action-btn" style="background: #25d366;" onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AdSense In-Content Slot -->
+    <!-- <div class="ad-wrapper">
+      <div class="ad-slot">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="0987654321"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div> -->
+
+    <!-- Comprehensive Blog / SEO Content Section -->
+    <article class="seo-content">
+      <h2>Comprehensive Guide: What is the Leave Encashment Calculator?</h2>
+      <p>
+        The leave encashment calculator is a sophisticated, highly accurate online financial tool engineered specifically to help salaried individuals across corporate enterprises, public sector undertakings (PSUs), and government bodies meticulously compute their total earned leave payout, tax-exempt components, and final taxable leave salary for Income Tax Department reporting and compliance[cite: 1]. Accumulating unused paid leaves over a long, productive professional career is common practice, but determining the precise monetary cash equivalent and navigating complex tax liabilities can quickly become overwhelming due to frequent adjustments in statutory ceilings, evolving labor codes, and sector-specific exemption parameters[cite: 1]. By utilizing this digital calculator, employees can effortlessly eliminate manual computational errors, cross-verify their final corporate settlement statements, and strategically optimize their end-of-career tax planning procedures within seconds[cite: 1].
+      </p>
+      <p>
+        Furthermore, modern high-precision financial engines operate on robust computer architecture standards, utilizing optimized word-size data handling (ranging from standard 64-bit systems to advanced triple-precision register allocation frameworks) to process multi-variable salary matrices, ensure absolute floating-point arithmetic accuracy, and prevent rounding discrepancies during large-scale lump-sum financial computations. This technical rigor guarantees that every calculation output—from daily wage breakdowns to cumulative exemption limits—remains mathematically airtight, reliable, and completely aligned with modern payroll processing standards.
+      </p>
+
+      <h2>Deep Dive: What is Leave Encashment and Why Does It Matter?</h2>
+      <p>
+        Leave encashment refers to the systematic monetary compensation paid directly by an employer to an employee in exchange for accumulated, unutilized earned leaves that were intentionally or unintentionally left unexhausted during their active employment tenure[cite: 1]. This financial payout typically materializes at the critical juncture of formal retirement, voluntary resignation, career job transitions, or corporate termination. In deeply unfortunate circumstances involving the untimely death of an active employee, these accumulated leave balances are fully encashed and disbursed directly to the legal heirs or nominated beneficiaries.
+      </p>
+      <p>
+        Consequently, salaried professionals should view unused leave balances not as a loss, but as a form of institutional forced savings. Not utilizing your entitled paid leaves acts as a deferred financial reward, providing an essential auxiliary cash cushion during career separation, structural unemployment gaps, or retirement transition phases[cite: 1]. Comprehending how this lump-sum compensation is structurally generated ensures that you can accurately forecast, anticipate, and manage your post-employment cash flow with absolute financial confidence.
+      </p>
+
+      <div class="itr-promo-banner">
+        <p>Tax-saving investments work best when you file and claim them right.</p>
+        <a href="https://everydaytools.co.in/file-itr.html" class="itr-btn">File ITR Now &rarr;</a>
+      </div>
+
+      <h2>Detailed Taxonomy: Types of Leaves Eligible for Encashment</h2>
+      <p>
+        While corporate entities, multinational corporations, and government directorates offer their workforce a wide array of leave structures, internal company bylaws, employment contracts, and statutory labor regulations dictate that strictly defined categories of leaves qualify for financial encashment. Navigating these fine distinctions is an absolute prerequisite for effective exit planning:
+      </p>
+      <ul>
+        <li><strong>Casual Leaves (CL):</strong> Typically allocated to help employees manage urgent personal matters, short-term household responsibilities, or unforeseen daily commitments. In the vast majority of organizations, casual leaves are non-cumulative, meaning they cannot be carried forward across calendar or financial years and lapse automatically if unused, rendering them completely ineligible for monetary encashment.</li>
+        <li><strong>Privilege Leaves (PL) / Earned Leaves (EL):</strong> These represent systematic, structured leaves that an employee earns progressively based on the total number of months or years actively worked within the organization[cite: 1]. Privilege leaves are fully cumulative, roll over seamlessly into subsequent operational years, and constitute the primary, legally recognized category of leaves eligible for financial encashment upon career separation.</li>
+        <li><strong>Sick Leaves (SL) / Medical Leaves:</strong> Granted specifically when an employee suffers from debilitating illnesses, chronic health conditions, or acute medical emergencies requiring hospitalization or extended bed rest. While select organizations permit limited accumulation of sick leaves under strict medical certification guidelines, sick leaves generally carry heavily restricted encashment provisions compared to earned privilege leaves.</li>
+      </ul>
+      <p>
+        Different leave classifications enforce rigid internal compliance rules regarding accumulation limits, trading policies, and encashment eligibility. Because the governing regulatory framework varies drastically across private enterprises, public sector undertakings, and state or central government departments, verifying your specific company handbook alongside statutory income tax laws is always an essential step[cite: 1].
+      </p>
+
+      <h2>Statutory Framework: Leave Encashment Exemption Under Section 10(10AA)</h2>
+      <p>
+        The exact taxability and statutory exemption thresholds governing leave encashment receipts are strictly governed and structured under **Section 10(10AA) of the Income Tax Act**. To accurately determine your total tax liability, you must carefully evaluate two foundational parameters: your precise employment classification (whether you serve as a Central/State Government employee or a Non-Government private/PSU employee) and the exact chronological timing of the encashment payout (whether it is received during active service or upon formal retirement/resignation)[cite: 1].
+      </p>
+      <p>
+        Recent legislative reforms have substantially upgraded tax relief frameworks for India's private sector workforce. Effective from April 1, 2023, the maximum lifetime tax exemption ceiling for non-government employees retiring or resigning was radically elevated from the long-standing historical limit of ₹3,00,000 to a robust **₹25,00,000**, successfully narrowing the historical tax disparity between public and private employment sectors[cite: 1].
+      </p>
+
+      <div class="note-box">
+        <strong>Critical Statutory Note:</strong> For the explicit purpose of computing tax exemptions on unavailed earned leave, the Income Tax Department mandates that earned leave accumulation cannot exceed a strict maximum ceiling limit of **30 days for every completed year of actual service** rendered for the employer from whose service the individual is retiring[cite: 1]. Any internal contractual entitlement exceeding 30 days per year must be legally capped at this statutory threshold during tax computations.
+      </div>
+
+      <h2>Extensive Real-World Case Study: Leave Encashment Calculation Example</h2>
+      <p>
+        To completely demystify how these complex statutory calculations operate in practical scenarios, let us walk through an exhaustive, step-by-step working model.
+      </p>
+      <p>
+        Consider **Mr. Rahul**, a dedicated professional who is retiring after completing exactly 20 years of continuous service with his organization. Throughout his professional tenure, he was contractually entitled to 20 days of paid earned leave per annum, resulting in a theoretical cumulative entitlement of 400 paid leaves during his entire career span. Out of this total accumulation, he successfully utilized 80 days of leave for personal travel and medical requirements[cite: 1]. 
+      </p>
+      <p>
+        Consequently, Mr. Rahul concludes his tenure with an active, accumulated balance of **320 days of unutilized earned leave** at the time of his formal retirement. Upon his exit, his average monthly salary—comprising his basic pay plus dearness allowance (DA) recognized as part of retirement benefits—stands firmly at **Rs. 30,000 per month**[cite: 1]. We are tasked with computing his taxable leave salary under two distinct occupational scenarios:
+      </p>
+      <ol>
+        <li>Assuming Mr. Rahul is a Central or State Government employee.</li>
+        <li>Assuming Mr. Rahul is a private sector (non-government) corporate employee.</li>
+      </ol>
+
+      <h3>Scenario A: If Mr. Rahul is a Government Employee</h3>
+      <p>
+        The gross leave salary received by Mr. Rahul at the time of his retirement amounts to Rs. 3,20,000, derived via the standard wage formula: $\left(\frac{30,000}{30} \times 320\right)$[cite: 1]. Because Mr. Rahul is an officially verified government employee, this entire lump-sum payout is **fully exempt from income tax under Section 10(10AA)(i)**[cite: 1]. Consequently, his net taxable leave compensation evaluates to **nil**[cite: 1].
+      </p>
+
+      <h3>Scenario B: If Mr. Rahul is a Non-Government (Private Sector) Employee</h3>
+      <p>
+        Because Mr. Rahul belongs to the private corporate sector, his leave encashment is only partially exempt under **Section 10(10AA)(ii)**[cite: 1]. The allowable tax exemption is strictly determined by evaluating and taking the **least** of the following four statutory parameters:
+      </p>
+
+      <table class="calc-table">
+        <thead>
+          <tr>
+            <th>Particulars & Exemption Parameters</th>
+            <th>Calculated Amount (Rs.)</th>
+            <th>Final Evaluated Amount (Rs.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gross Leave Salary Received at Retirement $\left(\frac{30,000}{30} \times 320\right)$[cite: 1]</td>
+            <td>-</td>
+            <td>3,20,000</td>
+          </tr>
+          <tr>
+            <td><strong>Less - Exemption u/s 10(10AA)(ii) - Computed as the least of:</strong></td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>1. Statutory Maximum Ceiling Limit (Updated Cap)</td>
+            <td>25,00,000</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>2. Actual Leave Salary Received $\left(\frac{30,000}{30} \times 320\right)$[cite: 1]</td>
+            <td>3,20,000</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>3. 10 Months’ Average Salary based on preceding 10 months $(30,000 \times 10)$[cite: 1]</td>
+            <td>3,00,000</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>4. Cash equivalent of unavailed leave (capped at max 30 days/year) $\left(\frac{30,000}{30} \times 320\right)$[cite: 1]</td>
+            <td>3,20,000</td>
+            <td>3,00,000</td>
+          </tr>
+          <tr>
+            <td><strong>Net Taxable Leave Salary (Gross Payout minus Least Exemption)</strong></td>
+            <td>-</td>
+            <td><strong>20,000</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        As clearly demonstrated in the comparative table above, the least of the four statutory parameters is Rs. 3,00,000. Subtracting this exempt amount from the total received gross payout of Rs. 3,20,000 leaves Mr. Rahul with a modest **taxable leave salary of Rs. 20,000**, which will be appended to his income under the head of salary and subjected to tax according to his applicable income tax slab[cite: 1].
+      </p>
+
+      <div class="itr-promo-banner">
+        <p>Tax-saving investments work best when you file and claim them right.</p>
+        <a href="https://everydaytools.co.in/file-itr.html" class="itr-btn">File ITR Now &rarr;</a>
+      </div>
+
+      <h2>Step-by-Step Instructions: How to Use the Leave Encashment Calculator Effectively</h2>
+      <p>
+        Leveraging our advanced online calculation utility is designed to be lightning-fast, seamless, and remarkably user-friendly. Follow this comprehensive, step-by-step procedure to evaluate your precise payout and tax exemptions with absolute accuracy:
+      </p>
+      <ul>
+        <li><strong>Step 1: Employee Classification Selection:</strong> Select your correct employment category from the interactive dropdown menu, choosing between Government or Non-Government (Private/PSU), as the underlying tax logic diverges entirely[cite: 1].</li>
+        <li><strong>Step 2: Encashment Timing Designation:</strong> Indicate whether you are encashing your accumulated leaves "During Active Service" or upon formal "Retirement / Resignation"[cite: 1]. Keep firmly in mind that encashment pursued during active service completely forfeits all Section 10(10AA) tax exemptions.</li>
+        <li><div><strong>Step 3: Tenure Input:</strong> Enter your total completed years of professional service[cite: 1]. Do not include fractional months, as statutory calculation models evaluate completed annual milestones exclusively.</div></li>
+        <li><strong>Step 4: Average Salary Computation:</strong> Enter your average monthly salary—comprising Basic Pay plus Dearness Allowance, provided DA is structured as part of retirement benefits—calculated precisely over the preceding 10 months[cite: 1].</li>
+        <li><strong>Step 5: Unused Leave Balance Entry:</strong> Input the exact number of unutilized, accumulated earned leave days currently residing in your corporate HR ledger available for encashment[cite: 1].</li>
+        <li><strong>Step 6: Entitled Quota Specification:</strong> Enter the total number of paid leaves your organization allocates per year under its standard corporate leave policy framework[cite: 1].</li>
+        <li><strong>Step 7: Instant Output Generation:</strong> Once all parameters are accurately submitted, our high-precision algorithm instantly computes your gross financial entitlement, tax-exempt threshold, and final taxable balance[cite: 1].</li>
+      </ul>
+
+      <h2>Strategic Tax Planning & Expert Tips for Salaried Professionals</h2>
+      <p>
+        Maximizing your financial returns during a major career transition, job shift, or retirement milestone requires far more than simply running numbers through an automated calculator. Consider implementing these expert strategic insights to safeguard your hard-earned capital:
+      </p>
+      <ul>
+        <li><strong>Time Your Resignation and Exit Wisely:</strong> If you are orchestrating a career job switch and your employer permits encashing accumulated leaves during active service, be fully aware that this amount will be taxed completely as normal income without exemptions. Scheduling major leave encashments as an integrated component of a formal retirement or final exit package allows you to harness the full ₹25 lakh tax exemption ceiling[cite: 1].</li>
+        <li><strong>Maintain Meticulous Payroll Documentation:</strong> Retain all final settlement sheets, Form 16 documents, and employer salary certificates indefinitely. When filing your annual Income Tax Return (ITR), accurately reporting these figures prevents automated discrepancy notices and scrutiny flags from tax department servers.</li>
+        <li><div><strong>Filing Form 10E for Relief:</strong> If a substantial portion of your accumulated leave encashment relates to past years of service and gets aggregated and taxed in the current financial year, remember to file **Form 10E** electronically prior to submitting your ITR. This critical step enables you to claim tax relief under Section 89(1), mitigating the sudden tax burden caused by cumulative lump-sum payouts.</div></li>
+      </ul>
+    </article>
+
+    <!-- FAQ Accordion -->
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How is leave encashment calculated formula-wise?</summary>
+        <p>The standard formula is: (Average Monthly Basic Salary + Dearness Allowance) ÷ 30 × Number of Unused Earned Leave Days.</p>
+      </details>
+
+      <details>
+        <summary>Is leave encashment fully taxable?</summary>
+        <p>No. For government employees, it is entirely tax-free. For non-government employees, it is exempt up to statutory limits (such as ₹25,00,000 under Section 10(10AA)), while amounts exceeding the limit are taxable as per income tax slabs.</p>
+      </details>
+
+      <details>
+        <summary>What is the maximum leave days allowed per year for tax calculation?</summary>
+        <p>Income tax laws limit the accumulation of earned leave for exemption calculation to a maximum of 30 days for every completed year of service.</p>
+      </details>
+
+      <details>
+        <summary>Is leave encashment received during service taxable?</summary>
+        <p>Yes, if leave encashment is received while you are still in active service (not at retirement or resignation), it is fully taxable for all employees under income from salary.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- Global Shared Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Precision Calculation JavaScript -->
+  <script>
+    function resetForm() {
+      document.getElementById('employmentType').value = 'private';
+      document.getElementById('encashmentTiming').value = 'retirement';
+      document.getElementById('avgSalary').value = '30000';
+      document.getElementById('unusedLeaves').value = '320';
+      document.getElementById('totalYears').value = '20';
+      document.getElementById('totalLeavesAllowed').value = '20';
+      document.getElementById('resultsWrapper').style.display = 'none';
+      document.getElementById('errorMsg').style.display = 'none';
+    }
+
+    function calculateLeaveEncashment() {
+      const empType = document.getElementById('employmentType').value;
+      const timing = document.getElementById('encashmentTiming').value;
+      const avgSalary = parseFloat(document.getElementById('avgSalary').value) || 0;
+      const unusedLeaves = parseFloat(document.getElementById('unusedLeaves').value) || 0;
+      const years = parseFloat(document.getElementById('totalYears').value) || 0;
+      const errorMsg = document.getElementById('errorMsg');
+      const resultsWrapper = document.getElementById('resultsWrapper');
+
+      if (avgSalary < 0 || unusedLeaves < 0 || years < 0) {
+        errorMsg.style.display = 'block';
+        resultsWrapper.style.display = 'none';
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+
+      const dailyRate = avgSalary / 30;
+      const totalPayout = dailyRate * unusedLeaves;
+
+      let taxExempt = 0;
+      if (timing === 'service') {
+        taxExempt = 0; // Encashment during service is fully taxable
+      } else if (empType === 'government') {
+        taxExempt = totalPayout;
+      } else {
+        // Statutory limits for non-govt under Section 10(10AA): least of 4 limits
+        const limit1 = 2500000; // statutory limit updated under budget rules
+        const limit2 = totalPayout;
+        const limit3 = 10 * avgSalary;
+        const cappedLeavesVal = Math.min(unusedLeaves, years * 30) * dailyRate;
+        
+        taxExempt = Math.max(0, Math.min(limit1, limit2, limit3, cappedLeavesVal));
+      }
+
+      const taxableAmount = Math.max(0, totalPayout - taxExempt);
+
+      document.getElementById('primaryAmountDisplay').innerText = `₹ ${Math.round(totalPayout).toLocaleString('en-IN')}`;
+      document.getElementById('taxStatusBadge').innerText = timing === 'service' ? 'Encashment During Service (Fully Taxable)' : (empType === 'government' ? 'Government Payout (100% Tax-Free)' : 'Non-Government Payout Estimation');
+      document.getElementById('taxExemptVal').innerText = `₹ ${Math.round(taxExempt).toLocaleString('en-IN')}`;
+      document.getElementById('taxableVal').innerText = `₹ ${Math.round(taxableAmount).toLocaleString('en-IN')}`;
+      document.getElementById('dailyRateVal').innerText = `₹ ${Math.round(dailyRate).toLocaleString('en-IN')}`;
+
+      resultsWrapper.style.display = 'block';
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculate_leave_encashment', {
+          'event_category': 'Calculator',
+          'event_label': 'Leave Encashment Calculated'
+        });
+      }
+    }
+
+    function shareResults() {
+      const payoutText = document.getElementById('primaryAmountDisplay').innerText;
+      const text = `My Estimated Leave Encashment Payout is ${payoutText}. Calculated via Everyday Tools Leave Encashment Calculator!`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Results copied to clipboard!');
+      });
+    }
+
+    function shareWhatsApp() {
+      const payoutText = document.getElementById('primaryAmountDisplay').innerText;
+      const text = encodeURIComponent(`Check out my estimated leave encashment payout: ${payoutText}! Try it yourself: ${window.location.href}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>

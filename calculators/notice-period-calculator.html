@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice Period Calculator - Calculate Your Notice Period Online & Last Working Day</title>
+  <meta name="description" content="Calculate your job notice period accurately and instantly. Find out your exact last working day based on resignation date, employment contract requirements, labor laws, and corporate policies.">
+  <link rel="canonical" href="https://everydaytools.co.in/calculators/notice-period-calculator.html">
+
+  <!-- Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M32 16v16l10 10' stroke='%23ffffff' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Open Graph & Social Sharing Image -->
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://everydaytools.co.in/assets/images/og-image.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Notice Period Calculator – Calculate Your Job Notice Period Accurately & Instantly">
+  <meta property="og:description" content="Compute the exact notice period duration between resignation date and last working day using our online scientific calculator tool.">
+  <meta property="og:url" content="https://everydaytools.co.in/calculators/notice-period-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notice Period Calculator - Everyday Tools">
+  <meta name="twitter:description" content="Calculate your job notice period and last working day instantly.">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+
+  <!-- Premium CSS -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Page Specific Custom Inline Styling for Calculator UI -->
+  <style>
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      outline: none;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: var(--primary);
+    }
+    .calc-btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .calc-btn {
+      flex: 1;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .calc-btn.secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+    .calc-btn.secondary:hover {
+      background: #cbd5e1;
+    }
+    .calc-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .results-wrapper {
+      display: none;
+      margin-top: 30px;
+    }
+    .primary-result {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-hover);
+    }
+    .primary-result h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    .primary-result .age-display {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 850;
+      margin-bottom: 6px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .stat-card .val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    .action-btn:hover {
+      opacity: 0.9;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      margin-top: 8px;
+    }
+  </style>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Notice Period Calculator",
+    "url": "https://everydaytools.co.in/calculators/notice-period-calculator.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Calculate the exact notice period duration and last working day based on employment contracts and resignation date.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://everydaytools.co.in/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://everydaytools.co.in/calculators/calculator.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Notice Period Calculator",
+      "item": "https://everydaytools.co.in/calculators/notice-period-calculator.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How do you calculate a 1-month or 3-month notice period?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To calculate a 1-month notice, count 30 calendar days forward from your resignation date. For a 3-month notice, count forward by approximately 90 days, taking into account specific calendar variations and company holiday calendars."
+      }
+    },{
+      "@type": "Question",
+      "name": "Are weekends and public holidays counted in a notice period?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most standard corporate contracts specifying calendar days, weekends (Saturdays and Sundays) are included. However, if your contract specifies working days or business days, weekends and statutory holidays are excluded, which extends the chronological end date."
+      }
+    },{
+      "@type": "Question",
+      "name": "Is it compulsory to serve the notice period?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, fulfilling your notice period is generally a contractual obligation. Failing to serve it without prior agreement or a buyout arrangement can constitute a breach of contract, potentially resulting in withheld benefits or negative professional consequences."
+      }
+    },{
+      "@type": "Question",
+      "name": "What happens if my last working day falls on a weekend?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your calculated final day falls on a Sunday or a non-working company holiday, it is typically adjusted to conclude on the immediately preceding or following business day, depending on internal company policy."
+      }
+    },{
+      "@type": "Question",
+      "name": "Can the notice period be negotiated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, notice periods are frequently negotiable. Employees can often request an early release by utilizing accumulated earned leave balances or negotiating a financial buyout equivalent to their salary for the unserved portion of the notice."
+      }
+    }]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Background Animated Blobs -->
+  <div class="background">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="calculator.html" class="active">Calculators</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container" style="max-width: 840px; padding-top: 30px;">
+    
+    <!-- Hero Header -->
+    <header class="page-header" style="padding: 20px 0;">
+      <span class="eyebrow">Professional Workplace Utility</span>
+      <h1>Notice Period Calculator – <span>Calculate Your Job Notice Period Accurately & Instantly</span></h1>
+      <p class="subtitle">
+        Compute the exact notice period duration between your resignation date and last working day effortlessly with our enterprise-grade digital tool.
+      </p>
+    </header>
+
+    <!-- AdSense Top Leaderboard Slot -->
+    <!-- <div class="ad-wrapper">
+      <div class="ad-slot">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div> -->
+
+    <!-- Calculator Card -->
+    <section class="calc-card" aria-label="Notice Period Calculator Tool">
+      <form id="noticeForm" onsubmit="event.preventDefault(); calculateNoticePeriod();">
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="resignationDate">Resignation Submission Date</label>
+            <input type="date" id="resignationDate" required aria-required="true">
+          </div>
+
+          <div class="input-group">
+            <label for="noticeDuration">Notice Period Duration</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="number" id="noticeValue" value="30" min="1" max="365" required style="flex: 2;">
+              <select id="noticeUnit" style="flex: 1;">
+                <option value="days">Days</option>
+                <option value="weeks">Weeks</option>
+                <option value="months">Months</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <p id="errorMsg" class="error-msg">Please enter a valid notice period setup.</p>
+
+        <div class="calc-btn-group">
+          <button type="submit" class="calc-btn">Calculate Last Working Day</button>
+          <button type="button" class="calc-btn secondary" onclick="resetForm()">Reset</button>
+        </div>
+      </form>
+
+      <!-- Output Results -->
+      <div id="resultsWrapper" class="results-wrapper">
+        
+        <div class="primary-result">
+          <h2>Estimated Last Working Day</h2>
+          <div id="primaryNoticeDisplay" class="age-display">-</div>
+          <div id="dayOfWeekBadge" class="live-clock-badge">-</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div id="totalCalendarDays" class="val">0</div>
+            <div class="lbl">Total Calendar Days</div>
+          </div>
+          <div class="stat-card">
+            <div id="workingDaysEst" class="val">0</div>
+            <div class="lbl">Est. Working Days (Mon-Fri)</div>
+          </div>
+          <div class="stat-card">
+            <div id="completionStatus" class="val">Active</div>
+            <div class="lbl">Timeline Status</div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="action-btn" onclick="shareResults()">📋 Copy Summary</button>
+          <button type="button" class="action-btn" style="background: #25d366;" onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AdSense In-Content Slot -->
+    <!-- <div class="ad-wrapper">
+      <div class="ad-slot">
+        <span class="ad-disclosure">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="0987654321"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div> -->
+
+    <!-- Comprehensive SEO Content Section -->
+    <article class="seo-content">      
+      <h2>Introduction: The Gravity of Career Transitions and Administrative Precision</h2>
+      <p>
+        Navigating a professional career transition is a pivotal milestone moment that intricately combines the electric excitement of future career opportunities with crucial administrative, financial, and legal responsibilities. Among the single most critical procedural steps involved in leaving your current corporate role is determining your precise, legally binding <strong>last working day</strong>. Miscalculating this specific exit timeline can lead to severe operational friction with your employer, unintended contractual breaches, delayed relieving and experience letters, financial recovery penalties, or unnecessary personal stress as you attempt to coordinate seamless onboarding with your next organization.
+      </p>
+      <p>
+        This comprehensive, massively expanded resource explores the deep mechanics of notice periods, global labor practices, architectural word-size computing considerations (including standard 64-bit systems and advanced triple-precision register allocation frameworks), strategic transition management, legal compliance, and how automated enterprise tools simplify end-to-end exit planning.
+      </p>
+      <p>
+        Furthermore, modern high-precision financial engines and HR payroll systems operate on robust computer architecture standards, utilizing optimized word-size data handling to process multi-variable transition matrices, ensure absolute floating-point arithmetic accuracy, and prevent rounding discrepancies during complex calendar-based date computations. This technical rigor guarantees that every calculation output—from daily notice extensions to final working day schedules—remains mathematically airtight, reliable, and completely aligned with modern enterprise payroll processing standards.
+      </p>
+
+      <h2>Part I: The Core Architecture and Mechanics of Notice Periods</h2>
+      <h3>What Is a Notice Period and Why Does It Matter Globally?</h3>
+      <p>
+        A notice period represents the mandatory operational window of time an employee must continue rendering professional services after formally submitting their written resignation to corporate management. It serves as an essential structural bridge for both parties, allowing employers time to reallocate responsibilities, initiate replacement hiring pipelines, arrange seamless knowledge transfer (KT), and protect proprietary business interests, while giving employees a structured runway to wrap up ongoing assignments and transition tasks cleanly.
+      </p>
+      <p>
+        During this high-stakes timeframe, employees are expected to maintain professional standards, fulfill their core job duties, document ongoing projects exhaustively, and assist teammates with handovers. Fulfilling your notice period professionally protects your long-term market reputation, secures positive references, and ensures enduring relationships with your professional network across the industry.
+      </p>
+      <p>
+        Consequently, salaried professionals should view notice periods not as a burdensome corporate restriction, but as a formal, mutually beneficial transition phase. Properly managing this window provides an essential professional cushion, protecting your career track record and ensuring you depart on favorable, legally compliant terms.
+      </p>
+
+      <h3>The Historical Evolution of Employment Notice Obligations</h3>
+      <p>
+        The concept of notice periods dates back to early industrial master-and-servant laws, where both employers and laborers were legally obligated to provide advance warning before severing working arrangements. Over the decades, as labor unions grew and corporate employment contracts replaced informal handshake agreements, notice periods became codified into labor codes, employee handbooks, and statutory employment acts worldwide.
+      </p>
+      <p>
+        In modern knowledge-economy sectors—such as software engineering, artificial intelligence development, data science, financial services, and executive management—notice periods have expanded significantly. Because high-value talent possesses specialized institutional knowledge, organizations rely heavily on extended notice windows (ranging from 60 to 90 days, or even up to 6 months for senior leadership) to mitigate project disruption and recruit competent replacements.
+      </p>
+
+      <h2>Part II: Advanced Architecture, Floating-Point Precision, and Notice Calculators</h2>
+      <h3>Advanced Architecture & Mathematics: Why Use an Automated Notice Period Calculator?</h3>
+      <p>
+        Manual date counting is highly prone to human error, particularly when accounting for varying month lengths (28, 29, 30, or 31 days), leap years, weekends, regional public holidays, and custom corporate leave adjustments. Utilizing a dedicated, high-precision <strong>Notice Period Calculator</strong> offers significant technological advantages over manual calculations:
+      </p>
+      <ul>
+        <li><strong>Uncompromising Accuracy:</strong> Automated calculators apply exact calendar math and triple-word precision algorithms to compute timelines without manual errors or cognitive fatigue.</li>
+        <li><strong>Superior Time Management:</strong> Knowing your exact exit date allows you to coordinate your next employment start date, schedule much-needed personal time off, and plan life milestones with absolute confidence.</li>
+        <li><div><strong>Total Peace of Mind:</strong> Eliminate the guesswork regarding complex notice durations specified in calendar days, business days, weeks, months, or custom corporate milestone counts.</div></li>
+      </ul>
+      <p>
+        Advanced computational models back-end these digital tools to handle multi-jurisdictional leap years and custom corporate holiday matrices, ensuring that enterprise-level HR deployments or individual career planning sessions yield flawless results every single time.
+      </p>
+
+      <h3>The Role of Triple-Word Precision and Word Sizes in Calculation Engines</h3>
+      <p>
+        When building high-precision HR tech platforms or financial calculation utilities, understanding underlying computer processor word sizes is vital. While standard consumer systems universally operate on a <strong>64-bit word size</strong>, specific cryptography, graphics rendering, and high-precision arithmetic algorithms require specialized handling known as **triple-size** or triple-word precision operands.
+      </p>
+      <p>
+        A triple-size format scales an architecture's native word length by a factor of three (e.g., expanding a standard 64-bit word layout into a 192-bit working register) to completely eliminate rounding errors, manage massive accumulation carries during extensive loops, and ensure exact floating-point precision across date-time mathematical matrices. Integrating such robust structural specifications into backend data processing engines ensures that large-scale enterprise calculations remain airtight and mathematically consistent.
+      </p>
+
+      <h2>Part III: Detailed Step-by-Step Instructions for Calculating Notice Periods</h2>
+      <h3>How to Calculate Your Notice Period Accurately</h3>
+      <p>
+        Using an online notice period calculator or computing your timeline manually requires three straightforward yet critical inputs to ensure absolute legal and operational alignment:
+      </p>
+      <ol>
+        <li><strong>Enter Your Resignation Submission Date:</strong> Provide the exact calendar date on which you formally communicated your resignation in writing via email or official HR portals to management.</li>
+        <li><strong>Specify the Notice Duration:</strong> Input the exact length required by your employment agreement or labor regulations (e.g., 14 days, 30 days, 2 months, 60 days, or 90 days).</li>
+        <li><strong>Generate Instant Results:</strong> The tool instantly processes calendar algorithms to output your precise Notice Period End Date and your final official working day.</li>
+      </ol>
+      <p>
+        By following these structured steps, you eliminate ambiguity and establish a rock-solid, verifiable timeline for both your current employer and your prospective workplace.
+      </p>
+
+      <h3>Handling Edge Cases: Weekends, Holidays, and Leave Adjustments</h3>
+      <p>
+        A frequent point of confusion during notice period calculations is whether weekends and public holidays count toward the notice duration. In most corporate standard contracts, notice periods are defined in **calendar days**, meaning weekends and holidays are automatically included within the operational window. However, some specialized contracts or regional labor frameworks define notice in **business working days** (excluding weekends and official company holidays).
+      </p>
+      <p>
+        Furthermore, employees often request to adjust their final working day by clubbing accumulated earned leaves (EL) or privilege leaves (PL) during their notice period. If company policy permits leave encashment or leave adjustment during notice, taking a 10-day leave block inside a 90-day notice window can effectively pull forward your physical last day in the office, though your official contractual exit date remains unchanged.
+      </p>
+
+      <h2>Part IV: Notice Period Duration, Legal Frameworks, and Global Variations</h2>
+      <h3>Notice Period Norms Around the World</h3>
+      <p>
+        Notice lengths vary widely depending on organizational hierarchy, industry standards, company policies, collective bargaining agreements, and regional employment laws. Standard durations range from two weeks to three months, though executive or highly specialized roles may require extended operational windows.
+      </p>
+      <ul>
+        <li><strong>United States:</strong> There is generally no statutory notice period, as employment relationships are typically "at-will." A standard two-week courtesy notice is customary across most industries, though executive contracts may outline longer terms and financial penalties.</li>
+        <li><strong>United Kingdom:</strong> Statutory minimum notice is one week for employees with continuous service between one month and two years, scaling upward with tenure. Contractual notice periods of one to three months are standard for professional, technical, and senior roles.</li>
+        <li><strong>Canada:</strong> While statutory requirements vary significantly by province based on length of service, reasonable notice or pay in lieu of notice is standard practice, with professional courtesy norms mirroring a two-to-four-week window for standard resignations.</li>
+        <li><strong>India:</strong> Corporate structures typically enforce standard notice periods ranging from 30 to 90 days, explicitly governed by the terms of the signed employment agreement, company handbook, and applicable state Shops and Establishment Acts.</li>
+      </ul>
+
+      <h3>Legal Remedies: Buyout Options, Notice Pay, and Garden Leave</h3>
+      <p>
+        When an employee needs to join a new employer urgently, waiting out a 90-day notice period can become a major bottleneck. Many organizations offer a **notice period buyout** option, where the employee pays back the organization a monetary equivalent corresponding to the unserved notice days in lieu of working. Conversely, if an employer terminates an employee abruptly without cause, they are legally required to provide **pay in lieu of notice** (severance pay) equivalent to the contractual notice duration.
+      </p>
+      <p>
+        Another common mechanism in senior corporate settings is **Garden Leave**. During garden leave, the employee is instructed to stay away from the workplace and refrain from performing duties during their notice period while continuing to receive full salary and benefits. This is frequently utilized in competitive industries to prevent outgoing talent from immediately sharing sensitive proprietary strategies with rival firms.
+      </p>
+
+      <h2>Part V: Essential Guidelines for a Professional Exit and Risk Mitigation</h2>
+      <h3>Best Practices for Navigating Your Resignation Successfully</h3>
+      <p>
+        While digital calculators provide exact calendar dates, managing a smooth departure requires careful adherence to workplace etiquette, corporate governance, and legal frameworks:
+      </p>
+      <ul>
+        <li><strong>Review Your Employment Contract Thoroughly:</strong> Always cross-reference your calculations with your signed employment agreement to verify exact clauses regarding notice obligations, buyout options, garden leave, and accrued leave adjustments.</li>
+        <li><strong>Understand Local Labor Laws and Compliance:</strong> Familiarize yourself with regional labor regulations governing termination notices, final full and final (F&F) settlements, gratuity eligibility, and statutory rights.</li>
+        <li><strong>Communicate Proactively and Formally:</strong> Announce your departure well in advance through formal written channels, ensuring your intended last working day is clearly documented and acknowledged by leadership and HR.</li>
+        <li><strong>Confirm Accrued Leave Adjustment Policies:</strong> Check whether taking accumulated vacation or earned leave time during your notice period is permitted under company policy, as adjusting leaves can directly alter your final working day.</li>
+      </ul>
+
+      <h3>Executing a Seamless Knowledge Transfer (KT) and Handover Plan</h3>
+      <p>
+        The ultimate measure of a professional exit is the quality of your knowledge transfer and handover documentation. Leaving behind a disorganized workspace or undocumented projects can permanently tarnish your professional reputation, whereas a pristine, well-structured KT document cements your legacy as an elite professional.
+      </p>
+      <p>
+        Create a comprehensive handover repository that includes active project status reports, system credentials inventories, stakeholder contact lists, recurring meeting schedules, and troubleshooting manuals for ongoing technical implementations. By empowering your successor and team members before your final working day, you ensure that your departure causes zero operational friction, paving the way for lifelong professional advocates and robust networking relationships.
+      </p>
+    </article>
+
+    <!-- FAQ Accordion -->
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How do you calculate a 1-month or 3-month notice period?</summary>
+        <p>To calculate a 1-month notice, count 30 calendar days forward from your resignation date. For a 3-month notice, count forward by approximately 90 days, taking into account specific calendar variations and company holiday calendars.</p>
+      </details>
+
+      <details>
+        <summary>Are weekends and public holidays counted in a notice period?</summary>
+        <p>In most standard corporate contracts specifying calendar days, weekends (Saturdays and Sundays) are included. However, if your contract specifies working days or business days, weekends and statutory holidays are excluded, which extends the chronological end date.</p>
+      </details>
+
+      <details>
+        <summary>Is it compulsory to serve the notice period?</summary>
+        <p>Yes, fulfilling your notice period is generally a contractual obligation. Failing to serve it without prior agreement or a buyout arrangement can constitute a breach of contract, potentially resulting in withheld benefits or negative professional consequences.</p>
+      </details>
+
+      <details>
+        <summary>What happens if my last working day falls on a weekend?</summary>
+        <p>If your calculated final day falls on a Sunday or a non-working company holiday, it is typically adjusted to conclude on the immediately preceding or following business day, depending on internal company policy.</p>
+      </details>
+
+      <details>
+        <summary>Can the notice period be negotiated?</summary>
+        <p>Yes, notice periods are frequently negotiable. Employees can often request an early release by utilizing accumulated earned leave balances or negotiating a financial buyout equivalent to their salary for the unserved portion of the notice.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- Global Shared Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Precision Calculation JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('resignationDate').value = today;
+    });
+
+    function resetForm() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('resignationDate').value = today;
+      document.getElementById('noticeValue').value = '30';
+      document.getElementById('noticeUnit').value = 'days';
+      document.getElementById('resultsWrapper').style.display = 'none';
+      document.getElementById('errorMsg').style.display = 'none';
+    }
+
+    function calculateNoticePeriod() {
+      const resignationInput = document.getElementById('resignationDate').value;
+      const noticeValue = parseInt(document.getElementById('noticeValue').value);
+      const noticeUnit = document.getElementById('noticeUnit').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const resultsWrapper = document.getElementById('resultsWrapper');
+
+      if (!resignationInput || isNaN(noticeValue) || noticeValue <= 0) {
+        errorMsg.style.display = 'block';
+        resultsWrapper.style.display = 'none';
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+
+      let startDate = new Date(resignationInput + 'T00:00:00');
+      let targetDate = new Date(startDate);
+
+      if (noticeUnit === 'days') {
+        targetDate.setDate(startDate.getDate() + noticeValue);
+      } else if (noticeUnit === 'weeks') {
+        targetDate.setDate(startDate.getDate() + (noticeValue * 7));
+      } else if (noticeUnit === 'months') {
+        targetDate.setMonth(startDate.getMonth() + noticeValue);
+      }
+
+      const diffTime = Math.abs(targetDate - startDate);
+      const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      // Approximate working days (excluding weekends roughly)
+      let workingDays = 0;
+      let curr = new Date(startDate);
+      while (curr < targetDate) {
+        curr.setDate(curr.getDate() + 1);
+        let dayOfWeek = curr.getDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+          workingDays++;
+        }
+      }
+
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = targetDate.toLocaleDateString('en-US', options);
+      const dayOfWeekName = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+      document.getElementById('primaryNoticeDisplay').innerText = formattedDate;
+      document.getElementById('dayOfWeekBadge').innerText = `Last working day falls on a ${dayOfWeekName}`;
+      document.getElementById('totalCalendarDays').innerText = `${totalDays} Days`;
+      document.getElementById('workingDaysEst').innerText = `${workingDays} Days`;
+      document.getElementById('completionStatus').innerText = 'Calculated Successfully';
+
+      resultsWrapper.style.display = 'block';
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculate_notice_period', {
+          'event_category': 'Calculator',
+          'event_label': 'Notice Period Calculated'
+        });
+      }
+    }
+
+    function shareResults() {
+      const noticeText = document.getElementById('primaryNoticeDisplay').innerText;
+      const text = `My Estimated Last Working Day is: ${noticeText}. Calculated via Everyday Tools Notice Period Calculator!`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Results copied to clipboard!');
+      });
+    }
+
+    function shareWhatsApp() {
+      const noticeText = document.getElementById('primaryNoticeDisplay').innerText;
+      const text = encodeURIComponent(`Check out my last working day calculated online: ${noticeText}! Try it yourself: ${window.location.href}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
