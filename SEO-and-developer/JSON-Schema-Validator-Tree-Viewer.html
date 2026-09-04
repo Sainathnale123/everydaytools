@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online JSON Schema Validator & Interactive Tree Viewer</title>
+  <meta name="description" content="Instantly validate JSON payloads against custom schemas, debug syntax errors, and explore interactive visual node trees entirely within your web browser.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/json-schema-validator.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online JSON Schema Validator & Interactive Tree Viewer">
+  <meta property="og:description" content="Instantly validate JSON payloads against custom schemas, debug syntax errors, and explore interactive visual node trees entirely within your web browser.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/json-schema-validator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/json-validator-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online JSON Schema Validator & Interactive Tree Viewer">
+  <meta name="twitter:description" content="Instantly validate JSON payloads against custom schemas, debug syntax errors, and explore interactive visual node trees.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Include AJV for robust JSON Schema validation -->
+  <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/ajv7.min.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON Schema Validator & Tree Viewer",
+    "url": "https://everydaytools.co.in/tools/json-schema-validator.html",
+    "description": "Free online developer tool to validate JSON payloads against schemas, check syntax errors, and explore structured data trees locally in the browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a JSON Schema Validator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A JSON Schema Validator is a developer utility that checks whether a given JSON data object conforms to the structural rules, data types, and required fields defined in a JSON Schema."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my JSON datasets uploaded to a remote server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All schema validation, syntax parsing, and tree visualization happen entirely client-side inside your browser sandbox, ensuring absolute privacy for sensitive data payloads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the interactive tree viewer work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tree viewer parses valid JSON strings into a nested, collapsible node structure that allows engineers to inspect objects, arrays, keys, and data values intuitively."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if my JSON syntax is invalid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool catches syntax exceptions immediately and prints detailed error messages highlighting parsing failures, missing brackets, or trailing commas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support draft specifications of JSON Schema?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, powered by Ajv, the validator supports standard modern JSON Schema specifications including Draft-07."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I format and minify my JSON payload?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, built-in helper actions let you instantly beautify (pretty print) or compress your JSON text strings with a single click."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+    @media (max-width: 768px) { .editor-grid { grid-template-columns: 1fr; } }
+    .textarea-box { width: 100%; min-height: 220px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 12px; font-family: monospace; font-size: 13px; background: var(--bg, #f8fafc); resize: vertical; }
+    .textarea-box:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #64748b; }
+    .output-section { margin-top: 24px; display: none; }
+    .status-banner { padding: 14px 18px; border-radius: 10px; font-weight: 700; font-size: 14px; margin-bottom: 16px; }
+    .status-success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .status-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    .tree-viewer { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; max-height: 350px; overflow-y: auto; text-align: left; font-family: monospace; font-size: 13px; }
+    .tree-node { margin-left: 20px; }
+    .tree-key { color: #1e40af; font-weight: 700; }
+    .tree-string { color: #047857; }
+    .tree-number { color: #b45309; }
+    .tree-boolean { color: #7c3aed; }
+    .tree-null { color: #64748b; font-style: italic; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Developer Engineering Suite</span>
+        <h1>JSON Schema Validator & <span>Tree Viewer</span></h1>
+        <p class="subtitle">
+          Validate JSON data payloads against custom schemas, inspect parsing errors, and explore interactive node trees locally in your browser.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="editor-grid">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <label for="jsonInput" style="font-weight: 700; font-size: 14px; color: var(--text, #101828);">JSON Data Payload:</label>
+              <button type="button" class="btn-action" style="padding: 4px 10px; font-size: 12px;" onclick="beautifyJson()">Beautify</button>
+            </div>
+            <textarea id="jsonInput" class="textarea-box" placeholder="{&#10;  &quot;id&quot;: 101,&#10;  &quot;name&quot;: &quot;Alice Johnson&quot;,&#10;  &quot;isActive&quot;: true&#10;}"></textarea>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <label for="schemaInput" style="font-weight: 700; font-size: 14px; color: var(--text, #101828);">JSON Schema (Draft-07):</label>
+              <button type="button" class="btn-action btn-secondary" style="padding: 4px 10px; font-size: 12px;" onclick="loadSample()">Load Sample</button>
+            </div>
+            <textarea id="schemaInput" class="textarea-box" placeholder="{&#10;  &quot;type&quot;: &quot;object&quot;,&#10;  &quot;properties&quot;: {&#10;    &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },&#10;    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot; },&#10;    &quot;isActive&quot;: { &quot;type&quot;: &quot;boolean&quot; }&#10;  },&#10;  &quot;required&quot;: [&quot;id&quot;, &quot;name&quot;]&#10;}"></textarea>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+          <button type="button" class="btn-action" onclick="validateAndInspect()">🚀 Validate Schema & Render Tree</button>
+        </div>
+
+        <div id="outputSection" class="output-section">
+          <div id="statusBanner" class="status-banner"></div>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #1e293b;">Interactive JSON Tree Structure:</h3>
+          <div id="treeContainer" class="tree-viewer"></div>
+
+          <div class="internal-link-box" style="margin-top: 20px;">
+            Need more developer utilities? Try our <a href="./heading-hierarchy-analyzer.html">H1-H6 Heading Analyzer</a> or <a href="./GPS-Metadata-Remover.html">Meta Tag Generator</a>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Comprehensive Guide to JSON Schema Validation and Tree Visualization</h2>
+        
+        <p>
+          JavaScript Object Notation (JSON) has become the universal data interchange format for modern web APIs, microservices, configuration files, and cloud databases. However, as payloads grow in scale and complexity, ensuring data integrity, strict type safety, and structural consistency becomes an arduous task. Our advanced <strong>JSON Schema Validator & Tree Viewer</strong> provides software engineers, frontend developers, and data architects with a secure, lightning-fast, client-side utility to test JSON payloads against formal schemas while inspecting hierarchical structures through an interactive visual tree interface.
+        </p>
+
+        <h3>Why JSON Schema Validation is Critical for API Development</h3>
+        <p>
+          Without automated schema validation, runtime exceptions caused by unexpected data types—such as receiving a string instead of an integer or omitting mandatory fields—can crash client applications or corrupt database tables. JSON Schema establishes a robust contract, dictating precisely which properties are required, what data types are permitted, and what numerical boundaries or string patterns must be respected. By validating payloads before deployment or API integration, engineering teams eliminate bugs and enforce reliable data pipelines.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔒 100% Client-Side Privacy</h4>
+            <p style="font-size: 13px; margin: 0;">Payloads and schemas process locally in your browser sandbox. Your sensitive data never touches external servers.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ Robust AJV Engine</h4>
+            <p style="font-size: 13px; margin: 0;">Powered by Ajv, delivering lightning-fast JSON Schema validation adhering to modern draft specifications.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🌳 Interactive Tree Viewer</h4>
+            <p style="font-size: 13px; margin: 0;">Explore complex nested objects and arrays through an intuitive, color-coded collapsible node tree.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛠️ Syntax & Error Debugging</h4>
+            <p style="font-size: 13px; margin: 0;">Instantly pinpoint missing commas, bracket mismatches, or schema violation paths with exact error feedback.</p>
+          </div>
+        </div>
+
+        <h3>How Our JSON Validator and Tree Viewer Works</h3>
+        <p>
+          When you submit your JSON data and schema, the utility first runs a strict JSON parsing pass using native JavaScript engines to catch syntax errors like unquoted keys or trailing commas. Once verified, the Ajv validator compiles your schema and tests the data payload against every defined constraint. Simultaneously, a recursive rendering engine transforms the valid JSON object into an interactive DOM tree structure, color-coding keys, strings, numbers, booleans, and null values for effortless readability.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Validate and Inspect JSON Data</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Input Your JSON Payload:</strong> Paste your target JSON data string into the left editor box, or click beautify to clean formatting.</li>
+          <li><strong>Define Your Schema:</strong> Paste your JSON Schema specification into the right editor box, or click "Load Sample" for a pre-configured template.</li>
+          <li><strong>Run Validation:</strong> Click the <strong>"Validate Schema & Render Tree"</strong> button to execute local verification.</li>
+          <li><strong>Analyze Results:</strong> Review the success or error status banner and explore the interactive tree structure below.</li>
+        </ol>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is a JSON Schema Validator?</summary>
+          <p>
+            A JSON Schema Validator is a developer utility that checks whether a given JSON data object conforms to the structural rules, data types, and required fields defined in a JSON Schema.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are my JSON datasets uploaded to a remote server?</summary>
+          <p>
+            No. All schema validation, syntax parsing, and tree visualization happen entirely client-side inside your browser sandbox, ensuring absolute privacy for sensitive data payloads.
+          </p>
+        </details>
+
+        <details>
+          <summary>How does the interactive tree viewer work?</summary>
+          <p>
+            The tree viewer parses valid JSON strings into a nested, collapsible node structure that allows engineers to inspect objects, arrays, keys, and data values intuitively.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens if my JSON syntax is invalid?</summary>
+          <p>
+            The tool catches syntax exceptions immediately and prints detailed error messages highlighting parsing failures, missing brackets, or trailing commas.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does this tool support draft specifications of JSON Schema?</summary>
+          <p>
+            Yes, powered by Ajv, the validator supports standard modern JSON Schema specifications including Draft-07.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I format and minify my JSON payload?</summary>
+          <p>
+            Yes, built-in helper actions let you instantly beautify (pretty print) or compress your JSON text strings with a single click.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I validate arrays of objects with this tool?</summary>
+          <p>
+            Yes, schemas configured with array types and item definitions validate lists of objects seamlessly.
+          </p>
+        </details>
+
+        <details>
+          <summary>What do the color codings in the tree viewer mean?</summary>
+          <p>
+            Keys are highlighted in blue, string values in green, numbers in amber, booleans in purple, and null values in muted gray.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there a size limitation for JSON payloads?</summary>
+          <p>
+            Performance depends on your browser's available memory. Standard JSON payloads up to several megabytes parse and render smoothly.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to install any browser extensions?</summary>
+          <p>
+            No installation is required. The tool runs directly inside any modern web browser across desktop and mobile devices.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do I troubleshoot missing required property errors?</summary>
+          <p>
+            The validation error banner lists the exact property path and missing field name reported by Ajv so you can update your payload quickly.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I use this tool offline?</summary>
+          <p>
+            Once the page and external scripts are cached, the client-side execution allows offline usage.
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side Script for JSON Validation and Tree Rendering -->
+  <script>
+    function loadSample() {
+      const sampleJson = {
+        "userId": 4092,
+        "username": "developer_pro",
+        "email": "dev@everydaytools.co.in",
+        "verified": true,
+        "roles": ["admin", "editor"],
+        "metadata": {
+          "lastLogin": "2026-09-04T14:00:00Z",
+          "sessionCount": 14
+        }
+      };
+
+      const sampleSchema = {
+        "type": "object",
+        "properties": {
+          "userId": { "type": "integer" },
+          "username": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "verified": { "type": "boolean" },
+          "roles": { "type": "array", "items": { "type": "string" } },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "lastLogin": { "type": "string" },
+              "sessionCount": { "type": "number" }
+            },
+            "required": ["sessionCount"]
+          }
+        },
+        "required": ["userId", "username", "email", "verified"]
+      };
+
+      document.getElementById('jsonInput').value = JSON.stringify(sampleJson, null, 2);
+      document.getElementById('schemaInput').value = JSON.stringify(sampleSchema, null, 2);
+      validateAndInspect();
+    }
+
+    function beautifyJson() {
+      const inputEl = document.getElementById('jsonInput');
+      try {
+        const parsed = JSON.parse(inputEl.value);
+        inputEl.value = JSON.stringify(parsed, null, 2);
+      } catch (e) {
+        alert('Invalid JSON syntax. Cannot beautify: ' + e.message);
+      }
+    }
+
+    function validateAndInspect() {
+      const jsonRaw = document.getElementById('jsonInput').value;
+      const schemaRaw = document.getElementById('schemaInput').value;
+      const outputSection = document.getElementById('outputSection');
+      const statusBanner = document.getElementById('statusBanner');
+      const treeContainer = document.getElementById('treeContainer');
+
+      outputSection.style.display = 'block';
+      treeContainer.innerHTML = '';
+
+      let jsonData, schemaData;
+
+      // 1. Parse JSON Data
+      try {
+        jsonData = JSON.parse(jsonRaw);
+      } catch (e) {
+        statusBanner.className = 'status-banner status-error';
+        statusBanner.innerHTML = `❌ JSON Data Syntax Error: ${escapeHtml(e.message)}`;
+        treeContainer.innerHTML = '<div style="color: #64748b; padding: 10px;">Tree viewer unavailable due to JSON syntax errors.</div>';
+        return;
+      }
+
+      // 2. Parse Schema
+      try {
+        schemaData = JSON.parse(schemaRaw);
+      } catch (e) {
+        statusBanner.className = 'status-banner status-error';
+        statusBanner.innerHTML = `❌ JSON Schema Syntax Error: ${escapeHtml(e.message)}`;
+        treeContainer.innerHTML = '<div style="color: #64748b; padding: 10px;">Tree viewer unavailable due to schema syntax errors.</div>';
+        return;
+      }
+
+      // 3. Validate using AJV
+      try {
+        const ajv = new Ajv({ allErrors: true });
+        const validate = ajv.compile(schemaData);
+        const valid = validate(jsonData);
+
+        if (valid) {
+          statusBanner.className = 'status-banner status-success';
+          statusBanner.innerHTML = '✅ Success! JSON payload successfully validates against the provided schema.';
+        } else {
+          const errorsFormatted = validate.errors.map(err => `&bull; <strong>${err.instancePath || 'root'}</strong>: ${err.message}`).join('<br>');
+          statusBanner.className = 'status-banner status-error';
+          statusBanner.innerHTML = `⚠️ Schema Validation Failed:<br>${errorsFormatted}`;
+        }
+      } catch (e) {
+        statusBanner.className = 'status-banner status-error';
+        statusBanner.innerHTML = `❌ Schema Compilation Error: ${escapeHtml(e.message)}`;
+      }
+
+      // 4. Render Tree Viewer
+      treeContainer.appendChild(renderTree(jsonData));
+    }
+
+    function renderTree(value) {
+      if (value === null) {
+        const span = document.createElement('span');
+        span.className = 'tree-null';
+        span.innerText = 'null';
+        return span;
+      }
+
+      const type = typeof value;
+
+      if (type !== 'object') {
+        const span = document.createElement('span');
+        if (type === 'string') {
+          span.className = 'tree-string';
+          span.innerText = `"${value}"`;
+        } else if (type === 'number') {
+          span.className = 'tree-number';
+          span.innerText = value;
+        } else if (type === 'boolean') {
+          span.className = 'tree-boolean';
+          span.innerText = value;
+        }
+        return span;
+      }
+
+      const container = document.createElement('div');
+      const isArray = Array.isArray(value);
+      const keys = Object.keys(value);
+
+      if (keys.length === 0) {
+        const span = document.createElement('span');
+        span.innerText = isArray ? '[]' : '{}';
+        return span;
+      }
+
+      keys.forEach((key, index) => {
+        const itemContainer = document.createElement('div');
+        itemContainer.className = 'tree-node';
+
+        const keySpan = document.createElement('span');
+        keySpan.className = 'tree-key';
+        keySpan.innerText = isArray ? `[${key}]: ` : `"${key}": `;
+        itemContainer.appendChild(keySpan);
+
+        const subValue = value[key];
+        itemContainer.appendChild(renderTree(subValue));
+
+        container.appendChild(itemContainer);
+      });
+
+      return container;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Auto-load sample on start
+    window.onload = function() {
+      loadSample();
+    };
+  </script>
+</body>
+</html>

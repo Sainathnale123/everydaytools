@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online JWT Debugger & Decoder - JSON Web Tokens</title>
+  <meta name="description" content="Decode, inspect, and verify JSON Web Tokens (JWT) instantly in your browser. Inspect header, payload claims, and verify signatures securely client-side.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/jwt-debugger-decoder.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online JWT Debugger & Decoder - JSON Web Tokens">
+  <meta property="og:description" content="Decode, inspect, and verify JSON Web Tokens instantly in your browser with secure client-side parsing.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/jwt-debugger-decoder.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/jwt-debugger-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online JWT Debugger & Decoder - JSON Web Tokens">
+  <meta name="twitter:description" content="Decode, inspect, and verify JSON Web Tokens instantly in your browser.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JWT Debugger & Decoder",
+    "url": "https://everydaytools.co.in/tools/jwt-debugger-decoder.html",
+    "description": "Free developer tool to decode, inspect, and analyze JSON Web Tokens (JWT) including headers, payload claims, and expiration timestamps securely in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a JSON Web Token (JWT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties, typically used for authentication and authorization in web applications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What parts make up a JWT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A JWT consists of three base64Url-encoded parts separated by dots: a Header (specifying algorithm and token type), a Payload (containing user claims and metadata), and a Signature."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my authentication tokens secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All decoding and inspection take place entirely client-side inside your browser sandbox. Your tokens are never transmitted to external servers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What claims are commonly found in a JWT payload?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common registered claims include 'sub' (subject), 'iss' (issuer), 'exp' (expiration time), 'iat' (issued at), and 'aud' (audience), alongside custom application claims."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does token expiration checking work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool reads the 'exp' (expiration time) Unix timestamp from the payload and compares it against current system time to verify if the token is active or expired."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install any browser extensions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No installation is required. The debugger runs instantly in any modern web browser across desktop, laptop, and mobile devices."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .input-group { margin-bottom: 20px; }
+    .input-group label { display: block; font-weight: 700; font-size: 14px; color: var(--text, #101828); margin-bottom: 8px; }
+    .jwt-textarea { width: 100%; min-height: 120px; padding: 14px; font-family: monospace; font-size: 13px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: var(--bg, #f8fafc); resize: vertical; }
+    .jwt-textarea:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #64748b; }
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+    .error-banner { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: 700; margin-bottom: 16px; display: none; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 700; margin-bottom: 16px; }
+    .badge-valid { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .badge-expired { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    .jwt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    @media(max-width: 768px) { .jwt-grid { grid-template-columns: 1fr; } }
+    .jwt-pane label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text, #101828); }
+    .jwt-json-view { width: 100%; min-height: 240px; padding: 14px; font-family: monospace; font-size: 13px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: #f1f5f9; color: #0f172a; white-space: pre-wrap; overflow-x: auto; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Developer Engineering Suite</span>
+        <h1>JWT Debugger & <span>Decoder</span></h1>
+        <p class="subtitle">
+          Decode, inspect, and analyze JSON Web Token headers, payload claims, and expiration timestamps securely in your browser.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="input-group">
+          <label for="jwtInput">Encoded JWT Token:</label>
+          <textarea id="jwtInput" class="jwt-textarea" placeholder="Paste your eyJhbGciOi... token here...">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE5MjQ5MzkyMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</textarea>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="btn-action" onclick="decodeJwt()">🔍 Decode Token</button>
+          <button type="button" class="btn-action btn-secondary" onclick="loadSampleToken()">⚡ Load Sample Token</button>
+          <button type="button" class="btn-action btn-secondary" onclick="clearJwt()">🗑️ Clear</button>
+        </div>
+
+        <div id="errorBanner" class="error-banner"></div>
+        <div id="statusContainer"></div>
+
+        <div class="jwt-grid">
+          <div class="jwt-pane">
+            <label for="jwtHeader">Header (Algorithm &amp; Token Type):</label>
+            <div id="jwtHeader" class="jwt-json-view">{}</div>
+          </div>
+          <div class="jwt-pane">
+            <label for="jwtPayload">Payload (Claims &amp; Data):</label>
+            <div id="jwtPayload" class="jwt-json-view">{}</div>
+          </div>
+        </div>
+
+        <div class="internal-link-box" style="margin-top: 24px;">
+          Need more developer utilities? Try our <a href="./sql-formatter-minifier.html">SQL Formatter &amp; Minifier</a> or <a href="./uuid-generator-decoder.html">UUID Generator</a>.
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Comprehensive Guide to JSON Web Tokens (JWT) and Authentication</h2>
+        
+        <p>
+          JSON Web Token (JWT) is an open standard (<a href="https://datatracker.ietf.org/doc/html/rfc7519" target="_blank" rel="noopener" style="color: #4f46e5; text-decoration: underline;">RFC 7519</a>) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. Software engineers and API developers rely heavily on JWTs for stateless user authentication, authorization claims, and secure information exchange across distributed microservices. Our advanced <strong>JWT Debugger & Decoder</strong> allows you to instantly unpack, inspect, and validate authentication tokens right in your browser.
+        </p>
+
+        <h3>Anatomy of a JWT: Header, Payload, and Signature</h3>
+        <p>
+          A standard encoded JSON Web Token consists of three base64Url-encoded strings separated by dot (.) characters:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Header:</strong> Typically consists of two parts: the type of the token (JWT) and the signing algorithm being used, such as HMAC SHA256 (HS256) or RSA (RS256).</li>
+          <li><strong>Payload:</strong> Contains the claims. Claims are statements about an entity (typically, the user) and additional metadata. Registered claims include <code>sub</code> (subject), <code>iss</code> (issuer), <code>exp</code> (expiration time), <code>iat</code> (issued at), and <code>aud</code> (audience).</li>
+          <li><strong>Signature:</strong> Created by taking the encoded header, encoded payload, a secret key (or private key), and the algorithm specified in the header, and signing them to verify that the sender is who they say they are.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔓 Instant Client-Side Decoding</h4>
+            <p style="font-size: 13px; margin: 0;">Unpack base64Url-encoded headers and payloads into formatted JSON instantly.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⏰ Expiration Verification</h4>
+            <p style="font-size: 13px; margin: 0;">Automatically check token validity against current Unix timestamps and expiration claims.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛡️ 100% Data Privacy</h4>
+            <p style="font-size: 13px; margin: 0;">Your authentication tokens, user IDs, and secret keys never leave your local browser sandbox.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ Developer Friendly</h4>
+            <p style="font-size: 13px; margin: 0;">Load sample tokens or clear workspaces with single-click utility buttons.</p>
+          </div>
+        </div>
+
+        <h3>Why Inspect and Debug JWTs?</h3>
+        <p>
+          During modern API development, troubleshooting authentication failures, inspecting permission scopes, and verifying token lifespans are daily tasks. Without a dedicated decoder, reading raw base64Url strings is tedious and error-prone. Our debugger parses structured JSON representations instantly, letting you verify whether user roles, tenant IDs, and expiration claims are correctly encoded before your frontend or backend services process them.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Decode and Debug a JWT</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Paste Token:</strong> Paste your encoded JWT string (starting with <code>eyJ...</code>) into the input textarea.</li>
+          <li><strong>Inspect Header:</strong> Review the cryptographic algorithm and token type in the left inspection pane.</li>
+          <li><strong>Analyze Payload:</strong> Examine user claims, subject IDs, and expiration dates in the right payload view.</li>
+          <li><strong>Check Status:</strong> Verify the green valid badge or red expiration warning to confirm token status.</li>
+        </ol>
+
+        <h3>Comprehensive Technical Deep Dive into JSON Web Token Architecture</h3>
+        <p>
+          JSON Web Tokens have fundamentally transformed how modern distributed architectures handle user authentication and authorization. In traditional stateful session architectures, web applications rely heavily on server-side session stores, sticky sessions, and relational database lookups to verify a user's logged-in status upon every incoming HTTP request. While reliable, this pattern introduces significant scalability bottlenecks, database load overhead, and complex infrastructure synchronization requirements across multi-region microservice deployments.
+        </p>
+        <p>
+          JWTs solve these scalability challenges by shifting the state management burden directly to the client while retaining cryptographic integrity. Because the token itself contains all necessary identity claims, roles, permissions, and metadata, downstream API gateways and microservices can independently verify a user's authorization status without querying a centralized database or caching cluster. However, maximizing this architectural benefit requires strict adherence to security best practices, precise token payload design, and rigorous handling of cryptographic keys.
+        </p>
+
+        <h3>Understanding Registered, Public, and Private Claims</h3>
+        <p>
+          The payload segment of a JSON Web Token is structured around "claims," which are discrete assertions about an entity and auxiliary metadata. The official specification categorizes these claims into three distinct types:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Registered Claims:</strong> A set of predefined, highly recommended claims designed to provide a standardized set of useful, interoperable attributes. They include <code>iss</code> (Issuer), <code>sub</code> (Subject), <code>aud</code> (Audience), <code>exp</code> (Expiration Time), <code>nbf</code> (Not Before), <code>iat</code> (Issued At), and <code>jti</code> (JWT ID).</li>
+          <li><strong>Public Claims:</strong> Custom claims defined by developers using JWTs. To prevent naming collisions when integrating with external libraries or third-party services, public claims should be collision-resistant—typically registered within the IANA JSON Web Token Registry or namespaced using URI strings.</li>
+          <li><strong>Private Claims:</strong> Custom assertions created and consumed specifically by agreed-upon parties to share internal application state (such as tenant IDs, localized feature flags, or specific permission bitmasks).</li>
+        </ul>
+
+        <h3>Cryptographic Signing Mechanisms: Symmetric vs. Asymmetric</h3>
+        <p>
+          The defining characteristic that separates a trusted JSON Web Token from an easily manipulated string is its cryptographic signature. Without a valid signature, any user could modify the base64Url payload in their browser localStorage or cookie store, escalate their privileges from a standard user to an administrator, and bypass application security controls.
+        </p>
+        <p>
+          Selection of the appropriate cryptographic algorithm dictates your system's trust boundaries. Symmetric algorithms (such as HS256) utilize a single secret key known to both the token issuer and the validating resource server. While computationally efficient, symmetric algorithms present key distribution challenges in distributed microservice environments. Asymmetric algorithms (such as RS256) rely on a public-private key pair where the authorization server signs with its private key, and downstream microservices download and cache the corresponding public key for validation.
+        </p>
+
+        <h3>Security Vulnerabilities, Pitfalls, and Mitigation Strategies</h3>
+        <p>
+          Despite their widespread adoption, incorrect implementation of JSON Web Tokens frequently leads to critical security vulnerabilities:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>The "None" Algorithm Vulnerability:</strong> Early JWT libraries occasionally permitted an insecure <code>none</code> algorithm option, where tokens lacked signatures entirely. Modern parsers explicitly reject unencrypted or unsigned tokens by default.</li>
+          <li><strong>Algorithm Substitution Attacks:</strong> Attackers have historically attempted to swap asymmetric algorithms (RS256) with symmetric ones (HS256). Robust implementations require explicitly enforcing expected algorithms during validation rather than trusting the incoming header's <code>alg</code> parameter blindly.</li>
+          <li><strong>Sensitive Data Exposure:</strong> Because base64Url encoding is an encoding mechanism rather than cryptographic encryption, anyone intercepting a JWT can instantly decode the payload. Passwords and personally identifiable information (PII) should never be embedded directly inside token claims.</li>
+          <li><strong>Token Revocation and Replay Risks:</strong> Since JWTs are stateless, an issued token remains valid until its explicit <code>exp</code> timestamp is reached. Mitigating this risk requires short-lived access tokens combined with secure, rotatable refresh tokens stored in HTTP-only cookies and distributed token blacklists.</li>
+        </ul>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is a JSON Web Token (JWT)?</summary>
+          <p>
+            A JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties, typically used for authentication and authorization in web applications.
+          </p>
+        </details>
+
+        <details>
+          <summary>What parts make up a JWT?</summary>
+          <p>
+            A JWT consists of three base64Url-encoded parts separated by dots: a Header (specifying algorithm and token type), a Payload (containing user claims and metadata), and a Signature.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are my authentication tokens secure?</summary>
+          <p>
+            Yes. All decoding and inspection take place entirely client-side inside your browser sandbox. Your tokens are never transmitted to external servers.
+          </p>
+        </details>
+
+        <details>
+          <summary>What claims are commonly found in a JWT payload?</summary>
+          <p>
+            Common registered claims include 'sub' (subject), 'iss' (issuer), 'exp' (expiration time), 'iat' (issued at), and 'aud' (audience), alongside custom application claims.
+          </p>
+        </details>
+
+        <details>
+          <summary>How does token expiration checking work?</summary>
+          <p>
+            The tool reads the 'exp' (expiration time) Unix timestamp from the payload and compares it against current system time to verify if the token is active or expired.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to install any browser extensions?</summary>
+          <p>
+            No installation is required. The debugger runs instantly in any modern web browser across desktop, laptop, and mobile devices.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is data encrypted inside a JWT?</summary>
+          <p>
+            No. JWT payloads are encoded and signed, not encrypted. Anyone who intercepts a JWT can decode the base64Url payload to read its claims, which is why sensitive data like passwords should never be stored in a token.
+          </p>
+        </details>
+
+        <details>
+          <summary>What is the difference between HS256 and RS256?</summary>
+          <p>
+            HS256 uses a shared secret key for both signing and verifying tokens, whereas RS256 uses an asymmetric public/private key pair (the private key signs the token, and the public key verifies it).
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I verify cryptographic signatures with this tool?</summary>
+          <p>
+            This tool performs client-side inspection and decoding of claims. For signature verification with shared secrets or public keys, ensure you manage keys securely within your backend architecture.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens if my token has invalid syntax?</summary>
+          <p>
+            The tool detects structural errors and displays an error banner explaining why parsing failed.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I use this tool offline?</summary>
+          <p>
+            Yes. Once loaded, client-side JavaScript execution allows you to decode and analyze JSON Web Tokens completely offline.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there any tracking or data logging?</summary>
+          <p>
+            None at all. Your tokens and sensitive authentication data remain strictly within your local browser sandbox.
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side JWT Decoder Logic -->
+  <script>
+    function loadSampleToken() {
+      const futureExp = Math.floor(Date.now() / 1000) + 86400; // 24 hours from now
+      const header = JSON.stringify({ alg: "HS256", typ: "JWT" });
+      const payload = JSON.stringify({
+        sub: "user_987654321",
+        name: "Jane Developer",
+        email: "jane.developer@everydaytools.co.in",
+        role: "Administrator",
+        iat: Math.floor(Date.now() / 1000) - 3600,
+        exp: futureExp
+      });
+
+      const encodedHeader = b64UrlEncode(header);
+      const encodedPayload = b64UrlEncode(payload);
+      const sampleToken = `${encodedHeader}.${encodedPayload}.signature_mock_hash_string`;
+
+      document.getElementById('jwtInput').value = sampleToken;
+      decodeJwt();
+    }
+
+    function b64UrlEncode(str) {
+      return btoa(unescape(encodeURIComponent(str)))
+        .replace(/=/g, '')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_');
+    }
+
+    function b64UrlDecode(str) {
+      let output = str.replace(/-/g, '+').replace(/_/g, '/');
+      switch (output.length % 4) {
+        case 0: break;
+        case 2: output += '=='; break;
+        case 3: output += '='; break;
+        default: throw new Error('Illegal base64url string!');
+      }
+      return decodeURIComponent(escape(atob(output)));
+    }
+
+    function decodeJwt() {
+      const rawInput = document.getElementById('jwtInput').value.trim();
+      const errorBanner = document.getElementById('errorBanner');
+      const statusContainer = document.getElementById('statusContainer');
+      const headerPane = document.getElementById('jwtHeader');
+      const payloadPane = document.getElementById('jwtPayload');
+
+      errorBanner.style.display = 'none';
+      statusContainer.innerHTML = '';
+
+      if (!rawInput) {
+        headerPane.textContent = '{}';
+        payloadPane.textContent = '{}';
+        return;
+      }
+
+      const parts = rawInput.split('.');
+      if (parts.length < 2) {
+        errorBanner.style.display = 'block';
+        errorBanner.innerHTML = '❌ Invalid JWT format. A JSON Web Token must contain at least a header and payload separated by dots.';
+        headerPane.textContent = '{}';
+        payloadPane.textContent = '{}';
+        return;
+      }
+
+      try {
+        const decodedHeader = JSON.parse(b64UrlDecode(parts[0]));
+        const decodedPayload = JSON.parse(b64UrlDecode(parts[1]));
+
+        headerPane.textContent = JSON.stringify(decodedHeader, null, 2);
+        payloadPane.textContent = JSON.stringify(decodedPayload, null, 2);
+
+        if (decodedPayload.exp) {
+          const currentTime = Math.floor(Date.now() / 1000);
+          if (decodedPayload.exp > currentTime) {
+            const dateStr = new Date(decodedPayload.exp * 1000).toLocaleString();
+            statusContainer.innerHTML = `<div class="status-badge badge-valid">✅ Token is Active (Expires: ${dateStr})</div>`;
+          } else {
+            const dateStr = new Date(decodedPayload.exp * 1000).toLocaleString();
+            statusContainer.innerHTML = `<div class="status-badge badge-expired">❌ Token has EXPIRED (Expired on: ${dateStr})</div>`;
+          }
+        } else {
+          statusContainer.innerHTML = `<div class="status-badge" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#334155;">ℹ️ No 'exp' (expiration) claim found in payload.</div>`;
+        }
+
+      } catch (e) {
+        errorBanner.style.display = 'block';
+        errorBanner.innerHTML = `❌ JWT Decoding Error: ${escapeHtml(e.message)}`;
+        headerPane.textContent = '{}';
+        payloadPane.textContent = '{}';
+      }
+    }
+
+    function clearJwt() {
+      document.getElementById('jwtInput').value = '';
+      document.getElementById('jwtHeader').textContent = '{}';
+      document.getElementById('jwtPayload').textContent = '{}';
+      document.getElementById('errorBanner').style.display = 'none';
+      document.getElementById('statusContainer').innerHTML = '';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    window.onload = function() {
+      decodeJwt();
+    };
+  </script>
+</body>
+</html>

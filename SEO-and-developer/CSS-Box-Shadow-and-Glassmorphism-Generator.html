@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Shadow & Glassmorphism Generator | Free Online UI Tool</title>
+  <meta name="description" content="Design stunning CSS box shadows and modern glassmorphism frosted glass UI effects in real-time. Adjust blur, transparency, borders, and copy clean CSS code instantly.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/css-box-shadow-glassmorphism-generator.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="CSS Box Shadow & Glassmorphism Generator | Free Online UI Tool">
+  <meta property="og:description" content="Generate beautiful CSS box shadows and glassmorphism effects with live visual previews and one-click CSS code export.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/css-box-shadow-glassmorphism-generator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/glassmorphism-generator-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSS Box Shadow & Glassmorphism Generator">
+  <meta name="twitter:description" content="Design frosted glassmorphism elements and multi-layered CSS box shadows with live previews and clean code generation.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%23ffffff' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSS Box Shadow & Glassmorphism Generator",
+    "url": "https://everydaytools.co.in/tools/css-box-shadow-glassmorphism-generator.html",
+    "description": "Free web developer tool to design and customize CSS box shadows and frosted glassmorphism UI components with live visual feedback and instant CSS export.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Glassmorphism in web design?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Glassmorphism is a popular UI design trend characterized by frosted glass effects, background blurring (backdrop-filter), semi-transparent white or colored fills, and subtle thin borders."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the CSS box-shadow property work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CSS box-shadow property attaches one or more shadow effects to an element's frame, defined by horizontal offset, vertical offset, blur radius, spread radius, and color."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between blur radius and spread radius in box-shadow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Blur radius determines how soft or diffused the shadow edge appears, while spread radius expands or contracts the overall physical size of the shadow shape before blurring."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you create a frosted glass effect with CSS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Frosted glass is created by combining a semi-transparent background color (rgba or hsla), a CSS backdrop-filter blur (e.g., blur(12px)), and a delicate semi-transparent white border."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is backdrop-filter supported in all web browsers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, backdrop-filter is natively supported across all modern browsers including Chrome, Safari, Firefox, and Edge. Older browsers like Internet Explorer do not support it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are inset box shadows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Inset shadows project inward inside the element's border rather than outward onto the container background, giving elements a pressed-in or recessed appearance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I make my glassmorphism UI accessible?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ensure sufficient color contrast between text and the blurred background, use distinct font weights, and avoid overly transparent overlays that obscure background imagery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I combine multiple box shadows on a single element?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can apply multiple shadows by separating each shadow declaration with a comma inside the box-shadow property value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best background for glassmorphism designs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vibrant gradient backgrounds, abstract colorful geometric shapes, or high-contrast imagery work best because the frosted glass effect refracts and blurs the underlying colors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I copy the generated CSS code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simply click the 'Copy CSS Code' button in our generator tool to instantly copy the complete stylesheet rules to your clipboard."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does CSS box-shadow impact website performance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard box shadows have a negligible performance footprint. However, heavy backdrop-filter blur effects combined with complex animations can impact rendering performance on lower-end mobile devices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these CSS generators free for commercial use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all CSS code generated by our tools is 100% free for personal and commercial projects without attribution requirements."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .generator-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 900px) { .generator-layout { grid-template-columns: 1fr; } }
+    
+    .controls-panel { display: flex; flex-direction: column; gap: 16px; }
+    .control-group { display: flex; flex-direction: column; gap: 6px; }
+    .control-group label { font-size: 13px; font-weight: 700; color: var(--text, #101828); display: flex; justify-content: space-between; }
+    .control-group label span { font-weight: 600; color: #635bff; }
+    .control-group input[type="range"] { width: 100%; accent-color: #635bff; cursor: pointer; }
+    .control-group input[type="color"] { width: 100%; height: 40px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; background: #f8fafc; cursor: pointer; padding: 2px; }
+    
+    .mode-tabs { display: flex; gap: 8px; margin-bottom: 20px; background: #f1f5f9; padding: 4px; border-radius: 10px; }
+    .mode-tab { flex: 1; padding: 10px; font-size: 13px; font-weight: 700; border: none; background: transparent; border-radius: 8px; cursor: pointer; color: #64748b; transition: all 0.2s; }
+    .mode-tab.active { background: #ffffff; color: #1e293b; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+    .preview-container { min-height: 320px; background: linear-gradient(135deg, #635bff 0%, #00d2ff 50%, #ff5252 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 24px; }
+    .preview-box { width: 220px; height: 160px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.1s ease; }
+    
+    .code-output-box { background: #0f172a; color: #e2e8f0; font-family: monospace; font-size: 13px; padding: 16px; border-radius: 10px; margin-top: 20px; white-space: pre-wrap; word-break: break-all; position: relative; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; width: 100%; margin-top: 12px; }
+    .btn-action:hover { opacity: 0.9; }
+    
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; color: var(--muted, #667085); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #635bff; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #635bff; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">UI Design &amp; CSS Generator Suite</span>
+        <h1>CSS Box Shadow &amp; <span>Glassmorphism Generator</span></h1>
+        <p class="subtitle">
+          Design custom box shadows and frosted glassmorphism UI components visually with real-time feedback and instant CSS code export.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="mode-tabs">
+          <button type="button" class="mode-tab active" id="tabShadow" onclick="switchMode('shadow')">✨ CSS Box Shadow</button>
+          <button type="button" class="mode-tab" id="tabGlass" onclick="switchMode('glass')">🔮 Glassmorphism</button>
+        </div>
+
+        <div class="generator-layout">
+          <!-- Controls Panel -->
+          <div class="controls-panel">
+            
+            <!-- Shadow Controls -->
+            <div id="shadowControls">
+              <div class="control-group">
+                <label>Horizontal Offset: <span id="valH">10px</span></label>
+                <input type="range" id="rangeH" min="-50" max="50" value="10" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Vertical Offset: <span id="valV">15px</span></label>
+                <input type="range" id="rangeV" min="-50" max="50" value="15" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Blur Radius: <span id="valBlur">30px</span></label>
+                <input type="range" id="rangeBlur" min="0" max="100" value="30" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Spread Radius: <span id="valSpread">-5px</span></label>
+                <input type="range" id="rangeSpread" min="-50" max="50" value="-5" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Shadow Opacity / Color: <span id="valOpacity">0.2</span></label>
+                <input type="range" id="rangeOpacity" min="0" max="1" step="0.05" value="0.2" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Shadow Color:</label>
+                <input type="color" id="shadowColor" value="#000000" oninput="updateGenerator()">
+              </div>
+              <div class="control-group" style="flex-direction: row; align-items: center; gap: 8px; margin-top: 8px;">
+                <input type="checkbox" id="checkInset" onchange="updateGenerator()" style="width: 18px; height: 18px; accent-color: #635bff;">
+                <label for="checkInset" style="font-size: 14px; font-weight: 600; cursor: pointer;">Inset Shadow (Inner)</label>
+              </div>
+            </div>
+
+            <!-- Glassmorphism Controls -->
+            <div id="glassControls" style="display: none;">
+              <div class="control-group">
+                <label>Background Opacity: <span id="valGlassOpacity">0.25</span></label>
+                <input type="range" id="glassOpacity" min="0.05" max="0.95" step="0.05" value="0.25" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Backdrop Blur: <span id="valGlassBlur">12px</span></label>
+                <input type="range" id="glassBlur" min="0" max="40" value="12" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Border Transparency: <span id="valGlassBorder">0.3</span></label>
+                <input type="range" id="glassBorder" min="0" max="1" step="0.05" value="0.3" oninput="updateGenerator()">
+              </div>
+              <div class="control-group">
+                <label>Border Radius: <span id="valGlassRadius">16px</span></label>
+                <input type="range" id="glassRadius" min="0" max="40" value="16" oninput="updateGenerator()">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Preview & Output Panel -->
+          <div>
+            <div class="preview-container" id="previewContainer">
+              <div class="preview-box" id="previewBox">
+                <span>Glass / Shadow Card</span>
+                <span style="font-size: 11px; opacity: 0.7; margin-top: 4px;">Live Preview Element</span>
+              </div>
+            </div>
+
+            <div class="code-output-box" id="codeOutput">
+              /* CSS Code */
+            </div>
+            <button type="button" class="btn-action" onclick="copyCssCode()">📋 Copy CSS Code</button>
+          </div>
+        </div>
+
+        <div class="internal-link-box" style="margin-top: 24px;">
+          Looking for more tools? Check out our <a href="./Regular-Expression-RegEx-Playground.html">RegEx Playground</a> or <a href="./UUID-v4-and-v7-Generator-Decoder.html">UUID Generator</a>.
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">Mastering Modern Web Aesthetics: Box Shadows &amp; Glassmorphism</h2>
+        
+        <p>
+          In modern web design, user interface (UI) depth, elevation, and texture play a critical role in guiding user attention and creating immersive digital experiences. Flat design has largely evolved into rich skeuomorphic and semi-skeuomorphic styles, where <strong>CSS box shadows</strong> define spatial hierarchy and <strong>glassmorphism</strong> introduces luxurious translucent frosted glass layers. Our interactive generator combines these two powerful styling techniques into a single developer tool, allowing you to fine-tune values and copy production-ready CSS instantly.
+        </p>
+
+        <h3>Understanding CSS Box Shadows</h3>
+        <p>
+          The <code>box-shadow</code> property adds depth to rectangular elements by casting shadows that simulate physical lighting angles. A standard declaration takes multiple numerical parameters:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Horizontal Offset:</strong> Determines the horizontal shift of the shadow (positive moves right, negative moves left).</li>
+          <li><strong>Vertical Offset:</strong> Determines the vertical shift of the shadow (positive moves down, negative moves up).</li>
+          <li><strong>Blur Radius:</strong> Controls how diffused or sharp the shadow edges appear. Higher values create soft ambient glows.</li>
+          <li><strong>Spread Radius:</strong> Expands or shrinks the shadow size before blurring is applied.</li>
+          <li><strong>Color &amp; Opacity:</strong> Usually defined using RGBA or Hex values with opacity to blend seamlessly against background gradients.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>✨ Live Visual Preview</h4>
+            <p style="font-size: 13px; margin: 0;">Watch shadows and frosted glass effects update instantly as you adjust sliders.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🔮 Frosted Glassmorphism</h4>
+            <p style="font-size: 13px; margin: 0;">Generate modern translucent UI cards with native <code>backdrop-filter</code> blur.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📋 One-Click CSS Export</h4>
+            <p style="font-size: 13px; margin: 0;">Copy clean, prefixed-ready CSS code directly into your stylesheet with a single click.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🔒 100% Client-Side Tool</h4>
+            <p style="font-size: 13px; margin: 0;">Lightning-fast browser execution with zero server latency or data tracking.</p>
+          </div>
+        </div>
+
+        <h3>The Rise of Glassmorphism in UI/UX Design</h3>
+        <p>
+          Glassmorphism mimics physical frosted glass placed over vibrant colorful backgrounds. Key defining characteristics include transparency (achieved via light or dark RGBA fills), vivid background blurring using the CSS <code>backdrop-filter: blur()</code> property, and a subtle 1px semi-transparent border that defines the element's edges. This design language creates a sense of spatial layering, making dashboards, navigation bars, and modal dialogs feel modern and tactile.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Use the Generator</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Select Mode:</strong> Toggle between the <em>CSS Box Shadow</em> and <em>Glassmorphism</em> tabs at the top of the generator card.</li>
+          <li><strong>Adjust Sliders:</strong> Customize offsets, blur radius, opacity, and borders using intuitive range sliders.</li>
+          <li><strong>Inspect Preview:</strong> Examine the live preview element against the dynamic background gradient.</li>
+          <li><strong>Copy Code:</strong> Click the copy button to grab your CSS rules and paste them into your project.</li>
+        </ol>
+      </article>
+
+      <!-- FAQ Section (12 FAQs) -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is Glassmorphism in web design?</summary>
+          <p>Glassmorphism is a popular UI design trend characterized by frosted glass effects, background blurring (backdrop-filter), semi-transparent white or colored fills, and subtle thin borders.</p>
+        </details>
+
+        <details>
+          <summary>How does the CSS box-shadow property work?</summary>
+          <p>The CSS box-shadow property attaches one or more shadow effects to an element's frame, defined by horizontal offset, vertical offset, blur radius, spread radius, and color.</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between blur radius and spread radius in box-shadow?</summary>
+          <p>Blur radius determines how soft or diffused the shadow edge appears, while spread radius expands or contracts the overall physical size of the shadow shape before blurring.</p>
+        </details>
+
+        <details>
+          <summary>How do you create a frosted glass effect with CSS?</summary>
+          <p>Frosted glass is created by combining a semi-transparent background color (rgba or hsla), a CSS backdrop-filter blur (e.g., blur(12px)), and a delicate semi-transparent white border.</p>
+        </details>
+
+        <details>
+          <summary>Is backdrop-filter supported in all web browsers?</summary>
+          <p>Yes, backdrop-filter is natively supported across all modern browsers including Chrome, Safari, Firefox, and Edge. Older browsers like Internet Explorer do not support it.</p>
+        </details>
+
+        <details>
+          <summary>What are inset box shadows?</summary>
+          <p>Inset shadows project inward inside the element's border rather than outward onto the container background, giving elements a pressed-in or recessed appearance.</p>
+        </details>
+
+        <details>
+          <summary>How can I make my glassmorphism UI accessible?</summary>
+          <p>Ensure sufficient color contrast between text and the blurred background, use distinct font weights, and avoid overly transparent overlays that obscure background imagery.</p>
+        </details>
+
+        <details>
+          <summary>Can I combine multiple box shadows on a single element?</summary>
+          <p>Yes, you can apply multiple shadows by separating each shadow declaration with a comma inside the box-shadow property value.</p>
+        </details>
+
+        <details>
+          <summary>What is the best background for glassmorphism designs?</summary>
+          <p>Vibrant gradient backgrounds, abstract colorful geometric shapes, or high-contrast imagery work best because the frosted glass effect refracts and blurs the underlying colors.</p>
+        </details>
+
+        <details>
+          <summary>How do I copy the generated CSS code?</summary>
+          <p>Simply click the 'Copy CSS Code' button in our generator tool to instantly copy the complete stylesheet rules to your clipboard.</p>
+        </details>
+
+        <details>
+          <summary>Does CSS box-shadow impact website performance?</summary>
+          <p>Standard box shadows have a negligible performance footprint. However, heavy backdrop-filter blur effects combined with complex animations can impact rendering performance on lower-end mobile devices.</p>
+        </details>
+
+        <details>
+          <summary>Are these CSS generators free for commercial use?</summary>
+          <p>Yes, all CSS code generated by our tools is 100% free for personal and commercial projects without attribution requirements.</p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side Generator Logic -->
+  <script>
+    let currentMode = 'shadow';
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('tabShadow').classList.toggle('active', mode === 'shadow');
+      document.getElementById('tabGlass').classList.toggle('active', mode === 'glass');
+      
+      document.getElementById('shadowControls').style.display = mode === 'shadow' ? 'block' : 'none';
+      document.getElementById('glassControls').style.display = mode === 'glass' ? 'block' : 'none';
+      
+      updateGenerator();
+    }
+
+    function hexToRgba(hex, alpha) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) c = c.split('').map(x => x + x).join('');
+      const num = parseInt(c, 16);
+      return `rgba(${num >> 16}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+    }
+
+    function updateGenerator() {
+      const previewBox = document.getElementById('previewBox');
+      const codeOutput = document.getElementById('codeOutput');
+
+      if (currentMode === 'shadow') {
+        const h = document.getElementById('rangeH').value;
+        const v = document.getElementById('rangeV').value;
+        const blur = document.getElementById('rangeBlur').value;
+        const spread = document.getElementById('rangeSpread').value;
+        const opacity = document.getElementById('rangeOpacity').value;
+        const colorHex = document.getElementById('shadowColor').value;
+        const isInset = document.getElementById('checkInset').checked;
+
+        document.getElementById('valH').textContent = h + 'px';
+        document.getElementById('valV').textContent = v + 'px';
+        document.getElementById('valBlur').textContent = blur + 'px';
+        document.getElementById('valSpread').textContent = spread + 'px';
+        document.getElementById('valOpacity').textContent = opacity;
+
+        const shadowRgba = hexToRgba(colorHex, opacity);
+        const insetStr = isInset ? 'inset ' : '';
+        const shadowVal = `${insetStr}${h}px ${v}px ${blur}px ${spread}px ${shadowRgba}`;
+
+        previewBox.style.background = '#ffffff';
+        previewBox.style.backdropFilter = 'none';
+        previewBox.style.webkitBackdropFilter = 'none';
+        previewBox.style.border = '1px solid #e2e8f0';
+        previewBox.style.boxShadow = shadowVal;
+        previewBox.style.color = '#1e293b';
+
+        codeOutput.textContent = `box-shadow: ${shadowVal};`;
+
+      } else {
+        const gOpacity = document.getElementById('glassOpacity').value;
+        const gBlur = document.getElementById('glassBlur').value;
+        const gBorder = document.getElementById('glassBorder').value;
+        const gRadius = document.getElementById('glassRadius').value;
+
+        document.getElementById('valGlassOpacity').textContent = gOpacity;
+        document.getElementById('valGlassBlur').textContent = gBlur + 'px';
+        document.getElementById('valGlassBorder').textContent = gBorder;
+        document.getElementById('valGlassRadius').textContent = gRadius + 'px';
+
+        const bgRgba = `rgba(255, 255, 255, ${gOpacity})`;
+        const borderRgba = `rgba(255, 255, 255, ${gBorder})`;
+
+        previewBox.style.background = bgRgba;
+        previewBox.style.backdropFilter = `blur(${gBlur}px)`;
+        previewBox.style.webkitBackdropFilter = `blur(${gBlur}px)`;
+        previewBox.style.border = `1px solid ${borderRgba}`;
+        previewBox.style.borderRadius = `${gRadius}px`;
+        previewBox.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.37)';
+        previewBox.style.color = '#ffffff';
+
+        codeOutput.textContent = `background: ${bgRgba};\nbackdrop-filter: blur(${gBlur}px);\n-webkit-backdrop-filter: blur(${gBlur}px);\nborder-radius: ${gRadius}px;\nborder: 1px solid ${borderRgba};\nbox-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);`;
+      }
+    }
+
+    function copyCssCode() {
+      const code = document.getElementById('codeOutput').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('CSS code copied successfully to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+    }
+
+    // Initialize on load
+    window.onload = function() {
+      updateGenerator();
+    };
+  </script>
+</body>
+</html>

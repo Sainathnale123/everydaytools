@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Regular Expression (RegEx) Playground & Tester</title>
+  <meta name="description" content="Test, debug, and evaluate regular expressions (RegEx) in real-time with live matching, capture groups, flags, preset patterns, and instant syntax explanations.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/regex-playground.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online Regular Expression (RegEx) Playground & Tester">
+  <meta property="og:description" content="Test, debug, and evaluate regular expressions with live matching, capture groups, flags, and preset patterns client-side.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/regex-playground.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/regex-playground-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online Regular Expression (RegEx) Playground & Tester">
+  <meta name="twitter:description" content="Test, debug, and evaluate regular expressions with live matching, capture groups, flags, and preset patterns.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Regular Expression Playground & Tester",
+    "url": "https://everydaytools.co.in/tools/regex-playground.html",
+    "description": "Free developer tool to test, debug, and evaluate regular expressions in real-time with match highlighting, capture groups, and common presets.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Regular Expression (RegEx)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A regular expression is a sequence of characters that specifies a search pattern, commonly used for string searching, validation, and text manipulation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are regex flags and how do they work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Flags are optional modifiers like global (g), case-insensitive (i), and multiline (m) that alter how the regex engine evaluates the pattern against a target string."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the global (g) flag do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The global flag instructs the regex engine to search for all matches in the target string rather than stopping after the first successful match."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the case-insensitive (i) flag do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The case-insensitive flag makes the pattern match both uppercase and lowercase letters without requiring explicit character ranges like [a-zA-Z]."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do multiline (m) and dotall (s) flags differ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The multiline flag affects anchors (^ and $) so they match the start and end of every line, while the dotall flag allows the dot (.) character to match newline characters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are character classes in regular expressions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Character classes (enclosed in square brackets like [aeiou] or shorthands like \\d, \\w, \\s) match any one of a set of specific characters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do quantifiers like *, +, and ? function?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quantifiers specify how many instances of a character, group, or character class must be present for a match to occur (* means 0 or more, + means 1 or more, ? means 0 or 1)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between greedy and lazy quantifiers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Greedy quantifiers match as much text as possible, whereas lazy quantifiers (followed by ?) match as little text as necessary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are anchors (^ and $) used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anchors do not match characters; instead, they assert positions. The caret (^) asserts the start of a string or line, while the dollar sign ($) asserts the end."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a capture group and how do you use it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Capture groups are enclosed in parentheses (...) and allow you to extract specific matched subsegments or reference them later in replacements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are non-capturing groups ((?:...))?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non-capturing groups group sub-expressions for applying quantifiers or alternation without storing the matched result in memory, optimizing performance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a lookahead assertion (positive vs negative)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lookaheads assert whether a pattern can be followed by another pattern without consuming characters. Positive (?=...) requires it; negative (?!...) forbids it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a lookbehind assertion?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lookbehinds assert what must precede the current position in the text string, using (?<=...) for positive lookbehind and (?<!...) for negative lookbehind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I match an email address using RegEx?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A robust email regex pattern accounts for alphanumeric local parts, an @ symbol, domain names, and top-level domain extensions like ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I validate a URL with regular expressions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "URL validation regex patterns typically check for protocols like http or https followed by domain structures, ports, paths, and query parameters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I match an IPv4 address?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An IPv4 regex pattern matches four numeric octets ranging from 0 to 255 separated by dots, often structured around range-safe numerical matching."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are regular expressions case-sensitive by default?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, standard regex matching is strictly case-sensitive unless the case-insensitive (i) flag is explicitly enabled."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use RegEx to parse HTML or XML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While simple matching is possible, parsing complex or nested HTML structures with regular expressions is discouraged due to context-free grammar limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I escape special characters in regular expressions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Special characters like dots, brackets, and asterisks can be treated as literals by prefixing them with a backslash escape character (\\)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is catastrophic backtracking and how can I avoid it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Catastrophic backtracking occurs when ambiguous nested quantifiers cause exponential evaluation steps, freezing the CPU. Avoid it by using atomic groups or simplifying quantifiers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are regular expressions supported across all programming languages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, regex engines are natively built into almost all modern programming languages including JavaScript, Python, Java, PHP, Ruby, and C#."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I test and debug regex patterns safely in my browser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use client-side developer sandboxes like our RegEx Playground to test patterns instantly without uploading sensitive data to external servers."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .input-group { margin-bottom: 20px; }
+    .input-group label { display: block; font-weight: 700; font-size: 14px; color: var(--text, #101828); margin-bottom: 8px; }
+    .regex-input-wrapper { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .regex-input { flex: 1; min-width: 240px; padding: 14px; font-family: monospace; font-size: 16px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: var(--bg, #f8fafc); }
+    .regex-input:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .flags-box { display: flex; gap: 12px; align-items: center; background: #f8fafc; border: 1px solid var(--border, #cbd5e1); padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 650; }
+    .flags-box label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .textarea-box { width: 100%; height: 160px; padding: 14px; font-family: monospace; font-size: 14px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: #f8fafc; resize: vertical; }
+    .textarea-box:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 14px 24px; border-radius: 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #64748b; padding: 8px 14px; font-size: 13px; border-radius: 8px; }
+    .presets-box { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+    .presets-label { font-size: 13px; font-weight: 700; color: #475569; margin-right: 4px; }
+    .output-section { margin-top: 24px; }
+    .match-banner { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .error-banner { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+    .breakdown-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; background: #ffffff; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; }
+    .breakdown-table th, .breakdown-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .breakdown-table th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
+    .breakdown-table tr:last-child td { border-bottom: none; }
+    .highlighted-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-top: 20px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-break: break-all; color: #1e293b; line-height: 1.6; }
+    .match-hl { background: #fef08a; color: #713f12; border-bottom: 2px solid #ca8a04; padding: 1px 3px; border-radius: 3px; font-weight: 700; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; color: var(--muted, #667085); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #635bff; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #635bff; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Developer Engineering Suite</span>
+        <h1>Regular Expression (RegEx) <span>Playground</span></h1>
+        <p class="subtitle">
+          Test, debug, and analyze regular expressions in real-time with live text highlighting, capture groups, and common pattern presets.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="input-group">
+          <label for="regexInput">Regular Expression Pattern:</label>
+          <div class="regex-input-wrapper">
+            <span style="font-family: monospace; font-size: 18px; font-weight: 700; color: #64748b;">/</span>
+            <input type="text" id="regexInput" class="regex-input" value="[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}" placeholder="Enter regex pattern...">
+            <span style="font-family: monospace; font-size: 18px; font-weight: 700; color: #64748b;">/</span>
+            
+            <div class="flags-box">
+              <label><input type="checkbox" id="flagG" checked> g</label>
+              <label><input type="checkbox" id="flagI" checked> i</label>
+              <label><input type="checkbox" id="flagM"> m</label>
+              <label><input type="checkbox" id="flagS"> s</label>
+            </div>
+          </div>
+
+          <div class="presets-box">
+            <span class="presets-label">Quick Presets:</span>
+            <button type="button" class="btn-action btn-secondary" onclick="loadPreset('[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}', 'g,i')">Email Address</button>
+            <button type="button" class="btn-action btn-secondary" onclick="loadPreset('https?:\\/\\/(?:[-\\w]+\\.)+[-\\w]+(?:\\/[-\\w._~:/?#\\[\\]@!$&\'()*+,;=]*)?', 'g,i')">URL Link</button>
+            <button type="button" class="btn-action btn-secondary" onclick="loadPreset('\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b', 'g')">IPv4 Address</button>
+            <button type="button" class="btn-action btn-secondary" onclick="loadPreset('#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})', 'g')">Hex Color</button>
+            <button type="button" class="btn-action btn-secondary" onclick="loadPreset('\\b\\d{4}-\\d{2}-\\d{2}\\b', 'g')">ISO Date</button>
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 24px;">
+          <label for="testStringInput">Test String:</label>
+          <textarea id="testStringInput" class="textarea-box" oninput="runRegex()" placeholder="Enter text string to test against the regex pattern...">Contact our support team at support@everydaytools.co.in or sales.team@example.com for assistance. Backup URLs include https://everydaytools.co.in/tools/ and http://test.org:8080/path?query=1. Server IP is 192.168.1.1 and brand color is #635bff. Today is date 2026-09-04.</textarea>
+        </div>
+
+        <button type="button" class="btn-action" onclick="runRegex()" style="width: 100%; justify-content: center;">⚡ Test &amp; Evaluate Pattern</button>
+
+        <div id="outputSection" class="output-section">
+          <div id="resultBanner"></div>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin-top: 20px; margin-bottom: 10px; color: #1e293b;">Live Highlighted Matches:</h3>
+          <div id="highlightedOutput" class="highlighted-box"></div>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; color: #1e293b;">Match Details &amp; Groups:</h3>
+          <div style="overflow-x: auto;">
+            <table class="breakdown-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Matched Substring</th>
+                  <th>Index Position</th>
+                  <th>Capture Groups</th>
+                </tr>
+              </thead>
+              <tbody id="matchTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="internal-link-box" style="margin-top: 24px;">
+            Need more developer utilities? Try our <a href="./Cron-Expression-Parser-and-Explainer.html">Cron Expression Parser</a> or <a href="./UUID-v4-and-v7-Generator-Decoder.html">UUID v4 &amp; v7 Generator</a>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Comprehensive Guide to Regular Expressions (RegEx)</h2>
+        
+        <p>
+          Regular expressions (commonly abbreviated as RegEx or RegExp) form the foundational backbone of text processing, pattern validation, search-and-replace algorithms, and data scraping across modern software engineering. Whether you are validating user email inputs in a frontend form, parsing log files on a Linux server, or extracting structured parameters from API responses, mastering regular expressions empowers developers to write concise, highly efficient code. Our advanced <strong>Regular Expression (RegEx) Playground</strong> offers a secure, real-time client-side sandbox to test, debug, and inspect patterns instantly in your web browser.
+        </p>
+
+        <h3>Core Concepts: Anatomy of a Regular Expression</h3>
+        <p>
+          A regular expression pattern consists of literal characters and special metacharacters that dictate matching rules. Understanding how these elements interact is vital for building robust validation filters:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Literals:</strong> Standard characters like <code>abc</code> match themselves precisely in the target string.</li>
+          <li><strong>Metacharacters:</strong> Special symbols such as <code>.</code>, <code>*</code>, <code>+</code>, <code>?</code>, <code>^</code>, <code>$</code>, <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>{</code>, <code>}</code>, and <code>\</code> carry programmatic matching instructions.</li>
+          <li><strong>Character Classes:</strong> Enclosed in square brackets (e.g., <code>[aeiou]</code>), character classes match any single character contained within the set. Shorthands like <code>\d</code> (digits), <code>\w</code> (word characters), and <code>\s</code> (whitespace) speed up common patterns.</li>
+          <li><strong>Quantifiers:</strong> Specify repetition frequency. For example, <code>{2,4}</code> matches between 2 and 4 occurrences of the preceding element.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>⚡ Real-Time Testing</h4>
+            <p style="font-size: 13px; margin: 0;">Instant match evaluation and text highlighting as you type patterns and test strings.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📊 Capture Group Inspection</h4>
+            <p style="font-size: 13px; margin: 0;">Break down indexed and named sub-expressions for precise data extraction.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛠️ Ready-to-Use Presets</h4>
+            <p style="font-size: 13px; margin: 0;">Load battle-tested patterns for emails, URLs, IPv4 addresses, hex colors, and ISO dates.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🔒 100% Client-Side Privacy</h4>
+            <p style="font-size: 13px; margin: 0;">All regex evaluations run locally in your browser sandbox with zero server data logging.</p>
+          </div>
+        </div>
+
+        <h3>Advanced RegEx Flags and Modifiers</h3>
+        <p>
+          Flags modify the behavior of the regex engine during pattern execution. The most common flags include the Global flag (`g`) which finds all matches rather than stopping at the first occurrence, the Case-Insensitive flag (`i`) which ignores letter capitalization, the Multiline flag (`m`) which adjusts anchor boundaries to individual lines, and the DotAll flag (`s`) which allows dots to match newline characters.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Use the RegEx Playground</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Enter Pattern:</strong> Type your regular expression into the pattern input box or select a quick preset template.</li>
+          <li><strong>Configure Flags:</strong> Toggle desired flags like global (`g`) or case-insensitive (`i`) using the checkbox toolbar.</li>
+          <li><strong>Input Test Data:</strong> Paste or type your target text string into the test area.</li>
+          <li><strong>Analyze Results:</strong> Review the highlighted matches and the comprehensive match details table instantly.</li>
+        </ol>
+      </article>
+
+      <!-- FAQ Section (22 FAQs) -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is a Regular Expression (RegEx)?</summary>
+          <p>A regular expression is a sequence of characters that specifies a search pattern, commonly used for string searching, validation, and text manipulation.</p>
+        </details>
+
+        <details>
+          <summary>What are regex flags and how do they work?</summary>
+          <p>Flags are optional modifiers like global (g), case-insensitive (i), and multiline (m) that alter how the regex engine evaluates the pattern against a target string.</p>
+        </details>
+
+        <details>
+          <summary>What does the global (g) flag do?</summary>
+          <p>The global flag instructs the regex engine to search for all matches in the target string rather than stopping after the first successful match.</p>
+        </details>
+
+        <details>
+          <summary>What does the case-insensitive (i) flag do?</summary>
+          <p>The case-insensitive flag makes the pattern match both uppercase and lowercase letters without requiring explicit character ranges like [a-zA-Z].</p>
+        </details>
+
+        <details>
+          <summary>How do multiline (m) and dotall (s) flags differ?</summary>
+          <p>The multiline flag affects anchors (^ and $) so they match the start and end of every line, while the dotall flag allows the dot (.) character to match newline characters.</p>
+        </details>
+
+        <details>
+          <summary>What are character classes in regular expressions?</summary>
+          <p>Character classes (enclosed in square brackets like [aeiou] or shorthands like \d, \w, \s) match any one of a set of specific characters.</p>
+        </details>
+
+        <details>
+          <summary>How do quantifiers like *, +, and ? function?</summary>
+          <p>Quantifiers specify how many instances of a character, group, or character class must be present for a match to occur (* means 0 or more, + means 1 or more, ? means 0 or 1).</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between greedy and lazy quantifiers?</summary>
+          <p>Greedy quantifiers match as much text as possible, whereas lazy quantifiers (followed by ?) match as little text as necessary.</p>
+        </details>
+
+        <details>
+          <summary>What are anchors (^ and $) used for?</summary>
+          <p>Anchors do not match characters; instead, they assert positions. The caret (^) asserts the start of a string or line, while the dollar sign ($) asserts the end.</p>
+        </details>
+
+        <details>
+          <summary>What is a capture group and how do you use it?</summary>
+          <p>Capture groups are enclosed in parentheses (...) and allow you to extract specific matched subsegments or reference them later in replacements.</p>
+        </details>
+
+        <details>
+          <summary>What are non-capturing groups ((?:...))?</summary>
+          <p>Non-capturing groups group sub-expressions for applying quantifiers or alternation without storing the matched result in memory, optimizing performance.</p>
+        </details>
+
+        <details>
+          <summary>What is a lookahead assertion (positive vs negative)?</summary>
+          <p>Lookaheads assert whether a pattern can be followed by another pattern without consuming characters. Positive (?=...) requires it; negative (?!...) forbids it.</p>
+        </details>
+
+        <details>
+          <summary>What is a lookbehind assertion?</summary>
+          <p>Lookbehinds assert what must precede the current position in the text string, using (?<=...) for positive lookbehind and (?<!...) for negative lookbehind.</p>
+        </details>
+
+        <details>
+          <summary>How do I match an email address using RegEx?</summary>
+          <p>A robust email regex pattern accounts for alphanumeric local parts, an @ symbol, domain names, and top-level domain extensions like ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$.</p>
+        </details>
+
+        <details>
+          <summary>How do I validate a URL with regular expressions?</summary>
+          <p>URL validation regex patterns typically check for protocols like http or https followed by domain structures, ports, paths, and query parameters.</p>
+        </details>
+
+        <details>
+          <summary>How do I match an IPv4 address?</summary>
+          <p>An IPv4 regex pattern matches four numeric octets ranging from 0 to 255 separated by dots, often structured around range-safe numerical matching.</p>
+        </details>
+
+        <details>
+          <summary>Are regular expressions case-sensitive by default?</summary>
+          <p>Yes, standard regex matching is strictly case-sensitive unless the case-insensitive (i) flag is explicitly enabled.</p>
+        </details>
+
+        <details>
+          <summary>Can I use RegEx to parse HTML or XML?</summary>
+          <p>While simple matching is possible, parsing complex or nested HTML structures with regular expressions is discouraged due to context-free grammar limitations.</p>
+        </details>
+
+        <details>
+          <summary>How do I escape special characters in regular expressions?</summary>
+          <p>Special characters like dots, brackets, and asterisks can be treated as literals by prefixing them with a backslash escape character (\).</p>
+        </details>
+
+        <details>
+          <summary>What is catastrophic backtracking and how can I avoid it?</summary>
+          <p>Catastrophic backtracking occurs when ambiguous nested quantifiers cause exponential evaluation steps, freezing the CPU. Avoid it by using atomic groups or simplifying quantifiers.</p>
+        </details>
+
+        <details>
+          <summary>Are regular expressions supported across all programming languages?</summary>
+          <p>Yes, regex engines are natively built into almost all modern programming languages including JavaScript, Python, Java, PHP, Ruby, and C#.</p>
+        </details>
+
+        <details>
+          <summary>How can I test and debug regex patterns safely in my browser?</summary>
+          <p>You can use client-side developer sandboxes like our RegEx Playground to test patterns instantly without uploading sensitive data to external servers.</p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side RegEx Playground Logic -->
+  <script>
+    function loadPreset(patternStr, flagsStr) {
+      document.getElementById('regexInput').value = patternStr;
+      
+      // Reset flags
+      document.getElementById('flagG').checked = flagsStr.includes('g');
+      document.getElementById('flagI').checked = flagsStr.includes('i');
+      document.getElementById('flagM').checked = flagsStr.includes('m');
+      document.getElementById('flagS').checked = flagsStr.includes('s');
+
+      runRegex();
+    }
+
+    function runRegex() {
+      const pattern = document.getElementById('regexInput').value;
+      const testString = document.getElementById('testStringInput').value;
+      const resultBanner = document.getElementById('resultBanner');
+      const highlightedOutput = document.getElementById('highlightedOutput');
+      const matchTableBody = document.getElementById('matchTableBody');
+
+      matchTableBody.innerHTML = '';
+      highlightedOutput.innerHTML = '';
+
+      if (!pattern) {
+        resultBanner.className = 'error-banner';
+        resultBanner.innerHTML = '❌ Please enter a regular expression pattern.';
+        highlightedOutput.textContent = testString;
+        return;
+      }
+
+      let flags = '';
+      if (document.getElementById('flagG').checked) flags += 'g';
+      if (document.getElementById('flagI').checked) flags += 'i';
+      if (document.getElementById('flagM').checked) flags += 'm';
+      if (document.getElementById('flagS').checked) flags += 's';
+
+      let regex;
+      try {
+        regex = new RegExp(pattern, flags);
+      } catch (e) {
+        resultBanner.className = 'error-banner';
+        resultBanner.innerHTML = `❌ Invalid RegEx Syntax: ${escapeHtml(e.message)}`;
+        highlightedOutput.textContent = testString;
+        return;
+      }
+
+      if (!testString) {
+        resultBanner.className = 'match-banner';
+        resultBanner.innerHTML = '⚠️ Valid regex pattern, but test string is empty.';
+        highlightedOutput.textContent = '';
+        return;
+      }
+
+      let matches = [];
+      let match;
+      let lastIdx = 0;
+      let htmlOutput = '';
+
+      if (flags.includes('g')) {
+        while ((match = regex.exec(testString)) !== null) {
+          matches.push(match);
+          // Prevent infinite loops on zero-length matches
+          if (match.index === regex.lastIndex) {
+            regex.lastIndex++;
+          }
+          if (!flags.includes('g')) break;
+        }
+      } else {
+        match = regex.exec(testString);
+        if (match) {
+          matches.push(match);
+        }
+      }
+
+      if (matches.length === 0) {
+        resultBanner.className = 'error-banner';
+        resultBanner.innerHTML = '🔍 No matches found for the given pattern and test string.';
+        highlightedOutput.textContent = testString;
+        return;
+      }
+
+      resultBanner.className = 'match-banner';
+      resultBanner.innerHTML = `✅ Successfully found <strong>${matches.length}</strong> match${matches.length > 1 ? 'es' : ''}.`;
+
+      // Build highlighted text output
+      let currentIndex = 0;
+      matches.forEach(m => {
+        let matchText = m[0];
+        let matchIndex = m.index;
+
+        if (matchIndex > currentIndex) {
+          htmlOutput += escapeHtml(testString.substring(currentIndex, matchIndex));
+        }
+
+        htmlOutput += `<span class="match-hl">${escapeHtml(matchText)}</span>`;
+        currentIndex = matchIndex + matchText.length;
+      });
+
+      if (currentIndex < testString.length) {
+        htmlOutput += escapeHtml(testString.substring(currentIndex));
+      }
+
+      highlightedOutput.innerHTML = htmlOutput;
+
+      // Populate match details table
+      matches.forEach((m, idx) => {
+        let groupsText = m.slice(1).length > 0 ? m.slice(1).map((g, i) => `[$ {i+1}]: ${g || 'undefined'}`).join(', ') : 'None';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>#${idx + 1}</strong></td>
+          <td><code>${escapeHtml(m[0])}</code></td>
+          <td>${m.index}</td>
+          <td>${escapeHtml(groupsText)}</td>
+        `;
+        matchTableBody.appendChild(tr);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Run initial test on load
+    window.onload = function() {
+      runRegex();
+    };
+  </script>
+</body>
+</html>

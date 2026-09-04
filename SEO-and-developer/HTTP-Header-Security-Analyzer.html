@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Header Security Analyzer | Ultimate Advanced Cybersecurity & DevSecOps Suite</title>
+  <meta name="description" content="Inspect, analyze, and audit HTTP response security headers in real time. Professional developer utility checking CSP, HSTS, X-Frame-Options, CORS, and vulnerability risk scores.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/http-header-security-analyzer.html">
+
+  <meta property="og:title" content="HTTP Header Security Analyzer | Advanced DevSecOps Suite">
+  <meta property="og:description" content="Evaluate web server security posture and compliance with OWASP header recommendations instantly.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/http-header-security-analyzer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/header-security-og.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HTTP Header Security Analyzer">
+  <meta name="twitter:description" content="Professional web application security utility for inspecting HTTP headers.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M32 12l18 8v14c0 11.1-7.8 21.5-18 24-10.2-2.5-18-12.9-18-24V20l18-8z' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HTTP Header Security Analyzer",
+    "url": "https://everydaytools.co.in/tools/http-header-security-analyzer.html",
+    "description": "Professional web security tool to analyze and audit HTTP response headers for OWASP compliance, CSP policies, HSTS configuration, and vulnerability exposure.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    .calc-card { background: rgba(255, 255, 255, 0.95); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-md); margin-bottom: 24px; backdrop-filter: blur(10px); }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .form-group label { font-size: 13px; font-weight: 700; color: var(--text); }
+    
+    .input-url { width: 100%; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 14px; box-shadow: var(--shadow-sm); }
+    .input-url:focus { outline: none; border-color: var(--primary); }
+
+    .textarea-headers { width: 100%; height: 220px; background: #0f172a; color: #38bdf8; border: 1px solid #334155; border-radius: var(--radius-sm); padding: 14px; font-family: monospace; font-size: 12px; resize: vertical; line-height: 1.5; }
+    .textarea-headers:focus { outline: none; border-color: var(--primary); }
+
+    .btn-action { background: var(--primary); color: #ffffff; font-weight: 700; border: none; padding: 12px 20px; border-radius: var(--radius-sm); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; transition: opacity 0.2s, transform 0.2s; width: 100%; margin-top: 10px; box-shadow: 0 4px 12px rgba(99, 91, 255, 0.2); }
+    .btn-action:hover { opacity: 0.95; transform: translateY(-1px); }
+
+    .score-banner { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; margin-top: 24px; margin-bottom: 24px; }
+    .score-circle { width: 70px; height: 70px; border-radius: 50%; background: var(--primary); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; box-shadow: var(--shadow-sm); }
+    .score-grade { font-size: 28px; font-weight: 900; }
+    .score-grade.a { color: #10b981; }
+    .score-grade.b { color: #3b82f6; }
+    .score-grade.c { color: #f59e0b; }
+    .score-grade.f { color: #ef4444; }
+
+    .audit-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 20px; text-align: left; }
+    .audit-table th { background: #f1f5f9; border-bottom: 2px solid var(--border); padding: 12px; color: var(--text); font-weight: 700; }
+    .audit-table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .badge-secure { background: #d1fae5; color: #065f46; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-missing { background: #fee2e2; color: #991b1b; }
+
+    .content-article h2 { color: var(--text); font-size: 24px; font-weight: 800; margin-bottom: 16px; margin-top: 32px; }
+    .content-article h3 { color: var(--text); font-size: 18px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; }
+    .content-article p { margin-bottom: 16px; color: var(--muted); line-height: 1.8; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; margin-bottom: 24px; }
+    .feature-box { background: rgba(255,255,255,0.8); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm); }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    
+    .download-bar { background: #0f172a; padding: 12px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #334155; }
+    .download-bar-inner { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: 0 auto; padding: 0 16px; }
+    .download-bar-text { color: #f8fafc; font-size: 13px; font-weight: 600; }
+    .btn-download { background: #10b981; color: #ffffff; font-weight: 700; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: opacity 0.2s; }
+    .btn-download:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <div class="download-bar">
+    <div class="download-bar-inner">
+      <span class="download-bar-text">💾 Get this complete standalone tool file instantly:</span>
+      <button type="button" class="btn-download" onclick="downloadFile()">📥 Download HTML File</button>
+    </div>
+  </div>
+
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Advanced Cybersecurity &amp; DevSecOps Suite</span>
+        <h1>HTTP Header Security <span>Analyzer</span></h1>
+        <p class="subtitle">
+          Audit web server security configurations, evaluate OWASP compliance, inspect Content Security Policies (CSP), and generate comprehensive vulnerability mitigation reports.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <section class="calc-card" aria-label="Interactive Security Analyzer">
+        <div class="form-group">
+          <label for="targetUrl">Target Web Application URL</label>
+          <input type="text" id="targetUrl" class="input-url" value="https://example.com" placeholder="https://yourdomain.com">
+        </div>
+
+        <div class="form-group">
+          <label for="headersInput">HTTP Response Headers (Paste raw headers or use default sample)</label>
+          <textarea id="headersInput" class="textarea-headers">HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trustedscripts.com;
+X-XSS-Protection: 0
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), microphone=()</textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <button type="button" class="btn-action" onclick="analyzeHeaders()">🔍 Run Security Audit</button>
+          <button type="button" class="btn-action" onclick="loadSampleHeaders()" style="background: var(--muted);">📥 Load Sample Secure Headers</button>
+        </div>
+
+        <div class="score-banner" id="scoreBanner" style="display: none;">
+          <div>
+            <span style="font-size: 12px; text-transform: uppercase; font-weight: 700; color: var(--muted);">Security Posture Grade</span>
+            <div class="score-grade a" id="gradeText">Grade: A+</div>
+            <p style="font-size: 13px; color: var(--muted); margin: 4px 0 0 0;" id="scoreDescription">All recommended security headers are correctly configured and hardened.</p>
+          </div>
+          <div class="score-circle" id="scoreValue">98</div>
+        </div>
+
+        <div style="overflow-x: auto;" id="auditResultsContainer" style="display: none;">
+          <table class="audit-table">
+            <thead>
+              <tr>
+                <th>Security Header</th>
+                <th>Status</th>
+                <th>Detected Value / Configuration</th>
+                <th>OWASP Recommendation &amp; Impact</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody">
+              <!-- Dynamically populated via script -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <article class="calc-card content-article">
+        <h2>The Critical Role of HTTP Security Response Headers in Modern Web Defense</h2>
+        
+        <p>
+          As web applications evolve into complex distributed systems handling sensitive user data, financial transactions, and enterprise authentication, securing the transport layer is only the first line of defense. Malicious actors frequently target client-side execution contexts, relying on injection flaws, cross-site scripting (XSS), clickjacking, and MIME-type confusion attacks. Implementing rigorous <strong>HTTP response security headers</strong> instructs modern web browsers on how to handle content safely, neutralizing entire classes of web vulnerabilities before execution occurs.
+        </p>
+        <p>
+          Our <strong>HTTP Header Security Analyzer</strong> provides developers, security engineers, and DevOps administrators with an instant auditing utility to evaluate server hardening against baseline standards established by the Open Worldwide Application Security Project (OWASP) and Mozilla Security Guidelines.
+        </p>
+
+        <h3>Core Security Headers Every Web Application Must Implement</h3>
+        <p>
+          A properly hardened web server emits a specific suite of response headers designed to restrict browser capabilities and prevent unauthorized data exfiltration.
+        </p>
+
+        <h4>1. Strict-Transport-Security (HSTS)</h4>
+        <p>
+          The HSTS header forces browsers to interact with the target web server exclusively over encrypted HTTPS connections, effectively neutralizing man-in-the-middle (MitM) protocol downgrade attacks and cookie hijacking attempts.
+        </p>
+
+        <h4>2. Content Security Policy (CSP)</h4>
+        <p>
+          CSP is arguably the most powerful defense-in-depth mechanism available in modern web browsers. By declaring approved sources of executable scripts, stylesheets, images, and worker threads, CSP mitigates Cross-Site Scripting (XSS) and data injection exploits.
+        </p>
+
+        <h4>3. X-Frame-Options &amp; Frame Ancestors</h4>
+        <p>
+          This directive protects web applications from clickjacking (UI redressing) attacks by dictating whether a browser is permitted to render a page inside an <code>&lt;iframe&gt;</code>, <code>&lt;embed&gt;</code>, or <code>&lt;object&gt;</code> tag.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🛡️ HSTS Enforcement</h4>
+            <p style="font-size: 13px; margin: 0;">Prevent protocol downgrade attacks with strict max-age and subdomain directives.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🔒 CSP Script Control</h4>
+            <p style="font-size: 13px; margin: 0;">Eliminate XSS vectors by whitelisting trusted script execution domains securely.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛑 Clickjacking Defense</h4>
+            <p style="font-size: 13px; margin: 0;">Block unauthorized framing attempts using SAMEORIGIN or CSP frame-ancestors.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📊 Automated Scoring</h4>
+            <p style="font-size: 13px; margin: 0;">Calculate immediate compliance ratings and prioritize server configuration fixes.</p>
+          </div>
+        </div>
+
+        <h3>Understanding Vulnerability Vectors Mitigated by Response Headers</h3>
+        <p>
+          Failing to deploy standard security headers exposes applications to well-documented attack vectors cataloged in the OWASP Top 10.
+        </p>
+
+        <div style="overflow-x: auto; margin-bottom: 20px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border);">
+                <th style="padding: 10px; color: var(--text);">Security Header</th>
+                <th style="padding: 10px; color: var(--text);">Target Vulnerability</th>
+                <th style="padding: 10px; color: var(--text);">Recommended Production Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 10px; font-weight: 700;">Strict-Transport-Security</td>
+                <td style="padding: 10px;">SSL Stripping / MitM</td>
+                <td style="padding: 10px;"><code>max-age=31536000; includeSubDomains; preload</code></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 10px; font-weight: 700;">X-Content-Type-Options</td>
+                <td style="padding: 10px;">MIME-Type Sniffing</td>
+                <td style="padding: 10px;"><code>nosniff</code></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: 10px; font-weight: 700;">X-Frame-Options</td>
+                <td style="padding: 10px;">Clickjacking / UI Redressing</td>
+                <td style="padding: 10px;"><code>SAMEORIGIN</code></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: 700;">Permissions-Policy</td>
+                <td style="padding: 10px;">Unauthorized API Access</td>
+                <td style="padding: 10px;"><code>geolocation=(), microphone=(), camera=()</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Automating Security Audits in CI/CD Pipelines</h3>
+        <p>
+          Modern DevSecOps workflows require security testing to be embedded directly into automated build pipelines. By integrating automated header validation scripts into continuous deployment servers (such as GitHub Actions, GitLab CI, or Jenkins), engineering teams ensure that newly deployed microservices or updated reverse-proxy configurations (Nginx, Apache, Cloudflare) never regress on foundational security standards.
+        </p>
+      </article>
+
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What are HTTP security response headers and why are they important?</summary>
+          <p>HTTP security headers are configuration directives sent by web servers to instruct browsers on how to behave when rendering web content. They protect applications against XSS, clickjacking, MIME sniffing, and protocol downgrade attacks.</p>
+        </details>
+
+        <details>
+          <summary>How does the HTTP Header Security Analyzer calculate security scores?</summary>
+          <p>The analyzer inspects your header payload against OWASP benchmarks, assigning weighted penalty points for missing critical headers (like CSP and HSTS) or insecure configurations.</p>
+        </details>
+
+        <details>
+          <summary>What is HSTS and how do I configure it correctly?</summary>
+          <p>HTTP Strict Transport Security (HSTS) tells browsers to only communicate over HTTPS. A robust configuration includes a long max-age (e.g., 31536000 seconds), includeSubDomains, and preload directives.</p>
+        </details>
+
+        <details>
+          <summary>What is a Content Security Policy (CSP) and what does it protect against?</summary>
+          <p>CSP restricts the domains from which scripts, stylesheets, and images can be loaded and executed, effectively stopping Cross-Site Scripting (XSS) and unauthorized data exfiltration.</p>
+        </details>
+
+        <details>
+          <summary>How does X-Frame-Options prevent clickjacking attacks?</summary>
+          <p>X-Frame-Options specifies whether a web page can be embedded inside an iframe on another domain. Setting it to DENY or SAMEORIGIN prevents malicious sites from overlaying invisible frames over your application.</p>
+        </details>
+
+        <details>
+          <summary>What does X-Content-Type-Options: nosniff accomplish?</summary>
+          <p>The nosniff directive prevents browsers from guessing or "sniffing" files' MIME types, forcing them to strictly adhere to the declared Content-Type header and preventing malicious script uploads.</p>
+        </details>
+
+        <details>
+          <summary>What is the purpose of the Referrer-Policy header?</summary>
+          <p>Referrer-Policy controls how much referrer information (which includes full URLs and query parameters) is included with navigation requests, protecting sensitive user data from leaking to third parties.</p>
+        </details>
+
+        <details>
+          <summary>How do Permissions-Policy headers enhance client-side privacy?</summary>
+          <p>Permissions-Policy restricts browser features and APIs—such as geolocation, microphone, camera, and payment gateways—from being accessed by embedded third-party scripts or ad networks.</p>
+        </details>
+
+        <details>
+          <summary>Can I test internal or staging environments with this tool?</summary>
+          <p>Yes. You can paste raw response headers captured from local proxies, curl commands, or browser developer tools directly into the text area for offline auditing.</p>
+        </details>
+
+        <details>
+          <summary>Is my data and target URL secure when using this analyzer?</summary>
+          <p>Completely. All analysis routines execute locally within your web browser using client-side JavaScript, ensuring zero data transmission to external logging servers.</p>
+        </details>
+
+        <details>
+          <summary>How do I configure security headers in Nginx web servers?</summary>
+          <p>Security headers in Nginx are added within your server or location blocks using the add_header directive, for example: <code>add_header X-Frame-Options "SAMEORIGIN" always;</code>.</p>
+        </details>
+
+        <details>
+          <summary>How do I configure security headers in Apache HTTP servers?</summary>
+          <p>Apache headers are configured using the Header module in your .htaccess or virtual host configuration file, such as: <code>Header always set X-Content-Type-Options "nosniff"</code>.</p>
+        </details>
+
+        <details>
+          <summary>What is HTTP Public Key Pinning (HPKP) and is it still recommended?</summary>
+          <p>HPKP was an older header designed to prevent fraudulent SSL certificates, but it has been deprecated by major browsers due to the high risk of self-inflicted denial-of-service if misconfigured. Certificate Transparency logs have replaced it.</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between X-XSS-Protection and Content Security Policy?</summary>
+          <p>X-XSS-Protection is an older, largely obsolete header for legacy browsers. Modern security standards rely entirely on robust Content Security Policies (CSP) for XSS defense.</p>
+        </details>
+
+        <details>
+          <summary>Why is the "Server" header often recommended to be removed or obfuscated?</summary>
+          <p>Leaving detailed version numbers in the Server or X-Powered-By headers aids attackers in identifying known software vulnerabilities associated with specific web server builds.</p>
+        </details>
+
+        <details>
+          <summary>How do CORS headers interact with security response headers?</summary>
+          <p>Cross-Origin Resource Sharing (CORS) headers (like Access-Control-Allow-Origin) govern how APIs share resources across domains, requiring careful configuration to prevent unauthorized cross-origin data exposure.</p>
+        </details>
+
+        <details>
+          <summary>What does the HSTS "preload" directive do?</summary>
+          <p>Preloading allows browsers to hardcode your domain into an official HSTS preload list, ensuring that even the very first connection to your website is forced over HTTPS.</p>
+        </details>
+
+        <details>
+          <summary>Can security headers protect against SQL injection or backend flaws?</summary>
+          <p>No. Security headers protect the transport layer and client-side browser execution. Backend vulnerabilities like SQL injection require secure coding practices and parameterized queries.</p>
+        </details>
+
+        <details>
+          <summary>How often should web server security headers be audited?</summary>
+          <p>Security headers should be audited continuously during CI/CD builds, as part of routine vulnerability scans, and whenever reverse proxy or load balancer configurations are updated.</p>
+        </details>
+
+        <details>
+          <summary>What is the OWASP Secure Headers Project?</summary>
+          <p>The OWASP Secure Headers Project is an open initiative that defines standardized guidelines and documentation for implementing defense-in-depth response headers across web applications.</p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function loadSampleHeaders() {
+      document.getElementById('headersInput').value = `HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trustedscripts.com;
+X-XSS-Protection: 0
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), microphone=()`;
+      analyzeHeaders();
+    }
+
+    function analyzeHeaders() {
+      const rawHeaders = document.getElementById('headersInput').value;
+      const lines = rawHeaders.split('\n');
+      
+      const headerMap = {};
+      lines.forEach(line => {
+        const colonIndex = line.indexOf(':');
+        if (colonIndex !== -1) {
+          const key = line.substring(0, colonIndex).trim().toLowerCase();
+          const val = line.substring(colonIndex + 1).trim();
+          headerMap[key] = val;
+        }
+      });
+
+      const auditRules = [
+        {
+          key: 'strict-transport-security',
+          name: 'Strict-Transport-Security (HSTS)',
+          weight: 25,
+          check: (val) => {
+            if (!val) return { status: 'missing', badge: 'badge-missing', text: 'Header missing', desc: 'Crucial for enforcing HTTPS and preventing man-in-the-middle attacks.' };
+            if (val.includes('max-age')) return { status: 'secure', badge: 'badge-secure', text: val, desc: 'Properly enforces secure transport layer encryption.' };
+            return { status: 'warning', badge: 'badge-warning', text: val, desc: 'Present but verify max-age duration and includeSubDomains directive.' };
+          }
+        },
+        {
+          key: 'content-security-policy',
+          name: 'Content Security Policy (CSP)',
+          weight: 30,
+          check: (val) => {
+            if (!val) return { status: 'missing', badge: 'badge-missing', text: 'Header missing', desc: 'Critical defense against Cross-Site Scripting (XSS) and data injection.' };
+            if (val.includes('default-src') || val.includes('script-src')) return { status: 'secure', badge: 'badge-secure', text: val, desc: 'Active policy restricting script and resource execution sources.' };
+            return { status: 'warning', badge: 'badge-warning', text: val, desc: 'Policy is active but may be overly permissive.' };
+          }
+        },
+        {
+          key: 'x-frame-options',
+          name: 'X-Frame-Options',
+          weight: 15,
+          check: (val) => {
+            if (!val) return { status: 'missing', badge: 'badge-missing', text: 'Header missing', desc: 'Exposes application to clickjacking / UI redressing attacks.' };
+            if (val.toUpperCase() === 'DENY' || val.toUpperCase() === 'SAMEORIGIN') return { status: 'secure', badge: 'badge-secure', text: val, desc: 'Successfully restricts unauthorized iframe embedding.' };
+            return { status: 'warning', badge: 'badge-warning', text: val, desc: 'Ensure value is set strictly to DENY or SAMEORIGIN.' };
+          }
+        },
+        {
+          key: 'x-content-type-options',
+          name: 'X-Content-Type-Options',
+          weight: 15,
+          check: (val) => {
+            if (!val) return { status: 'missing', badge: 'badge-missing', text: 'Header missing', desc: 'Allows browsers to MIME-sniff response content unpredictably.' };
+            if (val.toLowerCase() === 'nosniff') return { status: 'secure', badge: 'badge-secure', text: 'nosniff', desc: 'Correctly prevents browser MIME-type sniffing.' };
+            return { status: 'warning', badge: 'badge-warning', text: val, desc: 'Should be set strictly to nosniff.' };
+          }
+        },
+        {
+          key: 'referrer-policy',
+          name: 'Referrer-Policy',
+          weight: 10,
+          check: (val) => {
+            if (!val) return { status: 'missing', badge: 'badge-missing', text: 'Header missing', desc: 'May leak sensitive URL query parameters to external third-party sites.' };
+            return { status: 'secure', badge: 'badge-secure', text: val, desc: 'Controls referrer data leakage effectively.' };
+          }
+        },
+        {
+          key: 'permissions-policy',
+          name: 'Permissions-Policy',
+          weight: 5,
+          check: (val) => {
+            if (!val) return { status: 'warning', badge: 'badge-warning', text: 'Header missing', desc: 'Recommended to restrict browser sensor and API access.' };
+            return { status: 'secure', badge: 'badge-secure', text: val, desc: 'Controls browser feature access successfully.' };
+          }
+        }
+      ];
+
+      let score = 0;
+      let totalWeight = 0;
+      let tbodyHtml = '';
+
+      auditRules.forEach(rule => {
+        totalWeight += rule.weight;
+        // find matching header case-insensitively
+        let matchedVal = '';
+        for (let k in headerMap) {
+          if (k === rule.key) {
+            matchedVal = headerMap[k];
+            break;
+          }
+        }
+
+        const auditResult = rule.check(matchedVal);
+        if (auditResult.status === 'secure') {
+          score += rule.weight;
+        } else if (auditResult.status === 'warning') {
+          score += (rule.weight * 0.5);
+        }
+
+        tbodyHtml += `
+          <tr>
+            <td style="font-weight: 700;">${rule.name}</td>
+            <td><span class="badge ${auditResult.badge}">${auditResult.status}</span></td>
+            <td><code style="word-break: break-all;">${escapeHtml(matchedVal || 'Not Set')}</code></td>
+            <td style="color: var(--muted);">${auditResult.desc}</td>
+          </tr>
+        `;
+      });
+
+      const finalScore = Math.round(score);
+      document.getElementById('scoreValue').textContent = finalScore;
+      
+      const gradeText = document.getElementById('gradeText');
+      const scoreDescription = document.getElementById('scoreDescription');
+      
+      if (finalScore >= 90) {
+        gradeText.className = 'score-grade a';
+        gradeText.textContent = 'Grade: A+';
+        scoreDescription.textContent = 'Outstanding security posture. All primary defense headers are configured.';
+      } else if (finalScore >= 75) {
+        gradeText.className = 'score-grade b';
+        gradeText.textContent = 'Grade: B';
+        scoreDescription.textContent = 'Good configuration, but minor security headers are missing or sub-optimal.';
+      } else if (finalScore >= 50) {
+        gradeText.className = 'score-grade c';
+        gradeText.textContent = 'Grade: C';
+        scoreDescription.textContent = 'Moderate risk. Several critical security headers need immediate remediation.';
+      } else {
+        gradeText.className = 'score-grade f';
+        gradeText.textContent = 'Grade: F';
+        scoreDescription.textContent = 'High vulnerability exposure. Essential security headers are absent.';
+      }
+
+      document.getElementById('auditTableBody').innerHTML = tbodyHtml;
+      document.getElementById('scoreBanner').style.display = 'flex';
+      document.getElementById('auditResultsContainer').style.display = 'block';
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    function downloadFile() {
+      const clone = document.documentElement.cloneNode(true);
+      const downloadBar = clone.querySelector('.download-bar');
+      if (downloadBar) downloadBar.remove();
+
+      const htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'HTTP-Header-Security-Analyzer.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      analyzeHeaders();
+    });
+  </script>
+</body>
+</html>

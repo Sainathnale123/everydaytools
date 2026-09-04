@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Bulk GPS Metadata Remover - Batch Strip EXIF & Geotags</title>
+  <meta name="description" content="Securely batch remove GPS coordinates, location data, and EXIF metadata from multiple JPEG and PNG photos online. Protect your privacy instantly without uploading to servers.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/bulk-gps-metadata-remover.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online Bulk GPS Metadata Remover - Batch Strip EXIF & Geotags">
+  <meta property="og:description" content="Securely batch remove GPS coordinates, location data, and EXIF metadata from multiple JPEG and PNG photos online. Protect your privacy instantly without uploading to servers.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/bulk-gps-metadata-remover.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/bulk-gps-remover-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online Bulk GPS Metadata Remover - Batch Strip EXIF & Geotags">
+  <meta name="twitter:description" content="Securely batch remove GPS coordinates, location data, and EXIF metadata from multiple JPEG and PNG photos online.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bulk GPS Metadata Remover",
+    "url": "https://everydaytools.co.in/tools/bulk-gps-metadata-remover.html",
+    "description": "Free online utility to batch strip GPS coordinates, location data, and EXIF tags from multiple images simultaneously directly in your browser.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "browser": "Requires HTML5 Canvas and JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I process multiple photos at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! This bulk tool allows you to upload and scrub GPS and EXIF metadata from dozens of JPEG and PNG images simultaneously right in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my files uploaded to an external server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All batch processing happens locally within your web browser sandbox using HTML5 Canvas, ensuring absolute user privacy and security."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does batch removing EXIF data reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not at all. Stripping metadata only clears out hidden text headers and location tags, leaving the core pixel data and visual quality completely untouched."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What image formats are supported for bulk processing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our bulk tool fully supports standard JPEG, JPG, and PNG image files captured by smartphones, digital cameras, and screenshots."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does client-side bulk processing protect my sensitive data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because files are never transmitted across the internet to a cloud server, there is zero risk of data interception, unauthorized retention, or third-party tracking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can metadata removal prevent stalking and digital harassment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Removing embedded GPS coordinates prevents bad actors from extracting your exact residential address, daily travel patterns, or workplace location from shared photos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a file size or batch quantity limit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool processes as many files as your local browser memory (RAM) can comfortably support, typically handling dozens of high-resolution images in a single batch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install any software or browser extensions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No installation is required. The utility runs entirely inside any modern web browser across desktop, tablet, and mobile devices."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .dropzone { border: 2px dashed var(--border, #cbd5e1); border-radius: 12px; padding: 40px 20px; text-align: center; background: var(--bg, #f8fafc); cursor: pointer; transition: all 0.2s ease; }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--primary, #635bff); background: var(--primary-light); }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .preview-container { margin-top: 20px; display: none; }
+    .file-list { margin-top: 15px; max-height: 250px; overflow-y: auto; text-align: left; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; background: #f8fafc; font-size: 13px; }
+    .file-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
+    .file-item:last-child { border-bottom: none; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Privacy Utility Suite</span>
+        <h1>Bulk GPS Metadata <span>Remover</span></h1>
+        <p class="subtitle">
+          Batch strip hidden GPS coordinates, geolocation data, and EXIF tags from multiple images at once instantly in your browser.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div style="font-size: 40px; margin-bottom: 10px;">📂✨</div>
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Drag & Drop multiple images here, or browse</h2>
+          <p style="font-size: 13px; color: var(--muted, #667085);">Select multiple JPEG, JPG, or PNG files for secure batch processing.</p>
+          <input type="file" id="fileInput" accept="image/jpeg, image/png" multiple style="display: none;" onchange="handleFileSelect(event)">
+        </div>
+
+        <div id="previewContainer" class="preview-container">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <h3 style="font-size: 14px; font-weight: 700; margin: 0;">Selected Files Queue:</h3>
+            <div id="fileListContainer" class="file-list"></div>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="btn-action" id="stripAllBtn" onclick="stripAllMetadata()">🧹 Batch Strip All EXIF & GPS</button>
+            </div>
+            
+            <div class="internal-link-box">
+              Looking to check single file tags or strip individual images? <a href="./exif-viewer.html">Use our Online EXIF Viewer</a> or <a href="./GPS-Metadata-Remover.html">Single GPS Remover</a>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Ultimate Comprehensive Guide to Bulk Photo Privacy and Batch EXIF Metadata Removal</h2>
+        
+        <p>
+          In the contemporary digital landscape, smartphones, digital single-lens reflex (DSLR) cameras, mirrorless systems, and tablets capture vastly more than just a visual representation of a physical scene[cite: 3]. Every single electronic image file saved to storage media contains hidden layers of metadata commonly referred to as <strong>EXIF (Exchangeable Image File Format)</strong> tags[cite: 3]. While single-file tools work adequately for casual snapshots, professional photographers, real estate agencies, investigative journalists, legal professionals, and privacy-conscious users managing hundreds or thousands of digital assets require a robust, streamlined, and scalable batch solution. Our advanced <strong>bulk EXIF metadata stripper</strong> enables you to process dozens of images simultaneously directly within your browser environment without ever compromising personal data security[cite: 3].
+        </p>
+
+        <h3>What Hidden Information is Embedded Inside Your Digital Photographs?</h3>
+        <p>
+          When location services and geotagging options are enabled on your mobile device, the native camera application automatically embeds precise global positioning data directly into the file's binary headers[cite: 3]. This hidden payload often stores a comprehensive matrix of sensitive parameters that can easily compromise an individual's physical security, including:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Exact GPS Coordinates:</strong> Latitude, longitude, and barometric altitude values calculated down to a fraction of a meter, pinpointing the precise location where the shutter button was pressed[cite: 3].</li>
+          <li><strong>Timestamps & Chronological Data:</strong> The exact date, hour, minute, and second when the photograph was taken, establishing predictable behavioral patterns and temporal routines[cite: 3].</li>
+          <li><strong>Device Fingerprints & Hardware IDs:</strong> The specific hardware manufacturer, smartphone model, internal serial number, and unique firmware version of the capture device[cite: 3].</li>
+          <li><strong>Detailed Optical Parameters:</strong> Shutter speed, f-number aperture values, ISO light sensitivity ratings, focal length, exposure bias, and flash firing state[cite: 3].</li>
+          <li><strong>Software & Editing Signatures:</strong> Metadata traces left behind by post-processing suites, operating system versions, and image cataloging applications[cite: 3].</li>
+        </ul>
+
+        <h3>Why You Should Always Batch Scrub EXIF Data Before Sharing Online</h3>
+        <p>
+          Uploading unscrubbed photographic portfolios in bulk to social media networks, online real estate listing portals, public forums, cloud drives, or personal blogging platforms exposes users to unprecedented physical and digital threats[cite: 3]. Sophisticated stalkerware tools, malicious data brokers, automated web scraping bots, and identity thieves can effortlessly parse these hidden geo-tags across entire directories of images, revealing where your children play, the exact physical address of your primary residence, your daily commuting routes, or your long-term vacation travel habits[cite: 3]. Utilizing a dedicated <strong>bulk GPS metadata remover</strong> eradicates these risks at scale, ensuring your personal security remains completely uncompromised[cite: 3].
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔒 100% Client-Side Safety</h4>
+            <p style="font-size: 13px; margin: 0;">Files never touch an external cloud server. Everything processes locally within your secure browser sandbox[cite: 3].</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ High-Speed Batch Execution</h4>
+            <p style="font-size: 13px; margin: 0;">No waiting queues or server bottlenecks. Strip metadata from multiple images instantly using native HTML5 Canvas[cite: 3].</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛡️ Total Privacy Protection</h4>
+            <p style="font-size: 13px; margin: 0;">Permanently erases latitude, longitude, and device identification tags from all queued image headers[cite: 3].</p>
+          </div>
+          <div class="feature-box">
+            <h4>📂 Multi-Format Compatibility</h4>
+            <p style="font-size: 13px; margin: 0;">Seamlessly handles standard JPEG, JPG, and PNG image files generated across all modern mobile and desktop operating systems[cite: 3].</p>
+          </div>
+        </div>
+
+        <h3>How Our Browser-Based Bulk Metadata Stripper Works</h3>
+        <p>
+          Traditional desktop software solutions require cumbersome installations, complex license keys, and heavy resource consumption, while many conventional online converters compromise your fundamental privacy by uploading your sensitive photo folders to remote cloud storage servers[cite: 3]. Our utility adopts a radically secure architecture by leveraging native HTML5 Canvas APIs[cite: 3]. When you select multiple images simultaneously, the application loads each visual asset into an isolated local canvas context and renders a completely fresh version of the pixel data[cite: 3]. Because metadata exists exclusively in the file headers and wrapper protocols, rendering clean pixels through a canvas context leaves all tracking tags, serial numbers, and geotags behind permanently[cite: 3].
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Batch Strip Geotags from Photos</h3>
+        <p>
+          Cleaning an entire folder or selection of digital images takes only a few seconds and requires zero technical expertise[cite: 3]:
+        </p>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Select Your Image Files:</strong> Drag and drop multiple JPEG or PNG files directly into the secure dropzone above, or click the box to browse files from your local device storage[cite: 3].</li>
+          <li><strong>Review the Active Queue:</strong> The tool will instantly display your selected file queue, detailing individual file names, file sizes, and live status indicators for local processing[cite: 3].</li>
+          <li><strong>Execute Batch Stripping:</strong> Click the <strong>"Batch Strip All EXIF & GPS"</strong> button to trigger the client-side canvas scrubbing process across all queued files simultaneously[cite: 3].</li>
+          <li><strong>Download Clean Files:</strong> Save your newly scrubbed, privacy-safe images individually straight to your computer or mobile storage with a single click[cite: 3].</li>
+        </ol>
+
+        <h3>The Hidden Dangers of Geotagged Real Estate and Commercial Photography</h3>
+        <p>
+          Real estate portfolios, architectural showcases, and travel photography galleries represent prime targets for malicious actors[cite: 3]. When real estate agents upload dozens of property interior and exterior pictures straight from a smartphone or high-end digital camera without sanitizing them first, prospective burglars and bad actors can extract precise GPS coordinates to plan break-ins, monitor vacant properties, or track high-value targets[cite: 3]. Similarly, corporate enterprises sharing employee headshots, manufacturing plant tours, or supply chain imagery can inadvertently leak proprietary infrastructure details and internal facility coordinates[cite: 3]. Incorporating a reliable bulk EXIF-stripping workflow into your routine digital asset management ensures your visual media communicates only the professional narrative you intend—without leaking confidential coordinates to the public[cite: 3].
+        </p>
+
+        <h3>Technical Deep-Dive: Understanding EXIF and IPTC Standards</h3>
+        <p>
+          To fully appreciate the importance of metadata removal, it is helpful to understand the underlying technical specifications that govern digital image files. The Exchangeable Image File Format (EXIF) is a standard that specifies the formats for images, sound, and ancillary tags used by digital cameras and other systems. Alongside EXIF, International Press Telecommunications Council (IPTC) headers often store copyright notices, creator contact details, and caption data. While IPTC data is frequently intentional and managed by creators, EXIF and GPS headers are almost always automatic byproducts of modern digital capture. When photos are shared publicly, separating the visual payload from these hidden data structures is critical for digital hygiene. By utilizing client-side rendering techniques, our tool isolates the raw bitmap data from the file container wrapper, neutralizing any hidden EXIF, GPS, or thumbnail artifacts.
+        </p>
+
+        <h3>The Evolution of Privacy Regulations and Photographic Sharing</h3>
+        <p>
+          With global privacy regulations such as GDPR, CCPA, and evolving data protection frameworks emphasizing user control over personal data, digital creators and enterprises face heightened responsibilities regarding what information accompanies their published content. Geolocation metadata falls strictly under personally identifiable information (PII) when it can be correlated with an individual's physical whereabouts. Automated batch processing tools empower everyday users, small businesses, and large organizations alike to enforce strict privacy compliance protocols across their digital media workflows, mitigating liability and safeguarding stakeholders from unwarranted surveillance or physical tracking.
+        </p>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>Can I process multiple photos at once?</summary>
+          <p>
+            Yes! This bulk tool allows you to upload and scrub GPS and EXIF metadata from dozens of JPEG and PNG images simultaneously right in your browser[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Are my files uploaded to an external server?</summary>
+          <p>
+            No. All batch processing happens locally within your web browser sandbox using HTML5 Canvas, ensuring absolute user privacy and security[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Does batch removing EXIF data reduce image quality?</summary>
+          <p>
+            Not at all. Stripping metadata only clears out hidden text headers and location tags, leaving the core pixel data and visual quality completely untouched[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>What image formats are supported for bulk processing?</summary>
+          <p>
+            Our bulk tool fully supports standard JPEG, JPG, and PNG image files captured by smartphones, digital cameras, and screenshots[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>How does client-side bulk processing protect my sensitive data?</summary>
+          <p>
+            Because files are never transmitted across the internet to a cloud server, there is zero risk of data interception, unauthorized retention, or third-party tracking[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Can metadata removal prevent stalking and digital harassment?</summary>
+          <p>
+            Yes. Removing embedded GPS coordinates prevents bad actors from extracting your exact residential address, daily travel patterns, or workplace location from shared photos[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there a file size or batch quantity limit?</summary>
+          <p>
+            The tool processes as many files as your local browser memory (RAM) can comfortably support, typically handling dozens of high-resolution images in a single batch[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to install any software or browser extensions?</summary>
+          <p>
+            No installation is required. The utility runs entirely inside any modern web browser across desktop, tablet, and mobile devices[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens to the original files on my device?</summary>
+          <p>
+            Your original files remain completely untouched and secure on your local device storage. The tool only generates clean, scrubbed copies for you to download[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I use this tool on a smartphone or tablet?</summary>
+          <p>
+            Yes, the responsive interface and client-side JavaScript execution work smoothly on mobile browsers across iOS and Android platforms[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Are RAW camera files like CR2 or NEF supported?</summary>
+          <p>
+            Currently, the browser canvas engine supports standard web-compatible formats including JPEG and PNG. RAW files should be exported to JPEG before batch processing[cite: 3].
+          </p>
+        </details>
+
+        <details>
+          <summary>Why do smartphones embed GPS data into photos by default?</summary>
+          <p>
+            Smartphones embed location data to help users organize photo galleries chronologically and geographically, though it introduces privacy risks when shared publicly[cite: 3].
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    let selectedFiles = [];
+
+    const dropzone = document.getElementById('dropzone');
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); }, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); }, false);
+    });
+    dropzone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files.length > 0) {
+        document.getElementById('fileInput').files = files;
+        handleFileSelect({ target: { files: files } });
+      }
+    }, false);
+
+    function handleFileSelect(event) {
+      const files = event.target.files;
+      if (!files.length) return;
+      selectedFiles = Array.from(files);
+
+      const container = document.getElementById('fileListContainer');
+      container.innerHTML = '';
+
+      selectedFiles.forEach((file, index) => {
+        const div = document.createElement('div');
+        div.className = 'file-item';
+        div.innerHTML = `<span><strong>${file.name}</strong> (${(file.size/1024).toFixed(1)} KB)</span> <span id="status-${index}" style="color: #64748b;">Pending</span>`;
+        container.appendChild(div);
+      });
+
+      document.getElementById('previewContainer').style.display = 'block';
+      document.getElementById('stripAllBtn').innerText = "🧹 Batch Strip All EXIF & GPS";
+      document.getElementById('stripAllBtn').style.background = "var(--primary, #635bff)";
+    }
+
+    function stripAllMetadata() {
+      if (!selectedFiles.length) return;
+
+      selectedFiles.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(function(blob) {
+              const cleanUrl = URL.createObjectURL(blob);
+              const statusSpan = document.getElementById(`status-${index}`);
+              statusSpan.innerHTML = `<a href="${cleanUrl}" download="clean_${file.name}" style="color: #10b981; font-weight: 700;">📥 Download Clean</a>`;
+            }, file.type, 0.95);
+          }
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById('stripAllBtn').innerText = "✅ Batch Processing Complete!";
+      document.getElementById('stripAllBtn').style.background = "#10b981";
+    }
+  </script>
+</body>
+</html>

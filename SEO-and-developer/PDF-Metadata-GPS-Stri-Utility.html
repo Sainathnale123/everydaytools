@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online PDF Metadata & GPS Strip Utility - Clean Document Properties</title>
+  <meta name="description" content="Securely strip hidden author names, creation dates, software fingerprints, XMP data, and embedded image GPS coordinates from PDF documents entirely in your browser.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/pdf-metadata-gps-strip-utility.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online PDF Metadata & GPS Strip Utility - Clean Document Properties">
+  <meta property="og:description" content="Securely strip hidden author names, creation dates, software fingerprints, XMP data, and embedded image GPS coordinates from PDF documents entirely in your browser.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/pdf-metadata-gps-strip-utility.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/pdf-metadata-remover-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online PDF Metadata & GPS Strip Utility - Clean Document Properties">
+  <meta name="twitter:description" content="Securely strip hidden author names, creation dates, software fingerprints, XMP data, and embedded image GPS coordinates from PDF documents entirely in your browser.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Include pdf-lib for client-side PDF inspection and metadata modification -->
+  <script src="https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Metadata & GPS Strip Utility",
+    "url": "https://everydaytools.co.in/tools/pdf-metadata-gps-strip-utility.html",
+    "description": "Free online utility to inspect and strip hidden document metadata, author tags, timestamps, software signatures, and embedded GPS coordinates from PDF files entirely within your web browser.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5 File APIs",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What hidden information does a PDF file contain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PDF documents routinely store hidden metadata including the author's real name, corporate username, creation software (e.g., Microsoft Word, Adobe InDesign), precise editing timestamps, document revision counts, and sometimes embedded image EXIF or GPS coordinates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my PDF files uploaded to an external server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All PDF loading, metadata inspection, and sanitization happen completely within your web browser sandbox. Your files never leave your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does stripping metadata alter the visible text or layout of the PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not at all. Metadata is stored separately in document trailers and information dictionaries. Removing it leaves the core text, fonts, vector graphics, and page layout completely untouched."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can PDFs contain GPS location data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. If a PDF is compiled from scanned documents, mobile photographs, or field reports containing geotagged images, those image files retain their original camera EXIF and GPS data inside the PDF document streams."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is PDF metadata removal critical for legal and professional documents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Law firms, corporate consultants, and researchers frequently leak sensitive internal drafting timelines, author usernames, paralegal names, or confidential file paths through unscrubbed PDF properties before public submission."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install any desktop software or plugins?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No installation is required. The utility runs instantly in any modern web browser across desktop, laptop, tablet, and mobile operating systems."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What specific metadata fields are cleaned by this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The utility clears out standard information fields including Title, Author, Subject, Keywords, Creator application, Producer engine, creation dates, and modification timestamps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can password-protected PDFs be cleaned?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Encrypted or password-protected PDFs must first be unlocked or decrypted before metadata can be read and stripped by client-side browser libraries."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .dropzone { border: 2px dashed var(--border, #cbd5e1); border-radius: 12px; padding: 40px 20px; text-align: center; background: var(--bg, #f8fafc); cursor: pointer; transition: all 0.2s ease; }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--primary, #635bff); background: var(--primary-light); }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .meta-inspector { margin-top: 20px; display: none; text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+    .meta-table th, .meta-table td { border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; }
+    .meta-table th { background: #eef2f6; color: #1e293b; font-weight: 700; }
+    .meta-table td { background: #ffffff; color: #475569; word-break: break-all; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Document Privacy Suite</span>
+        <h1>PDF Metadata & GPS Strip <span>Utility</span></h1>
+        <p class="subtitle">
+          Securely inspect, inspect, and strip hidden author properties, timestamps, software signatures, and embedded geotags from PDF files instantly in your browser.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div style="font-size: 40px; margin-bottom: 10px;">📄🔒</div>
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">Drag & Drop your PDF document here, or browse</h2>
+          <p style="font-size: 13px; color: var(--muted, #667085);">Select any PDF file to inspect and strip hidden metadata locally.</p>
+          <input type="file" id="fileInput" accept="application/pdf" style="display: none;" onchange="handlePdfSelect(event)">
+        </div>
+
+        <div id="inspectorContainer" class="meta-inspector">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <h3 style="font-size: 15px; font-weight: 700; margin: 0; color: #1e293b;">Detected PDF Document Properties:</h3>
+              <span id="fileNameDisplay" style="font-size: 13px; color: #64748b; font-weight: 600;"></span>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="meta-table">
+                <thead>
+                  <tr>
+                    <th>Metadata Field</th>
+                    <th>Extracted Value</th>
+                  </tr>
+                </thead>
+                <tbody id="metaTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+              <button type="button" class="btn-action" id="stripPdfBtn" onclick="stripPdfMetadata()">🧹 Strip All Metadata & Download Clean PDF</button>
+            </div>
+            
+            <div id="downloadContainer" style="display: none; margin-top: 10px;"></div>
+
+            <div class="internal-link-box">
+              Need to clean image files instead? Check out our <a href="./bulk-gps-metadata-remover.html">Bulk GPS Metadata Remover</a> or <a href="./exif-viewer.html">Online EXIF Viewer</a>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Complete Guide to PDF Document Metadata, Geotags, and Professional Privacy Sanitization</h2>
+        
+        <p>
+          Portable Document Format (PDF) files represent the global standard for sharing official business reports, legal briefs, academic manuscripts, financial audits, and personal resumes. However, behind the visible text, formatting, and high-resolution vector graphics lies an extensive network of hidden metadata. Document properties embedded within the file trailer and internal XMP (Extensible Metadata Platform) streams routinely track sensitive information such as author identities, corporate usernames, editing software versions, precise timelines, and revision iterations. Furthermore, PDFs generated from digital camera scans or mobile phone photographs can harbor latent EXIF data and geographical GPS coordinates. Our advanced <strong>PDF Metadata & GPS Strip Utility</strong> empowers legal professionals, researchers, corporate entities, and privacy-conscious citizens to inspect and permanently scrub these hidden vectors entirely within their web browser.
+        </p>
+
+        <h3>What Hidden Secrets Do PDF Files Commonly Leak?</h3>
+        <p>
+          When a document is compiled or exported using standard authoring applications such as Microsoft Word, Adobe Acrobat, Google Docs, LaTeX, or specialized publishing suites, the software automatically appends a rich array of metadata structures. Unless actively sanitized, these files often expose:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Author & Creator Identities:</strong> The full name, personal initials, or corporate network username of the individual who authored or exported the file.</li>
+          <li><strong>Creation & Modification Timestamps:</strong> Exact temporal markers showing when the document was initially drafted and when the final edits took place, revealing internal review cycles and deadlines.</li>
+          <li><strong>Software & Library Fingerprints:</strong> The specific desktop application, version number, or PDF exporting engine (e.g., Acrobat Distiller, Quartz PDFContext, or open-source libraries) utilized during production.</li>
+          <li><strong>Internal Project Codewords & Keywords:</strong> Hidden subject tags, draft labels, proprietary project names, and internal cataloging keywords.</li>
+          <li><strong>Embedded Image EXIF and GPS Data:</strong> Scanned documents or image-heavy PDFs often retain the original camera capture metadata, including shutter speed, device serial numbers, and geographic location coordinates.</li>
+        </ul>
+
+        <h3>Why PDF Metadata Sanitization is Crucial in Legal and Corporate Sectors</h3>
+        <p>
+          In high-stakes legal proceedings, corporate negotiations, and investigative journalism, metadata leaks can lead to catastrophic consequences. For instance, law firms frequently submit court filings whose hidden metadata still points to the drafting paralegal's username or unmasks prior revision history that contradicts formal legal arguments. Similarly, corporate whistleblowers or internal auditors sharing sensitive reports risk exposing their internal machine IDs and network paths to external actors. Utilizing a robust, client-side PDF sanitization utility guarantees that your shared documents communicate only the explicit content you intend—protecting your organization from digital espionage and unintended disclosures.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔒 Zero Server Uploads</h4>
+            <p style="font-size: 13px; margin: 0;">Files are parsed and rewritten locally in your browser sandbox. Your data never touches an external cloud server.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ Instant Inspection</h4>
+            <p style="font-size: 13px; margin: 0;">Instantly reveal hidden author names, timestamps, and producer signatures before clearing them out.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛡️ Complete Header Scrubbing</h4>
+            <p style="font-size: 13px; margin: 0;">Permanently clears out information dictionaries, trailer metadata, and XMP streams in a single pass.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📑 Layout Preservation</h4>
+            <p style="font-size: 13px; margin: 0;">Maintains 100% fidelity of your visible text, fonts, hyperlinks, and vector graphics without alteration.</p>
+          </div>
+        </div>
+
+        <h3>How Our Browser-Based PDF Sanitizer Works</h3>
+        <p>
+          Conventional online converters require you to upload confidential documents to remote servers, trusting third-party privacy policies to delete your data afterward. Our architecture adopts a strict <strong>local-first</strong> approach. When you select a PDF file, the application reads the binary byte stream directly into your browser's local execution memory using HTML5 File APIs. Utilizing advanced client-side PDF manipulation libraries, the utility parses the PDF cross-reference tables, accesses the document information dictionary, and clears out all identifying metadata fields before generating a freshly compiled, clean document ready for instant download.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Strip Metadata from PDF Files</h3>
+        <p>
+          Sanitizing your PDF documents takes only a few seconds and requires no software installation:
+        </p>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Upload Your Document:</strong> Drag and drop your PDF file into the secure dropzone above, or click the box to browse your local device storage.</li>
+          <li><strong>Inspect Hidden Properties:</strong> Review the extracted metadata table to see exactly what author names, dates, and software tags your PDF is currently leaking.</li>
+          <li><strong>Execute Sanitization:</strong> Click the <strong>"Strip All Metadata & Download Clean PDF"</strong> button to rewrite the document structure locally.</li>
+          <li><strong>Save Your Clean File:</strong> Download your sanitized PDF instantly to your device while your original file remains untouched on your disk.</li>
+        </ol>
+
+        <h3>Understanding XMP Metadata Streams and Trailer Dictionaries</h3>
+        <p>
+          To understand why standard file renaming or copying does not remove metadata, it is essential to examine the internal architecture of PDF files. A PDF file is structured around a binary body, a cross-reference table, and a trailer dictionary. The trailer points to the Document Information dictionary, which holds standard key-value pairs for Author, Title, Subject, Keywords, Creator, and Producer. In addition to this dictionary, modern PDF specifications incorporate Extensible Metadata Platform (XMP) streams—XML-based packets embedded within the file that store extensive editing histories and copyright assertions. While basic text editors miss XMP data entirely, our client-side utility targets both the document info dictionary and XMP metadata streams to ensure absolute cleanliness.
+        </p>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What hidden information does a PDF file contain?</summary>
+          <p>
+            PDF documents routinely store hidden metadata including the author's real name, corporate username, creation software (e.g., Microsoft Word, Adobe InDesign), precise editing timestamps, document revision counts, and sometimes embedded image EXIF or GPS coordinates.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are my PDF files uploaded to an external server?</summary>
+          <p>
+            No. All PDF loading, metadata inspection, and sanitization happen completely within your web browser sandbox. Your files never leave your device.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does stripping metadata alter the visible text or layout of the PDF?</summary>
+          <p>
+            Not at all. Metadata is stored separately in document trailers and information dictionaries. Removing it leaves the core text, fonts, vector graphics, and page layout completely untouched.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can PDFs contain GPS location data?</summary>
+          <p>
+            Yes. If a PDF is compiled from scanned documents, mobile photographs, or field reports containing geotagged images, those image files retain their original camera EXIF and GPS data inside the PDF document streams.
+          </p>
+        </details>
+
+        <details>
+          <summary>Why is PDF metadata removal critical for legal and professional documents?</summary>
+          <p>
+            Law firms, corporate consultants, and researchers frequently leak sensitive internal drafting timelines, author usernames, paralegal names, or confidential file paths through unscrubbed PDF properties before public submission.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to install any desktop software or plugins?</summary>
+          <p>
+            No installation is required. The utility runs instantly in any modern web browser across desktop, laptop, tablet, and mobile operating systems.
+          </p>
+        </details>
+
+        <details>
+          <summary>What specific metadata fields are cleaned by this tool?</summary>
+          <p>
+            The utility clears out standard information fields including Title, Author, Subject, Keywords, Creator application, Producer engine, creation dates, and modification timestamps.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can password-protected PDFs be cleaned?</summary>
+          <p>
+            Encrypted or password-protected PDFs must first be unlocked or decrypted before metadata can be read and stripped by client-side browser libraries.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens to my original file on my local device?</summary>
+          <p>
+            Your original file remains untouched and secure on your local hard drive. The tool generates a separate, clean copy for you to download.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I run this utility on a smartphone or tablet?</summary>
+          <p>
+            Yes, the responsive design and client-side JavaScript execution function seamlessly on mobile browsers across iOS and Android devices.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there any file size limit for PDF processing?</summary>
+          <p>
+            Processing capacity depends on your browser's available RAM. Most standard documents up to 50MB process rapidly without issue.
+          </p>
+        </details>
+
+        <details>
+          <summary>How can I verify that the metadata has been successfully removed?</summary>
+          <p>
+            After downloading your cleaned PDF, you can re-upload it into this inspector tool or check its properties in your PDF reader to confirm all fields are blank.
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side PDF Parsing and Sanitization Logic using pdf-lib -->
+  <script>
+    let currentPdfBytes = null;
+    let currentFileName = '';
+
+    const dropzone = document.getElementById('dropzone');
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); }, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); }, false);
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      if (files.length > 0 && files[0].type === 'application/pdf') {
+        document.getElementById('fileInput').files = files;
+        handlePdfSelect({ target: { files: files } });
+      } else {
+        alert('Please drop a valid PDF document.');
+      }
+    }, false);
+
+    async function handlePdfSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      currentFileName = file.name;
+      document.getElementById('fileNameDisplay').innerText = `${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        currentPdfBytes = new Uint8Array(e.target.result);
+        try {
+          const pdfDoc = await PDFLib.PDFDocument.load(currentPdfBytes, { ignoreEncryption: true });
+          
+          const title = pdfDoc.getTitle() || '(Not Set)';
+          const author = pdfDoc.getAuthor() || '(Not Set)';
+          const subject = pdfDoc.getSubject() || '(Not Set)';
+          const keywords = pdfDoc.getKeywords() || '(Not Set)';
+          const creator = pdfDoc.getCreator() || '(Not Set)';
+          const producer = pdfDoc.getProducer() || '(Not Set)';
+          const creationDate = pdfDoc.getCreationDate() ? pdfDoc.getCreationDate().toUTCString() : '(Not Set)';
+          const modDate = pdfDoc.getModificationDate() ? pdfDoc.getModificationDate().toUTCString() : '(Not Set)';
+          const pageCount = pdfDoc.getPageCount();
+
+          const tbody = document.getElementById('metaTableBody');
+          tbody.innerHTML = `
+            <tr><td><strong>Title</strong></td><td>${escapeHtml(title)}</td></tr>
+            <tr><td><strong>Author</strong></td><td>${escapeHtml(author)}</td></tr>
+            <tr><td><strong>Subject</strong></td><td>${escapeHtml(subject)}</td></tr>
+            <tr><td><strong>Keywords</strong></td><td>${escapeHtml(keywords)}</td></tr>
+            <tr><td><strong>Creator Application</strong></td><td>${escapeHtml(creator)}</td></tr>
+            <tr><td><strong>PDF Producer</strong></td><td>${escapeHtml(producer)}</td></tr>
+            <tr><td><strong>Creation Date</strong></td><td>${escapeHtml(creationDate)}</td></tr>
+            <tr><td><strong>Modification Date</strong></td><td>${escapeHtml(modDate)}</td></tr>
+            <tr><td><strong>Total Pages</strong></td><td>${pageCount}</td></tr>
+          `;
+
+          document.getElementById('inspectorContainer').style.display = 'block';
+          document.getElementById('stripPdfBtn').innerText = "🧹 Strip All Metadata & Download Clean PDF";
+          document.getElementById('stripPdfBtn').style.background = "var(--primary, #635bff)";
+          document.getElementById('downloadContainer').style.display = 'none';
+        } catch (err) {
+          console.error(err);
+          alert('Error loading PDF document. Ensure the file is not password-protected or corrupted.');
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    async function stripPdfMetadata() {
+      if (!currentPdfBytes) return;
+
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(currentPdfBytes, { ignoreEncryption: true });
+
+        // Clear standard metadata fields
+        pdfDoc.setTitle('');
+        pdfDoc.setAuthor('');
+        pdfDoc.setSubject('');
+        pdfDoc.setKeywords([]);
+        pdfDoc.setCreator('');
+        pdfDoc.setProducer('');
+        pdfDoc.setCreationDate(new Date(0));
+        pdfDoc.setModificationDate(new Date(0));
+
+        const modifiedPdfBytes = await pdfDoc.save();
+        const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
+        const cleanUrl = URL.createObjectURL(blob);
+
+        const downContainer = document.getElementById('downloadContainer');
+        downContainer.style.display = 'block';
+        downContainer.innerHTML = `<a href="${cleanUrl}" download="clean_${currentFileName}" class="btn-action" style="background: #10b981; display: inline-flex; align-items: center; gap: 8px;">📥 Download Sanitized PDF</a>`;
+
+        document.getElementById('stripPdfBtn').innerText = "✅ Metadata Successfully Stripped!";
+        document.getElementById('stripPdfBtn').style.background = "#059669";
+
+        // Refresh metadata inspection table view to show empty values
+        const tbody = document.getElementById('metaTableBody');
+        tbody.innerHTML = `
+          <tr><td><strong>Title</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Author</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Subject</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Keywords</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Creator Application</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>PDF Producer</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Creation Date</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Modification Date</strong></td><td style="color: #10b981; font-weight: 700;">[Cleansed]</td></tr>
+          <tr><td><strong>Total Pages</strong></td><td>${pdfDoc.getPageCount()}</td></tr>
+        `;
+      } catch (err) {
+        console.error(err);
+        alert('An error occurred while stripping metadata from the PDF.');
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>

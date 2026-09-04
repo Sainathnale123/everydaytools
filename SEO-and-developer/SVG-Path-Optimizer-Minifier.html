@@ -434,91 +434,248 @@
     </div>
   </footer>
 
-  <script>
-    function formatBytes(bytes) {
-      if (bytes === 0) return '0 bytes';
-      const k = 1024;
-      const sizes = ['bytes', 'KB', 'MB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+<script>
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes <= 0) {
+    return "0 bytes";
+  }
+
+  const units = ["bytes", "KB", "MB", "GB"];
+  const k = 1024;
+
+  const index = Math.min(
+    Math.floor(Math.log(bytes) / Math.log(k)),
+    units.length - 1
+  );
+
+  const value = bytes / Math.pow(k, index);
+
+  return `${parseFloat(value.toFixed(2))} ${units[index]}`;
+}
+
+function optimizeSvg() {
+  const inputElement = document.getElementById("svgInput");
+
+  if (!inputElement) {
+    console.error("SVG input element not found.");
+    return;
+  }
+
+  const input = inputElement.value || "";
+
+  const removeComments =
+    document.getElementById("removeComments")?.checked ?? true;
+
+  const removeMetadata =
+    document.getElementById("removeMetadata")?.checked ?? true;
+
+  const removeWhitespace =
+    document.getElementById("removeWhitespace")?.checked ?? true;
+
+  const roundDecimals =
+    document.getElementById("roundDecimals")?.checked ?? true;
+
+  let output = input;
+
+/* 1. Remove XML / SVG comments */
+if (removeComments) {
+    output = output.replace(/<\u0021--[\s\S]*?-->/g, "");
+}
+
+  /* 2. Remove metadata */
+  if (removeMetadata) {
+
+    /* Remove <metadata>...</metadata> */
+    output = output.replace(
+      /<metadata\b[^>]*>[\s\S]*?<\/metadata>/gi,
+      ""
+    );
+
+    /* Remove XML declaration */
+    output = output.replace(
+      /<\?xml[\s\S]*?\?>/gi,
+      ""
+    );
+
+    /* Remove DOCTYPE */
+    output = output.replace(
+      /<!DOCTYPE[\s\S]*?>/gi,
+      ""
+    );
+
+    /* Remove common editor namespace attributes */
+    output = output.replace(
+      /\s+(?:inkscape|sodipodi|sketch|adobe):[a-zA-Z0-9_-]+(?:="[^"]*")?/gi,
+      ""
+    );
+  }
+
+  /* 3. Round decimal numbers */
+  if (roundDecimals) {
+    output = output.replace(
+      /-?\d+\.\d+/g,
+      function (match) {
+        const number = parseFloat(match);
+
+        if (!Number.isFinite(number)) {
+          return match;
+        }
+
+        return String(Number(number.toFixed(2)));
+      }
+    );
+  }
+
+  /* 4. Remove unnecessary whitespace */
+  if (removeWhitespace) {
+
+    /* Remove whitespace between tags */
+    output = output.replace(
+      />\s+</g,
+      "><"
+    );
+
+    /* Collapse multiple whitespace characters */
+    output = output.replace(
+      /\s{2,}/g,
+      " "
+    );
+
+    /* Remove spaces around = */
+    output = output
+      .replace(/\s*=\s*/g, "=")
+      .trim();
+  }
+
+  /* 5. Update output */
+  const outputElement = document.getElementById("svgOutput");
+
+  if (outputElement) {
+    outputElement.value = output;
+  }
+
+  /* 6. Calculate sizes */
+  const inputBytes = new Blob([input]).size;
+  const outputBytes = new Blob([output]).size;
+
+  /* 7. Update statistics */
+  const inputSizeElement =
+    document.getElementById("inputSize");
+
+  const outputSizeElement =
+    document.getElementById("outputSize");
+
+  const savedPercentElement =
+    document.getElementById("savedPercent");
+
+  if (inputSizeElement) {
+    inputSizeElement.textContent =
+      formatBytes(inputBytes);
+  }
+
+  if (outputSizeElement) {
+    outputSizeElement.textContent =
+      formatBytes(outputBytes);
+  }
+
+  let savedPercent = 0;
+
+  if (inputBytes > 0) {
+    savedPercent =
+      ((inputBytes - outputBytes) / inputBytes) * 100;
+  }
+
+  if (savedPercentElement) {
+    savedPercentElement.textContent =
+      `${savedPercent.toFixed(1)}%`;
+  }
+}
+
+async function copyOptimizedCode() {
+  const outputElement =
+    document.getElementById("svgOutput");
+
+  if (!outputElement) {
+    return;
+  }
+
+  const code = outputElement.value || "";
+
+  if (!code) {
+    alert("There is no optimized SVG code to copy.");
+    return;
+  }
+
+  try {
+    if (
+      navigator.clipboard &&
+      window.isSecureContext
+    ) {
+      await navigator.clipboard.writeText(code);
+    } else {
+      outputElement.select();
+      outputElement.setSelectionRange(
+        0,
+        outputElement.value.length
+      );
+
+      document.execCommand("copy");
+      outputElement.blur();
     }
 
-    function optimizeSvg() {
-      const inputElement = document.getElementById('svgInput');
-      if (!inputElement) return;
-      const input = inputElement.value;
-      
-      const removeComments = document.getElementById('removeComments')?.checked ?? true;
-      const removeMetadata = document.getElementById('removeMetadata')?.checked ?? true;
-      const removeWhitespace = document.getElementById('removeWhitespace')?.checked ?? true;
-      const roundDecimals = document.getElementById('roundDecimals')?.checked ?? true;
+    alert("Optimized SVG code copied successfully!");
 
-      let output = input;
+  } catch (error) {
+    console.error(
+      "Failed to copy SVG:",
+      error
+    );
 
-      // 1. Remove XML Comments
-      if (removeComments) {
-        output = output.replace(//g, '');
+    alert(
+      "Unable to copy automatically. Please select and copy the code manually."
+    );
+  }
+}
+
+/* Initialize */
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    optimizeSvg();
+
+    const optionIds = [
+      "removeComments",
+      "removeMetadata",
+      "removeWhitespace",
+      "roundDecimals"
+    ];
+
+    optionIds.forEach(function (id) {
+
+      const element =
+        document.getElementById(id);
+
+      if (element) {
+        element.addEventListener(
+          "change",
+          optimizeSvg
+        );
       }
+    });
 
-      // 2. Remove Metadata and common editor tags/declarations
-      if (removeMetadata) {
-        output = output.replace(/<metadata[\s\S]*?<\/metadata>/gi, '');
-        output = output.replace(/<\?xml[\s\S]*?\?>/g, '');
-        output = output.replace(//g, '');
-        output = output.replace(/\s(sketch|adobe|inkscape):[^\s>]*/gi, '');
-      }
+    const svgInput =
+      document.getElementById("svgInput");
 
-      // 3. Round decimals in coordinate values safely
-      if (roundDecimals) {
-        output = output.replace(/-?\d*\.\d+/g, (match) => {
-          const num = parseFloat(match);
-          return isNaN(num) ? match : parseFloat(num.toFixed(2));
-        });
-      }
-
-      // 4. Strip Extra Whitespace & Newlines safely
-      if (removeWhitespace) {
-        output = output
-          .replace(/>\s+</g, '><') 
-          .replace(/\s{2,}/g, ' ')  
-          .trim();
-      }
-
-      const outputElement = document.getElementById('svgOutput');
-      if (outputElement) {
-        outputElement.value = output;
-      }
-
-      // Calculate bytes and update stats
-      const inputBytes = new Blob([input]).size;
-      const outputBytes = new Blob([output]).size;
-      
-      const inputSizeEl = document.getElementById('inputSize');
-      const outputSizeEl = document.getElementById('outputSize');
-      const savedPercentEl = document.getElementById('savedPercent');
-
-      if (inputSizeEl) inputSizeEl.textContent = formatBytes(inputBytes);
-      if (outputSizeEl) outputSizeEl.textContent = formatBytes(outputBytes);
-
-      const saved = inputBytes > 0 ? (((inputBytes - outputBytes) / inputBytes) * 100).toFixed(1) : 0;
-      if (savedPercentEl) savedPercentEl.textContent = (saved > 0 ? saved : 0) + '%';
+    if (svgInput) {
+      svgInput.addEventListener(
+        "input",
+        optimizeSvg
+      );
     }
+  }
+);
+</script>
 
-    function copyOptimizedCode() {
-      const outputElement = document.getElementById('svgOutput');
-      if (!outputElement) return;
-      const code = outputElement.value;
-      navigator.clipboard.writeText(code).then(() => {
-        alert('Optimized SVG code copied successfully to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy text: ', err);
-      });
-    }
-
-    // Run on page load
-    window.onload = function() {
-      optimizeSvg();
-    };
-  </script>
 </body>
 </html>

@@ -1,0 +1,491 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online UUID v4 & v7 Generator & Decoder - Unique Identifiers</title>
+  <meta name="description" content="Generate cryptographically secure UUID v4 identifiers and time-ordered UUID v7 tokens. Decode, inspect timestamps, and copy IDs instantly in your browser.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/uuid-generator-decoder.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online UUID v4 & v7 Generator & Decoder - Unique Identifiers">
+  <meta property="og:description" content="Generate cryptographically secure UUID v4 identifiers and time-ordered UUID v7 tokens. Decode and inspect timestamps instantly.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/uuid-generator-decoder.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/uuid-generator-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online UUID v4 & v7 Generator & Decoder - Unique Identifiers">
+  <meta name="twitter:description" content="Generate cryptographically secure UUID v4 identifiers and time-ordered UUID v7 tokens. Decode and inspect timestamps instantly.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UUID v4 & v7 Generator & Decoder",
+    "url": "https://everydaytools.co.in/tools/uuid-generator-decoder.html",
+    "description": "Free developer tool to generate UUID version 4 and version 7 unique identifiers, extract embedded timestamps, and validate formats entirely client-side.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5 Crypto APIs",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between UUID v4 and UUID v7?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UUID v4 is entirely randomly generated using cryptographic entropy. UUID v7 incorporates a Unix Epoch timestamp as its prefix, making identifiers chronologically sortable and ideal for database index performance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my generated UUIDs secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All UUIDs are generated locally using the browser's cryptographically secure window.crypto.getRandomValues() API."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I decode timestamps from UUID v7 tokens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The built-in decoder extracts the 48-bit millisecond timestamp prefix from any valid UUID v7 and displays the exact calendar creation date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many UUIDs can I generate in batch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can generate up to 100 unique UUIDs simultaneously in a single batch list for bulk database seeding or testing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these identifiers collide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UUID v4 provides 122 bits of pseudo-random entropy, making collision probability astronomically low. UUID v7 combines time ordering with random bits for optimal uniqueness and indexing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install any software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No installation is required. The utility runs instantly in any modern web browser across desktop, laptop, and mobile operating systems."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .control-group label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text, #101828); }
+    .control-group select, .control-group input { width: 100%; padding: 10px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-size: 14px; background: var(--bg, #f8fafc); }
+    .control-group select:focus, .control-group input:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .btn-secondary { background: #64748b; }
+    .output-textarea { width: 100%; min-height: 180px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 14px; font-family: monospace; font-size: 13px; background: var(--bg, #f8fafc); resize: vertical; margin-top: 12px; }
+    .decoder-section { margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 24px; }
+    .decoder-input { width: 100%; padding: 12px; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; font-family: monospace; font-size: 13px; margin-bottom: 12px; }
+    .decode-results { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-top: 12px; display: none; font-size: 13px; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Developer Engineering Suite</span>
+        <h1>UUID v4 & v7 Generator & <span>Decoder</span></h1>
+        <p class="subtitle">
+          Generate cryptographically secure random v4 IDs and time-ordered v7 tokens, decode embedded timestamps, and copy data instantly.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #1e293b;">Generate Unique Identifiers</h2>
+        
+        <div class="controls-grid">
+          <div class="control-group">
+            <label for="uuidVersion">UUID Version:</label>
+            <select id="uuidVersion">
+              <option value="v4">UUID v4 (Random / Cryptographic)</option>
+              <option value="v7">UUID v7 (Time-Ordered / Epoch)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="batchCount">Quantity (Batch):</label>
+            <input type="number" id="batchCount" value="1" min="1" max="100">
+          </div>
+
+          <div class="control-group">
+            <label for="caseFormat">Character Case:</label>
+            <select id="caseFormat">
+              <option value="lower">Lowercase (Standard)</option>
+              <option value="upper">Uppercase</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn-action" onclick="generateUuids()">⚡ Generate UUIDs</button>
+          <button type="button" class="btn-action btn-secondary" onclick="copyUuids()">📋 Copy to Clipboard</button>
+        </div>
+
+        <textarea id="outputArea" class="output-textarea" placeholder="Generated UUIDs will appear here..." readonly></textarea>
+
+        <!-- Decoder Section -->
+        <div class="decoder-section">
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #1e293b;">UUID Inspector & Timestamp Decoder</h2>
+          <p style="font-size: 13px; color: var(--muted, #667085); margin-bottom: 12px;">Paste any UUID v4 or v7 token below to inspect its version variant, format validity, and embedded creation timestamp.</p>
+          
+          <input type="text" id="decodeInput" class="decoder-input" placeholder="e.g. 018f3a5b-c820-7712-8000-123456789abc" oninput="decodeUuid()">
+
+          <div id="decodeResults" class="decode-results"></div>
+        </div>
+
+        <div class="internal-link-box" style="margin-top: 24px;">
+          Need more developer utilities? Try our <a href="./JSON-Schema-Validator-Tree-Viewer.html">JSON Schema Validator</a> or <a href="./H1-H6-Heading-Hierarchy-Analyzer.html">H1-H6 Heading Analyzer</a>.
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Comprehensive Guide to UUID v4 and Time-Ordered UUID v7 Standards</h2>
+        
+        <p>
+          Universally Unique Identifiers (UUIDs) are 128-bit numbers used to uniquely identify records, sessions, API requests, and database entities across distributed systems without requiring centralized coordination. While traditional UUID version 4 relies entirely on pseudo-random cryptographic entropy, modern database architectures have embraced UUID version 7, which incorporates time-ordered prefixes. Our advanced <strong>UUID v4 & v7 Generator & Decoder</strong> provides developers with a high-performance, client-side utility to generate single or batch identifiers, decode embedded timestamps, and guarantee absolute data security.
+        </p>
+
+        <h3>UUID Version 4 vs. Version 7: Key Architectural Differences</h3>
+        <p>
+          Choosing between UUID v4 and v7 depends on your application's indexing requirements and sorting needs:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>UUID v4 (Random):</strong> Generated using 122 bits of pseudo-random data combined with 4 bits indicating the version. While exceptionally secure and collision-resistant, random distribution causes heavy database index fragmentation (B-Tree page splits) in large-scale relational databases.</li>
+          <li><strong>UUID v7 (Time-Ordered):</strong> Introduces a 48-bit Unix epoch millisecond timestamp prefix followed by random entropy. This design allows IDs to be naturally sorted by creation time, drastically improving database insert performance and index locality while retaining uniqueness.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔒 Cryptographically Secure</h4>
+            <p style="font-size: 13px; margin: 0;">Generated locally using the browser's native window.crypto API for absolute entropy and randomness.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ Batch Generation</h4>
+            <p style="font-size: 13px; margin: 0;">Instantly generate up to 100 unique UUIDs simultaneously for testing or database seeding.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🕒 Timestamp Decoder</h4>
+            <p style="font-size: 13px; margin: 0;">Extract precise creation dates and millisecond timestamps instantly from any UUID v7 token.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛡️ 100% Client-Side</h4>
+            <p style="font-size: 13px; margin: 0;">No tokens are ever transmitted to external servers. All operations happen securely in your browser.</p>
+          </div>
+        </div>
+
+        <h3>How Our UUID Generator and Decoder Works</h3>
+        <p>
+          When generating UUID v4 identifiers, the tool populates random byte arrays using secure cryptographic functions before formatting them according to RFC 4122 specifications. For UUID v7 tokens, the engine captures the current Unix millisecond timestamp, encodes it into the leading 48 bits, appends version and variant markers, and fills the remaining bits with secure random data. The built-in decoder reverses this process, parsing hexadecimal bit positions to validate formatting, identify versions, and extract exact calendar timestamps.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Generate and Decode UUIDs</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Select Version:</strong> Choose between UUID v4 (random) and UUID v7 (time-ordered) from the dropdown menu.</li>
+          <li><strong>Set Quantity & Case:</strong> Enter your desired batch count (up to 100) and choose lowercase or uppercase formatting.</li>
+          <li><strong>Generate & Copy:</strong> Click <strong>"Generate UUIDs"</strong> and instantly copy your results to the clipboard.</li>
+          <li><strong>Decode Tokens:</strong> Paste any existing UUID into the inspector box to verify its version and creation timestamp.</li>
+        </ol>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is the difference between UUID v4 and UUID v7?</summary>
+          <p>
+            UUID v4 is entirely randomly generated using cryptographic entropy. UUID v7 incorporates a Unix Epoch timestamp as its prefix, making identifiers chronologically sortable and ideal for database index performance.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are my generated UUIDs secure?</summary>
+          <p>
+            Yes. All UUIDs are generated locally using the browser's cryptographically secure window.crypto.getRandomValues() API.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I decode timestamps from UUID v7 tokens?</summary>
+          <p>
+            Yes. The built-in decoder extracts the 48-bit millisecond timestamp prefix from any valid UUID v7 and displays the exact calendar creation date.
+          </p>
+        </details>
+
+        <details>
+          <summary>How many UUIDs can I generate in batch?</summary>
+          <p>
+            You can generate up to 100 unique UUIDs simultaneously in a single batch list for bulk database seeding or testing.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do these identifiers collide?</summary>
+          <p>
+            UUID v4 provides 122 bits of pseudo-random entropy, making collision probability astronomically low. UUID v7 combines time ordering with random bits for optimal uniqueness and indexing.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to install any software?</summary>
+          <p>
+            No installation is required. The utility runs instantly in any modern web browser across desktop, laptop, and mobile operating systems.
+          </p>
+        </details>
+
+        <details>
+          <summary>What is the structure of a standard UUID?</summary>
+          <p>
+            A UUID consists of 32 hexadecimal characters displayed in five groups separated by hyphens in an 8-4-4-4-12 format (e.g., xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx).
+          </p>
+        </details>
+
+        <details>
+          <summary>Why do time-ordered UUIDs improve database performance?</summary>
+          <p>
+            Because sequential UUID v7 tokens are generated in chronological order, new database records are inserted sequentially into B-Tree index pages rather than causing random page splits like UUID v4.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I use this tool offline?</summary>
+          <p>
+            Yes. Once loaded, client-side JavaScript execution allows you to run generator and decoder functions completely offline.
+          </p>
+        </details>
+
+        <details>
+          <summary>What does the version nibble indicate?</summary>
+          <p>
+            The 13th character of a UUID indicates its version number (e.g., '4' for v4, '7' for v7) according to internet standards.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are uppercase and lowercase UUIDs functionally identical?</summary>
+          <p>
+            Yes. Hexadecimal UUID strings are case-insensitive, though lowercase is standard in most programming environments.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there any tracking or data logging?</summary>
+          <p>
+            None at all. Your generated tokens and decoded queries remain strictly within your local browser sandbox.
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side Generator and Decoder Logic -->
+  <script>
+    function generateUuids() {
+      const version = document.getElementById('uuidVersion').value;
+      let count = parseInt(document.getElementById('batchCount').value) || 1;
+      const caseFormat = document.getElementById('caseFormat').value;
+
+      if (count < 1) count = 1;
+      if (count > 100) count = 100;
+      document.getElementById('batchCount').value = count;
+
+      let results = [];
+      for (let i = 0; i < count; i++) {
+        let uuid = version === 'v4' ? generateUuidV4() : generateUuidV7();
+        if (caseFormat === 'upper') {
+          uuid = uuid.toUpperCase();
+        }
+        results.push(uuid);
+      }
+
+      document.getElementById('outputArea').value = results.join('\n');
+    }
+
+    function generateUuidV4() {
+      const rnds = new Uint8Array(16);
+      window.crypto.getRandomValues(rnds);
+      rnds[6] = (rnds[6] & 0x0f) | 0x40; // Version 4
+      rnds[8] = (rnds[8] & 0x3f) | 0x80; // Variant RFC4122
+
+      const hex = [...rnds].map(b => b.toString(16).padStart(2, '0'));
+      return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10, 16).join('')}`;
+    }
+
+    function generateUuidV7() {
+      const now = Date.now();
+      const rnds = new Uint8Array(10);
+      window.crypto.getRandomValues(rnds);
+
+      // 48-bit timestamp
+      const timeHex = now.toString(16).padStart(12, '0');
+      
+      // Version 7 (0111) in high nibble of byte 6
+      let b6 = (rnds[0] & 0x0f) | 0x70;
+      // Variant (10xx) in high bits of byte 8
+      let b8 = (rnds[2] & 0x3f) | 0x80;
+
+      const rHex1 = b6.toString(16).padStart(2, '0') + rnds[1].toString(16).padStart(2, '0');
+      const rHex2 = b8.toString(16).padStart(2, '0') + [...rnds].slice(3, 10).map(b => b.toString(16).padStart(2, '0')).join('');
+
+      return `${timeHex.slice(0, 8)}-${timeHex.slice(8, 12)}-${rHex1}-${rHex2.slice(0, 4)}-${rHex2.slice(4, 16)}`;
+    }
+
+    function copyUuids() {
+      const outputArea = document.getElementById('outputArea');
+      if (!outputArea.value.trim()) {
+        alert('No UUIDs generated to copy.');
+        return;
+      }
+      navigator.clipboard.writeText(outputArea.value).then(() => {
+        alert('UUIDs copied to clipboard successfully!');
+      }).catch(err => {
+        alert('Failed to copy text: ' + err);
+      });
+    }
+
+    function decodeUuid() {
+      const input = document.getElementById('decodeInput').value.trim().toLowerCase();
+      const resContainer = document.getElementById('decodeResults');
+
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+      if (!input) {
+        resContainer.style.display = 'none';
+        return;
+      }
+
+      if (!uuidRegex.test(input)) {
+        resContainer.style.display = 'block';
+        resContainer.innerHTML = `<span style="color: #991b1b; font-weight: 700;">❌ Invalid UUID format. Ensure standard 8-4-4-4-12 hex structure.</span>`;
+        return;
+      }
+
+      const versionChar = input.charAt(14);
+      let versionText = `v${versionChar} (Custom / Unknown)`;
+      if (versionChar === '4') versionText = 'v4 (Random / Cryptographic)';
+      if (versionChar === '7') versionText = 'v7 (Time-Ordered / Epoch)';
+
+      let timestampHtml = '';
+      if (versionChar === '7') {
+        const cleanHex = input.replace(/-/g, '');
+        const timeHex = cleanHex.substring(0, 12);
+        const timestampMs = parseInt(timeHex, 16);
+        const dateObj = new Date(timestampMs);
+        timestampHtml = `<div><strong>Embedded Timestamp:</strong> ${dateObj.toUTCString()} (${timestampMs} ms Unix Epoch)</div>`;
+      } else {
+        timestampHtml = `<div><strong>Embedded Timestamp:</strong> N/A (UUID v${versionChar} does not store timestamp prefixes)</div>`;
+      }
+
+      resContainer.style.display = 'block';
+      resContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div><strong style="color: #065f46;">✅ Valid UUID Detected</strong></div>
+          <div><strong>Detected Version:</strong> ${versionText}</div>
+          <div><strong>Variant:</strong> RFC 4122 / Standard</div>
+          ${timestampHtml}
+        </div>
+      `;
+    }
+
+    // Generate initial on load
+    window.onload = function() {
+      generateUuids();
+    };
+  </script>
+</body>
+</html>

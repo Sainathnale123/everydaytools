@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online H1-H6 Heading Hierarchy Analyzer - Audit SEO Structure</title>
+  <meta name="description" content="Instantly analyze and audit your HTML heading structure (H1 to H6 tags) for semantic SEO, missing elements, and logical hierarchy. Run checks completely in your browser.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/heading-hierarchy-analyzer.html">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="Free Online H1-H6 Heading Hierarchy Analyzer - Audit SEO Structure">
+  <meta property="og:description" content="Instantly analyze and audit your HTML heading structure (H1 to H6 tags) for semantic SEO, missing elements, and logical hierarchy.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/heading-hierarchy-analyzer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/heading-analyzer-og.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online H1-H6 Heading Hierarchy Analyzer - Audit SEO Structure">
+  <meta name="twitter:description" content="Instantly analyze and audit your HTML heading structure (H1 to H6 tags) for semantic SEO, missing elements, and logical hierarchy.">
+
+  <!-- Favicon & Mobile Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M35 8L17 34h12l-4 22 18-26H31l4-22z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Primary Stylesheet Reference -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Schema.org Markup (JSON-LD) for Advanced SEO & Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "H1-H6 Heading Hierarchy Analyzer",
+    "url": "https://everydaytools.co.in/tools/heading-hierarchy-analyzer.html",
+    "description": "Free online SEO tool to inspect, analyze, and validate HTML heading tag sequences (H1 through H6) for optimal search engine optimization and accessibility compliance.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5 DOMParser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an H1-H6 heading hierarchy analyzer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An H1-H6 heading hierarchy analyzer is a diagnostic tool that scans HTML code or raw text layouts to verify whether heading tags follow a logical, nested structure required for SEO and screen reader accessibility."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is proper heading structure important for SEO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Search engine crawlers like Google use heading tags to understand the core context, topical segments, and structural hierarchy of a web page. A clean structure aids semantic parsing and ranking potential."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many H1 tags should a page have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Best practices dictate that every page should contain exactly one H1 tag acting as the primary main title of the document, followed by H2 through H6 tags for subsections."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What constitutes a heading hierarchy error?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common structural errors include missing an H1 tag, utilizing multiple H1 tags, skipping heading levels (e.g., jumping straight from an H2 down to an H4), or using heading tags for styling rather than outlining."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my HTML code uploaded to an external server during analysis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All text parsing, DOM analysis, and hierarchy validation happen completely within your web browser sandbox using client-side JavaScript."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does heading structure impact accessibility (WCAG)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Screen readers rely heavily on a logical heading hierarchy to help visually impaired users navigate web pages efficiently. Broken or skipped heading levels disrupt screen reader flow."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I paste raw HTML or rich text markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can paste complete HTML snippets or documents containing heading tags, and the analyzer will automatically parse and map out the entire tree structure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are empty heading tags flagged by the tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The analyzer flags empty or whitespace-only heading tags that add no semantic value and may negatively impact code quality."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Component-Specific Overrides & Tool Styles -->
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    .textarea-box { width: 100%; min-height: 180px; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 14px; font-family: monospace; font-size: 13px; background: var(--bg, #f8fafc); resize: vertical; margin-bottom: 15px; }
+    .textarea-box:focus { outline: none; border-color: var(--primary, #635bff); background: #ffffff; }
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; font-weight: 700; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: opacity 0.2s; text-decoration: none; }
+    .btn-action:hover { opacity: 0.9; }
+    .results-container { margin-top: 24px; display: none; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .stat-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
+    .stat-card .num { font-size: 22px; font-weight: 800; color: #1e293b; }
+    .stat-card .label { font-size: 12px; font-weight: 600; color: #64748b; margin-top: 2px; }
+    .tree-view { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; max-height: 300px; overflow-y: auto; text-align: left; font-family: monospace; font-size: 13px; }
+    .tree-item { padding: 4px 0; border-bottom: 1px dashed #e2e8f0; display: flex; align-items: center; gap: 10px; }
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .badge-h1 { background: #dbeafe; color: #1e40af; }
+    .badge-h2 { background: #e0e7ff; color: #3730a3; }
+    .badge-h3 { background: #f3e8ff; color: #6b21a8; }
+    .badge-h4 { background: #fae8ff; color: #86198f; }
+    .badge-h5 { background: #ffe4e6; color: #9f1239; }
+    .badge-h6 { background: #f1f5f9; color: #475569; }
+    .audit-alerts { margin-top: 16px; padding: 14px; border-radius: 8px; background: #fffbeb; border: 1px solid #fde68a; font-size: 13px; color: #92400e; display: none; }
+    .audit-success { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; }
+    .content-article p { margin-bottom: 16px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #4f46e5; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #4f46e5; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Low Competition SEO Suite</span>
+        <h1>H1-H6 Heading Hierarchy <span>Analyzer</span></h1>
+        <p class="subtitle">
+          Instantly paste your HTML code or text structure to audit heading tag sequences, flag missing elements, and verify semantic SEO compliance.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Tool Interface Card -->
+      <section class="calc-card" aria-label="Interactive Tool">
+        <label for="htmlInput" style="display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--text, #101828);">Paste HTML Code or Markup Below:</label>
+        <textarea id="htmlInput" class="textarea-box" placeholder="<h1>Main Page Title</h1>&#10;<p>Intro paragraph...</p>&#10;<h2>Section Header</h2>&#10;<p>Content...</p>&#10;<h3>Subsection Header</h3>"></textarea>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn-action" onclick="analyzeHeadings()">🔍 Analyze Heading Hierarchy</button>
+          <button type="button" class="btn-action" style="background: #64748b;" onclick="loadSampleHtml()">Load Sample HTML</button>
+        </div>
+
+        <div id="resultsContainer" class="results-container">
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #1e293b;">Heading Count Summary:</h3>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="num" id="countH1">0</div><div class="label">H1 Tags</div></div>
+            <div class="stat-card"><div class="num" id="countH2">0</div><div class="label">H2 Tags</div></div>
+            <div class="stat-card"><div class="num" id="countH3">0</div><div class="label">H3 Tags</div></div>
+            <div class="stat-card"><div class="num" id="countH4">0</div><div class="label">H4 Tags</div></div>
+            <div class="stat-card"><div class="num" id="countH5">0</div><div class="label">H5 Tags</div></div>
+            <div class="stat-card"><div class="num" id="countH6">0</div><div class="label">H6 Tags</div></div>
+          </div>
+
+          <div id="auditAlerts" class="audit-alerts"></div>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin: 16px 0 10px 0; color: #1e293b;">Extracted Heading Tree Structure:</h3>
+          <div id="treeViewContainer" class="tree-view"></div>
+
+          <div class="internal-link-box" style="margin-top: 20px;">
+            Looking for more SEO tools? Try our <a href="./GPS-Metadata-Remover.html">Meta Tag Generator</a>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive SEO Content Section -->
+      <article class="calc-card content-article" style="line-height: 1.8; color: var(--muted, #667085); font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">The Comprehensive Guide to HTML Heading Hierarchy and Semantic SEO Auditing</h2>
+        
+        <p>
+          In modern search engine optimization (SEO) and web accessibility design, heading tags (H1 through H6) serve as the structural backbone of any digital document. Search engine crawlers, automated web scrapers, and screen readers rely on a logical, nested heading sequence to understand the core topical outline and thematic relationships within a web page. Poorly structured markup—such as missing H1 tags, duplicate primary titles, or skipped heading levels—confuses search bots and degrades user accessibility. Our specialized <strong>H1-H6 Heading Hierarchy Analyzer</strong> provides content creators, developers, and SEO auditors with a fast, client-side utility to inspect web code and enforce pristine semantic architecture.
+        </p>
+
+        <h3>Why Heading Hierarchy Matters for Search Engine Rankings</h3>
+        <p>
+          Search engines like Google evaluate web content by parsing Document Object Model (DOM) trees. Headings provide immediate semantic weight, signaling which sections represent primary concepts versus supporting subtopics. A clean, hierarchical outline helps search bots index your content more accurately and increases your likelihood of capturing featured snippets. Conversely, when websites use heading tags purely for font styling rather than document outline structuring, search algorithms lose critical contextual cues.
+        </p>
+
+        <h3>Key Rules for Optimal Heading Tag Architecture</h3>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>One Unique H1 Tag Per Page:</strong> The H1 tag acts as the main title of your document. Every page should contain exactly one H1 tag that encapsulates the core intent of the content.</li>
+          <li><strong>Logical Level Progression:</strong> Never skip heading levels. Transitioning directly from an H2 tag down to an H4 tag breaks the hierarchical tree and disrupts screen reader flow.</li>
+          <li><strong>Descriptive & Keyword-Rich Text:</strong> Headings should clearly describe the section content below them, incorporating natural variations of your target keywords without keyword stuffing.</li>
+          <li><strong>Avoid Empty Headings:</strong> Heading tags containing only whitespace or icons provide zero semantic value and should be purged.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🔒 100% Client-Side Processing</h4>
+            <p style="font-size: 13px; margin: 0;">Your HTML markup is parsed locally in your browser sandbox. No source code is ever transmitted to external servers.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ Instant DOM Parsing</h4>
+            <p style="font-size: 13px; margin: 0;">Instantly map out all H1–H6 elements and calculate tag distribution totals in milliseconds.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🚨 Automated SEO Auditing</h4>
+            <p style="font-size: 13px; margin: 0;">Automatically flags missing H1 tags, duplicate titles, and skipped structural levels.</p>
+          </div>
+          <div class="feature-box">
+            <h4>♿ Accessibility Compliance</h4>
+            <p style="font-size: 13px; margin: 0;">Ensures your document outline adheres to WCAG standards for screen reader navigation.</p>
+          </div>
+        </div>
+
+        <h3>How Our Heading Analyzer Works</h3>
+        <p>
+          When you paste HTML code into the analyzer, the utility utilizes the browser's native DOM parser to construct an isolated document fragment. It queries all heading nodes (H1, H2, H3, H4, H5, and H6) in document order, extracts their inner text content, and builds an interactive hierarchical tree view. Simultaneously, an automated diagnostic engine reviews the tag sequence against established SEO best practices, highlighting structural warnings or confirming optimal compliance instantly.
+        </p>
+
+        <h3>Step-by-Step Instructions: How to Audit Your Heading Structure</h3>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Paste Your Markup:</strong> Copy your webpage HTML code or article text structure and paste it into the input box above.</li>
+          <li><strong>Run the Audit:</strong> Click the <strong>"Analyze Heading Hierarchy"</strong> button to trigger the parsing engine.</li>
+          <li><strong>Review Summary Metrics:</strong> Examine the distribution counts across H1 through H6 tags.</li>
+          <li><strong>Inspect Alerts and Tree Tree:</strong> Check the diagnostic alert box for structural errors and review the nested outline tree to verify logical flow.</li>
+        </ol>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is an H1-H6 heading hierarchy analyzer?</summary>
+          <p>
+            An H1-H6 heading hierarchy analyzer is a diagnostic tool that scans HTML code or raw text layouts to verify whether heading tags follow a logical, nested structure required for SEO and screen reader accessibility.
+          </p>
+        </details>
+
+        <details>
+          <summary>Why is proper heading structure important for SEO?</summary>
+          <p>
+            Search engine crawlers like Google use heading tags to understand the core context, topical segments, and structural hierarchy of a web page. A clean structure aids semantic parsing and ranking potential.
+          </p>
+        </details>
+
+        <details>
+          <summary>How many H1 tags should a page have?</summary>
+          <p>
+            Best practices dictate that every page should contain exactly one H1 tag acting as the primary main title of the document, followed by H2 through H6 tags for subsections.
+          </p>
+        </details>
+
+        <details>
+          <summary>What constitutes a heading hierarchy error?</summary>
+          <p>
+            Common structural errors include missing an H1 tag, utilizing multiple H1 tags, skipping heading levels (e.g., jumping straight from an H2 down to an H4), or using heading tags for styling rather than outlining.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is my HTML code uploaded to an external server during analysis?</summary>
+          <p>
+            No. All text parsing, DOM analysis, and hierarchy validation happen completely within your web browser sandbox using client-side JavaScript.
+          </p>
+        </details>
+
+        <details>
+          <summary>How does heading structure impact accessibility (WCAG)?</summary>
+          <p>
+            Screen readers rely heavily on a logical heading hierarchy to help visually impaired users navigate web pages efficiently. Broken or skipped heading levels disrupt screen reader flow.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I paste raw HTML or rich text markup?</summary>
+          <p>
+            Yes. You can paste complete HTML snippets or documents containing heading tags, and the analyzer will automatically parse and map out the entire tree structure.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are empty heading tags flagged by the tool?</summary>
+          <p>
+            Yes. The analyzer flags empty or whitespace-only heading tags that add no semantic value and may negatively impact code quality.
+          </p>
+        </details>
+
+        <details>
+          <summary>What should I do if my page has multiple H1 tags?</summary>
+          <p>
+            You should convert secondary H1 tags into H2 or H3 tags to maintain a single primary title and a clear hierarchical outline.
+          </p>
+        </details>
+
+        <details>
+          <summary>Does this tool work on mobile devices?</summary>
+          <p>
+            Yes, the responsive design allows you to run heading audits seamlessly from smartphones, tablets, and desktop computers.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I check heading structures of live website URLs directly?</summary>
+          <p>
+            This tool analyzes pasted HTML code to ensure absolute client-side privacy. To check a live URL, you can view page source, copy the HTML, and paste it here.
+          </p>
+        </details>
+
+        <details>
+          <summary>How do search engines treat skipped heading levels?</summary>
+          <p>
+            Skipping levels (like H2 to H4) does not incur a direct algorithmic penalty, but it creates structural ambiguity for crawlers and accessibility tools.
+          </p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side Analyzer Script -->
+  <script>
+    function loadSampleHtml() {
+      const sample = `<!DOCTYPE html>
+<html>
+<head><title>Sample SEO Page</title></head>
+<body>
+  <h1>Ultimate Guide to Technical SEO in 2026</h1>
+  <p>Introduction to search engine optimization fundamentals.</p>
+  
+  <h2>1. Understanding Core Web Vitals</h2>
+  <p>Performance metrics overview.</p>
+  <h3>1.1 Largest Contentful Paint (LCP)</h3>
+  <p>LCP optimization tactics.</p>
+  <h3>1.2 Cumulative Layout Shift (CLS)</h3>
+  <p>Preventing unexpected shifts.</p>
+
+  <h2>2. Semantic Heading Structures</h2>
+  <p>Importance of H1-H6 tags.</p>
+  
+  <h3>2.1 Avoiding Skipped Levels</h3>
+  <p>Best practices for nested outlines.</p>
+</body>
+</html>`;
+      document.getElementById('htmlInput').value = sample;
+      analyzeHeadings();
+    }
+
+    function analyzeHeadings() {
+      const input = document.getElementById('htmlInput').value;
+      if (!input.trim()) {
+        alert('Please paste some HTML code or markup to analyze.');
+        return;
+      }
+
+      // Parse HTML using DOMParser
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(input, 'text/html');
+      
+      const headingElements = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      
+      let counts = { h1: 0, h2: 0, h3: 0, h4: 0, h5: 0, h6: 0 };
+      let treeItems = [];
+      let alerts = [];
+
+      headingElements.forEach((el, index) => {
+        const tagName = el.tagName.toLowerCase();
+        counts[tagName]++;
+        treeItems.push({
+          tag: tagName,
+          text: el.textContent.trim() || '[Empty Heading]'
+        });
+      });
+
+      // Update stat cards
+      document.getElementById('countH1').innerText = counts.h1;
+      document.getElementById('countH2').innerText = counts.h2;
+      document.getElementById('countH3').innerText = counts.h3;
+      document.getElementById('countH4').innerText = counts.h4;
+      document.getElementById('countH5').innerText = counts.h5;
+      document.getElementById('countH6').innerText = counts.h6;
+
+      // Audit logic
+      if (counts.h1 === 0) {
+        alerts.push('⚠️ Missing H1 tag! Every SEO-optimized page should contain exactly one H1 tag.');
+      } else if (counts.h1 > 1) {
+        alerts.push(`⚠️ Multiple H1 tags detected (${counts.h1}). Best practice is to use only one H1 tag per page.`);
+      }
+
+      // Check for skipped levels
+      let lastLevel = 0;
+      let skippedDetected = false;
+      headingElements.forEach((el) => {
+        let currentLevel = parseInt(el.tagName.substring(1));
+        if (lastLevel > 0 && currentLevel > lastLevel + 1 && !skippedDetected) {
+          alerts.push(`⚠️ Heading level skipped: Jumped from H${lastLevel} to H${currentLevel}. Maintain logical nesting.`);
+          skippedDetected = true;
+        }
+        lastLevel = currentLevel;
+      });
+
+      // Render Tree View
+      const treeContainer = document.getElementById('treeViewContainer');
+      treeContainer.innerHTML = '';
+      if (treeItems.length === 0) {
+        treeContainer.innerHTML = '<div style="color: #64748b; text-align: center; padding: 20px;">No heading tags (H1-H6) found in the provided markup.</div>';
+      } else {
+        treeItems.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'tree-item';
+          const indent = (parseInt(item.tag.substring(1)) - 1) * 20;
+          div.style.marginLeft = `${indent}px`;
+          div.innerHTML = `<span class="badge badge-${item.tag}">${item.tag.toUpperCase()}</span> <span>${escapeHtml(item.text)}</span>`;
+          treeContainer.appendChild(div);
+        });
+      }
+
+      // Render Alerts
+      const alertBox = document.getElementById('auditAlerts');
+      if (alerts.length > 0) {
+        alertBox.className = 'audit-alerts';
+        alertBox.style.display = 'block';
+        alertBox.innerHTML = alerts.join('<br>');
+      } else if (treeItems.length > 0) {
+        alertBox.className = 'audit-alerts audit-success';
+        alertBox.style.display = 'block';
+        alertBox.innerHTML = '✅ Perfect! Heading hierarchy follows standard semantic SEO guidelines with no structural errors detected.';
+      } else {
+        alertBox.style.display = 'none';
+      }
+
+      document.getElementById('resultsContainer').style.display = 'block';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
