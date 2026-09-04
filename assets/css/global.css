@@ -598,4 +598,88 @@ footer::before {
   .form button {
     width: 100%;
   }
+}/* =================================================================
+   Article Layout & Container Resilience Fixes
+   ================================================================= */
+
+/* 1. Prevent box-sizing and padding expansion issues on articles */
+.seo-content {
+  width: 100%;
+  max-width: 850px; /* Keeps line length optimal for readability (~65-75 chars) */
+  margin: 3rem auto;
+  padding: clamp(1.5rem, 4vw, 3rem); /* Responsive internal breathing room */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow-wrap: break-word; /* Prevents long strings or URLs from blowing out the card */
+  word-break: break-word;
+}
+
+/* 2. Guard against layout-breaking structural elements inside articles */
+.seo-content > * + * {
+  margin-top: 1.25rem; /* Consistent vertical rhythm without margin collapsing */
+}
+
+.seo-content h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.seo-content h3 {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.seo-content p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* 3. Bulletproof list spacing to stop misaligned text boxes */
+.seo-content ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+  padding: 0;
+  color: var(--text-muted);
+}
+
+.seo-content li {
+  margin-bottom: 0.85rem;
+  line-height: 1.6;
+}
+
+.seo-content li strong {
+  color: var(--text-main);
+}
+
+/* 4. Safeguard inline links from overflowing containers */
+.seo-content a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all; /* Prevents long relative paths from stretching card boundaries */
+}
+
+.seo-content a:hover {
+  text-decoration: underline;
+}
+
+/* 5. Fluid media scaling (if any images/iframes are added later) */
+.seo-content img,
+.seo-content video,
+.seo-content figure {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin: 1.5rem auto;
 }
