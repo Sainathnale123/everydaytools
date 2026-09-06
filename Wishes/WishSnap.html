@@ -73,15 +73,13 @@
       margin: 12px 0 6px 0;
     }
     .relation-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      max-height: 200px;
-      overflow-y: auto;
-      padding: 12px;
-      border: 1px solid var(--border, #cbd5e1);
-      border-radius: 12px;
-      background: #f8fafc;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--border, #cbd5e1);
+    border-radius: 12px;
+    background: #f8fafc;
     }
     .relation-grid::-webkit-scrollbar {
       width: 6px;
@@ -247,8 +245,8 @@
 
   <!-- Local Audio Tag pointing to Michael Riepen song -->
   <audio id="bgAudio" loop preload="auto">
-    <source src="sound/Michael_Riepen_Happy_Birthday.mp3" type="audio/mpeg">
-    <source src="sound/Michael_Riepen_Happy_Birthday.ogg" type="audio/ogg">
+    <source src="../sound/Michael_Riepen_Happy_Birthday.mp3" type="audio/mpeg">
+    <source src="../sound/Michael_Riepen_Happy_Birthday.ogg" type="audio/ogg">
   </audio>
 
   <nav class="site-nav" aria-label="Main Navigation">
@@ -294,7 +292,7 @@
             <div class="relation-grid" id="relationGrid">
               <!-- Friends & Social -->
               <span class="relation-section-title" style="width:100%;">Friends &amp; Peers</span>
-              <label class="tag-chip active"><input type="checkbox" value="friend" checked> 🤝 Best Friend</label>
+              <label class="tag-chip"><input type="checkbox" value="friend"> 🤝 Best Friend</label>
               <label class="tag-chip"><input type="checkbox" value="bestie"> ✨ Bestie</label>
               <label class="tag-chip"><input type="checkbox" value="college"> 🎓 College Mate</label>
               <label class="tag-chip"><input type="checkbox" value="school"> 🏫 School Buddy</label>
@@ -567,18 +565,42 @@
       cousin: "Happy Birthday Cousin! Here's to more fun gatherings, shared laughs, and wonderful moments ahead."
     };
 
+    // document.querySelectorAll('.tag-chip').forEach(chip => {
+    //   chip.addEventListener('click', function(e) {
+    //     const checkbox = this.querySelector('input[type="checkbox"]');
+    //     if (e.target.tagName !== 'INPUT') {
+    //       checkbox.checked = !checkbox.checked;
+    //     }
+    //     if (checkbox.checked) {
+    //       this.classList.add('active');
+    //     } else {
+    //       this.classList.remove('active');
+    //     }
+    //   });
+    // });
+
     document.querySelectorAll('.tag-chip').forEach(chip => {
-      chip.addEventListener('click', function(e) {
+    chip.addEventListener('click', function(e) {
         const checkbox = this.querySelector('input[type="checkbox"]');
+        
+        // Prevent double toggle if clicking directly on checkbox
         if (e.target.tagName !== 'INPUT') {
-          checkbox.checked = !checkbox.checked;
+        checkbox.checked = !checkbox.checked;
         }
+
+        // Single-selection mode: Clear all other selected chips
         if (checkbox.checked) {
-          this.classList.add('active');
+        document.querySelectorAll('.tag-chip').forEach(otherChip => {
+            if (otherChip !== this) {
+            otherChip.classList.remove('active');
+            otherChip.querySelector('input[type="checkbox"]').checked = false;
+            }
+        });
+        this.classList.add('active');
         } else {
-          this.classList.remove('active');
+        this.classList.remove('active');
         }
-      });
+    });
     });
 
     // Compress uploaded image up to 450px width
