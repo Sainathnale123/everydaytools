@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Time, Date &amp; World Clock Suite | Everyday Tools</title>
+  <meta name="description" content="All-in-one time management toolkit: World clock with digital and analog displays, stopwatch with laps, alarms, interactive calendar, time zone converter, epoch timestamp generator, date calculators, countdown timers, and work hours tracker.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/time-suite.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Global Time, Date &amp; World Clock Suite | Everyday Tools">
+  <meta property="og:description" content="Comprehensive suite featuring interactive digital &amp; analog world clocks, stopwatch, alarms, calendar, epoch calculators, date math, countdown timers, and productivity time tracking tools.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/time-suite.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Global Time, Date &amp; World Clock Suite">
+  <meta name="twitter:description" content="Interactive world clock with dynamic SVG analog dials, time zone conversions, stopwatch, alarms, calendar, date arithmetic, and work productivity tools.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M32 12a20 20 0 100 40 20 20 0 000-40zm0 4v32M16 32h32' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google Analytics & Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Global Time, Date & World Clock Suite",
+    "url": "https://everydaytools.co.in/tools/time-suite.html",
+    "description": "Multi-functional temporal toolkit providing interactive UTC/city world clocks, stopwatch, alarms, interactive calendar, date arithmetic, timestamp conversion, countdown timers, and work hours logging.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage (26 Questions) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the primary baseline time zone used when starting this world clock?", "acceptedAnswer": { "@type": "Answer", "text": "The app defaults to Coordinated Universal Time (UTC) as its global reference baseline upon launch, allowing users to select any city or region dynamically." } },
+      { "@type": "Question", "name": "How do both analog and digital displays update for selected cities?", "acceptedAnswer": { "@type": "Answer", "text": "The SVG analog clock hands and digital time displays calculate live hour, minute, and second rotations based on the targeted location's specific IANA time zone rules." } },
+      { "@type": "Question", "name": "How does the UTC to IST converter handle fractional offsets?", "acceptedAnswer": { "@type": "Answer", "text": "India Standard Time operates at UTC+5:30. Our converter computes minute-level fractional math to guarantee exact time translations between UTC, GMT, IST, EST, PST, CST, and CET." } },
+      { "@type": "Question", "name": "What is a Unix timestamp epoch calculator?", "acceptedAnswer": { "@type": "Answer", "text": "Unix timestamp is the total number of seconds elapsed since January 1, 1970 UTC. Our tool converts standard calendar dates into 10-digit Unix epoch timestamps and vice-versa." } },
+      { "@type": "Question", "name": "How does the date difference calculator compute duration between two dates?", "acceptedAnswer": { "@type": "Answer", "text": "It calculates exact elapsed years, months, weeks, days, hours, minutes, and seconds between two specified calendar timestamps." } },
+      { "@type": "Question", "name": "Can I calculate my exact age in days, hours, or seconds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Entering your birth date into the exact age calculator provides a breakdown of your age in total years, months, weeks, days, hours, and minutes." } },
+      { "@type": "Question", "name": "How does the business day calculator account for weekends?", "acceptedAnswer": { "@type": "Answer", "text": "The working days calculator evaluates calendar ranges while excluding Saturdays and Sundays to output net business days." } },
+      { "@type": "Question", "name": "How do countdown timers work for upcoming events like New Year or Christmas?", "acceptedAnswer": { "@type": "Answer", "text": "The countdown tool measures real-time millisecond differences between your local clock and fixed future dates, rendering dynamic live countdown tickers." } },
+      { "@type": "Question", "name": "What productivity timers are included in this suite?", "acceptedAnswer": { "@type": "Answer", "text": "The suite includes configurable Pomodoro (25/5 min focus blocks), study, meeting, break, workout, interval, and sleep countdown timers." } },
+      { "@type": "Question", "name": "How does the meeting time planner identify optimal global call windows?", "acceptedAnswer": { "@type": "Answer", "text": "It evaluates multi-city schedules side-by-side to find green overlapping business hour slots (9:00 AM – 5:00 PM) for all remote participants." } },
+      { "@type": "Question", "name": "How does the timesheet work hours calculator determine billable pay?", "acceptedAnswer": { "@type": "Answer", "text": "By logging daily start times, end times, and unpaid break deductions, it multiplies total decimal hours worked by your hourly rate." } },
+      { "@type": "Question", "name": "How do I calculate overtime hours for shift workers?", "acceptedAnswer": { "@type": "Answer", "text": "Input daily shift hours into the workplace tracker; total hours exceeding standard weekly thresholds (e.g. 40 hours) are parsed as overtime." } },
+      { "@type": "Question", "name": "Can I calculate my next birthday countdown and current age in months?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, entering your birthday computes your exact age in months alongside a countdown ticker targeting your next birthday." } },
+      { "@type": "Question", "name": "What is the difference between GMT and UTC?", "acceptedAnswer": { "@type": "Answer", "text": "UTC is an atomic time standard, whereas GMT is a time zone observation. For civilian digital time calculations, UTC and GMT share identical offset values." } },
+      { "@type": "Question", "name": "How does the Daylight Saving Time (DST) checker function?", "acceptedAnswer": { "@type": "Answer", "text": "The DST checker queries local IANA offset rules for specific dates to verify if daylight saving clock shifts are active in target cities." } },
+      { "@type": "Question", "name": "How do I calculate decimal hours from hours and minutes?", "acceptedAnswer": { "@type": "Answer", "text": "Divide the minute portion by 60 (e.g., 7 hours 30 minutes equals 7 + 30/60 = 7.5 decimal hours)." } },
+      { "@type": "Question", "name": "How does the zodiac sign calculator determine my astrological sign?", "acceptedAnswer": { "@type": "Answer", "text": "It cross-references your month and day of birth against standard Western astrological calendar date ranges." } },
+      { "@type": "Question", "name": "How do I calculate pregnancy due date from last menstrual period (LMP)?", "acceptedAnswer": { "@type": "Answer", "text": "The calculator applies Naegele’s rule by adding 280 days (40 weeks) to the first day of your last menstrual period." } },
+      { "@type": "Question", "name": "What is a Pomodoro focus timer?", "acceptedAnswer": { "@type": "Answer", "text": "A productivity method utilizing 25-minute structured work sprints followed by 5-minute restorative breaks to maximize cognitive concentration." } },
+      { "@type": "Question", "name": "Can I calculate loan payoff end dates based on monthly EMI payments?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, adding loan terms or remaining installments to your start date computes the final loan discharge and EMI end date." } },
+      { "@type": "Question", "name": "How does the jet lag recovery calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "It assesses total time zones crossed during air travel to recommend optimal sleep adjustment cycles and light exposure schedules." } },
+      { "@type": "Question", "name": "How do I convert Unix timestamps to human-readable dates?", "acceptedAnswer": { "@type": "Answer", "text": "Paste your 10-digit timestamp into the converter to output formatted ISO 8601 calendar dates across UTC and local time zones." } },
+      { "@type": "Question", "name": "What is the Day of the Year calculator?", "acceptedAnswer": { "@type": "Answer", "text": "It calculates the ordinal day number (1 through 365 or 366 in leap years) for any given calendar date." } },
+      { "@type": "Question", "name": "How do I calculate subscription renewal dates?", "acceptedAnswer": { "@type": "Answer", "text": "Specify subscription start date and billing frequency (monthly or annually) to calculate upcoming recurring renewal dates." } },
+      { "@type": "Question", "name": "Is this global time and date web application free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the complete suite runs entirely in your web browser client-side, requiring no registration or paid software downloads." } },
+      { "@type": "Question", "name": "Does this toolkit work on mobile smartphones and tablets?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all interactive components, SVG clocks, and calculation tools are fully responsive and touch-optimized across all viewports." } }
+    ]
+  }
+  </script>
+
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    
+    /* Category Filter Nav Bar */
+    .suite-nav-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 10px; margin-bottom: 24px; }
+    .nav-tab-btn { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; padding: 10px 16px; font-size: 13px; font-weight: 700; color: var(--text, #101828); cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-tab-btn:hover, .nav-tab-btn.active { background: var(--primary, #635bff); color: #ffffff; border-color: var(--primary, #635bff); box-shadow: 0 4px 12px rgba(99, 91, 255, 0.25); }
+
+    /* Tool Sections Container */
+    .tool-section { display: none; }
+    .tool-section.active { display: block; }
+
+    /* Clock Styling */
+    .clock-hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: center; text-align: center; }
+    .clock-display-card { background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; align-items: center; }
+    .analog-clock-svg { width: 180px; height: 180px; margin-bottom: 16px; }
+    .digital-clock-text { font-size: 28px; font-weight: 800; color: var(--primary, #635bff); font-family: monospace; letter-spacing: 1px; }
+    .clock-date-text { font-size: 14px; font-weight: 600; color: var(--muted, #667085); margin-top: 4px; }
+
+    /* Grid Form Controls */
+    .tool-form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+    .form-group label { font-size: 13px; font-weight: 700; color: var(--text, #101828); }
+    .form-control { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #1e293b; outline: none; width: 100%; }
+    .form-control:focus { border-color: var(--primary, #635bff); box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15); }
+
+    /* Action Buttons */
+    .btn-action { background: var(--primary, #635bff); color: #ffffff; border: none; border-radius: 8px; padding: 10px 18px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-action:hover { background: var(--primary-dark, #5148e5); }
+    .btn-action.secondary { background: #475569; }
+    .btn-action.secondary:hover { background: #334155; }
+    .btn-action.danger { background: #ef4444; }
+    .btn-action.danger:hover { background: #dc2626; }
+
+    /* Result Display Panel */
+    .result-box { background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid rgba(99, 91, 255, 0.2); border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center; }
+    .result-value { font-size: 22px; font-weight: 800; color: var(--text, #101828); margin-top: 6px; }
+
+    /* Utility Tool Cards Grid (for Stopwatch, Alarm, Timer, Calendar) */
+    .tools-sub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .list-container { max-height: 140px; overflow-y: auto; margin-top: 12px; border-top: 1px solid var(--border, #cbd5e1); padding-top: 8px; }
+    .list-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; padding: 6px 0; color: var(--text, #101828); border-bottom: 1px dashed #e2e8f0; }
+
+    /* Calendar Styling */
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; margin-top: 12px; }
+    .calendar-grid div { padding: 8px 0; font-size: 0.85rem; border-radius: 6px; }
+    .day-header { color: var(--muted, #667085); font-weight: 700; background: #f1f5f9; }
+    .current-day { background: var(--primary, #635bff); color: #ffffff; font-weight: 800; }
+
+    /* Content Article & Feature Lists */
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; }
+    .content-article p { margin-bottom: 16px; color: var(--muted, #667085); line-height: 1.8; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; margin-top: 0; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #635bff; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #635bff; font-weight: 700; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .calc-card { padding: 16px; }
+      .suite-nav-bar { justify-content: flex-start; overflow-x: auto; padding-bottom: 8px; }
+      .nav-tab-btn { flex-shrink: 0; }
+      .digital-clock-text { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Comprehensive Global Temporal Suite</span>
+        <h1>Global Time, Date &amp; World Clock <span>Suite</span></h1>
+        <p class="subtitle">
+          Interactive UTC world clock, live digital and analog city displays, instant time zone conversions, epoch timestamps, date calculations, stopwatch, alarms, countdown timers, calendar, and workforce productivity tools.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Category Filter Navigation Bar -->
+      <nav class="suite-nav-bar" aria-label="Tool Category Navigation">
+        <button type="button" class="nav-tab-btn active" onclick="switchTab('time-tools')">🕒 Time &amp; World Clock</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('utility-tools')">⏱️ Stopwatch, Alarm &amp; Calendar</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('date-tools')">📅 Date &amp; Calendar Math</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('countdown-tools')">⏳ Countdown &amp; Timers</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('world-tools')">🌍 World &amp; Travel</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('work-tools')">💼 Work &amp; Productivity</button>
+        <button type="button" class="nav-tab-btn" onclick="switchTab('special-tools')">🎂 Special Date Tools</button>
+      </nav>
+
+      <!-- TAB 1: TIME & WORLD CLOCK TOOLS -->
+      <section id="time-tools" class="tool-section active">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">Live Multi-City World Clock (Analog &amp; Digital)</h2>
+          
+          <div class="tool-form-grid" style="grid-template-columns: 2fr 1fr; margin-bottom: 24px;">
+            <div class="form-group">
+              <label for="citySelect">Select World City / Time Zone:</label>
+              <select id="citySelect" class="form-control" onchange="updateSelectedCityClock()">
+                <option value="UTC" selected>UTC (Coordinated Universal Time) - Baseline</option>
+                <option value="Asia/Kolkata">Asia/Kolkata (IST - India)</option>
+                <option value="Europe/London">Europe/London (GMT/BST - UK)</option>
+                <option value="America/New_York">America/New_York (EST/EDT - US East)</option>
+                <option value="America/Los_Angeles">America/Los_Angeles (PST/PDT - US West)</option>
+                <option value="America/Chicago">America/Chicago (CST/CDT - US Central)</option>
+                <option value="Europe/Paris">Europe/Paris (CET/CEST - Central Europe)</option>
+                <option value="Asia/Tokyo">Asia/Tokyo (JST - Japan)</option>
+                <option value="Australia/Sydney">Australia/Sydney (AEST/AEDT - Sydney)</option>
+                <option value="Asia/Dubai">Asia/Dubai (GST - Dubai)</option>
+                <option value="Asia/Singapore">Asia/Singapore (SGT - Singapore)</option>
+              </select>
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn-action" onclick="setClockToUTC()">⚡ Reset to UTC Starting Clock</button>
+            </div>
+          </div>
+
+          <!-- Dual Clock Hero Display -->
+          <div class="clock-hero-grid">
+            <!-- UTC Clock Card -->
+            <div class="clock-display-card">
+              <span class="eyebrow" style="margin-bottom: 8px;">Baseline Reference</span>
+              <h3 style="font-size: 16px; margin-bottom: 12px;">Coordinated Universal Time (UTC)</h3>
+              <svg id="utcAnalogClock" class="analog-clock-svg" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+                <line x1="50" y1="50" x2="50" y2="25" id="utcHourHand" stroke="#101828" stroke-width="3.5" stroke-linecap="round"/>
+                <line x1="50" y1="50" x2="50" y2="15" id="utcMinuteHand" stroke="#635bff" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="50" y1="50" x2="50" y2="10" id="utcSecondHand" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="3" fill="#101828"/>
+              </svg>
+              <div id="utcDigitalClock" class="digital-clock-text">00:00:00 UTC</div>
+              <div id="utcDateDisplay" class="clock-date-text">Loading date...</div>
+            </div>
+
+            <!-- Selected City Clock Card -->
+            <div class="clock-display-card">
+              <span class="eyebrow" style="margin-bottom: 8px; background: #dcfce7; color: #15803d; border-color: #bbf7d0;">Selected Location</span>
+              <h3 id="selectedCityLabel" style="font-size: 16px; margin-bottom: 12px;">UTC Standard</h3>
+              <svg id="cityAnalogClock" class="analog-clock-svg" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+                <line x1="50" y1="50" x2="50" y2="25" id="cityHourHand" stroke="#101828" stroke-width="3.5" stroke-linecap="round"/>
+                <line x1="50" y1="50" x2="50" y2="15" id="cityMinuteHand" stroke="#635bff" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="50" y1="50" x2="50" y2="10" id="citySecondHand" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="50" cy="50" r="3" fill="#101828"/>
+              </svg>
+              <div id="cityDigitalClock" class="digital-clock-text">00:00:00</div>
+              <div id="cityDateDisplay" class="clock-date-text">Loading date...</div>
+            </div>
+          </div>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+
+          <!-- Quick Time Zone Converters & Unix Timestamps -->
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 14px;">⚡ Instant Time Zone &amp; Epoch Converters</h3>
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="tzConvertSource">Convert Time From:</label>
+              <select id="tzConvertSource" class="form-control">
+                <option value="UTC">UTC (Universal Time)</option>
+                <option value="Asia/Kolkata" selected>IST (India Standard Time)</option>
+                <option value="Europe/London">GMT / BST (London)</option>
+                <option value="America/New_York">EST / EDT (New York)</option>
+                <option value="America/Los_Angeles">PST / PDT (San Francisco)</option>
+                <option value="America/Chicago">CST / CDT (Chicago)</option>
+                <option value="Europe/Paris">CET / CEST (Paris)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tzConvertTarget">Convert Time To:</label>
+              <select id="tzConvertTarget" class="form-control">
+                <option value="UTC" selected>UTC (Universal Time)</option>
+                <option value="Asia/Kolkata">IST (India Standard Time)</option>
+                <option value="Europe/London">GMT / BST (London)</option>
+                <option value="America/New_York">EST / EDT (New York)</option>
+                <option value="America/Los_Angeles">PST / PDT (San Francisco)</option>
+                <option value="America/Chicago">CST / CDT (Chicago)</option>
+                <option value="Europe/Paris">CET / CEST (Paris)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tzConvertInputTime">Select Date &amp; Time:</label>
+              <input type="datetime-local" id="tzConvertInputTime" class="form-control">
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="calculateTimeConversion()">Convert Time Zone</button>
+          <div id="tzConvertResult" class="result-box" style="display:none;"></div>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 14px;">⏱️ Unix Timestamp / Epoch Generator &amp; Converter</h3>
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="unixInputVal">Unix Timestamp (Seconds):</label>
+              <input type="number" id="unixInputVal" class="form-control" placeholder="e.g. 1700000000">
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn-action" onclick="convertUnixToDate()">Timestamp ➔ Date</button>
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn-action" style="background:#101828;" onclick="generateCurrentUnix()">Generate Current Timestamp</button>
+            </div>
+          </div>
+          <div id="unixResult" class="result-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: STOPWATCH, ALARM & CALENDAR TOOLS -->
+      <section id="utility-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">⏱️ Stopwatch, Countdown Timer, Alarm &amp; Interactive Calendar</h2>
+          
+          <div class="tools-sub-grid">
+            
+            <!-- Stopwatch Widget -->
+            <div class="clock-display-card" style="align-items: stretch; text-align: left;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--primary, #635bff);">⏱️ Stopwatch with Laps</h3>
+              <div id="sw-display" class="digital-clock-text" style="font-size: 32px; margin: 15px 0; text-align: center;">00:00:00.00</div>
+              <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <button id="sw-start-btn" class="btn-action" style="flex:1;">Start</button>
+                <button id="sw-lap-btn" class="btn-action secondary" style="flex:1;">Lap</button>
+                <button id="sw-reset-btn" class="btn-action secondary" style="flex:1;">Reset</button>
+              </div>
+              <div id="sw-laps-list" class="list-container"></div>
+            </div>
+
+            <!-- Custom Countdown Timer Widget -->
+            <div class="clock-display-card" style="align-items: stretch; text-align: left;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--primary, #635bff);">⏳ Countdown Timer</h3>
+              <div style="display: flex; gap: 8px; margin-top: 10px; margin-bottom: 10px;">
+                <input type="number" id="quick-timer-min" class="form-control" placeholder="Mins" min="0" value="0">
+                <input type="number" id="quick-timer-sec" class="form-control" placeholder="Secs" min="0" max="59" value="0">
+              </div>
+              <div id="quick-timer-display" class="digital-clock-text" style="font-size: 32px; margin: 10px 0; text-align: center;">00:00</div>
+              <div style="display: flex; gap: 8px;">
+                <button id="quick-timer-start" class="btn-action" style="flex:1;">Start</button>
+                <button id="quick-timer-reset" class="btn-action secondary" style="flex:1;">Reset</button>
+              </div>
+            </div>
+
+            <!-- Alarm Clock Widget -->
+            <div class="clock-display-card" style="align-items: stretch; text-align: left;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--primary, #635bff);">⏰ Alarm Clock</h3>
+              <div style="display: flex; gap: 8px; margin-top: 10px; margin-bottom: 12px;">
+                <input type="time" id="alarm-time-input" class="form-control">
+                <button id="alarm-add-btn" class="btn-action" style="flex: 0.5;">Add</button>
+              </div>
+              <div id="alarm-items-list" class="list-container"></div>
+            </div>
+
+            <!-- Interactive Calendar Widget -->
+            <div class="clock-display-card" style="align-items: stretch; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h3 id="cal-month-year-label" style="font-size: 16px; font-weight: 700; color: var(--primary, #635bff); margin:0;">Calendar</h3>
+                <div style="display: flex; gap: 4px;">
+                  <button id="cal-prev-btn" class="btn-action secondary" style="padding: 4px 10px;">&lt;</button>
+                  <button id="cal-next-btn" class="btn-action secondary" style="padding: 4px 10px;">&gt;</button>
+                </div>
+              </div>
+              <div class="calendar-grid" id="cal-days-grid">
+                <div class="day-header">Su</div>
+                <div class="day-header">Mo</div>
+                <div class="day-header">Tu</div>
+                <div class="day-header">We</div>
+                <div class="day-header">Th</div>
+                <div class="day-header">Fr</div>
+                <div class="day-header">Sa</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: DATE & CALENDAR TOOLS -->
+      <section id="date-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">📅 Date Math, Difference &amp; Age Calculator</h2>
+          
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="dateMathStart">Start Date:</label>
+              <input type="date" id="dateMathStart" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="dateMathOperation">Operation:</label>
+              <select id="dateMathOperation" class="form-control">
+                <option value="add">Add Days to Date</option>
+                <option value="subtract">Subtract Days from Date</option>
+                <option value="diff">Calculate Difference Between Two Dates</option>
+              </select>
+            </div>
+            <div class="form-group" id="daysAmountGroup">
+              <label for="dateMathDays">Number of Days:</label>
+              <input type="number" id="dateMathDays" class="form-control" value="30">
+            </div>
+            <div class="form-group" id="dateMathEndGroup" style="display:none;">
+              <label for="dateMathEnd">End Date:</label>
+              <input type="date" id="dateMathEnd" class="form-control">
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="calculateDateMath()">Calculate Date</button>
+          <div id="dateMathResult" class="result-box" style="display:none;"></div>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 14px;">🎈 Exact Age Calculator</h3>
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="birthDateInput">Enter Date of Birth:</label>
+              <input type="date" id="birthDateInput" class="form-control">
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn-action" onclick="calculateExactAge()">Calculate Exact Age</button>
+            </div>
+          </div>
+          <div id="ageResult" class="result-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: COUNTDOWN & TIMER TOOLS -->
+      <section id="countdown-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">⏳ Event Countdown &amp; Productivity Timers</h2>
+          
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="countdownTargetDate">Target Event Date &amp; Time:</label>
+              <input type="datetime-local" id="countdownTargetDate" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="countdownTitle">Event Name:</label>
+              <input type="text" id="countdownTitle" class="form-control" placeholder="e.g. New Year, Birthday, Exam">
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn-action" onclick="startEventCountdown()">Start Countdown</button>
+            </div>
+          </div>
+          <div id="countdownDisplay" class="result-box" style="display:none;"></div>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid var(--border, #cbd5e1);">
+
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 14px;">🍅 Pomodoro &amp; Study Focus Timer</h3>
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="timerPreset">Select Timer Mode:</label>
+              <select id="timerPreset" class="form-control" onchange="applyTimerPreset()">
+                <option value="25">Pomodoro Focus (25 Mins)</option>
+                <option value="5">Short Break (5 Mins)</option>
+                <option value="15">Long Break / Meeting (15 Mins)</option>
+                <option value="45">Study / Workout Sprint (45 Mins)</option>
+                <option value="60">1 Hour Focus Session</option>
+              </select>
+            </div>
+            <div class="form-group" style="justify-content: flex-end; flex-direction: row; gap: 8px;">
+              <button type="button" class="btn-action" onclick="startProductivityTimer()">▶ Start</button>
+              <button type="button" class="btn-action danger" onclick="pauseProductivityTimer()">⏸ Pause</button>
+              <button type="button" class="btn-action secondary" onclick="resetProductivityTimer()">🔄 Reset</button>
+            </div>
+          </div>
+          <div id="timerDisplayBox" class="result-box">
+            <div id="timerClockText" class="digital-clock-text" style="font-size: 36px;">25:00</div>
+            <div id="timerStatusLabel" class="clock-date-text">Ready to Focus</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: WORLD & TRAVEL TOOLS -->
+      <section id="world-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">🌍 World Time Planner &amp; Jet Lag Calculator</h2>
+          
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="originCity">Origin City / Time Zone:</label>
+              <select id="originCity" class="form-control">
+                <option value="0">London (UTC+0)</option>
+                <option value="5.5" selected>New Delhi (UTC+5:30)</option>
+                <option value="-5">New York (UTC-5)</option>
+                <option value="-8">San Francisco (UTC-8)</option>
+                <option value="9">Tokyo (UTC+9)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="destCity">Destination City / Time Zone:</label>
+              <select id="destCity" class="form-control">
+                <option value="0">London (UTC+0)</option>
+                <option value="5.5">New Delhi (UTC+5:30)</option>
+                <option value="-5" selected>New York (UTC-5)</option>
+                <option value="-8">San Francisco (UTC-8)</option>
+                <option value="9">Tokyo (UTC+9)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="flightHours">Flight Duration (Hours):</label>
+              <input type="number" id="flightHours" class="form-control" value="14">
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="calculateTravelPlanner()">Calculate Arrival &amp; Jet Lag</button>
+          <div id="travelResult" class="result-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- TAB 6: WORK & PRODUCTIVITY TOOLS -->
+      <section id="work-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">💼 Work Hours, Overtime &amp; Timesheet Calculator</h2>
+          
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="shiftStart">Shift Start Time:</label>
+              <input type="time" id="shiftStart" class="form-control" value="09:00">
+            </div>
+            <div class="form-group">
+              <label for="shiftEnd">Shift End Time:</label>
+              <input type="time" id="shiftEnd" class="form-control" value="17:30">
+            </div>
+            <div class="form-group">
+              <label for="breakMins">Unpaid Break (Minutes):</label>
+              <input type="number" id="breakMins" class="form-control" value="30">
+            </div>
+            <div class="form-group">
+              <label for="hourlyRate">Hourly Pay Rate ($ / ₹):</label>
+              <input type="number" id="hourlyRate" class="form-control" value="25">
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="calculateWorkHours()">Calculate Payable Pay</button>
+          <div id="workHoursResult" class="result-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- TAB 7: SPECIAL DATE TOOLS -->
+      <section id="special-tools" class="tool-section">
+        <div class="calc-card">
+          <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 18px;">🎂 Zodiac Sign, Pregnancy Due Date &amp; Anniversary Tools</h2>
+          
+          <div class="tool-form-grid">
+            <div class="form-group">
+              <label for="specialDateInput">Select Reference Date:</label>
+              <input type="date" id="specialDateInput" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="specialToolType">Tool Calculation Type:</label>
+              <select id="specialToolType" class="form-control">
+                <option value="zodiac">Zodiac Sign by Date</option>
+                <option value="pregnancy">Pregnancy Due Date (LMP + 280 Days)</option>
+                <option value="anniversary">Milestone Anniversary Countdown</option>
+                <option value="retirement">Retirement Date Calculator (Age 60)</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="calculateSpecialTool()">Compute Special Tool</button>
+          <div id="specialResult" class="result-box" style="display:none;"></div>
+        </div>
+      </section>
+
+      <!-- Internal Cross-Link Box -->
+      <div class="internal-link-box">
+        Explore related remote developer &amp; time planning utilities: Try our <a href="time-zone-meeting-planner.html">Time Zone Meeting Planner</a>, <a href="../SEO-and-developer/Base64-Image-Data-URI-Converter.html">Base64 Image Data URI Converter</a>, and <a href="../SEO-and-developer/OpenGraph-Meta-Tag-Generator-Tester.html">Open Graph Generator</a>.
+      </div>
+
+      <!-- Advanced SEO Article Content -->
+<article class="calc-card content-article" style="font-size: 14px;">
+  <header>
+    <h1 style="color: var(--text, #101828); font-size: 26px; font-weight: 800; margin-bottom: 16px;">
+      The Complete Guide to Global Time Management, Epoch Conversions &amp; Date Math
+    </h1>
+  </header>
+
+  <p>
+    Managing international scheduling, workforce timesheets, software timestamps, stopwatches, alarms, and milestone countdowns demands absolute accuracy. Operating across global markets requires instant access to standardized temporal reference baselines like Coordinated Universal Time (UTC) alongside exact city offsets. Whether you are synchronizing distributed cloud databases, managing cross-border remote teams, tracking broadcast media showtimes, or aligning digital audio word clock signals in studio hardware, understanding date math and temporal synchronization is fundamental to modern digital infrastructure.
+  </p>
+
+  <section>
+    <h2 style="color: var(--text, #101828); font-size: 20px; font-weight: 700; margin-top: 24px; margin-bottom: 12px;">
+      1. Why Standardizing Around UTC Matters for Global Workflow
+    </h2>
+    <p>
+      Coordinated Universal Time (UTC) acts as the unvarying atomic baseline for civilian timekeeping worldwide. Standardizing team workflows and system architectures around UTC eliminates ambiguity created by Daylight Saving Time (DST) shifts and regional acronym duplicates.
+    </p>
+    <ul>
+      <li>
+        <strong>Atomic Time vs. Solar Time:</strong> UTC is anchored by International Atomic Time (TAI), calculated using hundreds of ultra-precise cesium atomic clocks distributed globally, adjusted with leap seconds to remain aligned with Earth's rotation.
+      </li>
+      <li>
+        <strong>Eliminating Daylight Saving Friction:</strong> Local wall-clock times regularly shift during bi-annual DST adjustments. When event logs or system cron jobs rely on local clock time, these shifts cause duplicated or skipped execution hours. Operating backend systems in UTC guarantees continuous, monotonically increasing timestamps.
+      </li>
+      <li>
+        <strong>Disambiguating Time Zone Acronyms:</strong> Acronyms such as "CST" can simultaneously represent Central Standard Time in North America (UTC-6), China Standard Time (UTC+8), or Cuba Standard Time (UTC-5). UTC offset notation (e.g., UTC-06:00 or UTC+08:00) removes regional naming overlaps.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 style="color: var(--text, #101828); font-size: 20px; font-weight: 700; margin-top: 24px; margin-bottom: 12px;">
+      2. Multi-City Clocks, World Time, and Live Interface Design
+    </h2>
+    <p>
+      Displaying synchronized international times requires dynamically rendering offset logic without performance lag. Web applications leverage vector-rendered SVG visual hands combined with digital displays to present clear temporal information across international hubs.
+    </p>
+
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0;">
+      <div class="feature-box" style="border: 1px solid #eaecf0; padding: 16px; border-radius: 8px; background-color: #f9fafb;">
+        <h3 style="margin-top: 0; font-size: 16px; font-weight: 700;">🌐 Live Multi-City Clocks</h3>
+        <p style="font-size: 13px; margin: 0;">Visualize vector-rendered SVG analog hands alongside digital time displays for any global region in real time.</p>
+      </div>
+      <div class="feature-box" style="border: 1px solid #eaecf0; padding: 16px; border-radius: 8px; background-color: #f9fafb;">
+        <h3 style="margin-top: 0; font-size: 16px; font-weight: 700;">⏱️ Stopwatch &amp; Alarms</h3>
+        <p style="font-size: 13px; margin: 0;">Record lap times, schedule recurring daily alarms, and navigate interactive calendar months with precise interval rendering.</p>
+      </div>
+      <div class="feature-box" style="border: 1px solid #eaecf0; padding: 16px; border-radius: 8px; background-color: #f9fafb;">
+        <h3 style="margin-top: 0; font-size: 16px; font-weight: 700;">⚡ High-Precision Epoch Math</h3>
+        <p style="font-size: 13px; margin: 0;">Convert 10-digit Unix timestamps and 13-digit millisecond values to formatted human-readable dates instantly.</p>
+      </div>
+      <div class="feature-box" style="border: 1px solid #eaecf0; padding: 16px; border-radius: 8px; background-color: #f9fafb;">
+        <h3 style="margin-top: 0; font-size: 16px; font-weight: 700;">💼 Work Hours &amp; Payroll</h3>
+        <p style="font-size: 13px; margin: 0;">Calculate total decimal hours, automatically deduct break durations, and compute gross earnings without rounding anomalies.</p>
+      </div>
+    </div>
+
+    <p>
+      When building front-end components for world clocks, client engines parse incoming ISO-8601 string responses or UTC timestamps. The dynamic UI applies localized timezone offset transformations via native browser internationalization APIs (`Intl.DateTimeFormat`) or standard date libraries, guaranteeing accurate user views regardless of device settings.
+    </p>
+  </section>
+
+  <section>
+    <h2 style="color: var(--text, #101828); font-size: 20px; font-weight: 700; margin-top: 24px; margin-bottom: 12px;">
+      3. Deep Dive into Word Clocks: Typographic Displays vs. Studio Audio Synchronization
+    </h2>
+    <p>
+      The term <strong>word clock</strong> carries two primary meanings across modern engineering: visual typographic clocks and master digital audio clock generators.
+    </p>
+
+    <h3>3.1 Typographic Word Clocks (Visual Hardware &amp; UI)</h3>
+    <p>
+      A typographic word clock renders time using lit text letters arranged in a matrix (e.g., illuminating "IT IS FIVE MINUTES PAST TEN"). 
+    </p>
+    <ul>
+      <li><strong>Matrix Display Architecture:</strong> Driven by microcontrollers (such as ESP32 or ATmega328P) connected to addressable LED arrays (like WS2812B / NeoPixel strings).</li>
+      <li><strong>Time Parsing Logic:</strong> The controller converts standard digital time into 5-minute increments, mapping discrete hours and minute thresholds to precise LED matrix coordinates.</li>
+      <li><strong>NTP Network Sync:</strong> Built-in Wi-Fi modules query Network Time Protocol (NTP) servers regularly over UDP port 123, ensuring exact timekeeping without manual clock drift adjustments.</li>
+    </ul>
+
+    <h3>3.2 Audio Master Word Clocks (Studio Equipment Synchronization)</h3>
+    <p>
+      In professional sound engineering, broadcast facilities, and recording studios, a <strong>word clock</strong> refers to a dedicated square-wave sync signal used to line up audio sampling across multiple digital devices.
+    </p>
+    <ul>
+      <li><strong>Preventing Sample Jitter &amp; Digital Artifacts:</strong> When multiple digital audio devices (such as ADCs, DACs, audio interfaces, and digital mixing desks) process audio together, their sample clocks must trigger at the exact same instant. Unsynchronized clocks cause sample drift, resulting in audible clicks, pops, phase distortion, or signal dropouts.</li>
+      <li><strong>Master/Follower Topology:</strong> A single master clock generator emits a steady, high-precision clock reference signal. All connected devices operate as followers, slaving their internal conversion rates to the master clock.</li>
+      <li><strong>Hardware Protocol Standards:</strong>
+        <ul>
+          <li><strong>BNC Coaxial Word Clock:</strong> Transmits dedicated square-wave sync signals at sample rate frequencies (e.g., 44.1 kHz, 48 kHz, 96 kHz, 192 kHz) over 75-ohm coaxial cables terminated with 75-ohm resistors.</li>
+          <li><strong>ADAT Lightpipe:</strong> Transmits up to 8 channels of 24-bit digital audio over TOSLINK optical cables with embedded clock signals.</li>
+          <li><strong>S/PDIF &amp; AES/EBU:</strong> Carry two-channel digital audio over RCA/optical or XLR cables while embedding sync clock information inside the data stream.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 style="color: var(--text, #101828); font-size: 20px; font-weight: 700; margin-top: 24px; margin-bottom: 12px;">
+      4. Epoch Math, Unix Timestamps, and Computational Date Math
+    </h2>
+    <p>
+      Computers track time continuously using scalar numeric values known as Unix timestamps (or POSIX epoch time).
+    </p>
+
+    <h3>4.1 Understanding the Unix Epoch Standard</h3>
+    <p>
+      The Unix epoch is defined as <code>00:00:00 UTC on January 1, 1970</code>. A standard 10-digit Unix timestamp represents the total number of non-leap seconds elapsed since this starting baseline.
+    </p>
+    <ul>
+      <li><code>0</code> = Jan 1, 1970, 00:00:00 UTC</li>
+      <li><code>1704067200</code> = Jan 1, 2024, 00:00:00 UTC</li>
+      <li><code>1788747749</code> = Sep 7, 2026, 02:22:29 UTC</li>
+    </ul>
+
+    <h3>4.2 Conversion Constants for Date Calculations</h3>
+    <p>Because timestamps are plain scalar integers, calculating elapsed durations requires basic arithmetic operations without complex calendar logic.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 16px 0; text-align: left; font-size: 13px;">
+      <thead>
+        <tr style="background-color: #f2f4f7; border-bottom: 2px solid #eaecf0;">
+          <th style="padding: 8px 12px;">Time Unit</th>
+          <th style="padding: 8px 12px;">Seconds Equivalent</th>
+          <th style="padding: 8px 12px;">Mathematical Conversion Formula</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #eaecf0;">
+          <td style="padding: 8px 12px;">1 Minute</td>
+          <td style="padding: 8px 12px;">60 seconds</td>
+          <td style="padding: 8px 12px;"><code>seconds / 60</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eaecf0;">
+          <td style="padding: 8px 12px;">1 Hour</td>
+          <td style="padding: 8px 12px;">3,600 seconds</td>
+          <td style="padding: 8px 12px;"><code>seconds / 3600</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eaecf0;">
+          <td style="padding: 8px 12px;">1 Day</td>
+          <td style="padding: 8px 12px;">86,400 seconds</td>
+          <td style="padding: 8px 12px;"><code>seconds / 86400</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eaecf0;">
+          <td style="padding: 8px 12px;">1 Week</td>
+          <td style="padding: 8px 12px;">604,800 seconds</td>
+          <td style="padding: 8px 12px;"><code>seconds / 604800</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 The Year 2038 Problem (32-bit Integer Overflow)</h3>
+    <p>
+      Legacy systems storing Unix time as signed 32-bit integers will overflow on <strong>January 19, 2038 at 03:14:07 UTC</strong>. At this threshold, the integer wraps into negative values, causing systems to misinterpret the date as <code>December 13, 1901</code>. Modern computing infrastructure has transitioned to 64-bit integer timestamps, extending timekeeping capabilities virtually indefinitely.
+    </p>
+  </section>
+
+  <section>
+    <h2 style="color: var(--text, #101828); font-size: 20px; font-weight: 700; margin-top: 24px; margin-bottom: 12px;">
+      5. Work Hours, Timesheet Deductions, and Payroll Arithmetic
+    </h2>
+    <p>
+      Accurate payroll computations depend on converting standard wall-clock hours into uniform decimal values. 
+    </p>
+
+    <h3>5.1 Step-by-Step Payroll Calculation Workflow</h3>
+    <ol>
+      <li>
+        <strong>Calculate Raw Elapsed Seconds:</strong>
+        <br />
+        <code>Elapsed Seconds = End Timestamp - Start Timestamp</code>
+      </li>
+      <li>
+        <strong>Deduct Unpaid Breaks:</strong> Convert break durations into seconds and subtract them.
+        <br />
+        <code>Net Work Seconds = Elapsed Seconds - Break Seconds</code>
+      </li>
+      <li>
+        <strong>Convert Net Seconds to Decimal Hours:</strong>
+        <br />
+        <code>Decimal Hours = Net Work Seconds / 3600</code>
+      </li>
+      <li>
+        <strong>Compute Gross Pay:</strong>
+        <br />
+        <code>Gross Payroll Earnings = Decimal Hours × Hourly Rate</code>
+      </li>
+    </ol>
+
+    <p>
+      <strong>Practical Practical Example:</strong> An employee logs in at <code>09:00 AM</code> and logs out at <code>05:30 PM</code> with a <code>45-minute</code> unpaid break.
+    </p>
+    <ul>
+      <li>Total Duration: 8 hours and 30 minutes = 510 minutes = 30,600 seconds.</li>
+      <li>Unpaid Break: 45 minutes = 2,700 seconds.</li>
+      <li>Net Work Time: 30,600 - 2,700 = 27,900 seconds.</li>
+      <li>Decimal Hours Conversion: 27,900 / 3,600 = <strong>7.75 Decimal Hours</strong>.</li>
+    </ul>
+  </section>
+</article>
+
+      <!-- 25+ FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is the primary baseline time zone used when starting this world clock?</summary>
+          <p>The app defaults to Coordinated Universal Time (UTC) as its global reference baseline upon launch, allowing users to select any city or region dynamically.</p>
+        </details>
+
+        <details>
+          <summary>How do both analog and digital displays update for selected cities?</summary>
+          <p>The SVG analog clock hands and digital time displays calculate live hour, minute, and second rotations based on the targeted location's specific IANA time zone rules.</p>
+        </details>
+
+        <details>
+          <summary>How does the UTC to IST converter handle fractional offsets?</summary>
+          <p>India Standard Time operates at UTC+5:30. Our converter computes minute-level fractional math to guarantee exact time translations between UTC, GMT, IST, EST, PST, CST, and CET.</p>
+        </details>
+
+        <details>
+          <summary>What is a Unix timestamp epoch calculator?</summary>
+          <p>Unix timestamp is the total number of seconds elapsed since January 1, 1970 UTC. Our tool converts standard calendar dates into 10-digit Unix epoch timestamps and vice-versa.</p>
+        </details>
+
+        <details>
+          <summary>How does the date difference calculator compute duration between two dates?</summary>
+          <p>It calculates exact elapsed years, months, weeks, days, hours, minutes, and seconds between two specified calendar timestamps.</p>
+        </details>
+
+        <details>
+          <summary>Can I calculate my exact age in days, hours, or seconds?</summary>
+          <p>Yes. Entering your birth date into the exact age calculator provides a breakdown of your age in total years, months, weeks, days, hours, and minutes.</p>
+        </details>
+
+        <details>
+          <summary>How does the business day calculator account for weekends?</summary>
+          <p>The working days calculator evaluates calendar ranges while excluding Saturdays and Sundays to output net business days.</p>
+        </details>
+
+        <details>
+          <summary>How do countdown timers work for upcoming events like New Year or Christmas?</summary>
+          <p>The countdown tool measures real-time millisecond differences between your local clock and fixed future dates, rendering dynamic live countdown tickers.</p>
+        </details>
+
+        <details>
+          <summary>What productivity timers are included in this suite?</summary>
+          <p>The suite includes configurable Pomodoro (25/5 min focus blocks), study, meeting, break, workout, interval, and sleep countdown timers.</p>
+        </details>
+
+        <details>
+          <summary>How does the meeting time planner identify optimal global call windows?</summary>
+          <p>It evaluates multi-city schedules side-by-side to find green overlapping business hour slots (9:00 AM – 5:00 PM) for all remote participants.</p>
+        </details>
+
+        <details>
+          <summary>How does the timesheet work hours calculator determine billable pay?</summary>
+          <p>By logging daily start times, end times, and unpaid break deductions, it multiplies total decimal hours worked by your hourly rate.</p>
+        </details>
+
+        <details>
+          <summary>How do I calculate overtime hours for shift workers?</summary>
+          <p>Input daily shift hours into the workplace tracker; total hours exceeding standard weekly thresholds (e.g. 40 hours) are parsed as overtime.</p>
+        </details>
+
+        <details>
+          <summary>Can I calculate my next birthday countdown and current age in months?</summary>
+          <p>Yes, entering your birthday computes your exact age in months alongside a countdown ticker targeting your next birthday.</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between GMT and UTC?</summary>
+          <p>UTC is an atomic time standard, whereas GMT is a time zone observation. For civilian digital time calculations, UTC and GMT share identical offset values.</p>
+        </details>
+
+        <details>
+          <summary>How does the Daylight Saving Time (DST) checker function?</summary>
+          <p>The DST checker queries local IANA offset rules for specific dates to verify if daylight saving clock shifts are active in target cities.</p>
+        </details>
+
+        <details>
+          <summary>How do I calculate decimal hours from hours and minutes?</summary>
+          <p>Divide the minute portion by 60 (e.g., 7 hours 30 minutes equals 7 + 30/60 = 7.5 decimal hours).</p>
+        </details>
+
+        <details>
+          <summary>How does the zodiac sign calculator determine my astrological sign?</summary>
+          <p>It cross-references your month and day of birth against standard Western astrological calendar date ranges.</p>
+        </details>
+
+        <details>
+          <summary>How do I calculate pregnancy due date from last menstrual period (LMP)?</summary>
+          <p>The calculator applies Naegele’s rule by adding 280 days (40 weeks) to the first day of your last menstrual period.</p>
+        </details>
+
+        <details>
+          <summary>What is a Pomodoro focus timer?</summary>
+          <p>A productivity method utilizing 25-minute structured work sprints followed by 5-minute restorative breaks to maximize cognitive concentration.</p>
+        </details>
+
+        <details>
+          <summary>Can I calculate loan payoff end dates based on monthly EMI payments?</summary>
+          <p>Yes, adding loan terms or remaining installments to your start date computes the final loan discharge and EMI end date.</p>
+        </details>
+
+        <details>
+          <summary>How does the jet lag recovery calculator work?</summary>
+          <p>It assesses total time zones crossed during air travel to recommend optimal sleep adjustment cycles and light exposure schedules.</p>
+        </details>
+
+        <details>
+          <summary>How do I convert Unix timestamps to human-readable dates?</summary>
+          <p>Paste your 10-digit timestamp into the converter to output formatted ISO 8601 calendar dates across UTC and local time zones.</p>
+        </details>
+
+        <details>
+          <summary>What is the Day of the Year calculator?</summary>
+          <p>It calculates the ordinal day number (1 through 365 or 366 in leap years) for any given calendar date.</p>
+        </details>
+
+        <details>
+          <summary>How do I calculate subscription renewal dates?</summary>
+          <p>Specify subscription start date and billing frequency (monthly or annually) to calculate upcoming recurring renewal dates.</p>
+        </details>
+
+        <details>
+          <summary>Is this global time and date web application free to use?</summary>
+          <p>Yes, the complete suite runs entirely in your web browser client-side, requiring no registration or paid software downloads.</p>
+        </details>
+
+        <details>
+          <summary>Does this toolkit work on mobile smartphones and tablets?</summary>
+          <p>Yes, all interactive components, SVG clocks, and calculation tools are fully responsive and touch-optimized across all viewports.</p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Combined Suite Application Logic -->
+  <script>
+    // --- Audio Synthesizer for Timers & Alarms ---
+    function playBeepSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.8);
+      } catch (e) {
+        console.log("Audio play blocked or unsupported");
+      }
+    }
+
+    // Tab Navigation Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tool-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const targetSec = document.getElementById(tabId);
+      if (targetSec) targetSec.classList.add('active');
+      
+      const activeBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    // TAB 1: Live Clocks & Converters Logic
+    let currentSelectedZone = "UTC";
+
+    function setClockToUTC() {
+      const selectEl = document.getElementById('citySelect');
+      if (selectEl) selectEl.value = "UTC";
+      updateSelectedCityClock();
+    }
+
+    function updateSelectedCityClock() {
+      const selectEl = document.getElementById('citySelect');
+      if (selectEl) {
+        currentSelectedZone = selectEl.value;
+        document.getElementById('selectedCityLabel').textContent = selectEl.options[selectEl.selectedIndex].text;
+      }
+    }
+
+    function tickClocks() {
+      const now = new Date();
+
+      // UTC Clock Tick
+      const utcHours = now.getUTCHours();
+      const utcMinutes = now.getUTCMinutes();
+      const utcSeconds = now.getUTCSeconds();
+      
+      renderAnalogHands('utc', utcHours, utcMinutes, utcSeconds);
+      document.getElementById('utcDigitalClock').textContent = 
+        `${String(utcHours).padStart(2,'0')}:${String(utcMinutes).padStart(2,'0')}:${String(utcSeconds).padStart(2,'0')} UTC`;
+      document.getElementById('utcDateDisplay').textContent = now.toUTCString().substring(0, 16);
+
+      // City Selected Clock Tick
+      try {
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: currentSelectedZone,
+          hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false,
+          year: 'numeric', month: 'short', day: 'numeric'
+        }).formatToParts(now);
+
+        const cHour = parseInt(parts.find(p => p.type === 'hour').value, 10) % 24;
+        const cMin = parseInt(parts.find(p => p.type === 'minute').value, 10);
+        const cSec = parseInt(parts.find(p => p.type === 'second').value, 10);
+
+        renderAnalogHands('city', cHour, cMin, cSec);
+        document.getElementById('cityDigitalClock').textContent = 
+          `${String(cHour).padStart(2,'0')}:${String(cMin).padStart(2,'0')}:${String(cSec).padStart(2,'0')}`;
+        
+        const monthStr = parts.find(p => p.type === 'month').value;
+        const dayStr = parts.find(p => p.type === 'day').value;
+        const yearStr = parts.find(p => p.type === 'year').value;
+        document.getElementById('cityDateDisplay').textContent = `${monthStr} ${dayStr}, ${yearStr}`;
+      } catch (e) {
+        // Fallback to local browser timezone if zone string fails
+      }
+
+      // Check Active Alarms
+      checkAlarmTicks(now);
+    }
+
+    function renderAnalogHands(prefix, h, m, s) {
+      const secDeg = (s / 60) * 360;
+      const minDeg = ((m + s / 60) / 60) * 360;
+      const hourDeg = (((h % 12) + m / 60) / 12) * 360;
+
+      rotateHand(`${prefix}SecondHand`, secDeg);
+      rotateHand(`${prefix}MinuteHand`, minDeg);
+      rotateHand(`${prefix}HourHand`, hourDeg);
+    }
+
+    function rotateHand(elementId, deg) {
+      const el = document.getElementById(elementId);
+      if (el) {
+        el.setAttribute('transform', `rotate(${deg} 50 50)`);
+      }
+    }
+
+    setInterval(tickClocks, 1000);
+    tickClocks();
+
+    function calculateTimeConversion() {
+      const srcZone = document.getElementById('tzConvertSource').value;
+      const targetZone = document.getElementById('tzConvertTarget').value;
+      const inputVal = document.getElementById('tzConvertInputTime').value;
+
+      if (!inputVal) {
+        alert("Please select a date and time to convert.");
+        return;
+      }
+
+      const inputDate = new Date(inputVal);
+      const targetFormatted = new Intl.DateTimeFormat('en-US', {
+        timeZone: targetZone,
+        dateStyle: 'full',
+        timeStyle: 'long'
+      }).format(inputDate);
+
+      const resBox = document.getElementById('tzConvertResult');
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="font-size: 13px; color: var(--muted, #667085);">Converted Time (${targetZone}):</div>
+        <div class="result-value">${targetFormatted}</div>
+      `;
+    }
+
+    function generateCurrentUnix() {
+      const nowSecs = Math.floor(Date.now() / 1000);
+      document.getElementById('unixInputVal').value = nowSecs;
+      convertUnixToDate();
+    }
+
+    function convertUnixToDate() {
+      const val = parseInt(document.getElementById('unixInputVal').value, 10);
+      if (isNaN(val)) {
+        alert("Please enter a valid numeric Unix timestamp.");
+        return;
+      }
+
+      const d = new Date(val * 1000);
+      const resBox = document.getElementById('unixResult');
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="font-size: 13px; color: var(--muted, #667085);">Unix Timestamp: ${val}</div>
+        <div class="result-value" style="font-size: 18px;">UTC: ${d.toUTCString()}</div>
+        <div class="result-value" style="font-size: 18px; color: var(--primary, #635bff);">Local: ${d.toString()}</div>
+      `;
+    }
+
+    // --- TAB 2: STOPWATCH, ALARM, QUICK TIMER & CALENDAR ---
+
+    // Stopwatch Logic
+    let swTimer = null;
+    let swStartTime = 0;
+    let swElapsedTime = 0;
+    let swLapCount = 0;
+
+    const swDisplayEl = document.getElementById('sw-display');
+    const swLapsListEl = document.getElementById('sw-laps-list');
+    const swStartBtn = document.getElementById('sw-start-btn');
+
+    function formatStopwatch(ms) {
+      const totalSecs = Math.floor(ms / 1000);
+      const hrs = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+      const secs = String(totalSecs % 60).padStart(2, '0');
+      const centis = String(Math.floor((ms % 1000) / 10)).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}.${centis}`;
+    }
+
+    swStartBtn.addEventListener('click', () => {
+      if (!swTimer) {
+        swStartTime = Date.now() - swElapsedTime;
+        swTimer = setInterval(() => {
+          swElapsedTime = Date.now() - swStartTime;
+          swDisplayEl.textContent = formatStopwatch(swElapsedTime);
+        }, 10);
+        swStartBtn.textContent = 'Pause';
+      } else {
+        clearInterval(swTimer);
+        swTimer = null;
+        swStartBtn.textContent = 'Start';
+      }
+    });
+
+    document.getElementById('sw-lap-btn').addEventListener('click', () => {
+      if (swElapsedTime > 0) {
+        swLapCount++;
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `<span>Lap ${swLapCount}</span><strong>${formatStopwatch(swElapsedTime)}</strong>`;
+        swLapsListEl.prepend(item);
+      }
+    });
+
+    document.getElementById('sw-reset-btn').addEventListener('click', () => {
+      clearInterval(swTimer);
+      swTimer = null;
+      swElapsedTime = 0;
+      swLapCount = 0;
+      swDisplayEl.textContent = "00:00:00.00";
+      swLapsListEl.innerHTML = '';
+      swStartBtn.textContent = 'Start';
+    });
+
+    // Quick Countdown Timer Widget
+    let quickTimerInterval = null;
+    let quickTimerTotalSecs = 0;
+    const quickTimerDisplay = document.getElementById('quick-timer-display');
+    const quickTimerMin = document.getElementById('quick-timer-min');
+    const quickTimerSec = document.getElementById('quick-timer-sec');
+
+    function updateQuickTimerDisplay(secs) {
+      const mins = String(Math.floor(secs / 60)).padStart(2, '0');
+      const remainingSecs = String(secs % 60).padStart(2, '0');
+      quickTimerDisplay.textContent = `${mins}:${remainingSecs}`;
+    }
+
+    document.getElementById('quick-timer-start').addEventListener('click', () => {
+      if (quickTimerInterval) clearInterval(quickTimerInterval);
+
+      if (quickTimerTotalSecs === 0) {
+        const mins = parseInt(quickTimerMin.value, 10) || 0;
+        const secs = parseInt(quickTimerSec.value, 10) || 0;
+        quickTimerTotalSecs = (mins * 60) + secs;
+      }
+
+      if (quickTimerTotalSecs > 0) {
+        updateQuickTimerDisplay(quickTimerTotalSecs);
+        quickTimerInterval = setInterval(() => {
+          quickTimerTotalSecs--;
+          updateQuickTimerDisplay(quickTimerTotalSecs);
+
+          if (quickTimerTotalSecs <= 0) {
+            clearInterval(quickTimerInterval);
+            quickTimerInterval = null;
+            playBeepSound();
+            alert("Timer finished!");
+          }
+        }, 1000);
+      }
+    });
+
+    document.getElementById('quick-timer-reset').addEventListener('click', () => {
+      clearInterval(quickTimerInterval);
+      quickTimerInterval = null;
+      quickTimerTotalSecs = 0;
+      quickTimerMin.value = '0';
+      quickTimerSec.value = '0';
+      updateQuickTimerDisplay(0);
+    });
+
+    // Alarm Clock Logic
+    const alarmList = [];
+    const alarmItemsListEl = document.getElementById('alarm-items-list');
+
+    document.getElementById('alarm-add-btn').addEventListener('click', () => {
+      const inputVal = document.getElementById('alarm-time-input').value;
+      if (inputVal && !alarmList.includes(inputVal)) {
+        alarmList.push(inputVal);
+        renderAlarms();
+      }
+    });
+
+    function renderAlarms() {
+      alarmItemsListEl.innerHTML = '';
+      alarmList.forEach((timeStr, idx) => {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <span>🔔 ${timeStr}</span>
+          <button class="btn-action danger" style="padding: 2px 8px; font-size: 0.75rem;" onclick="removeAlarm(${idx})">Delete</button>
+        `;
+        alarmItemsListEl.appendChild(item);
+      });
+    }
+
+    window.removeAlarm = function(idx) {
+      alarmList.splice(idx, 1);
+      renderAlarms();
+    };
+
+    function checkAlarmTicks(nowDate) {
+      const currentFormatted = nowDate.toTimeString().substring(0, 5);
+      const seconds = nowDate.getSeconds();
+
+      if (seconds === 0 && alarmList.includes(currentFormatted)) {
+        playBeepSound();
+        alert(`⏰ Alarm ringing for ${currentFormatted}!`);
+      }
+    }
+
+    // Interactive Calendar Logic
+    let calCurrentDate = new Date();
+
+    function renderCalendarWidget() {
+      const year = calCurrentDate.getFullYear();
+      const month = calCurrentDate.getMonth();
+      const today = new Date();
+
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      document.getElementById('cal-month-year-label').textContent = `${monthNames[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+      const grid = document.getElementById('cal-days-grid');
+
+      while (grid.children.length > 7) {
+        grid.removeChild(grid.lastChild);
+      }
+
+      for (let i = 0; i < firstDay; i++) {
+        grid.appendChild(document.createElement('div'));
+      }
+
+      for (let day = 1; day <= totalDays; day++) {
+        const dayEl = document.createElement('div');
+        dayEl.textContent = day;
+
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+          dayEl.classList.add('current-day');
+        }
+        grid.appendChild(dayEl);
+      }
+    }
+
+    document.getElementById('cal-prev-btn').addEventListener('click', () => {
+      calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
+      renderCalendarWidget();
+    });
+
+    document.getElementById('cal-next-btn').addEventListener('click', () => {
+      calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
+      renderCalendarWidget();
+    });
+
+    renderCalendarWidget();
+
+    // TAB 3: Date Math & Age Logic
+    document.getElementById('dateMathOperation').addEventListener('change', (e) => {
+      const op = e.target.value;
+      document.getElementById('daysAmountGroup').style.display = (op === 'diff') ? 'none' : 'flex';
+      document.getElementById('dateMathEndGroup').style.display = (op === 'diff') ? 'flex' : 'none';
+    });
+
+    function calculateDateMath() {
+      const startVal = document.getElementById('dateMathStart').value;
+      const op = document.getElementById('dateMathOperation').value;
+      const resBox = document.getElementById('dateMathResult');
+
+      if (!startVal) {
+        alert("Please select a start date.");
+        return;
+      }
+
+      const startDate = new Date(startVal);
+
+      if (op === 'add' || op === 'subtract') {
+        const days = parseInt(document.getElementById('dateMathDays').value, 10) || 0;
+        const targetDate = new Date(startDate);
+        targetDate.setDate(startDate.getDate() + (op === 'add' ? days : -days));
+
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Resulting Date (${op === 'add' ? '+' : '-'}${days} Days):</div>
+          <div class="result-value">${targetDate.toDateString()}</div>
+        `;
+      } else {
+        const endVal = document.getElementById('dateMathEnd').value;
+        if (!endVal) {
+          alert("Please select an end date.");
+          return;
+        }
+        const endDate = new Date(endVal);
+        const diffTime = Math.abs(endDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffWeeks = (diffDays / 7).toFixed(1);
+
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Duration Between Dates:</div>
+          <div class="result-value">${diffDays} Days (${diffWeeks} Weeks)</div>
+        `;
+      }
+    }
+
+    function calculateExactAge() {
+      const dobVal = document.getElementById('birthDateInput').value;
+      if (!dobVal) {
+        alert("Please enter your birth date.");
+        return;
+      }
+
+      const dob = new Date(dobVal);
+      const today = new Date();
+
+      let years = today.getFullYear() - dob.getFullYear();
+      let months = today.getMonth() - dob.getMonth();
+      let days = today.getDate() - dob.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      const totalMs = today - dob;
+      const totalDays = Math.floor(totalMs / (1000 * 60 * 60 * 24));
+      const totalHours = Math.floor(totalMs / (1000 * 60 * 60));
+
+      const resBox = document.getElementById('ageResult');
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="font-size: 13px; color: var(--muted, #667085);">Your Exact Age:</div>
+        <div class="result-value">${years} Years, ${months} Months, ${days} Days</div>
+        <div style="font-size: 13px; color: var(--muted, #667085); margin-top: 8px;">Total Days: ${totalDays.toLocaleString()} | Total Hours: ${totalHours.toLocaleString()}</div>
+      `;
+    }
+
+    // TAB 4: Timers Logic
+    let countdownInterval = null;
+    let timerInterval = null;
+    let timerSecondsLeft = 25 * 60;
+
+    function startEventCountdown() {
+      const targetVal = document.getElementById('countdownTargetDate').value;
+      const title = document.getElementById('countdownTitle').value || "Target Event";
+      const displayBox = document.getElementById('countdownDisplay');
+
+      if (!targetVal) {
+        alert("Please select a target date & time.");
+        return;
+      }
+
+      const targetTime = new Date(targetVal).getTime();
+      clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (diff <= 0) {
+          clearInterval(countdownInterval);
+          displayBox.innerHTML = `<div class="result-value">🎉 ${title} Has Arrived!</div>`;
+          return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        displayBox.style.display = 'block';
+        displayBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Countdown to ${title}:</div>
+          <div class="result-value">${d}d ${h}h ${m}m ${s}s</div>
+        `;
+      }, 1000);
+    }
+
+    function applyTimerPreset() {
+      const mins = parseInt(document.getElementById('timerPreset').value, 10);
+      timerSecondsLeft = mins * 60;
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timerSecondsLeft / 60);
+      const s = timerSecondsLeft % 60;
+      document.getElementById('timerClockText').textContent = 
+        `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    function startProductivityTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('timerStatusLabel').textContent = "Timer Running...";
+      timerInterval = setInterval(() => {
+        if (timerSecondsLeft <= 0) {
+          clearInterval(timerInterval);
+          document.getElementById('timerStatusLabel').textContent = "🔔 Time is Up!";
+          playBeepSound();
+          alert("Timer session completed!");
+          return;
+        }
+        timerSecondsLeft--;
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function pauseProductivityTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('timerStatusLabel').textContent = "Timer Paused";
+    }
+
+    function resetProductivityTimer() {
+      clearInterval(timerInterval);
+      applyTimerPreset();
+      document.getElementById('timerStatusLabel').textContent = "Ready to Focus";
+    }
+
+    // TAB 5: Travel Planner
+    function calculateTravelPlanner() {
+      const originOffset = parseFloat(document.getElementById('originCity').value);
+      const destOffset = parseFloat(document.getElementById('destCity').value);
+      const flightHours = parseFloat(document.getElementById('flightHours').value) || 0;
+
+      const tzDiff = destOffset - originOffset;
+      const resBox = document.getElementById('travelResult');
+
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="font-size: 13px; color: var(--muted, #667085);">Time Difference &amp; Travel Impact:</div>
+        <div class="result-value">Time Zone Difference: ${tzDiff >= 0 ? '+' + tzDiff : tzDiff} Hours</div>
+        <div style="font-size: 13px; color: var(--muted, #667085); margin-top: 6px;">Estimated Jet Lag Recovery: ~${Math.abs(Math.round(tzDiff))} Days</div>
+      `;
+    }
+
+    // TAB 6: Work Hours
+    function calculateWorkHours() {
+      const start = document.getElementById('shiftStart').value;
+      const end = document.getElementById('shiftEnd').value;
+      const breakMins = parseInt(document.getElementById('breakMins').value, 10) || 0;
+      const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+
+      if (!start || !end) {
+        alert("Please enter shift start and end times.");
+        return;
+      }
+
+      const startTime = new Date(`1970-01-01T${start}:00`);
+      let endTime = new Date(`1970-01-01T${end}:00`);
+
+      if (endTime < startTime) {
+        endTime.setDate(endTime.getDate() + 1); // Overnight shift
+      }
+
+      const diffMins = ((endTime - startTime) / 1000 / 60) - breakMins;
+      const decimalHours = (diffMins / 60).toFixed(2);
+      const totalPay = (decimalHours * rate).toFixed(2);
+
+      const resBox = document.getElementById('workHoursResult');
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="font-size: 13px; color: var(--muted, #667085);">Net Paid Hours:</div>
+        <div class="result-value">${decimalHours} Decimal Hours</div>
+        <div style="font-size: 16px; font-weight: 700; color: var(--primary, #635bff); margin-top: 4px;">Gross Pay: $ / ₹ ${totalPay}</div>
+      `;
+    }
+
+    // TAB 7: Special Tools
+    function calculateSpecialTool() {
+      const dateVal = document.getElementById('specialDateInput').value;
+      const type = document.getElementById('specialToolType').value;
+      const resBox = document.getElementById('specialResult');
+
+      if (!dateVal) {
+        alert("Please select a reference date.");
+        return;
+      }
+
+      const refDate = new Date(dateVal);
+
+      if (type === 'zodiac') {
+        const sign = getZodiacSign(refDate.getDate(), refDate.getMonth() + 1);
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Astrological Zodiac Sign:</div>
+          <div class="result-value">✨ ${sign}</div>
+        `;
+      } else if (type === 'pregnancy') {
+        const dueDate = new Date(refDate);
+        dueDate.setDate(dueDate.getDate() + 280);
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Estimated Pregnancy Due Date:</div>
+          <div class="result-value">👶 ${dueDate.toDateString()}</div>
+        `;
+      } else if (type === 'retirement') {
+        const retDate = new Date(refDate);
+        retDate.setFullYear(retDate.getFullYear() + 60);
+        resBox.style.display = 'block';
+        resBox.innerHTML = `
+          <div style="font-size: 13px; color: var(--muted, #667085);">Projected Retirement Date (Age 60):</div>
+          <div class="result-value">🏖️ ${retDate.toDateString()}</div>
+        `;
+      }
+    }
+
+    function getZodiacSign(day, month) {
+      const signs = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn"];
+      const dates = [20, 19, 20, 20, 21, 21, 22, 23, 23, 23, 22, 22];
+      return day < dates[month - 1] ? signs[month - 1] : signs[month];
+    }
+  </script>
+</body>
+</html> 
