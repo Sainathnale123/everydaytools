@@ -274,16 +274,16 @@
     .autocomplete-item:hover { background: #f8fafc; color: var(--primary, #635bff); }
 
     /* City Row Matrix */
-    .matrix-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
-    .city-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: border-color 0.2s; }
+    .matrix-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; overflow-x: auto; width: 100%; }
+    .city-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: border-color 0.2s; min-width: 650px; }
     .city-card:hover { border-color: rgba(99, 91, 255, 0.4); }
     .city-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
     .city-name { font-size: 16px; font-weight: 800; color: var(--text, #101828); display: flex; align-items: center; gap: 8px; }
     .city-meta { font-size: 12px; color: var(--muted, #667085); font-weight: 500; }
     
     /* Timeline Slider Bar */
-    .timeline-bar { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; background: #e2e8f0; border-radius: 8px; padding: 3px; overflow-x: auto; min-width: 600px; }
-    .time-slot { height: 38px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; cursor: pointer; user-select: none; transition: transform 0.15s, filter 0.15s; }
+    .timeline-bar { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; background: #e2e8f0; border-radius: 8px; padding: 3px; min-width: 600px; }
+    .time-slot { height: 42px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 8.5px; font-weight: 700; cursor: pointer; user-select: none; transition: transform 0.15s, filter 0.15s; line-height: 1.1; }
     .time-slot:hover { transform: scale(1.08); z-index: 10; }
     .time-slot.selected { outline: 2px solid #101828; outline-offset: -2px; }
     
@@ -310,6 +310,17 @@
     .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; margin-top: 0; }
     .internal-link-box { background: #e0e7ff; border-left: 4px solid #635bff; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
     .internal-link-box a { color: #635bff; font-weight: 700; text-decoration: underline; }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 768px) {
+      .calc-card { padding: 16px; }
+      .app-toolbar { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+      .toolbar-group { justify-content: space-between; width: 100%; }
+      .toolbar-group .btn-sm, .toolbar-group .form-input-sm { flex: 1; text-align: center; }
+      .city-card { min-width: 550px; padding: 12px; }
+      .actions-flex { flex-direction: column; }
+      .actions-flex .btn-sm { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -346,7 +357,7 @@
       <!-- Interactive Tool Section -->
       <section class="calc-card" aria-label="Interactive Time Zone Meeting Planner Tool">
         
-        <!-- App Toolbar (10+ Features Integrated) -->
+        <!-- App Toolbar -->
         <div class="app-toolbar">
           <div class="toolbar-group">
             <span class="toolbar-label">📅 Meeting Date:</span>
@@ -384,7 +395,7 @@
         </div>
 
         <!-- Dynamic City Timeline Matrix -->
-        <div id="matrixContainer" class="matrix-container" style="overflow-x: auto;">
+        <div id="matrixContainer" class="matrix-container">
           <!-- Rendered dynamically via JavaScript -->
         </div>
 
@@ -669,329 +680,550 @@
     </div>
   </footer>
 
-  <!-- Application Logic (Vanilla JavaScript) -->
-  <script>
-    // Comprehensive Global City Database
-    const CITY_DATABASE = [
-      { name: "New York", country: "United States", zone: "America/New_York", code: "JFK" },
-      { name: "London", country: "United Kingdom", zone: "Europe/London", code: "LHR" },
-      { name: "Tokyo", country: "Japan", zone: "Asia/Tokyo", code: "HND" },
-      { name: "Paris", country: "France", zone: "Europe/Paris", code: "CDG" },
-      { name: "Berlin", country: "Germany", zone: "Europe/Berlin", code: "BER" },
-      { name: "Sydney", country: "Australia", zone: "Australia/Sydney", code: "SYD" },
-      { name: "Dubai", country: "United Arab Emirates", zone: "Asia/Dubai", code: "DXB" },
-      { name: "Mumbai / New Delhi", country: "India", zone: "Asia/Kolkata", code: "DEL" },
-      { name: "Singapore", country: "Singapore", zone: "Asia/Singapore", code: "SIN" },
-      { name: "San Francisco / Los Angeles", country: "United States", zone: "America/Los_Angeles", code: "SFO" },
-      { name: "Chicago", country: "United States", zone: "America/Chicago", code: "ORD" },
-      { name: "Toronto", country: "Canada", zone: "America/Toronto", code: "YYZ" },
-      { name: "Hong Kong", country: "Hong Kong", zone: "Asia/Hong_Kong", code: "HKG" },
-      { name: "Sao Paulo", country: "Brazil", zone: "America/Sao_Paulo", code: "GRU" },
-      { name: "Auckland", country: "New Zealand", zone: "Pacific/Auckland", code: "AKL" }
-    ];
+  <!-- Corrected Application Logic -->
+<script>
+  const CITY_DATABASE = [
+    // Asia & Pacific
+    { name: "Calcutta / Kolkata", country: "India", zone: "Asia/Kolkata", code: "CCU" },
+    { name: "Mumbai / Bombay", country: "India", zone: "Asia/Kolkata", code: "BOM" },
+    { name: "Delhi / New Delhi", country: "India", zone: "Asia/Kolkata", code: "DEL" },
+    { name: "Bengaluru / Bangalore", country: "India", zone: "Asia/Kolkata", code: "BLR" },
+    { name: "Hyderabad", country: "India", zone: "Asia/Kolkata", code: "HYD" },
+    { name: "Chennai / Madras", country: "India", zone: "Asia/Kolkata", code: "MAA" },
+    { name: "Ahmedabad", country: "India", zone: "Asia/Kolkata", code: "AMD" },
+    { name: "Pune", country: "India", zone: "Asia/Kolkata", code: "PNQ" },
+    { name: "Tokyo", country: "Japan", zone: "Asia/Tokyo", code: "HND" },
+    { name: "Osaka", country: "Japan", zone: "Asia/Tokyo", code: "KIX" },
+    { name: "Singapore", country: "Singapore", zone: "Asia/Singapore", code: "SIN" },
+    { name: "Hong Kong", country: "Hong Kong", zone: "Asia/Hong_Kong", code: "HKG" },
+    { name: "Shanghai", country: "China", zone: "Asia/Shanghai", code: "PVG" },
+    { name: "Beijing", country: "China", zone: "Asia/Shanghai", code: "PEK" },
+    { name: "Shenzhen", country: "China", zone: "Asia/Shanghai", code: "SZX" },
+    { name: "Seoul", country: "South Korea", zone: "Asia/Seoul", code: "ICN" },
+    { name: "Bangkok", country: "Thailand", zone: "Asia/Bangkok", code: "BKK" },
+    { name: "Jakarta", country: "Indonesia", zone: "Asia/Jakarta", code: "CGK" },
+    { name: "Kuala Lumpur", country: "Malaysia", zone: "Asia/Kuala_Lumpur", code: "KUL" },
+    { name: "Manila", country: "Philippines", zone: "Asia/Manila", code: "MNL" },
+    { name: "Taipei", country: "Taiwan", zone: "Asia/Taipei", code: "TPE" },
+    { name: "Ho Chi Minh City", country: "Vietnam", zone: "Asia/Ho_Chi_Minh", code: "SGN" },
+    { name: "Hanoi", country: "Vietnam", zone: "Asia/Bangkok", code: "HAN" },
+    { name: "Sydney", country: "Australia", zone: "Australia/Sydney", code: "SYD" },
+    { name: "Melbourne", country: "Australia", zone: "Australia/Melbourne", code: "MEL" },
+    { name: "Brisbane", country: "Australia", zone: "Australia/Brisbane", code: "BNE" },
+    { name: "Adelaide", country: "Australia", zone: "Australia/Adelaide", code: "ADL" },
+    { name: "Perth", country: "Australia", zone: "Australia/Perth", code: "PER" },
+    { name: "Auckland", country: "New Zealand", zone: "Pacific/Auckland", code: "AKL" },
+    { name: "Wellington", country: "New Zealand", zone: "Pacific/Auckland", code: "WLG" },
+    { name: "Dhaka", country: "Bangladesh", zone: "Asia/Dhaka", code: "DAC" },
+    { name: "Karachi", country: "Pakistan", zone: "Asia/Karachi", code: "KHI" },
+    { name: "Lahore", country: "Pakistan", zone: "Asia/Karachi", code: "LHE" },
+    { name: "Islamabad", country: "Pakistan", zone: "Asia/Karachi", code: "ISB" },
+    { name: "Colombo", country: "Sri Lanka", zone: "Asia/Colombo", code: "CMB" },
+    { name: "Kathmandu", country: "Nepal", zone: "Asia/Kathmandu", code: "KTM" },
+    { name: "Tashkent", country: "Uzbekistan", zone: "Asia/Tashkent", code: "TAS" },
+    { name: "Almaty", country: "Kazakhstan", zone: "Asia/Almaty", code: "ALA" },
 
-    // State Variables
-    let selectedCities = [];
-    let selectedHourIndex = 14; // Default 2:00 PM local
-    let is24HourFormat = false;
+    // Middle East & Africa
+    { name: "Dubai", country: "United Arab Emirates", zone: "Asia/Dubai", code: "DXB" },
+    { name: "Abu Dhabi", country: "United Arab Emirates", zone: "Asia/Dubai", code: "AUH" },
+    { name: "Riyadh", country: "Saudi Arabia", zone: "Asia/Riyadh", code: "RUH" },
+    { name: "Jeddah", country: "Saudi Arabia", zone: "Asia/Riyadh", code: "JED" },
+    { name: "Tel Aviv", country: "Israel", zone: "Asia/Tel_Aviv", code: "TLV" },
+    { name: "Doha", country: "Qatar", zone: "Asia/Qatar", code: "DOH" },
+    { name: "Kuwait City", country: "Kuwait", zone: "Asia/Kuwait", code: "KWI" },
+    { name: "Muscat", country: "Oman", zone: "Asia/Muscat", code: "MCT" },
+    { name: "Manama", country: "Bahrain", zone: "Asia/Bahrain", code: "BAH" },
+    { name: "Amman", country: "Jordan", zone: "Asia/Amman", code: "AMM" },
+    { name: "Beirut", country: "Lebanon", zone: "Asia/Beirut", code: "BEY" },
+    { name: "Istanbul", country: "Turkey", zone: "Europe/Istanbul", code: "IST" },
+    { name: "Ankara", country: "Turkey", zone: "Europe/Istanbul", code: "ESB" },
+    { name: "Cairo", country: "Egypt", zone: "Africa/Cairo", code: "CAI" },
+    { name: "Johannesburg", country: "South Africa", zone: "Africa/Johannesburg", code: "JNB" },
+    { name: "Cape Town", country: "South Africa", zone: "Africa/Johannesburg", code: "CPT" },
+    { name: "Nairobi", country: "Kenya", zone: "Africa/Nairobi", code: "NBO" },
+    { name: "Lagos", country: "Nigeria", zone: "Africa/Lagos", code: "LOS" },
+    { name: "Casablanca", country: "Morocco", zone: "Africa/Casablanca", code: "CMN" },
+    { name: "Accra", country: "Ghana", zone: "Africa/Accra", code: "ACC" },
+    { name: "Addis Ababa", country: "Ethiopia", zone: "Africa/Addis_Ababa", code: "ADD" },
 
-    // Initialization
-    window.addEventListener('DOMContentLoaded', () => {
-      // Set default meeting date to today
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('meetingDate').value = today;
+    // Europe
+    { name: "London", country: "United Kingdom", zone: "Europe/London", code: "LHR" },
+    { name: "Manchester", country: "United Kingdom", zone: "Europe/London", code: "MAN" },
+    { name: "Edinburgh", country: "United Kingdom", zone: "Europe/London", code: "EDI" },
+    { name: "Paris", country: "France", zone: "Europe/Paris", code: "CDG" },
+    { name: "Berlin", country: "Germany", zone: "Europe/Berlin", code: "BER" },
+    { name: "Frankfurt", country: "Germany", zone: "Europe/Berlin", code: "FRA" },
+    { name: "Munich", country: "Germany", zone: "Europe/Berlin", code: "MUC" },
+    { name: "Hamburg", country: "Germany", zone: "Europe/Berlin", code: "HAM" },
+    { name: "Amsterdam", country: "Netherlands", zone: "Europe/Amsterdam", code: "AMS" },
+    { name: "Madrid", country: "Spain", zone: "Europe/Madrid", code: "MAD" },
+    { name: "Barcelona", country: "Spain", zone: "Europe/Madrid", code: "BCN" },
+    { name: "Rome", country: "Italy", zone: "Europe/Rome", code: "FCO" },
+    { name: "Milan", country: "Italy", zone: "Europe/Rome", code: "MXP" },
+    { name: "Zurich", country: "Switzerland", zone: "Europe/Zurich", code: "ZRH" },
+    { name: "Geneva", country: "Switzerland", zone: "Europe/Zurich", code: "GVA" },
+    { name: "Vienna", country: "Austria", zone: "Europe/Vienna", code: "VIE" },
+    { name: "Dublin", country: "Ireland", zone: "Europe/Dublin", code: "DUB" },
+    { name: "Brussels", country: "Belgium", zone: "Europe/Brussels", code: "BRU" },
+    { name: "Stockholm", country: "Sweden", zone: "Europe/Stockholm", code: "ARN" },
+    { name: "Oslo", country: "Norway", zone: "Europe/Oslo", code: "OSL" },
+    { name: "Copenhagen", country: "Denmark", zone: "Europe/Copenhagen", code: "CPH" },
+    { name: "Helsinki", country: "Finland", zone: "Europe/Helsinki", code: "HEL" },
+    { name: "Warsaw", country: "Poland", zone: "Europe/Warsaw", code: "WAW" },
+    { name: "Prague", country: "Czech Republic", zone: "Europe/Prague", code: "PRG" },
+    { name: "Budapest", country: "Hungary", zone: "Europe/Budapest", code: "BUD" },
+    { name: "Athens", country: "Greece", zone: "Europe/Athens", code: "ATH" },
+    { name: "Lisbon", country: "Portugal", zone: "Europe/Lisbon", code: "LIS" },
+    { name: "Bucharest", country: "Romania", zone: "Europe/Bucharest", code: "OTP" },
+    { name: "Moscow", country: "Russia", zone: "Europe/Moscow", code: "SVO" },
+    { name: "Saint Petersburg", country: "Russia", zone: "Europe/Moscow", code: "LED" },
 
-      // Parse URL Parameters if available
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlCities = urlParams.get('cities');
-      const urlHour = urlParams.get('hour');
+    // North America
+    { name: "New York", country: "United States", zone: "America/New_York", code: "JFK" },
+    { name: "San Francisco", country: "United States", zone: "America/Los_Angeles", code: "SFO" },
+    { name: "Los Angeles", country: "United States", zone: "America/Los_Angeles", code: "LAX" },
+    { name: "Chicago", country: "United States", zone: "America/Chicago", code: "ORD" },
+    { name: "Seattle", country: "United States", zone: "America/Los_Angeles", code: "SEA" },
+    { name: "San Jose", country: "United States", zone: "America/Los_Angeles", code: "SJC" },
+    { name: "Austin", country: "United States", zone: "America/Chicago", code: "AUS" },
+    { name: "Dallas / Fort Worth", country: "United States", zone: "America/Chicago", code: "DFW" },
+    { name: "Houston", country: "United States", zone: "America/Chicago", code: "IAH" },
+    { name: "Boston", country: "United States", zone: "America/New_York", code: "BOS" },
+    { name: "Washington D.C.", country: "United States", zone: "America/New_York", code: "IAD" },
+    { name: "Atlanta", country: "United States", zone: "America/New_York", code: "ATL" },
+    { name: "Miami", country: "United States", zone: "America/New_York", code: "MIA" },
+    { name: "Philadelphia", country: "United States", zone: "America/New_York", code: "PHL" },
+    { name: "Denver", country: "United States", zone: "America/Denver", code: "DEN" },
+    { name: "Phoenix", country: "United States", zone: "America/Phoenix", code: "PHX" },
+    { name: "Salt Lake City", country: "United States", zone: "America/Denver", code: "SLC" },
+    { name: "Las Vegas", country: "United States", zone: "America/Los_Angeles", code: "LAS" },
+    { name: "Honolulu", country: "United States", zone: "Pacific/Honolulu", code: "HNL" },
+    { name: "Anchorage", country: "United States", zone: "America/Anchorage", code: "ANC" },
+    { name: "Toronto", country: "Canada", zone: "America/Toronto", code: "YYZ" },
+    { name: "Vancouver", country: "Canada", zone: "America/Vancouver", code: "YVR" },
+    { name: "Montreal", country: "Canada", zone: "America/Toronto", code: "YUL" },
+    { name: "Calgary", country: "Canada", zone: "America/Edmonton", code: "YYC" },
+    { name: "Ottawa", country: "Canada", zone: "America/Toronto", code: "YOW" },
+    { name: "Mexico City", country: "Mexico", zone: "America/Mexico_City", code: "MEX" },
+    { name: "Guadalajara", country: "Mexico", zone: "America/Mexico_City", code: "GDL" },
+    { name: "Monterrey", country: "Mexico", zone: "America/Monterrey", code: "MTY" },
 
-      if (urlCities) {
-        const cityNames = urlCities.split(',');
-        cityNames.forEach(name => {
-          const found = CITY_DATABASE.find(c => c.name.toLowerCase() === name.toLowerCase());
-          if (found) selectedCities.push(found);
-        });
+    // Latin America
+    { name: "Sao Paulo", country: "Brazil", zone: "America/Sao_Paulo", code: "GRU" },
+    { name: "Rio de Janeiro", country: "Brazil", zone: "America/Sao_Paulo", code: "GIG" },
+    { name: "Brasilia", country: "Brazil", zone: "America/Sao_Paulo", code: "BSB" },
+    { name: "Buenos Aires", country: "Argentina", zone: "America/Argentina/Buenos_Aires", code: "EZE" },
+    { name: "Santiago", country: "Chile", zone: "America/Santiago", code: "SCL" },
+    { name: "Bogota", country: "Colombia", zone: "America/Bogota", code: "BOG" },
+    { name: "Lima", country: "Peru", zone: "America/Lima", code: "LIM" },
+    { name: "Caracas", country: "Venezuela", zone: "America/Caracas", code: "CCS" },
+    { name: "Quito", country: "Ecuador", zone: "America/Guayaquil", code: "UIO" },
+    { name: "Montevideo", country: "Uruguay", zone: "America/Montevideo", code: "MVD" },
+    { name: "San Jose", country: "Costa Rica", zone: "America/Costa_Rica", code: "SJO" },
+    { name: "Panama City", country: "Panama", zone: "America/Panama", code: "PTY" }
+  ];
+
+  let selectedCities = [];
+  let selectedSlotIndex = 18;
+  let is24HourFormat = false;
+
+  function getPrimaryBaseUtcTimestamp(targetDateStr) {
+    if (!selectedCities || selectedCities.length === 0) {
+      return Date.parse(`${targetDateStr}T00:00:00Z`);
+    }
+
+    const primaryZone = selectedCities[0].zone;
+    const utcDate = new Date(`${targetDateStr}T00:00:00Z`);
+
+    for (let offsetHours = -24; offsetHours <= 24; offsetHours++) {
+      const candidateMs = utcDate.getTime() + (offsetHours * 3600000);
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: primaryZone,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).formatToParts(new Date(candidateMs));
+      
+      const h = parseInt(parts.find(p => p.type === 'hour').value, 10) % 24;
+      const m = parseInt(parts.find(p => p.type === 'minute').value, 10);
+      
+      if (h === 0 && m === 0) {
+        return candidateMs;
       }
+    }
+    return utcDate.getTime();
+  }
 
-      if (urlHour !== null && !isNaN(urlHour)) {
-        selectedHourIndex = parseInt(urlHour, 10);
-      }
+  function getSlotTimestamp(targetDateStr, slotIndex) {
+    const baseUtcMs = getPrimaryBaseUtcTimestamp(targetDateStr);
+    return baseUtcMs + (slotIndex * 3600000);
+  }
 
-      // Default fallback cities if none loaded
-      if (selectedCities.length === 0) {
-        const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const localMatch = CITY_DATABASE.find(c => c.zone === userZone) || { name: "Your Location", country: "Local Time", zone: userZone, code: "LOC" };
-        
-        selectedCities = [
-          localMatch,
-          CITY_DATABASE.find(c => c.name.includes("London")) || CITY_DATABASE[1],
-          CITY_DATABASE.find(c => c.name.includes("New York")) || CITY_DATABASE[0],
-          CITY_DATABASE.find(c => c.name.includes("Tokyo")) || CITY_DATABASE[2]
-        ];
-      }
+  function getLocalDetailsFromTimestamp(timestamp, timeZone) {
+    const date = new Date(timestamp);
 
-      renderMatrix();
+    const hourFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      hour: 'numeric',
+      hour12: false
     });
 
-    // Auto-complete City Search Handler
-    function handleCitySearch(e) {
-      const query = e.target.value.toLowerCase().trim();
-      const listContainer = document.getElementById('autocompleteList');
+    const minuteFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      minute: 'numeric'
+    });
 
-      if (query.length < 2) {
-        listContainer.style.display = 'none';
-        return;
-      }
+    const fullTimeFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZoneName: 'short',
+      hour12: !is24HourFormat
+    });
 
-      const matches = CITY_DATABASE.filter(item => 
-        item.name.toLowerCase().includes(query) ||
-        item.country.toLowerCase().includes(query) ||
-        item.code.toLowerCase().includes(query) ||
-        item.zone.toLowerCase().includes(query)
-      );
+    const localHour = parseInt(hourFormatter.formatToParts(date).find(p => p.type === 'hour').value, 10) % 24;
+    const localMinute = parseInt(minuteFormatter.formatToParts(date).find(p => p.type === 'minute').value, 10);
+    const formattedTimeString = fullTimeFormatter.format(date);
 
-      if (matches.length === 0) {
-        listContainer.style.display = 'none';
-        return;
-      }
+    return { localHour, localMinute, formattedTimeString, date };
+  }
 
-      listContainer.innerHTML = matches.map(item => `
-        <div class="autocomplete-item" onclick="addCity('${item.name}')">
-          <span><strong>${item.name}</strong> (${item.country})</span>
-          <span style="color: var(--muted, #667085); font-size: 11px;">${item.code} | ${item.zone}</span>
-        </div>
-      `).join('');
+  window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    const meetingDateEl = document.getElementById('meetingDate');
+    if (meetingDateEl) meetingDateEl.value = today;
 
-      listContainer.style.display = 'block';
+    const citySearchEl = document.getElementById('citySearchInput');
+    if (citySearchEl) citySearchEl.addEventListener('input', handleCitySearch);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCities = urlParams.get('cities');
+    const urlSlot = urlParams.get('slot');
+
+    if (urlCities) {
+      const cityNames = urlCities.split(',');
+      cityNames.forEach(name => {
+        const found = CITY_DATABASE.find(c => c.name.toLowerCase().includes(decodeURIComponent(name).toLowerCase()));
+        if (found) selectedCities.push(found);
+      });
     }
 
-    function addCity(cityName) {
-      const cityObj = CITY_DATABASE.find(c => c.name === cityName);
-      if (cityObj && !selectedCities.some(c => c.name === cityObj.name)) {
-        selectedCities.push(cityObj);
-        renderMatrix();
-      }
-      document.getElementById('citySearchInput').value = '';
-      document.getElementById('autocompleteList').style.display = 'none';
+    if (urlSlot !== null && !isNaN(urlSlot)) {
+      selectedSlotIndex = parseInt(urlSlot, 10) % 24;
     }
 
-    function removeCity(index) {
-      if (selectedCities.length <= 1) {
-        alert("You must keep at least one location in the matrix.");
-        return;
-      }
-      selectedCities.splice(index, 1);
+    if (selectedCities.length === 0) {
+      detectUserLocation();
+    } else {
       renderMatrix();
     }
+  });
 
-    function toggleTimeFormat() {
-      is24HourFormat = !is24HourFormat;
-      document.getElementById('toggleFormatBtn').textContent = is24HourFormat ? "24-Hour (Military)" : "12-Hour (AM/PM)";
-      renderMatrix();
-    }
-
-    function resetToCurrentLocation() {
+  function detectUserLocation() {
+    try {
       const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const userDate = new Date();
-      selectedHourIndex = userDate.getHours();
-      renderMatrix();
+      const matchedCity = CITY_DATABASE.find(c => c.zone === userZone);
+
+      const localUserCity = matchedCity || {
+        name: userZone.split('/')[1]?.replace(/_/g, ' ') || "My Location",
+        country: userZone.split('/')[0] || "Local",
+        zone: userZone,
+        code: "LOC"
+      };
+
+      selectedCities = [
+        localUserCity,
+        CITY_DATABASE.find(c => c.zone === "Europe/London") || CITY_DATABASE[1],
+        CITY_DATABASE.find(c => c.zone === "America/New_York") || CITY_DATABASE[2],
+        CITY_DATABASE.find(c => c.zone === "Asia/Tokyo") || CITY_DATABASE[3]
+      ].filter((city, index, self) => index === self.findIndex(t => t.zone === city.zone));
+
+      selectedSlotIndex = 18;
+    } catch (e) {
+      selectedCities = [CITY_DATABASE[0], CITY_DATABASE[1], CITY_DATABASE[2], CITY_DATABASE[3]];
+    }
+  }
+
+  function handleCitySearch(e) {
+    const query = e.target.value.toLowerCase().trim();
+    const listContainer = document.getElementById('autocompleteList');
+    if (!listContainer) return;
+
+    if (query.length < 2) {
+      listContainer.style.display = 'none';
+      return;
     }
 
-    // Dynamic Render Engine
-    function renderMatrix() {
-      const container = document.getElementById('matrixContainer');
-      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
-      container.innerHTML = '';
+    const matches = CITY_DATABASE.filter(item => 
+      item.name.toLowerCase().includes(query) ||
+      item.country.toLowerCase().includes(query) ||
+      item.code.toLowerCase().includes(query) ||
+      item.zone.toLowerCase().includes(query)
+    );
 
-      selectedCities.forEach((city, cityIdx) => {
-        const card = document.createElement('div');
-        card.className = 'city-card';
+    if (matches.length === 0) {
+      listContainer.style.display = 'none';
+      return;
+    }
 
-        // Calculate offset and current local time string for city
-        const cityDate = new Date(`${targetDateStr}T12:00:00Z`);
-        const timeFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: city.zone,
-          hour: 'numeric',
-          minute: 'numeric',
-          timeZoneName: 'short',
-          hour12: !is24HourFormat
-        });
-        const formattedTimeString = timeFormatter.format(cityDate);
+    listContainer.innerHTML = matches.map(item => `
+      <div class="autocomplete-item" onclick="addCity('${item.name.replace(/'/g, "\\'")}')">
+        <span><strong>${item.name}</strong> (${item.country})</span>
+        <span style="color: var(--muted, #667085); font-size: 11px;">${item.code} | ${item.zone}</span>
+      </div>
+    `).join('');
 
-        // Header Row
-        card.innerHTML = `
-          <div class="city-header">
-            <div class="city-name">
-              📍 ${city.name} <span class="city-meta">(${city.country})</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span class="city-meta" style="font-weight: 700; color: var(--primary, #635bff);">${formattedTimeString}</span>
-              <button type="button" class="btn-sm" style="padding: 4px 8px; font-size: 11px;" onclick="removeCity(${cityIdx})" title="Remove City">✕</button>
-            </div>
+    listContainer.style.display = 'block';
+  }
+
+  function addCity(cityName) {
+    const cityObj = CITY_DATABASE.find(c => c.name === cityName);
+    if (cityObj && !selectedCities.some(c => c.zone === cityObj.zone)) {
+      selectedCities.push(cityObj);
+      renderMatrix();
+    }
+    const inputEl = document.getElementById('citySearchInput');
+    const listEl = document.getElementById('autocompleteList');
+    if (inputEl) inputEl.value = '';
+    if (listEl) listEl.style.display = 'none';
+  }
+
+  function removeCity(index) {
+    if (selectedCities.length <= 1) {
+      alert("You must keep at least one location in the matrix.");
+      return;
+    }
+    selectedCities.splice(index, 1);
+    renderMatrix();
+  }
+
+  function toggleTimeFormat() {
+    is24HourFormat = !is24HourFormat;
+    const btn = document.getElementById('toggleFormatBtn');
+    if (btn) btn.textContent = is24HourFormat ? "24-Hour (Military)" : "12-Hour (AM/PM)";
+    renderMatrix();
+  }
+
+  function resetToCurrentLocation() {
+    detectUserLocation();
+    renderMatrix();
+  }
+
+  function renderMatrix() {
+    const container = document.getElementById('matrixContainer');
+    if (!container) return;
+
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    container.innerHTML = '';
+
+    selectedCities.forEach((city, cityIdx) => {
+      const card = document.createElement('div');
+      card.className = 'city-card';
+
+      const currentSlotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+      const { formattedTimeString } = getLocalDetailsFromTimestamp(currentSlotTs, city.zone);
+
+      card.innerHTML = `
+        <div class="city-header">
+          <div class="city-name">
+            📍 ${city.name} <span class="city-meta">(${city.country})</span>
           </div>
-        `;
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="city-meta" style="font-weight: 700; color: var(--primary, #635bff);">${formattedTimeString}</span>
+            <button type="button" class="btn-sm" style="padding: 4px 8px; font-size: 11px;" onclick="removeCity(${cityIdx})" title="Remove City">✕</button>
+          </div>
+        </div>
+      `;
 
-        // Timeline Slider Row (24 Hours)
-        const timeline = document.createElement('div');
-        timeline.className = 'timeline-bar';
+      const timeline = document.createElement('div');
+      timeline.className = 'timeline-bar';
 
-        for (let hour = 0; hour < 24; hour++) {
-          const slot = document.createElement('div');
-          
-          // Determine hour class color
-          let slotClass = 'slot-red';
-          if (hour >= 9 && hour < 17) {
-            slotClass = 'slot-green'; // Work Hours
-          } else if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 22)) {
-            slotClass = 'slot-yellow'; // Awake/Personal
-          }
+      for (let slotIdx = 0; slotIdx < 24; slotIdx++) {
+        const slotTs = getSlotTimestamp(targetDateStr, slotIdx);
+        const { localHour, localMinute } = getLocalDetailsFromTimestamp(slotTs, city.zone);
 
-          const isSelected = (hour === selectedHourIndex);
-          slot.className = `time-slot ${slotClass} ${isSelected ? 'selected' : ''}`;
-
-          // Format label
-          let hourLabel = hour;
-          if (!is24HourFormat) {
-            const ampm = hour >= 12 ? 'P' : 'A';
-            const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-            hourLabel = `${displayHour}${ampm}`;
-          }
-
-          slot.innerHTML = hourLabel;
-          slot.onclick = () => {
-            selectedHourIndex = hour;
-            renderMatrix();
-          };
-
-          timeline.appendChild(slot);
+        let slotClass = 'slot-red';
+        if (localHour >= 9 && localHour < 17) {
+          slotClass = 'slot-green';
+        } else if ((localHour >= 7 && localHour < 9) || (localHour >= 17 && localHour < 22)) {
+          slotClass = 'slot-yellow';
         }
 
-        card.appendChild(timeline);
-        container.appendChild(card);
-      });
+        const isSelected = (slotIdx === selectedSlotIndex);
+        const slot = document.createElement('div');
+        slot.className = `time-slot ${slotClass} ${isSelected ? 'selected' : ''}`;
 
-      updateResultsSummary();
+        const minText = localMinute > 0 ? `:${String(localMinute).padStart(2, '0')}` : '';
+        let hourText = '';
+
+        if (!is24HourFormat) {
+          const ampm = localHour >= 12 ? 'P' : 'A';
+          const displayHour = localHour % 12 === 0 ? 12 : localHour % 12;
+          hourText = `${displayHour}${minText}${ampm}`;
+        } else {
+          hourText = `${String(localHour).padStart(2, '0')}${minText}`;
+        }
+
+        slot.innerHTML = hourText;
+        slot.onclick = () => {
+          selectedSlotIndex = slotIdx;
+          renderMatrix();
+        };
+
+        timeline.appendChild(slot);
+      }
+
+      card.appendChild(timeline);
+      container.appendChild(card);
+    });
+
+    updateResultsSummary();
+  }
+
+  function updateResultsSummary() {
+    if (selectedCities.length === 0) return;
+
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    const primaryCity = selectedCities[0];
+    const slotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+    
+    const primaryDetails = getLocalDetailsFromTimestamp(slotTs, primaryCity.zone);
+
+    let sleepingCount = 0;
+    selectedCities.forEach(city => {
+      const { localHour } = getLocalDetailsFromTimestamp(slotTs, city.zone);
+      if (localHour < 7 || localHour >= 22) {
+        sleepingCount++;
+      }
+    });
+
+    const fairnessPercent = Math.max(0, Math.round(((selectedCities.length - sleepingCount) / selectedCities.length) * 100));
+
+    const timeSummaryEl = document.getElementById('selectedTimeSummary');
+    const fairnessScoreEl = document.getElementById('fairnessScore');
+
+    if (timeSummaryEl) {
+      timeSummaryEl.textContent = `📅 Target Meeting: ${targetDateStr} at ${primaryDetails.formattedTimeString} (${primaryCity.name} Baseline)`;
     }
+    if (fairnessScoreEl) {
+      fairnessScoreEl.textContent = `Fairness Index: ${fairnessPercent}% (${selectedCities.length - sleepingCount}/${selectedCities.length} participants during suitable awake hours)`;
+    }
+  }
 
-    // Results & Score Calculator
-    function updateResultsSummary() {
-      if (selectedCities.length === 0) return;
+  function findBestOverlap() {
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    let bestSlot = 0;
+    let maxScore = -999;
 
-      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
-      const primaryCity = selectedCities[0];
-
-      // Format selected hour
-      let hourStr = selectedHourIndex < 10 ? `0${selectedHourIndex}:00` : `${selectedHourIndex}:00`;
-      
-      let summaryText = `Selected Meeting: ${targetDateStr} @ ${hourStr} (${primaryCity.name} Time)\n`;
-      let sleepingCount = 0;
+    for (let slotIdx = 0; slotIdx < 24; slotIdx++) {
+      let score = 0;
+      const slotTs = getSlotTimestamp(targetDateStr, slotIdx);
 
       selectedCities.forEach(city => {
-        // Evaluate local hour in each city relative to selected Primary hour
-        const baseDate = new Date(`${targetDateStr}T${hourStr}:00`);
-        const cityLocalHour = (selectedHourIndex) % 24; // Simple matrix align
-        
-        if (cityLocalHour < 7 || cityLocalHour >= 22) {
-          sleepingCount++;
-        }
+        const { localHour } = getLocalDetailsFromTimestamp(slotTs, city.zone);
+        if (localHour >= 9 && localHour < 17) score += 3;
+        else if ((localHour >= 7 && localHour < 9) || (localHour >= 17 && localHour < 22)) score += 1;
+        else score -= 4;
       });
 
-      const fairnessPercent = Math.max(0, Math.round(((selectedCities.length - sleepingCount) / selectedCities.length) * 100));
-
-      document.getElementById('selectedTimeSummary').textContent = `📅 Target Meeting: ${targetDateStr} at ${hourStr} (${primaryCity.name} Baseline)`;
-      document.getElementById('fairnessScore').textContent = `Fairness Index: ${fairnessPercent}% (${selectedCities.length - sleepingCount}/${selectedCities.length} participants during suitable awake hours)`;
-    }
-
-    // Auto-Find Best Overlap Feature
-    function findBestOverlap() {
-      let bestHour = 14;
-      let maxScore = -1;
-
-      for (let hour = 0; hour < 24; hour++) {
-        let score = 0;
-        selectedCities.forEach(() => {
-          if (hour >= 9 && hour < 17) score += 3; // Green
-          else if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 22)) score += 1; // Yellow
-          else score -= 3; // Red
-        });
-
-        if (score > maxScore) {
-          maxScore = score;
-          bestHour = hour;
-        }
+      if (score > maxScore) {
+        maxScore = score;
+        bestSlot = slotIdx;
       }
-
-      selectedHourIndex = bestHour;
-      renderMatrix();
-      alert(`⚡ Optimal meeting time found! Set to ${bestHour}:00 based on participant work hour alignment.`);
     }
 
-    // Export Utilities
-    function exportToGoogleCalendar() {
-      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
-      const startHour = selectedHourIndex < 10 ? `0${selectedHourIndex}` : `${selectedHourIndex}`;
-      const endHourStr = (selectedHourIndex + 1) < 10 ? `0${selectedHourIndex + 1}` : `${selectedHourIndex + 1}`;
+    selectedSlotIndex = bestSlot;
+    renderMatrix();
+    
+    const slotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+    const primaryDetails = getLocalDetailsFromTimestamp(slotTs, selectedCities[0].zone);
+    alert(`⚡ Optimal meeting time found! Set to ${primaryDetails.formattedTimeString} (${selectedCities[0].name} baseline).`);
+  }
 
-      const startTimeFormatted = `${targetDateStr.replace(/-/g, '')}T${startHour}0000Z`;
-      const endTimeFormatted = `${targetDateStr.replace(/-/g, '')}T${endHourStr}0000Z`;
+  function exportToGoogleCalendar() {
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    const durationEl = document.getElementById('meetingDuration');
+    const durationMins = durationEl ? parseInt(durationEl.value, 10) : 60;
+    
+    const slotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+    const startDate = new Date(slotTs);
+    const endDate = new Date(slotTs + durationMins * 60000);
 
-      const title = encodeURIComponent("Global Team Meeting Across Time Zones");
-      const details = encodeURIComponent(`Scheduled via Everyday Tools Time Zone Planner.\nLocations: ${selectedCities.map(c => c.name).join(', ')}`);
-      
-      const googleCalUrl = `https://calendar.google.com/render?action=TEMPLATE&text=${title}&dates=${startTimeFormatted}/${endTimeFormatted}&details=${details}`;
-      window.open(googleCalUrl, '_blank');
-    }
+    const startIso = startDate.toISOString().replace(/-|:|\.\d\d\d/g, '');
+    const endIso = endDate.toISOString().replace(/-|:|\.\d\d\d/g, '');
 
-    function exportToICS() {
-      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
-      const startHour = selectedHourIndex < 10 ? `0${selectedHourIndex}` : `${selectedHourIndex}`;
-      
-      const icsData = `BEGIN:VCALENDAR
+    const title = encodeURIComponent("Global Team Meeting Across Time Zones");
+    const details = encodeURIComponent(`Scheduled via Everyday Tools Time Zone Planner.\nLocations: ${selectedCities.map(c => c.name).join(', ')}`);
+    
+    const googleCalUrl = `https://calendar.google.com/render?action=TEMPLATE&text=${title}&dates=${startIso}/${endIso}&details=${details}`;
+    window.open(googleCalUrl, '_blank');
+  }
+
+  function exportToICS() {
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    const durationEl = document.getElementById('meetingDuration');
+    const durationMins = durationEl ? parseInt(durationEl.value, 10) : 60;
+    
+    const slotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+    const startDate = new Date(slotTs);
+    const endDate = new Date(slotTs + durationMins * 60000);
+
+    const startIso = startDate.toISOString().replace(/-|:|\.\d\d\d/g, '');
+    const endIso = endDate.toISOString().replace(/-|:|\.\d\d\d/g, '');
+    
+    const icsData = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Everyday Tools//Time Zone Meeting Planner//EN
 BEGIN:VEVENT
 SUMMARY:Global Team Sync Meeting
 DESCRIPTION:Multi-city meeting planned across ${selectedCities.map(c => c.name).join(', ')}.
-DTSTART:${targetDateStr.replace(/-/g, '')}T${startHour}0000Z
-DTEND:${targetDateStr.replace(/-/g, '')}T${selectedHourIndex + 1}0000Z
+DTSTART:${startIso}
+DTEND:${endIso}
 END:VEVENT
 END:VCALENDAR`;
 
-      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.setAttribute('download', 'meeting-invite.ics');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'meeting-invite.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
-    function copySlackMarkdown() {
-      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
-      const hourStr = selectedHourIndex < 10 ? `0${selectedHourIndex}:00` : `${selectedHourIndex}:00`;
+  function copySlackMarkdown() {
+    const meetingDateEl = document.getElementById('meetingDate');
+    const targetDateStr = (meetingDateEl && meetingDateEl.value) ? meetingDateEl.value : new Date().toISOString().split('T')[0];
+    const primaryCity = selectedCities[0];
+    const slotTs = getSlotTimestamp(targetDateStr, selectedSlotIndex);
+    const primaryDetails = getLocalDetailsFromTimestamp(slotTs, primaryCity.zone);
 
-      let summary = `📅 *Proposed Global Meeting Time*\n*Date:* ${targetDateStr}\n*Proposed Baseline:* ${hourStr} (${selectedCities[0].name})\n\n*Converted Participant Times:*\n`;
-      
-      selectedCities.forEach(city => {
-        summary += `• *${city.name} (${city.country}):* ${hourStr}\n`;
-      });
+    let summary = `📅 *Proposed Global Meeting Time*\n*Date:* ${targetDateStr}\n*Primary Baseline:* ${primaryDetails.formattedTimeString} (${primaryCity.name})\n\n*Converted Participant Times:*\n`;
+    
+    selectedCities.forEach(city => {
+      const { formattedTimeString } = getLocalDetailsFromTimestamp(slotTs, city.zone);
+      summary += `• *${city.name} (${city.country}):* ${formattedTimeString}\n`;
+    });
 
-      summary += `\n_Generated via Everyday Tools Time Zone Planner_`;
+    summary += `\n_Generated via Everyday Tools Time Zone Planner_`;
 
-      navigator.clipboard.writeText(summary).then(() => {
-        alert("💬 Formatted Slack / MS Teams meeting summary copied to clipboard!");
-      });
-    }
+    navigator.clipboard.writeText(summary).then(() => {
+      alert("💬 Formatted Slack / MS Teams meeting summary copied to clipboard!");
+    });
+  }
 
-    function copyShareableURL() {
-      const cityNames = selectedCities.map(c => encodeURIComponent(c.name)).join(',');
-      const shareUrl = `${window.location.origin}${window.location.pathname}?cities=${cityNames}&hour=${selectedHourIndex}`;
+  function copyShareableURL() {
+    const cityNames = selectedCities.map(c => encodeURIComponent(c.name)).join(',');
+    const shareUrl = `${window.location.origin}${window.location.pathname}?cities=${cityNames}&slot=${selectedSlotIndex}`;
 
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        alert("🔗 Dynamic share link copied to clipboard!");
-      });
-    }
-  </script>
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      alert("🔗 Dynamic share link copied to clipboard!");
+    });
+  }
+</script>
 </body>
 </html>
