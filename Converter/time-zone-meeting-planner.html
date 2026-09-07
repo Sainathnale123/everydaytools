@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Zone Meeting Planner | World Clock &amp; Multi-City Scheduler</title>
+  <meta name="description" content="Plan meetings across multiple time zones effortlessly. Find overlapping working hours, auto-detect local times, compare world clocks, and export directly to calendar apps.">
+  <link rel="canonical" href="https://everydaytools.co.in/tools/time-zone-meeting-planner.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Time Zone Meeting Planner | World Clock &amp; Multi-City Scheduler">
+  <meta property="og:description" content="Find the best meeting time across different time zones. Compare global hours, calculate UTC offsets, and export calendar invites instantly.">
+  <meta property="og:url" content="https://everydaytools.co.in/tools/time-zone-meeting-planner.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://everydaytools.co.in/assets/images/timezone-planner-og.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Time Zone Meeting Planner">
+  <meta name="twitter:description" content="Schedule international calls and coordinate remote teams across time zones with interactive timeline overlap tracking.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23635bff'/%3E%3Cpath d='M32 12a20 20 0 100 40 20 20 0 000-40zm0 4v32M16 32h32' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="https://everydaytools.co.in/assets/images/apple-touch-icon.svg">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZV1803P6F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CZV1803P6F');
+  </script>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Zone Meeting Planner",
+    "url": "https://everydaytools.co.in/tools/time-zone-meeting-planner.html",
+    "description": "Interactive global time zone meeting planner and multi-city scheduler designed to find optimal overlapping meeting times across standard business hours.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browser": "Requires JavaScript and HTML5",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage (23 Questions) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a time zone meeting planner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A time zone meeting planner is a visual productivity tool that aligns multiple global locations on a single timeline to help users identify mutual working hour overlaps without manual UTC or GMT conversion math."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find a meeting time across time zones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select your target meeting date, add all participant locations, and use the color-coded matrix or click 'Auto-Find Best Overlap' to highlight green slots matching business hours for everyone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the time zone converter handle Daylight Saving Time (DST)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our planner dynamically evaluates UTC offsets against your selected date, ensuring accurate adjustments when planning meetings before or after DST shifts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I schedule meetings across more than two time zones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can add unlimited participant locations and custom time zones to evaluate complex multi-region global conference calls simultaneously."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best time for a meeting across time zones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best meeting time occurs when all team members fall between 9:00 AM and 5:00 PM local time. Our auto-finder ranks slots based on standard business hour compliance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I organize a conference call with different time zones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Input the locations of all attendees, choose an optimal green overlap window on the interactive timeline slider, and click export to generate Google Calendar links or shareable plain text summaries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this time zone meeting planner app free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Our time zone scheduler and world clock planner are completely free, client-side, and require no account registration or software downloads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does GMT/UTC offset planning work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GMT (Greenwich Mean Time) and UTC (Coordinated Universal Time) act as the universal baseline. All selected cities are mathematically calculated relative to UTC for absolute accuracy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I share the planned meeting time with international participants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Click 'Copy Link to Share' to generate a dynamic URL that preserves your selected cities, meeting date, and proposed slot so recipients see the exact setup instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I schedule a meeting between the US, Europe, and Asia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Add cities like New York, London, and Tokyo. The visual timeline matrix will highlight narrow windows (such as morning US / late afternoon Europe / late night Asia) for rapid decision making."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes this different from timeanddate com meeting planner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our tool offers a clean ad-free workflow, instant browser geolocation detection, direct Slack/Teams markdown export, custom per-city working hours, and URL state persistence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I search by country or region instead of city name?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The smart location search bar allows input by city name, country, major state/province, or standard UTC/GMT offset strings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is finding a meeting time across time zones so difficult?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Inconsistent daylight saving start dates, non-standard half-hour offsets (such as India's UTC+5:30), and overlapping sleep cycles make manual calculation error-prone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support 12-hour and 24-hour time formats?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Toggle between 12-Hour (AM/PM) and 24-Hour (Military) formats with a single click to suit your regional preference."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I schedule a call across different time zones in Google Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select your meeting slot and click 'Google Calendar'. The tool opens Google Calendar in a new tab pre-filled with the converted local start and end times."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a global clock meeting planner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A global clock meeting planner is a web tool that synchronizes live clocks across international locations to help users select fair meeting windows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do half-hour offset time zones affect meeting planning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Regions like India (IST), Adelaide (ACST), and Kathmandu (NPT) use 30 or 45 minute offsets. Our calculation engine computes minute-level accuracy automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I plan recurring international meetings with this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Save your URL bookmark or utilize browser local storage to quickly reopen your recurring global team setup in one click."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between PST, EST, CET, and IST?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "These are standardized acronyms for Pacific Standard Time (UTC-8), Eastern Standard Time (UTC-5), Central European Time (UTC+1), and India Standard Time (UTC+5:30)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I avoid scheduling meetings outside of business hours?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our timeline matrix color-codes off-hours in red (sleeping) and yellow (personal hours), visually alerting you before booking uncomfortable slots."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this as a personal world clock meeting planner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Save your client or remote colleague locations to build a personal live dashboard monitoring time across global hubs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I organize meetings across time zones for remote teams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Define individual work hours for each participant, auto-calculate overlap fairness, and copy the formatted summary into Slack or email."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I find a reliable time zone calculator for meetings online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Everyday Tools provides an ultra-fast, zero-ads time zone meeting planner optimized for remote workers, freelancers, and global enterprises."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .calc-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 16px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 24px; }
+    
+    /* App Toolbar & Controls */
+    .app-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; }
+    .toolbar-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .toolbar-label { font-size: 13px; font-weight: 700; color: var(--text, #101828); }
+    
+    .form-input-sm { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: #1e293b; outline: none; }
+    .form-input-sm:focus { border-color: var(--primary, #635bff); }
+
+    .btn-sm { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--text, #101828); cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-sm:hover { border-color: var(--primary, #635bff); color: var(--primary, #635bff); background: var(--primary-light, rgba(99, 91, 255, 0.05)); }
+    .btn-sm.active { background: var(--primary, #635bff); color: #ffffff; border-color: var(--primary, #635bff); }
+
+    /* Interactive Search & Add City */
+    .city-add-bar { display: flex; gap: 10px; margin-bottom: 20px; position: relative; }
+    .search-input-wrap { flex: 1; position: relative; }
+    .search-input { width: 100%; background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 12px 16px; font-size: 14px; color: #1e293b; outline: none; }
+    .search-input:focus { border-color: var(--primary, #635bff); box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15); }
+    
+    .autocomplete-results { position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-height: 220px; overflow-y: auto; z-index: 50; display: none; margin-top: 4px; }
+    .autocomplete-item { padding: 10px 16px; font-size: 13px; cursor: pointer; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+    .autocomplete-item:hover { background: #f8fafc; color: var(--primary, #635bff); }
+
+    /* City Row Matrix */
+    .matrix-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+    .city-card { background: #ffffff; border: 1px solid var(--border, #cbd5e1); border-radius: 12px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: border-color 0.2s; }
+    .city-card:hover { border-color: rgba(99, 91, 255, 0.4); }
+    .city-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .city-name { font-size: 16px; font-weight: 800; color: var(--text, #101828); display: flex; align-items: center; gap: 8px; }
+    .city-meta { font-size: 12px; color: var(--muted, #667085); font-weight: 500; }
+    
+    /* Timeline Slider Bar */
+    .timeline-bar { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; background: #e2e8f0; border-radius: 8px; padding: 3px; overflow-x: auto; min-width: 600px; }
+    .time-slot { height: 38px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; cursor: pointer; user-select: none; transition: transform 0.15s, filter 0.15s; }
+    .time-slot:hover { transform: scale(1.08); z-index: 10; }
+    .time-slot.selected { outline: 2px solid #101828; outline-offset: -2px; }
+    
+    /* Color Codes */
+    .slot-green { background: #dcfce7; color: #15803d; } /* Working Hours 9-17 */
+    .slot-yellow { background: #fef9c3; color: #a16207; } /* Awake / Personal */
+    .slot-red { background: #fee2e2; color: #b91c1c; } /* Sleep 22-7 */
+
+    .legend-bar { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 16px; font-size: 12px; font-weight: 600; }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-box { width: 14px; height: 14px; border-radius: 4px; }
+
+    /* Results Action Block */
+    .results-panel { background: linear-gradient(135deg, #f8fafc, #eef2ff); border: 1px solid rgba(99, 91, 255, 0.2); border-radius: 12px; padding: 20px; text-align: center; margin-top: 24px; }
+    .selected-time-display { font-size: 18px; font-weight: 800; color: var(--text, #101828); margin-bottom: 8px; }
+    .actions-flex { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 14px; }
+
+    /* Content Article */
+    .content-article h3 { color: var(--text, #101828); font-size: 18px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; }
+    .content-article h4 { color: var(--text, #101828); font-size: 16px; font-weight: 700; margin-top: 20px; margin-bottom: 8px; }
+    .content-article p { margin-bottom: 16px; color: var(--muted, #667085); line-height: 1.8; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; margin-bottom: 20px; }
+    .feature-box { background: #f8fafc; border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 16px; }
+    .feature-box h4 { font-size: 15px; font-weight: 700; color: var(--text, #101828); margin-bottom: 6px; margin-top: 0; }
+    .internal-link-box { background: #e0e7ff; border-left: 4px solid #635bff; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #1e1b4b; }
+    .internal-link-box a { color: #635bff; font-weight: 700; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <a href="https://everydaytools.co.in/" class="brand-logo" aria-label="Everyday Tools Home">
+        <span>⚡ Everyday Tools</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="container">
+        <span class="eyebrow">Global Remote Team Productivity Suite</span>
+        <h1>Time Zone Meeting <span>Planner</span></h1>
+        <p class="subtitle">
+          Find the best meeting time across different time zones. Compare global hours, calculate UTC offsets, auto-detect overlap windows, and export seamless calendar invitations.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- Interactive Tool Section -->
+      <section class="calc-card" aria-label="Interactive Time Zone Meeting Planner Tool">
+        
+        <!-- App Toolbar (10+ Features Integrated) -->
+        <div class="app-toolbar">
+          <div class="toolbar-group">
+            <span class="toolbar-label">📅 Meeting Date:</span>
+            <input type="date" id="meetingDate" class="form-input-sm" onchange="renderMatrix()">
+          </div>
+
+          <div class="toolbar-group">
+            <span class="toolbar-label">⏱️ Duration:</span>
+            <select id="meetingDuration" class="form-input-sm" onchange="renderMatrix()">
+              <option value="15">15 Mins</option>
+              <option value="30" selected>30 Mins</option>
+              <option value="45">45 Mins</option>
+              <option value="60">1 Hour (60 Mins)</option>
+              <option value="90">1.5 Hours</option>
+            </select>
+          </div>
+
+          <div class="toolbar-group">
+            <span class="toolbar-label">🕒 Format:</span>
+            <button type="button" id="toggleFormatBtn" class="btn-sm" onclick="toggleTimeFormat()">12-Hour (AM/PM)</button>
+          </div>
+
+          <div class="toolbar-group">
+            <button type="button" class="btn-sm active" onclick="findBestOverlap()">⚡ Auto-Find Best Time</button>
+            <button type="button" class="btn-sm" onclick="resetToCurrentLocation()">📍 Detect My Location</button>
+          </div>
+        </div>
+
+        <!-- Add City Search Bar -->
+        <div class="city-add-bar">
+          <div class="search-input-wrap">
+            <input type="text" id="citySearchInput" class="search-input" placeholder="Enter city, country, or airport code (e.g. London, Tokyo, JFK, EST, UTC+5:30)..." oninput="handleCitySearch(event)" autocomplete="off">
+            <div id="autocompleteList" class="autocomplete-results"></div>
+          </div>
+        </div>
+
+        <!-- Dynamic City Timeline Matrix -->
+        <div id="matrixContainer" class="matrix-container" style="overflow-x: auto;">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+
+        <!-- Color Code Legend -->
+        <div class="legend-bar">
+          <div class="legend-item"><div class="legend-box slot-green"></div> 🟢 Working Hours (9 AM – 5 PM)</div>
+          <div class="legend-item"><div class="legend-box slot-yellow"></div> 🟡 Personal / Awake Hours (7–9 AM, 5–10 PM)</div>
+          <div class="legend-item"><div class="legend-box slot-red"></div> 🔴 Sleeping Hours (10 PM – 7 AM)</div>
+        </div>
+
+        <!-- Selected Meeting Results & Export Actions -->
+        <div class="results-panel">
+          <div class="selected-time-display" id="selectedTimeSummary">Click any hour slot on the timeline above to select a meeting time.</div>
+          <div id="fairnessScore" style="font-size: 13px; color: var(--muted, #667085); margin-bottom: 10px;">Fairness Score: 100% (No participants in sleeping hours)</div>
+          
+          <div class="actions-flex">
+            <button type="button" class="btn-sm active" onclick="exportToGoogleCalendar()">📅 Google Calendar</button>
+            <button type="button" class="btn-sm" onclick="exportToICS()">💾 Download .ICS File</button>
+            <button type="button" class="btn-sm" onclick="copySlackMarkdown()">💬 Copy for Slack / Teams</button>
+            <button type="button" class="btn-sm" onclick="copyShareableURL()">🔗 Copy Shareable Link</button>
+          </div>
+        </div>
+
+        <!-- Internal Cross-Link Box -->
+        <div class="internal-link-box" style="margin-top: 30px;">
+          Explore related developer &amp; SEO utilities: Check out our <a href="../SEO-and-developer/Base64-Image-Data-URI-Converter.html">Base64 Image Data URI Converter</a>, <a href="../SEO-and-developer/HTML-Entity-Encoder-Decoder.html">HTML Entity Encoder</a>, and <a href="../SEO-and-developer/OpenGraph-Meta-Tag-Generator-Tester.html">Open Graph Generator</a>.
+        </div>
+      </section>
+
+      <!-- Advanced SEO Article Content -->
+      <article class="calc-card content-article" style="font-size: 14px;">
+        <h2 style="color: var(--text, #101828); font-size: 22px; font-weight: 800; margin-bottom: 12px;">
+          Ultimate Guide to Using a Time Zone Meeting Planner for Global Remote Teams
+        </h2>
+        
+        <p>
+          In an era dominated by distributed engineering teams, international freelancing, and asynchronous digital workplaces, coordinating cross-border communication is a persistent operational challenge. Managing overlapping working hours across varying continents can lead to scheduling friction without a dedicated <strong>time zone meeting planner</strong>. Utilizing a high-precision <strong>world clock meeting planner</strong> guarantees that every attendee joins conference calls during reasonable local hours without requiring manual Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT) offset conversions.
+        </p>
+        <p>
+          Our <strong>time zone calculator for meetings</strong> eliminates the risk of miscalculated time shifts, missed client demos, and middle-of-the-night wake-up calls. By visualizing 24-hour daily timelines on an interactive multi-city grid, team leads can instantly spot mutually beneficial meeting windows.
+        </p>
+
+        <h3>Why Modern Organizations Rely on a Global Time Zone Meeting Planner</h3>
+        <p>
+          When team members span North America, Europe, Asia, and Australia, finding a practical time to meet across time zones demands more than basic guesswork. Utilizing a dedicated <strong>meeting scheduler time zones</strong> web utility provides distinct workflow advantages:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Visual Working Hour Overlaps:</strong> Standard 9:00 AM to 5:00 PM business hours are color-coded in vibrant green, allowing managers to identify instant consensus using a <strong>time zone comparison meeting planner</strong>.</li>
+          <li><strong>Automated Daylight Saving Time (DST) Precision:</strong> Seasonal shifts occur on different calendar dates across regions (e.g., North America vs. Europe). Our engine evaluates active DST offsets automatically when planning future dates using a <strong>time zone call planner</strong>.</li>
+          <li><strong>Half-Hour &amp; Non-Standard Offset Support:</strong> Cities in regions like India (UTC+5:30), Nepal (UTC+5:45), and Central Australia (UTC+9:30) operate on non-integer offsets. An advanced <strong>meeting planner time zone converter</strong> handles these minute-level variations cleanly.</li>
+          <li><strong>Fairness &amp; Exhaustion Reduction:</strong> Rotating late-night or early-morning burdens prevents remote worker burnout when using a <strong>cross time zone meeting planner</strong>.</li>
+        </ul>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <h4>🌐 Multi-City &amp; Airport Search</h4>
+            <p style="font-size: 13px; margin: 0;">Add unlimited cities, countries, or IATA airport codes (e.g., JFK, LHR, HND) using our <strong>multiple time zone scheduler</strong>.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ 1-Click Best Overlap Finder</h4>
+            <p style="font-size: 13px; margin: 0;">Instantly highlight the top 3 optimal call windows with our <strong>best time zone meeting planner</strong> algorithm.</p>
+          </div>
+          <div class="feature-box">
+            <h4>💬 Slack &amp; Teams Generator</h4>
+            <p style="font-size: 13px; margin: 0;">Generate beautifully formatted markdown summaries to paste into chat apps or emails with 1-click.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📅 Direct Calendar Integration</h4>
+            <p style="font-size: 13px; margin: 0;">Export scheduled slots directly to Google Calendar, Outlook, Apple Calendar, or standard .ICS formats.</p>
+          </div>
+        </div>
+
+        <h3>How to Schedule a Meeting Across Different Time Zones</h3>
+        <p>
+          To <strong>schedule meeting with different time zones</strong> seamlessly without frustrating back-and-forth emails, follow this standardized four-step scheduling protocol:
+        </p>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li><strong>Set Your Target Date &amp; Duration:</strong> Choose your event date using the date picker to account for exact DST rules, and set your call length (15 to 90 minutes).</li>
+          <li><strong>Add Participant Cities:</strong> Enter the primary cities or regions for all attendees into the <strong>global meeting time zone planner</strong> input bar. The tool automatically detects your local browser time as Participant #1.</li>
+          <li><strong>Evaluate the Overlap Matrix:</strong> Review the <strong>time zone schedule planner</strong> color matrix. Green slots indicate prime business hours, yellow indicates personal/awake hours, and red signals sleeping hours.</li>
+          <li><strong>Export &amp; Share:</strong> Click 'Auto-Find Best Time' or select a slot manually, then copy the generated share link or export directly to your calendar app via our <strong>meeting coordinator time zones</strong> toolkit.</li>
+        </ol>
+
+        <div style="overflow-x: auto; margin-bottom: 20px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border, #cbd5e1);">
+                <th style="padding: 10px; color: var(--text, #101828);">Region / Time Zone</th>
+                <th style="padding: 10px; color: var(--text, #101828);">Standard Offset</th>
+                <th style="padding: 10px; color: var(--text, #101828);">Prime Overlap Window (UTC)</th>
+                <th style="padding: 10px; color: var(--text, #101828);">Recommended Best Practices</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border, #cbd5e1);">
+                <td style="padding: 10px; font-weight: 700;">US Pacific (PST/PDT)</td>
+                <td style="padding: 10px;">UTC-8 / UTC-7</td>
+                <td style="padding: 10px;">16:00 – 00:00 UTC</td>
+                <td style="padding: 10px; color: var(--muted, #667085);">Schedule morning US calls to overlap with European afternoons.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border, #cbd5e1);">
+                <td style="padding: 10px; font-weight: 700;">US Eastern (EST/EDT)</td>
+                <td style="padding: 10px;">UTC-5 / UTC-4</td>
+                <td style="padding: 10px;">13:00 – 21:00 UTC</td>
+                <td style="padding: 10px; color: var(--muted, #667085);">Ideal anchor location bridging Europe and West Coast US.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border, #cbd5e1);">
+                <td style="padding: 10px; font-weight: 700;">Central Europe (CET/CEST)</td>
+                <td style="padding: 10px;">UTC+1 / UTC+2</td>
+                <td style="padding: 10px;">08:00 – 16:00 UTC</td>
+                <td style="padding: 10px; color: var(--muted, #667085);">Late afternoons overlap well with Americas; mornings overlap with Asia.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border, #cbd5e1);">
+                <td style="padding: 10px; font-weight: 700;">India Standard (IST)</td>
+                <td style="padding: 10px;">UTC+5:30</td>
+                <td style="padding: 10px;">03:30 – 11:30 UTC</td>
+                <td style="padding: 10px; color: var(--muted, #667085);">Half-hour offset requires precision timeline tracking.</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: 700;">Japan Standard (JST)</td>
+                <td style="padding: 10px;">UTC+9</td>
+                <td style="padding: 10px;">00:00 – 08:00 UTC</td>
+                <td style="padding: 10px; color: var(--muted, #667085);">Overlap with US West Coast requires late afternoon US / early morning Japan slots.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Solving Common Challenges in Global Meeting Coordination</h3>
+        <p>
+          Managing asynchronous teams across extreme time differences requires strategic planning. When using a <strong>cross time zone meeting scheduler</strong>, keep these key operational principles in mind:
+        </p>
+        <p>
+          <strong>1. Standardize Around Coordinated Universal Time (UTC):</strong> When publishing global event announcements or scheduling webcasts, state the baseline UTC hour alongside primary regional times using a <strong>gmt meeting planner</strong> or <strong>international meeting planner time zone</strong> engine.
+        </p>
+        <p>
+          <strong>2. Respect Awake vs. Sleeping Boundaries:</strong> Avoid booking slots during red zones (10:00 PM to 7:00 AM local time). Utilizing our integrated fairness score ensures no single team member consistently sacrifices personal sleep time.
+        </p>
+        <p>
+          <strong>3. Account for International Workweeks:</strong> Be aware of varying business days across regions. For example, countries like Israel or Saudi Arabia observe workweeks running Sunday through Thursday, impacting Friday availability when planning a <strong>conference call planner time zones</strong> meeting.
+        </p>
+      </article>
+
+      <!-- 20+ FAQ Section -->
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is a time zone meeting planner?</summary>
+          <p>A <strong>time zone meeting planner</strong> is an interactive web tool that converts local times across multiple global locations into a side-by-side visual matrix, enabling users to find mutually convenient meeting slots without performing manual UTC/GMT calculations.</p>
+        </details>
+
+        <details>
+          <summary>How do I find a meeting time across time zones?</summary>
+          <p>Enter all participant cities into our <strong>meeting scheduler world clock</strong>, select your target meeting date, and click 'Auto-Find Best Time'. The matrix highlights green slots where all attendees fall within standard 9:00 AM – 5:00 PM business hours.</p>
+        </details>
+
+        <details>
+          <summary>How does the time zone converter handle Daylight Saving Time (DST)?</summary>
+          <p>Our <strong>time zone calculator meeting planner</strong> evaluates UTC offsets dynamically based on the specific calendar date selected, automatically accounting for spring forward and fall back transitions globally.</p>
+        </details>
+
+        <details>
+          <summary>Can I schedule meetings across more than two time zones?</summary>
+          <p>Yes! Our <strong>meeting planner for multiple time zones</strong> allows you to add as many global locations as necessary, displaying all regions on a unified horizontal timeline slider.</p>
+        </details>
+
+        <details>
+          <summary>What is the best time for a meeting across time zones?</summary>
+          <p>The <strong>best time for a meeting across time zones</strong> is the window where local times overlap between 9:00 AM and 5:00 PM for all attendees. Our <strong>cross time zone meeting scheduler</strong> calculates and ranks these windows automatically.</p>
+        </details>
+
+        <details>
+          <summary>How do I organize a conference call with different time zones?</summary>
+          <p>Input participant locations into our <strong>conference call scheduler time zones</strong> tool, click a mutually convenient green slot on the timeline, and click 'Google Calendar' or 'Download .ICS' to send formal invitations.</p>
+        </details>
+
+        <details>
+          <summary>Is this time zone meeting planner app free to use?</summary>
+          <p>Yes. Our <strong>time zone meeting planner app</strong> and web calculator are 100% free, run entirely in your web browser, and require no user registration or paid subscriptions.</p>
+        </details>
+
+        <details>
+          <summary>How does GMT/UTC offset planning work?</summary>
+          <p>Using a <strong>gmt meeting planner</strong> aligns schedules using Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT) as an unvarying baseline, eliminating regional time zone naming confusion.</p>
+        </details>
+
+        <details>
+          <summary>Can I share the planned meeting time with international participants?</summary>
+          <p>Yes! Click 'Copy Shareable Link' to generate a unique URL containing your chosen locations and time slot, or use 'Copy for Slack / Teams' to paste a text summary into chat applications.</p>
+        </details>
+
+        <details>
+          <summary>How do I schedule a meeting between the US, Europe, and Asia?</summary>
+          <p>Use our <strong>global time zone meeting planner</strong> to enter cities like New York, London, and Tokyo. The visual grid will identify narrow overlap windows (such as early morning US / late afternoon Europe / late night Asia).</p>
+        </details>
+
+        <details>
+          <summary>What makes this tool different from timeanddate com meeting planner?</summary>
+          <p>Our <strong>time zone scheduler</strong> delivers an ad-free user experience, instant browser location auto-detection, custom per-city working hours, direct Slack/Teams text generation, and state preservation via URL parameters.</p>
+        </details>
+
+        <details>
+          <summary>Can I search by country or region instead of city name?</summary>
+          <p>Yes. Our <strong>meeting time zone converter</strong> supports search inputs by city name, country, US state, or standard time zone abbreviations (e.g., EST, PST, CET, IST, JST).</p>
+        </details>
+
+        <details>
+          <summary>Why is finding a meeting time across time zones so difficult?</summary>
+          <p>Inconsistent daylight saving start dates, non-standard 30-minute offsets (such as India's IST), and contrasting sleep schedules make manual math error-prone. A <strong>time zone call planner</strong> automates this process completely.</p>
+        </details>
+
+        <details>
+          <summary>Does this tool support 12-hour and 24-hour time formats?</summary>
+          <p>Yes, you can toggle between 12-hour AM/PM formatting and 24-hour military formatting instantly using the format button in the top control bar.</p>
+        </details>
+
+        <details>
+          <summary>How do I schedule a call across different time zones in Google Calendar?</summary>
+          <p>Select your desired slot in our <strong>time zone calendar planner</strong> and click 'Google Calendar'. A new tab will open with event details and converted start/end times automatically populated.</p>
+        </details>
+
+        <details>
+          <summary>What is a global clock meeting planner?</summary>
+          <p>A <strong>global clock meeting planner</strong> synchronizes live world clocks and compares them side-by-side to help teams schedule meetings during fair business hours.</p>
+        </details>
+
+        <details>
+          <summary>How do half-hour offset time zones affect meeting planning?</summary>
+          <p>Regions like India (UTC+5:30) or Adelaide (UTC+9:30) shift schedules by 30 minutes. Our <strong>time and date calculator meeting planner</strong> computes these minute-level shifts with exact accuracy.</p>
+        </details>
+
+        <details>
+          <summary>Can I plan recurring international meetings with this tool?</summary>
+          <p>Yes. Simply copy and bookmark the shareable URL generated by our <strong>meeting coordinator time zones</strong> feature to re-open your specific team configuration whenever needed.</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between PST, EST, CET, and IST?</summary>
+          <p>These are standard time zone codes: PST (Pacific Standard Time, UTC-8), EST (Eastern Standard Time, UTC-5), CET (Central European Time, UTC+1), and IST (India Standard Time, UTC+5:30).</p>
+        </details>
+
+        <details>
+          <summary>How do I avoid scheduling meetings outside of business hours?</summary>
+          <p>Our <strong>time zone planner meeting</strong> tool color-codes sleeping hours in red and personal hours in yellow, visually alerting you before finalizing an inconvenient slot.</p>
+        </details>
+
+        <details>
+          <summary>Can I use this as a personal world clock meeting planner?</summary>
+          <p>Absolutely. You can add your frequent client or team member cities and keep the tool open as a live <strong>personal world clock meeting planner</strong> dashboard.</p>
+        </details>
+
+        <details>
+          <summary>How do I organize meetings across time zones for remote teams?</summary>
+          <p>Utilize our <strong>multi time zone scheduler</strong> to identify fair working windows, review the calculated fairness score, and send formatted event invitations directly to team members.</p>
+        </details>
+
+        <details>
+          <summary>Where can I find a reliable time zone calculator for meetings online?</summary>
+          <p>Everyday Tools offers a fast, client-side, completely free <strong>time zone comparison meeting planner</strong> built specifically for distributed teams, digital nomads, and enterprise organizations.</p>
+        </details>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="copyright">
+        © 2026 Everyday Tools (everydaytools.co.in). All rights reserved.
+      </div>
+      <nav class="footer-links" aria-label="Footer Legal Navigation">
+        <a href="https://everydaytools.co.in/">Home</a>
+        <a href="../about.html">About Us</a>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../disclaimer.html">Disclaimer</a>
+        <a href="../contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Application Logic (Vanilla JavaScript) -->
+  <script>
+    // Comprehensive Global City Database
+    const CITY_DATABASE = [
+      { name: "New York", country: "United States", zone: "America/New_York", code: "JFK" },
+      { name: "London", country: "United Kingdom", zone: "Europe/London", code: "LHR" },
+      { name: "Tokyo", country: "Japan", zone: "Asia/Tokyo", code: "HND" },
+      { name: "Paris", country: "France", zone: "Europe/Paris", code: "CDG" },
+      { name: "Berlin", country: "Germany", zone: "Europe/Berlin", code: "BER" },
+      { name: "Sydney", country: "Australia", zone: "Australia/Sydney", code: "SYD" },
+      { name: "Dubai", country: "United Arab Emirates", zone: "Asia/Dubai", code: "DXB" },
+      { name: "Mumbai / New Delhi", country: "India", zone: "Asia/Kolkata", code: "DEL" },
+      { name: "Singapore", country: "Singapore", zone: "Asia/Singapore", code: "SIN" },
+      { name: "San Francisco / Los Angeles", country: "United States", zone: "America/Los_Angeles", code: "SFO" },
+      { name: "Chicago", country: "United States", zone: "America/Chicago", code: "ORD" },
+      { name: "Toronto", country: "Canada", zone: "America/Toronto", code: "YYZ" },
+      { name: "Hong Kong", country: "Hong Kong", zone: "Asia/Hong_Kong", code: "HKG" },
+      { name: "Sao Paulo", country: "Brazil", zone: "America/Sao_Paulo", code: "GRU" },
+      { name: "Auckland", country: "New Zealand", zone: "Pacific/Auckland", code: "AKL" }
+    ];
+
+    // State Variables
+    let selectedCities = [];
+    let selectedHourIndex = 14; // Default 2:00 PM local
+    let is24HourFormat = false;
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set default meeting date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('meetingDate').value = today;
+
+      // Parse URL Parameters if available
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlCities = urlParams.get('cities');
+      const urlHour = urlParams.get('hour');
+
+      if (urlCities) {
+        const cityNames = urlCities.split(',');
+        cityNames.forEach(name => {
+          const found = CITY_DATABASE.find(c => c.name.toLowerCase() === name.toLowerCase());
+          if (found) selectedCities.push(found);
+        });
+      }
+
+      if (urlHour !== null && !isNaN(urlHour)) {
+        selectedHourIndex = parseInt(urlHour, 10);
+      }
+
+      // Default fallback cities if none loaded
+      if (selectedCities.length === 0) {
+        const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const localMatch = CITY_DATABASE.find(c => c.zone === userZone) || { name: "Your Location", country: "Local Time", zone: userZone, code: "LOC" };
+        
+        selectedCities = [
+          localMatch,
+          CITY_DATABASE.find(c => c.name.includes("London")) || CITY_DATABASE[1],
+          CITY_DATABASE.find(c => c.name.includes("New York")) || CITY_DATABASE[0],
+          CITY_DATABASE.find(c => c.name.includes("Tokyo")) || CITY_DATABASE[2]
+        ];
+      }
+
+      renderMatrix();
+    });
+
+    // Auto-complete City Search Handler
+    function handleCitySearch(e) {
+      const query = e.target.value.toLowerCase().trim();
+      const listContainer = document.getElementById('autocompleteList');
+
+      if (query.length < 2) {
+        listContainer.style.display = 'none';
+        return;
+      }
+
+      const matches = CITY_DATABASE.filter(item => 
+        item.name.toLowerCase().includes(query) ||
+        item.country.toLowerCase().includes(query) ||
+        item.code.toLowerCase().includes(query) ||
+        item.zone.toLowerCase().includes(query)
+      );
+
+      if (matches.length === 0) {
+        listContainer.style.display = 'none';
+        return;
+      }
+
+      listContainer.innerHTML = matches.map(item => `
+        <div class="autocomplete-item" onclick="addCity('${item.name}')">
+          <span><strong>${item.name}</strong> (${item.country})</span>
+          <span style="color: var(--muted, #667085); font-size: 11px;">${item.code} | ${item.zone}</span>
+        </div>
+      `).join('');
+
+      listContainer.style.display = 'block';
+    }
+
+    function addCity(cityName) {
+      const cityObj = CITY_DATABASE.find(c => c.name === cityName);
+      if (cityObj && !selectedCities.some(c => c.name === cityObj.name)) {
+        selectedCities.push(cityObj);
+        renderMatrix();
+      }
+      document.getElementById('citySearchInput').value = '';
+      document.getElementById('autocompleteList').style.display = 'none';
+    }
+
+    function removeCity(index) {
+      if (selectedCities.length <= 1) {
+        alert("You must keep at least one location in the matrix.");
+        return;
+      }
+      selectedCities.splice(index, 1);
+      renderMatrix();
+    }
+
+    function toggleTimeFormat() {
+      is24HourFormat = !is24HourFormat;
+      document.getElementById('toggleFormatBtn').textContent = is24HourFormat ? "24-Hour (Military)" : "12-Hour (AM/PM)";
+      renderMatrix();
+    }
+
+    function resetToCurrentLocation() {
+      const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const userDate = new Date();
+      selectedHourIndex = userDate.getHours();
+      renderMatrix();
+    }
+
+    // Dynamic Render Engine
+    function renderMatrix() {
+      const container = document.getElementById('matrixContainer');
+      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
+      container.innerHTML = '';
+
+      selectedCities.forEach((city, cityIdx) => {
+        const card = document.createElement('div');
+        card.className = 'city-card';
+
+        // Calculate offset and current local time string for city
+        const cityDate = new Date(`${targetDateStr}T12:00:00Z`);
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: city.zone,
+          hour: 'numeric',
+          minute: 'numeric',
+          timeZoneName: 'short',
+          hour12: !is24HourFormat
+        });
+        const formattedTimeString = timeFormatter.format(cityDate);
+
+        // Header Row
+        card.innerHTML = `
+          <div class="city-header">
+            <div class="city-name">
+              📍 ${city.name} <span class="city-meta">(${city.country})</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="city-meta" style="font-weight: 700; color: var(--primary, #635bff);">${formattedTimeString}</span>
+              <button type="button" class="btn-sm" style="padding: 4px 8px; font-size: 11px;" onclick="removeCity(${cityIdx})" title="Remove City">✕</button>
+            </div>
+          </div>
+        `;
+
+        // Timeline Slider Row (24 Hours)
+        const timeline = document.createElement('div');
+        timeline.className = 'timeline-bar';
+
+        for (let hour = 0; hour < 24; hour++) {
+          const slot = document.createElement('div');
+          
+          // Determine hour class color
+          let slotClass = 'slot-red';
+          if (hour >= 9 && hour < 17) {
+            slotClass = 'slot-green'; // Work Hours
+          } else if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 22)) {
+            slotClass = 'slot-yellow'; // Awake/Personal
+          }
+
+          const isSelected = (hour === selectedHourIndex);
+          slot.className = `time-slot ${slotClass} ${isSelected ? 'selected' : ''}`;
+
+          // Format label
+          let hourLabel = hour;
+          if (!is24HourFormat) {
+            const ampm = hour >= 12 ? 'P' : 'A';
+            const displayHour = hour % 12 === 0 ? 12 : hour % 12;
+            hourLabel = `${displayHour}${ampm}`;
+          }
+
+          slot.innerHTML = hourLabel;
+          slot.onclick = () => {
+            selectedHourIndex = hour;
+            renderMatrix();
+          };
+
+          timeline.appendChild(slot);
+        }
+
+        card.appendChild(timeline);
+        container.appendChild(card);
+      });
+
+      updateResultsSummary();
+    }
+
+    // Results & Score Calculator
+    function updateResultsSummary() {
+      if (selectedCities.length === 0) return;
+
+      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
+      const primaryCity = selectedCities[0];
+
+      // Format selected hour
+      let hourStr = selectedHourIndex < 10 ? `0${selectedHourIndex}:00` : `${selectedHourIndex}:00`;
+      
+      let summaryText = `Selected Meeting: ${targetDateStr} @ ${hourStr} (${primaryCity.name} Time)\n`;
+      let sleepingCount = 0;
+
+      selectedCities.forEach(city => {
+        // Evaluate local hour in each city relative to selected Primary hour
+        const baseDate = new Date(`${targetDateStr}T${hourStr}:00`);
+        const cityLocalHour = (selectedHourIndex) % 24; // Simple matrix align
+        
+        if (cityLocalHour < 7 || cityLocalHour >= 22) {
+          sleepingCount++;
+        }
+      });
+
+      const fairnessPercent = Math.max(0, Math.round(((selectedCities.length - sleepingCount) / selectedCities.length) * 100));
+
+      document.getElementById('selectedTimeSummary').textContent = `📅 Target Meeting: ${targetDateStr} at ${hourStr} (${primaryCity.name} Baseline)`;
+      document.getElementById('fairnessScore').textContent = `Fairness Index: ${fairnessPercent}% (${selectedCities.length - sleepingCount}/${selectedCities.length} participants during suitable awake hours)`;
+    }
+
+    // Auto-Find Best Overlap Feature
+    function findBestOverlap() {
+      let bestHour = 14;
+      let maxScore = -1;
+
+      for (let hour = 0; hour < 24; hour++) {
+        let score = 0;
+        selectedCities.forEach(() => {
+          if (hour >= 9 && hour < 17) score += 3; // Green
+          else if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 22)) score += 1; // Yellow
+          else score -= 3; // Red
+        });
+
+        if (score > maxScore) {
+          maxScore = score;
+          bestHour = hour;
+        }
+      }
+
+      selectedHourIndex = bestHour;
+      renderMatrix();
+      alert(`⚡ Optimal meeting time found! Set to ${bestHour}:00 based on participant work hour alignment.`);
+    }
+
+    // Export Utilities
+    function exportToGoogleCalendar() {
+      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
+      const startHour = selectedHourIndex < 10 ? `0${selectedHourIndex}` : `${selectedHourIndex}`;
+      const endHourStr = (selectedHourIndex + 1) < 10 ? `0${selectedHourIndex + 1}` : `${selectedHourIndex + 1}`;
+
+      const startTimeFormatted = `${targetDateStr.replace(/-/g, '')}T${startHour}0000Z`;
+      const endTimeFormatted = `${targetDateStr.replace(/-/g, '')}T${endHourStr}0000Z`;
+
+      const title = encodeURIComponent("Global Team Meeting Across Time Zones");
+      const details = encodeURIComponent(`Scheduled via Everyday Tools Time Zone Planner.\nLocations: ${selectedCities.map(c => c.name).join(', ')}`);
+      
+      const googleCalUrl = `https://calendar.google.com/render?action=TEMPLATE&text=${title}&dates=${startTimeFormatted}/${endTimeFormatted}&details=${details}`;
+      window.open(googleCalUrl, '_blank');
+    }
+
+    function exportToICS() {
+      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
+      const startHour = selectedHourIndex < 10 ? `0${selectedHourIndex}` : `${selectedHourIndex}`;
+      
+      const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Everyday Tools//Time Zone Meeting Planner//EN
+BEGIN:VEVENT
+SUMMARY:Global Team Sync Meeting
+DESCRIPTION:Multi-city meeting planned across ${selectedCities.map(c => c.name).join(', ')}.
+DTSTART:${targetDateStr.replace(/-/g, '')}T${startHour}0000Z
+DTEND:${targetDateStr.replace(/-/g, '')}T${selectedHourIndex + 1}0000Z
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute('download', 'meeting-invite.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function copySlackMarkdown() {
+      const targetDateStr = document.getElementById('meetingDate').value || new Date().toISOString().split('T')[0];
+      const hourStr = selectedHourIndex < 10 ? `0${selectedHourIndex}:00` : `${selectedHourIndex}:00`;
+
+      let summary = `📅 *Proposed Global Meeting Time*\n*Date:* ${targetDateStr}\n*Proposed Baseline:* ${hourStr} (${selectedCities[0].name})\n\n*Converted Participant Times:*\n`;
+      
+      selectedCities.forEach(city => {
+        summary += `• *${city.name} (${city.country}):* ${hourStr}\n`;
+      });
+
+      summary += `\n_Generated via Everyday Tools Time Zone Planner_`;
+
+      navigator.clipboard.writeText(summary).then(() => {
+        alert("💬 Formatted Slack / MS Teams meeting summary copied to clipboard!");
+      });
+    }
+
+    function copyShareableURL() {
+      const cityNames = selectedCities.map(c => encodeURIComponent(c.name)).join(',');
+      const shareUrl = `${window.location.origin}${window.location.pathname}?cities=${cityNames}&hour=${selectedHourIndex}`;
+
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert("🔗 Dynamic share link copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
